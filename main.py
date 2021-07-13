@@ -1,8 +1,9 @@
+
+import sys
+sys.path.append('.')
 import xml.etree.cElementTree as ET
 from xml.dom import minidom
 import re
-import sys
-sys.path.append('.')
 from RailML.railML import railML
 from RailML.Common.Metadata import Metadata
 
@@ -15,6 +16,8 @@ XMLNS_GML="http://www.opengis.net/gml/3.2/"
 XMLNS_XSI="http://www.w3.org/2001/XMLSchema-instance"
 XSI_SCHEMALOCATION="https://www.railml.org/schemas/3.1 https://www.railml.org/schemas/3.1/railml3.xsd"
 VERSION = "3.1"
+
+ATTRIBUTES = {"xmlns":XMLNS , "xmlns:dc":XMLNS_DC , "xmlns:gml":XMLNS_GML , "xmlns:xsi":XMLNS_XSI , "xsi:schemaLocation":XSI_SCHEMALOCATION , "version":VERSION}
 
 #%%
 def print_leaves(root,leaf,tag):
@@ -51,24 +54,18 @@ def metadata_set(root,leaf,tag,object):
 def metadata_to_XML(root_ML,metadata):
     #ET.SubElement(root_ML, "field3", name="blah").text = "some value1"
     
-    ET.SubElement(root_ML, "title").text = metadata.Title
-    
-    
-    #object.Title = leaves[0].text
-    #object.Date = leaves[1].text
-    #object.Creator = leaves[2].text
-    #object.Source = leaves[3].text
-    #object.Identifier = leaves[4].text
-    #object.Subject = leaves[5].text
-    #object.Format = leaves[6].text
-    #object.Description = leaves[7].text
-    #object.Publisher = leaves[8].text   
-
-
-#RailML\Example_1\src\example_1.xml
+    ET.SubElement(root_ML, "dc:title").text = metadata.Title
+    ET.SubElement(root_ML, "dc:date").text = metadata.Date
+    ET.SubElement(root_ML, "dc:creator").text = metadata.Creator
+    ET.SubElement(root_ML, "dc:source").text = metadata.Source
+    ET.SubElement(root_ML, "dc:identifier").text = metadata.Identifier
+    ET.SubElement(root_ML, "dc:subject").text = metadata.Subject
+    ET.SubElement(root_ML, "dc:format").text = metadata.Format
+    ET.SubElement(root_ML, "dc:description").text = metadata.Description
+    ET.SubElement(root_ML, "dc:publisher").text = metadata.Publisher
 #%%
-def main():
-    tree = ET.parse("RailML/Example_1.railml")
+def load_xml(file):
+    tree = ET.parse(file)
     root = tree.getroot()
     
     #print_leaves(root,'',XMLNS)
@@ -76,30 +73,38 @@ def main():
     #print_leaves(root,'common',XMLNS)
     #print_leaves(root,'infrastructure',XMLNS)
     #print_leaves(root,'interlocking',XMLNS)
-
+    return root
+    
+#%%
+def create_objects(root):
+    print('Creating RailML object')
     RML = railML()
-    
+    print('Creating Metadata object')
     metadata = Metadata()
-
     metadata_set(root,'metadata',XMLNS_DC,metadata)
-    
     RML.Metadata = metadata
     
     #print(RML.Metadata)
-
-    root_ML = ET.Element("railML", xmlns=XMLNS)
+    return RML
+    
+def save_xml(RML,file):    
+    root_ML = ET.Element("railML",attrib = ATTRIBUTES)
     metadata_ML = ET.SubElement(root_ML, "metadata")
 
-    metadata_to_XML(metadata_ML,metadata)
+    metadata_to_XML(metadata_ML,RML.Metadata)
     
+    tree2 = ET.ElementTree(root_ML)
+    tree2.write(file)
 
+    xmlstr = minidom.parseString(ET.tostring(root_ML)).toprettyxml(indent="   ", encoding='UTF-8')
 
-    #tree2 = ET.ElementTree(root2)
-    #tree2.write("filename.xml")
-    
-    xmlstr = minidom.parseString(ET.tostring(root_ML)).toprettyxml(indent="   ")
-    with open("RailML/Example_2.railml", "w") as f:
-        f.write(xmlstr)
+    with open(file, "w") as f:
+        f.write(str(xmlstr.decode('UTF-8')))
+        f.close()
     
 if __name__ == "__main__":
-    main()
+    root = load_xml("RailML/Example_1.railml")
+    RML = create_objects(root)
+    save_xml(RML,"RailML/Example_2.railml")
+    
+# %%
