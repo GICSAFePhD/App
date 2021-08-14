@@ -195,8 +195,22 @@ def save_xml(file):
         f.write(str(xmlstr.decode('UTF-8')))
         f.close()
     
+def cosa_a(num):
+    print("HOLA_A: "+str(num))
+
+def cosa_b(num):
+    print("HOLA_B: "+str(num))
+
+def cosa_c(num):
+    print("HOLA_C: "+str(num))
+
 if __name__ == "__main__":
     root = load_xml("C:\PhD\RailML\Example_1.railml")   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
     #set_objects(root)
-    get_branches(root)       
+    #get_branches(root)
+
+    func_dic = {'a':cosa_a,'b':cosa_b,'c':cosa_c}
+
+    func_dic['a'](1)
+
     save_xml("C:\PhD\RailML\Example_2.railml")  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
