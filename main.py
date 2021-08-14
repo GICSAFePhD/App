@@ -46,16 +46,14 @@ def get_leaves(root,leaf,tag):
     
     return [leaves,ns_leaf]
 
-def get_leaves2(root,tag):
-    ns = re.match(r'{.*}', root.tag).group(0)
-        
+def get_leaves2(root):
     leaves = []
     leaf = []
-    ns_leaf = '{'+tag+'}'
+    #ns_leaf = '{'+tag+'}'
     
     for i in root:  # HERE I CAN DO IT GENERIC
-        #print(x.tag[len(ns_leaf):])
-        leaves.append(i.tag[len(ns_leaf):])
+        ns = re.match(r'{.*}', i.tag).group(0)
+        leaves.append(i.tag[len(ns):])
         leaf.append(i)
     
     return [leaf,leaves]
@@ -135,24 +133,52 @@ def load_xml(file):
     #print_leaves(root,'interlocking',XMLNS)
     return root
     
+
 #%%
 def set_objects(root):   
-    print('Setting aRailML')
-    RML.aRailML = aRailML.aRailML()
-    RML.aRailML.Version = VERSION
+    #print('Setting aRailML')
+    #RML.aRailML = aRailML.aRailML()
+    #RML.aRailML.Version = VERSION
     
-    print('>Metadata')
-    RML.Metadata = Metadata.Metadata()
-    metadata_set(root,'metadata',XMLNS_DC,RML.Metadata)
-    #print(RML.Metadata)
+    [child_1,tag_1] = get_leaves2(root)
+    #print(child_1,tag_1)
+    for i_1 in range(len(tag_1)):
+        print('>'*1+f'{tag_1[i_1]}')
+        #print(child_1[i_1])
+        [child_2,tag_2] = get_leaves2(child_1[i_1])
+        for i_2 in range(len(child_1[i_1])):
+            print('>'*2+f'{tag_2[i_2]}')
+            #print(child_2[i_2])
+            [child_3,tag_3] = get_leaves2(child_2[0])
+            for i_3 in range(len(child_2[0])):
+                print('>'*3+f'{tag_3[i_3]}')
+                #print(child_3[i_3])
+
+
+
+    # print('>Metadata')
+    # RML.Metadata = Metadata.Metadata()
+    # metadata_set(root,'metadata',XMLNS_DC,RML.Metadata)
+    # #print(RML.Metadata)
     
-    print('>Common')
-    #organizationalUnits
-    #positioning
-    RML.Common = Common.Common()
-    common_set(root,'common',XMLNS,RML.Common)  
-    #print(RML.Common)
-    
+    # print('>Common')
+    # #organizationalUnits
+    # #positioning
+    # RML.Common = Common.Common()
+    # common_set(root,'common',XMLNS,RML.Common)  
+    # #print(RML.Common)
+
+def get_branches(root, level = 0):
+
+    if level >= 2:
+        return
+
+    [child,tag] = get_leaves2(root)
+    #print(child,tag)
+    for i in range(len(tag)):
+        print('>'*(level+1)+f'{tag[i]}')
+        #print(child[i])
+        get_branches(child[i],level+1)
     
 def save_xml(file):    
     root_ML = ET.Element("railML",attrib = ATTRIBUTES)
@@ -170,6 +196,7 @@ def save_xml(file):
         f.close()
     
 if __name__ == "__main__":
-    root = load_xml("F:\PhD\RailML\Example_1.railml")   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
-    set_objects(root)
-    save_xml("F:\PhD\RailML\Example_2.railml")  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
+    root = load_xml("C:\PhD\RailML\Example_1.railml")   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
+    #set_objects(root)
+    get_branches(root)       
+    save_xml("C:\PhD\RailML\Example_2.railml")  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
