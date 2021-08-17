@@ -1,14 +1,13 @@
-
 import sys
 sys.path.append('.')
 import xml.etree.cElementTree as ET
 from xml.dom import minidom
 import re
-from RailML.railML import railML
+from RailML import railML
 from RailML.Common import Metadata
 from RailML.Common import Common
-#from RailML.Infrastructure import Infrastructure
-#from RailML.Interlocking import Interlocking
+from RailML.Infrastructure import Infrastructure
+from RailML.Interlocking import Interlocking
 from RailML import aRailML
 
 XMLNS = "https://www.railml.org/schemas/3.1"
@@ -20,7 +19,7 @@ VERSION = "3.1"
 
 ATTRIBUTES = {"xmlns":XMLNS , "xmlns:dc":XMLNS_DC , "xmlns:gml":XMLNS_GML , "xmlns:xsi":XMLNS_XSI , "xsi:schemaLocation":XSI_SCHEMALOCATION , "version":VERSION}
 
-RML = railML()
+RML = railML.railML()
 
 #%%
 def print_leaves(root,leaf,tag):
@@ -35,18 +34,7 @@ def print_leaves(root,leaf,tag):
     for child in leaves:
         print(f'{child.tag[len(ns_leaf):]} | {child.attrib} | {child.text}')
 
-def get_leaves(root,leaf,tag):
-    ns = re.match(r'{.*}', root.tag).group(0)
-    if leaf != '':
-        leaves = root.find(f"{ns}"+leaf)
-    else:
-        leaves = root
-        
-    ns_leaf = '{'+tag+'}'
-    
-    return [leaves,ns_leaf]
-
-def get_leaves2(root):
+def get_leaves(root):
     leaves = []
     leaf = []
     #ns_leaf = '{'+tag+'}'
@@ -168,18 +156,35 @@ def set_objects(root):
     # common_set(root,'common',XMLNS,RML.Common)  
     # #print(RML.Common)
 
-def get_branches(root, level = 0):
+def get_branches(object, root, level = 0):
 
+    # root: the old-tree
+    # child[i]: the new-tree
+    
     if level >= 2:
         return
 
-    [child,tag] = get_leaves2(root)
-    #print(child,tag)
-    for i in range(len(tag)):
-        print('>'*(level+1)+f'{tag[i]}')
-        #print(child[i])
-        get_branches(child[i],level+1)
+    #print(type(object))
+    #print(object)
     
+    [child,tag] = get_leaves(root)
+    #print(child,tag)
+    attributes = get_attributes(object)
+    print(attributes)
+    for i in range(len(tag)):
+        #print(child[i])        #The tree
+        try:
+            constructors[tag[i]](object)
+            print('>'*(level+1)+f'{tag[i]}') 
+            get_branches(getattr(object, attributes[i]),child[i],level+1)
+        except:
+            pass
+        #print(getattr(object, attributes[i]))
+        #print(attributes[i])
+
+    for j in attributes:
+        print(getattr(object, j))
+        
 def save_xml(file):    
     root_ML = ET.Element("railML",attrib = ATTRIBUTES)
     metadata_ML = ET.SubElement(root_ML, "metadata")
@@ -195,22 +200,20 @@ def save_xml(file):
         f.write(str(xmlstr.decode('UTF-8')))
         f.close()
     
-def cosa_a(num):
-    print("HOLA_A: "+str(num))
+def get_attributes(object):
+    return [i for i in type(object).__dict__.keys() if (i[:1] != '_' and i[:1] != 'c')]
+    
+constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.create_common,
+                'infrastructure':railML.railML.create_infrastructure,'interlocking':railML.railML.create_interlocking,
+                'electrificationSystems':railML.Common.Common.createElectrificationSystems,'organizationalUnits':railML.Common.Common.createOrganizationalUnits,
+                'speedProfiles':railML.Common.Common.createSpeedProfiles,'PositioningSystems':railML.Common.Common.createPositioningSystems}
 
-def cosa_b(num):
-    print("HOLA_B: "+str(num))
-
-def cosa_c(num):
-    print("HOLA_C: "+str(num))
 
 if __name__ == "__main__":
-    root = load_xml("C:\PhD\RailML\Example_1.railml")   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
+    root = load_xml("F:\PhD\RailML\Example_1.railml")   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
     #set_objects(root)
-    #get_branches(root)
+    get_branches(RML,root)
+    #get_attibutes(RML)
+    #get_attibutes(RML.Common)
 
-    func_dic = {'a':cosa_a,'b':cosa_b,'c':cosa_c}
-
-    func_dic['a'](1)
-
-    save_xml("C:\PhD\RailML\Example_2.railml")  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
+    #save_xml("F:\PhD\RailML\Example_2.railml")  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
