@@ -170,7 +170,7 @@ def get_branches(object, root, level = 0):
     [child,tag] = get_leaves(root)
     #print(child,tag)
     attributes = get_attributes(object)
-    print(attributes)
+    print(f'Attributes:{attributes}')
     for i in range(len(tag)):
         #print(child[i])        #The tree
         try:
@@ -179,12 +179,14 @@ def get_branches(object, root, level = 0):
             get_branches(getattr(object, attributes[i]),child[i],level+1)
         except:
             pass
-        #print(getattr(object, attributes[i]))
-        #print(attributes[i])
+        print(f'AAAAAAAAA:{RML.Metadata.Title}')
 
     for j in attributes:
-        print(getattr(object, j))
-        
+        print(f'Next:{j} -- {object.__class__.__name__}.{getattr(object, j).__class__.__name__}')
+    
+    
+    
+    
 def save_xml(file):    
     root_ML = ET.Element("railML",attrib = ATTRIBUTES)
     metadata_ML = ET.SubElement(root_ML, "metadata")
