@@ -37,14 +37,19 @@ def print_leaves(root,leaf,tag):
 def get_leaves(root):
     leaves = []
     leaf = []
+    att = []
     #ns_leaf = '{'+tag+'}'
     
     for i in root:  # HERE I CAN DO IT GENERIC
         ns = re.match(r'{.*}', i.tag).group(0)
         leaves.append(i.tag[len(ns):])
         leaf.append(i)
+        
+        #if i.attrib:
+        #    print(i.attrib)
     
     return [leaf,leaves]
+
 
 def metadata_set(root,leaf,tag,object):
     [leaves,ns_leaf] = get_leaves(root,leaf,tag)  
@@ -60,36 +65,37 @@ def metadata_set(root,leaf,tag,object):
     object.Publisher = "GICSAFe"    #leaves[8].text
 
 def common_set(root,leaf,tag,object):        
-    [leaves,ns_leaf] = get_leaves(root,leaf,tag)    
-        
+    [leaves,ns_leaf] = get_leaves(root)    
+    
+    print(leaves,ns_leaf)
     for child in leaves:
-        #print(f'{child.tag[len(ns_leaf):]} | {child.attrib} | {child.text}')
-        if child.tag[len(ns_leaf):] == "electrificationSystems":
-            print(f'>>{child.tag[len(ns_leaf):]}')
-            object.createElectrificationSystems
-        if child.tag[len(ns_leaf):] == "organizationalUnits":
-            print(f'>>{child.tag[len(ns_leaf):]}')
-            object.createOrganizationalUnits()
-            [organization,organization_leaf] = get_leaves(child,"infrastructureManager",XMLNS) 
-            if organization != None: 
-                print(f'>>>{organization.tag[len(organization_leaf):]}')
-                object.OrganizationalUnits.createInfrastructureManager()
-        if child.tag[len(ns_leaf):] == "speedProfiles":
-            print(f'>>{child.tag[len(ns_leaf):]}')
-            object.createSpeedProfiles()
-        if child.tag[len(ns_leaf):] == "positioning":
-            print(f'>>{child.tag[len(ns_leaf):]}')
-            object.createPositioningSystems()
+        print(f'{child.tag[len(ns_leaf):]} | {child.attrib} | {child.text}')
+    #     if child.tag[len(ns_leaf):] == "electrificationSystems":
+    #         print(f'>>{child.tag[len(ns_leaf):]}')
+    #         object.createElectrificationSystems
+    #     if child.tag[len(ns_leaf):] == "organizationalUnits":
+    #         print(f'>>{child.tag[len(ns_leaf):]}')
+    #         object.createOrganizationalUnits()
+    #         [organization,organization_leaf] = get_leaves(child,"infrastructureManager",XMLNS) 
+    #         if organization != None: 
+    #             print(f'>>>{organization.tag[len(organization_leaf):]}')
+    #             object.OrganizationalUnits.createInfrastructureManager()
+    #     if child.tag[len(ns_leaf):] == "speedProfiles":
+    #         print(f'>>{child.tag[len(ns_leaf):]}')
+    #         object.createSpeedProfiles()
+    #     if child.tag[len(ns_leaf):] == "positioning":
+    #         print(f'>>{child.tag[len(ns_leaf):]}')
+    #         object.createPositioningSystems()
             
-            [sub_child,tag] = get_leaves2(child,XMLNS)
+            # [sub_child,tag] = get_leaves2(child,XMLNS)
 
-            for i in range(len(tag)):
-                print(f'>>>{tag[i]}')
-                #print(sub_child[i])
-                [a,sub_tag] = get_leaves2(sub_child[i],XMLNS) 
+            # for i in range(len(tag)):
+            #     print(f'>>>{tag[i]}')
+            #     #print(sub_child[i])
+            #     [a,sub_tag] = get_leaves2(sub_child[i],XMLNS) 
         
-                for j in range(len(sub_tag)):
-                    print(f'>>>>{sub_tag[j]}')
+            #     for j in range(len(sub_tag)):
+            #         print(f'>>>>{sub_tag[j]}')
                     
             #if positioning != None: 
             #    print(f'>>>{positioning.tag[len(positioning_leaf):]}')
@@ -120,29 +126,6 @@ def load_xml(file):
     #print_leaves(root,'infrastructure',XMLNS)
     #print_leaves(root,'interlocking',XMLNS)
     return root
-    
-
-#%%
-def set_objects(root):   
-    #print('Setting aRailML')
-    #RML.aRailML = aRailML.aRailML()
-    #RML.aRailML.Version = VERSION
-    
-    [child_1,tag_1] = get_leaves2(root)
-    #print(child_1,tag_1)
-    for i_1 in range(len(tag_1)):
-        print('>'*1+f'{tag_1[i_1]}')
-        #print(child_1[i_1])
-        [child_2,tag_2] = get_leaves2(child_1[i_1])
-        for i_2 in range(len(child_1[i_1])):
-            print('>'*2+f'{tag_2[i_2]}')
-            #print(child_2[i_2])
-            [child_3,tag_3] = get_leaves2(child_2[0])
-            for i_3 in range(len(child_2[0])):
-                print('>'*3+f'{tag_3[i_3]}')
-                #print(child_3[i_3])
-
-
 
     # print('>Metadata')
     # RML.Metadata = Metadata.Metadata()
@@ -161,32 +144,47 @@ def get_branches(object, root, level = 0):
     # root: the old-tree
     # child[i]: the new-tree
     
-    if level >= 2:
-        return
+    #if level >= 3:
+    #    return
 
     #print(type(object))
-    #print(object)
+    print(object)
     
     [child,tag] = get_leaves(root)
     #print(child,tag)
     attributes = get_attributes(object)
-    print(f'Attributes:{attributes}')
-    for i in range(len(tag)):
-        #print(child[i])        #The tree
-        try:
-            constructors[tag[i]](object)
-            print('>'*(level+1)+f'{tag[i]}') 
-            get_branches(getattr(object, attributes[i]),child[i],level+1)
-        except:
-            pass
-        print(f'AAAAAAAAA:{RML.Metadata.Title}')
+    #print(f'Attributes:{attributes}|{tag}')
+    for i in tag:
+        capitalized_tag = i[0].upper() + i[1:]
+        #print(f'TEST:{capitalized_tag}|{i.title()}||{capitalized_tag in attributes}')
+        
+        if capitalized_tag == "Metadata":
+            continue
+        if capitalized_tag == "Infrastructure":
+            continue
+        if capitalized_tag == "Interlocking":
+            continue
+        
+        next = attributes.index(i[0].upper() + i[1:])
+        prev = tag.index(i)
+        
+        if (capitalized_tag in attributes):
+            print('>'*(level+1)+f'{i}') 
+            
+            #print(f'Trying to create:{attributes[next]}|{i}')
+            
+            if i in constructors:
+                constructors[i](object) 
+                
+                if (child[prev].attrib):
+                    for j in [*child[prev].attrib]:
+                        print(f'{j} : {child[prev].attrib[j]}')
+                        setattr(object,j,child[prev].attrib[j]) 
+                    
+                #print(f'Next: {object.__class__.__name__}.{getattr(object, attributes[next])}')
+                #print(f'{len(attributes)}|{next}|{len(child)}{child}')
+                get_branches(getattr(object,  attributes[next]),child[prev],level+1)
 
-    for j in attributes:
-        print(f'Next:{j} -- {object.__class__.__name__}.{getattr(object, j).__class__.__name__}')
-    
-    
-    
-    
 def save_xml(file):    
     root_ML = ET.Element("railML",attrib = ATTRIBUTES)
     metadata_ML = ET.SubElement(root_ML, "metadata")
@@ -208,14 +206,22 @@ def get_attributes(object):
 constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.create_common,
                 'infrastructure':railML.railML.create_infrastructure,'interlocking':railML.railML.create_interlocking,
                 'electrificationSystems':railML.Common.Common.createElectrificationSystems,'organizationalUnits':railML.Common.Common.createOrganizationalUnits,
-                'speedProfiles':railML.Common.Common.createSpeedProfiles,'PositioningSystems':railML.Common.Common.createPositioningSystems}
-
+                'speedProfiles':railML.Common.Common.createSpeedProfiles,'positioning':railML.Common.Common.createPositioningSystems,
+                'topology':railML.Infrastructure.Infrastructure.createTopology,'geometry':railML.Infrastructure.Infrastructure.createGeometry,
+                'functionalInfrastructure':railML.Infrastructure.Infrastructure.createFunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.createPhysicalFacilities,
+                'infrastructureVisualizations':railML.Infrastructure.Infrastructure.createInfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.createInfrastructureStates}
 
 if __name__ == "__main__":
     root = load_xml("F:\PhD\RailML\Example_1.railml")   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
-    #set_objects(root)
+
     get_branches(RML,root)
-    #get_attibutes(RML)
-    #get_attibutes(RML.Common)
+    
+    x = {'name': 'Liechtenstein', 'id' : 'pepe'}
+    
+    #print(f'{x} | {[*x]} | {len(x)}')
+    
+    
+    #RML.Common = Common.Common()
+    #common_set(root,'common',XMLNS,RML.Common) 
 
     #save_xml("F:\PhD\RailML\Example_2.railml")  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
