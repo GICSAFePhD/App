@@ -148,7 +148,7 @@ def get_branches(object, root, level = 0):
     #    return
 
     #print(type(object))
-    #print(object)
+    print(object)
     
     [child,tag] = get_leaves(root)
     #print(child,tag)
@@ -171,12 +171,12 @@ def get_branches(object, root, level = 0):
         if (capitalized_tag in attributes):
             print('>'*(level+1)+f'{i}') 
             
-            #print(f'Trying to create:{attributes[next]}|{i}')
+            print(f'Trying to create:{attributes[next]}|{i}')
             
             if i in constructors:
                 constructors[i](object) 
-                
-                if (child[prev].attrib):
+                #print(i)
+                if (child[prev].attrib):                #TODO MOVE TO NEXT CHILD
                     for j in [*child[prev].attrib]:
                         print(f'{j} : {child[prev].attrib[j]}')
                         setattr(object,j,child[prev].attrib[j]) 
@@ -231,6 +231,6 @@ if __name__ == "__main__":
     #RML.Common.ElectrificationSystems.createElectrificationSystem()
     
     #RML.Common = Common.Common()
-    #common_set(root,'common',XMLNS,RML.Common) 
+    #common_set(root,'common',XMLNS,RML.Common)     
 
     #save_xml("F:\PhD\RailML\Example_2.railml")  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
