@@ -148,7 +148,7 @@ def get_branches(object, root, level = 0):
     #    return
 
     #print(type(object))
-    print(object)
+    #print(object)
     
     [child,tag] = get_leaves(root)
     #print(child,tag)
@@ -203,23 +203,32 @@ def save_xml(file):
 def get_attributes(object):
     return [i for i in type(object).__dict__.keys() if (i[:1] != '_' and i[:1] != 'c')]
     
-constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.create_common,
-                'infrastructure':railML.railML.create_infrastructure,'interlocking':railML.railML.create_interlocking,
-                'electrificationSystems':railML.Common.Common.createElectrificationSystems,'organizationalUnits':railML.Common.Common.createOrganizationalUnits,
-                'speedProfiles':railML.Common.Common.createSpeedProfiles,'positioning':railML.Common.Common.createPositioningSystems,
-                'topology':railML.Infrastructure.Infrastructure.createTopology,'geometry':railML.Infrastructure.Infrastructure.createGeometry,
-                'functionalInfrastructure':railML.Infrastructure.Infrastructure.createFunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.createPhysicalFacilities,
-                'infrastructureVisualizations':railML.Infrastructure.Infrastructure.createInfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.createInfrastructureStates}
+constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.create_common,'infrastructure':railML.railML.create_infrastructure,'interlocking':railML.railML.create_interlocking,
+                
+                'electrificationSystems':railML.Common.Common.createElectrificationSystems,'organizationalUnits':railML.Common.Common.createOrganizationalUnits,'speedProfiles':railML.Common.Common.createSpeedProfiles,'positioning':railML.Common.Common.createPositioningSystems,  # Common
+                'electrificationSystem':railML.Common.ElectrificationSystems.ElectrificationSystems.createElectrificationSystem,'tVoltageVolt':railML.Common.ElectrificationSystems.ElectrificationSystem.ElectrificationSystem.createtVoltageVolt, # ElectrificationSystems
+                'FrequencyHertz':railML.Common.ElectrificationSystems.ElectrificationSystem.ElectrificationSystem.createtFrequencyHertz, # ElectrificationSystem              
+                'infrastructureManager':railML.Common.OrganizationalUnits.OrganizationalUnits.createInfrastructureManager,
+                
+                'topology':railML.Infrastructure.Infrastructure.createTopology,'geometry':railML.Infrastructure.Infrastructure.createGeometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.createFunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.createPhysicalFacilities,'infrastructureVisualizations':railML.Infrastructure.Infrastructure.createInfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.createInfrastructureStates,
+                
+                
+                
+                }
 
 if __name__ == "__main__":
     root = load_xml("F:\PhD\RailML\Example_1.railml")   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
 
     get_branches(RML,root)
     
-    x = {'name': 'Liechtenstein', 'id' : 'pepe'}
+    #x = {'name': 'Liechtenstein', 'id' : 'pepe'}
     
     #print(f'{x} | {[*x]} | {len(x)}')
     
+    #RML.Common.createElectrificationSystems()
+    #RML.Common.ElectrificationSystems.createElectrificationSystem()
+    #RML.Common.ElectrificationSystems.createElectrificationSystem()
+    #RML.Common.ElectrificationSystems.createElectrificationSystem()
     
     #RML.Common = Common.Common()
     #common_set(root,'common',XMLNS,RML.Common) 
