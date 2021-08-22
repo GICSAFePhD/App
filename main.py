@@ -63,45 +63,6 @@ def metadata_set(root,leaf,tag,object):
     object.Description = leaves[7].text
     object.Publisher = "GICSAFe"    #leaves[8].text
 
-def common_set(root,leaf,tag,object):        
-    [leaves,ns_leaf] = get_leaves(root)    
-    
-    print(leaves,ns_leaf)
-    for child in leaves:
-        print(f'{child.tag[len(ns_leaf):]} | {child.attrib} | {child.text}')
-    #     if child.tag[len(ns_leaf):] == "electrificationSystems":
-    #         print(f'>>{child.tag[len(ns_leaf):]}')
-    #         object.createElectrificationSystems
-    #     if child.tag[len(ns_leaf):] == "organizationalUnits":
-    #         print(f'>>{child.tag[len(ns_leaf):]}')
-    #         object.createOrganizationalUnits()
-    #         [organization,organization_leaf] = get_leaves(child,"infrastructureManager",XMLNS) 
-    #         if organization != None: 
-    #             print(f'>>>{organization.tag[len(organization_leaf):]}')
-    #             object.OrganizationalUnits.createInfrastructureManager()
-    #     if child.tag[len(ns_leaf):] == "speedProfiles":
-    #         print(f'>>{child.tag[len(ns_leaf):]}')
-    #         object.createSpeedProfiles()
-    #     if child.tag[len(ns_leaf):] == "positioning":
-    #         print(f'>>{child.tag[len(ns_leaf):]}')
-    #         object.createPositioningSystems()
-            
-            # [sub_child,tag] = get_leaves2(child,XMLNS)
-
-            # for i in range(len(tag)):
-            #     print(f'>>>{tag[i]}')
-            #     #print(sub_child[i])
-            #     [a,sub_tag] = get_leaves2(sub_child[i],XMLNS) 
-        
-            #     for j in range(len(sub_tag)):
-            #         print(f'>>>>{sub_tag[j]}')
-                    
-            #if positioning != None: 
-            #    print(f'>>>{positioning.tag[len(positioning_leaf):]}')
-                #object.PosytioningSystems.createInfrastructureManager()
-            
-    #object.Title = leaves[0].text
-
 def metadata_to_XML(root_ML,metadata):
     #ET.SubElement(root_ML, "field3", name="blah").text = "some value1"
     
@@ -138,7 +99,7 @@ def load_xml(file):
     # common_set(root,'common',XMLNS,RML.Common)  
     # #print(RML.Common)
 
-def get_branches(object, root, level = 0):
+def get_branches(object, root, level = 0, idx = 0):
 
     # root: the old-tree
     # child[i]: the new-tree
@@ -147,19 +108,20 @@ def get_branches(object, root, level = 0):
     #    return
 
     #print(type(object))
-    print(f'OBJECT:{object}')
+    
     #print(f'A:{root}')
     
-    if type(object) == list:    #TODO ONLY 1st OF A LIST WORKS
-        for element in object:
-            print(f'LISTA:{element}')
-            object = object[0]
-    
+    if type(object) == list:
+        #print(f'LISTA:{root}|{object[idx]}|{idx}')
+        if len(object) > 1:
+            object = object[idx+1]
+        
+    print(f'OBJECT:{object}|{idx}')                  
     if (type(object) != list):    
         if (root.attrib):    
             #print(root.attrib)         
             for j in [*root.attrib]:
-                print(f'{j} : {root.attrib[j]}')
+                #print(f'{j} : {root.attrib[j]}')
                 setattr(object,j[0].upper()+j[1:],root.attrib[j]) 
                 
     [child,tag] = get_leaves(root)
@@ -169,8 +131,8 @@ def get_branches(object, root, level = 0):
 
     for i in tag:
         capitalized_tag = i[0].upper() + i[1:]
-        #print(f'TEST:{capitalized_tag}|{i.title()}||{capitalized_tag in attributes}')
-
+        print(f'TEST:{capitalized_tag}|{i.title()}||{capitalized_tag in attributes}')
+        #print(f'TAG:{tag}|{len(tag)}')
         if capitalized_tag == "Metadata":
             continue
         if capitalized_tag == "Infrastructure":
@@ -179,21 +141,30 @@ def get_branches(object, root, level = 0):
             continue
         
         next = attributes.index(i[0].upper() + i[1:])
-        prev = tag.index(i) 
-                        
+        prev = find(tag,i)
+                            
         if (capitalized_tag in attributes):
-            print('>'*(level+1)+f'{i}') 
             
-            print(f'Trying to create:{attributes[next]}|{i}')
+    
+            #print(f'Trying to create:{attributes[next]}|{i}')
             
             if i in constructors:
-                constructors[i](object) 
-                #print(f'Constructor:{i}')
-                    
-                #print(f'Next: {object.__class__.__name__}.{getattr(object, attributes[next])}')
-                #print(f'{len(attributes)}|{next}|{len(child)}{child}')
-                #print(f'*****{child}--{child[prev]}')
-                get_branches(getattr(object,  attributes[next]),child[prev],level+1)
+                for p in prev:   
+                    #print(f'PREV:{prev}|{len(prev)}')
+                    if idx < len(prev):
+                        print('>'*(level+1)+f'{i}') 
+                        constructors[i](object)
+                        #print(f'Constructor:{i}')
+                        #print(f'Next: {object.__class__.__name__}.{getattr(object, attributes[next])}')
+                        next_object = getattr(object,  attributes[next])
+                        #print(f'NEXT:{next_object}|||{idx}')
+                        
+                        if(type(next_object) == list):
+                            if idx < len(prev):
+                                idx = idx + 1
+                                get_branches(next_object[-1],child[p],level+1,idx)
+                        else:
+                            get_branches(next_object,child[p],level+1)
 
 def save_xml(file):    
     root_ML = ET.Element("railML",attrib = ATTRIBUTES)
@@ -215,16 +186,32 @@ def get_attributes(object):
     
 constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.create_common,'infrastructure':railML.railML.create_infrastructure,'interlocking':railML.railML.create_interlocking,
                 
-                'electrificationSystems':railML.Common.Common.createElectrificationSystems,'organizationalUnits':railML.Common.Common.createOrganizationalUnits,'speedProfiles':railML.Common.Common.createSpeedProfiles,'positioning':railML.Common.Common.createPositioningSystems,  # Common
-                'electrificationSystem':railML.Common.ElectrificationSystems.ElectrificationSystems.createElectrificationSystem,'tVoltageVolt':railML.Common.ElectrificationSystems.ElectrificationSystem.ElectrificationSystem.createtVoltageVolt, # ElectrificationSystems
-                'FrequencyHertz':railML.Common.ElectrificationSystems.ElectrificationSystem.ElectrificationSystem.createtFrequencyHertz, # ElectrificationSystem              
-                'infrastructureManager':railML.Common.OrganizationalUnits.OrganizationalUnits.createInfrastructureManager,
-                
-                'topology':railML.Infrastructure.Infrastructure.createTopology,'geometry':railML.Infrastructure.Infrastructure.createGeometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.createFunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.createPhysicalFacilities,'infrastructureVisualizations':railML.Infrastructure.Infrastructure.createInfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.createInfrastructureStates,
+                'electrificationSystems':railML.Common.Common.create_ElectrificationSystems,'organizationalUnits':railML.Common.Common.create_OrganizationalUnits,'speedProfiles':railML.Common.Common.create_SpeedProfiles,'positioning':railML.Common.Common.create_PositioningSystems,  # Common
+                'electrificationSystem':railML.Common.ElectrificationSystems.ElectrificationSystems.create_ElectrificationSystem, # ElectrificationSystems
+                'tVoltageVolt':railML.Common.ElectrificationSystems.ElectrificationSystem.ElectrificationSystem.create_tVoltageVolt,'frequencyHertz':railML.Common.ElectrificationSystems.ElectrificationSystem.ElectrificationSystem.create_tFrequencyHertz, # ElectrificationSystem              
+                'infrastructureManager':railML.Common.OrganizationalUnits.OrganizationalUnits.create_InfrastructureManager,'vehicleManufacturer':railML.Common.OrganizationalUnits.OrganizationalUnits.create_VehicleManufacturer,'vehicleOperator':railML.Common.OrganizationalUnits.OrganizationalUnits.create_VehicleOperator,'customer':railML.Common.OrganizationalUnits.OrganizationalUnits.create_Customer,'railwayUndertaking':railML.Common.OrganizationalUnits.OrganizationalUnits.create_RailwayUndertaking,'operationalUndertaking':railML.Common.OrganizationalUnits.OrganizationalUnits.create_OperationalUndertaking,'concessionaire':railML.Common.OrganizationalUnits.OrganizationalUnits.create_Concessionaire,'contractor':railML.Common.OrganizationalUnits.OrganizationalUnits.create_Contractor, # OrganizationalUnits  
+                'speedfprofiles':railML.Common.SpeedProfiles.SpeedProfiles.create_SpeedProfile, # SpeedProfiles
+                'speedProfileTilting':railML.Common.SpeedProfiles.SpeedProfile.SpeedProfile.create_SpeedProfileTilting,'speedProfileLoad':railML.Common.SpeedProfiles.SpeedProfile.SpeedProfile.create_SpeedProfileLoad,'speedProfileBraking':railML.Common.SpeedProfiles.SpeedProfile.SpeedProfile.create_SpeedProfileBraking,'speedProfileTrainType':railML.Common.SpeedProfiles.SpeedProfile.SpeedProfile.create_SpeedProfileTrainType, # SpeedProfile
+                #'geometricPositioningSystems':railML.Common.PositioningSystems.PositioningSystems.create_GeometricPositioningSystems,'linearPositioningSystems':railML.Common.PositioningSystems.PositioningSystems.create_LinearPositioningSystems,'screenPositioningSystems':railML.Common.PositioningSystems.PositioningSystems.create_ScreenPositioningSystems, # PositioningSystems
+
+
+                'topology':railML.Infrastructure.Infrastructure.create_Topology,'geometry':railML.Infrastructure.Infrastructure.create_Geometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.create_FunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.create_PhysicalFacilities,'infrastructureVisualizations':railML.Infrastructure.Infrastructure.create_InfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.create_InfrastructureStates, # Infrastructure
                 
                 
                 
                 }
+
+
+
+
+
+
+def find(lst, a):
+    result = []
+    for i, x in enumerate(lst):
+        if x == a:
+            result.append(i)
+    return result
 
 if __name__ == "__main__":
     root = load_xml("F:\PhD\RailML\Example_1.railml")   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
@@ -244,3 +231,4 @@ if __name__ == "__main__":
     #common_set(root,'common',XMLNS,RML.Common)     
 
     #save_xml("F:\PhD\RailML\Example_2.railml")  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
+# %%
