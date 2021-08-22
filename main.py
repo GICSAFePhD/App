@@ -131,8 +131,8 @@ def get_branches(object, root, level = 0, idx = 0):
 
     for i in tag:
         capitalized_tag = i[0].upper() + i[1:]
-        print(f'TEST:{capitalized_tag}|{i.title()}||{capitalized_tag in attributes}')
-        #print(f'TAG:{tag}|{len(tag)}')
+        #print(f'TEST:{capitalized_tag}|{i.title()}||{capitalized_tag in attributes}')
+        print(f'TAG:{tag}|{len(tag)}')
         if capitalized_tag == "Metadata":
             continue
         if capitalized_tag == "Infrastructure":
@@ -140,24 +140,21 @@ def get_branches(object, root, level = 0, idx = 0):
         if capitalized_tag == "Interlocking":
             continue
         
-        next = attributes.index(i[0].upper() + i[1:])
-        prev = find(tag,i)
-                            
         if (capitalized_tag in attributes):
-            
-    
+            next = attributes.index(i[0].upper() + i[1:])
+            prev = find(tag,i)
             #print(f'Trying to create:{attributes[next]}|{i}')
             
             if i in constructors:
                 for p in prev:   
-                    #print(f'PREV:{prev}|{len(prev)}')
+                    print(f'PREV:{prev}|{len(prev)}')
                     if idx < len(prev):
                         print('>'*(level+1)+f'{i}') 
                         constructors[i](object)
                         #print(f'Constructor:{i}')
                         #print(f'Next: {object.__class__.__name__}.{getattr(object, attributes[next])}')
                         next_object = getattr(object,  attributes[next])
-                        #print(f'NEXT:{next_object}|||{idx}')
+                        print(f'NEXT:{next_object}|||{idx}')
                         
                         if(type(next_object) == list):
                             if idx < len(prev):
@@ -192,18 +189,21 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'infrastructureManager':railML.Common.OrganizationalUnits.OrganizationalUnits.create_InfrastructureManager,'vehicleManufacturer':railML.Common.OrganizationalUnits.OrganizationalUnits.create_VehicleManufacturer,'vehicleOperator':railML.Common.OrganizationalUnits.OrganizationalUnits.create_VehicleOperator,'customer':railML.Common.OrganizationalUnits.OrganizationalUnits.create_Customer,'railwayUndertaking':railML.Common.OrganizationalUnits.OrganizationalUnits.create_RailwayUndertaking,'operationalUndertaking':railML.Common.OrganizationalUnits.OrganizationalUnits.create_OperationalUndertaking,'concessionaire':railML.Common.OrganizationalUnits.OrganizationalUnits.create_Concessionaire,'contractor':railML.Common.OrganizationalUnits.OrganizationalUnits.create_Contractor, # OrganizationalUnits  
                 'speedfprofiles':railML.Common.SpeedProfiles.SpeedProfiles.create_SpeedProfile, # SpeedProfiles
                 'speedProfileTilting':railML.Common.SpeedProfiles.SpeedProfile.SpeedProfile.create_SpeedProfileTilting,'speedProfileLoad':railML.Common.SpeedProfiles.SpeedProfile.SpeedProfile.create_SpeedProfileLoad,'speedProfileBraking':railML.Common.SpeedProfiles.SpeedProfile.SpeedProfile.create_SpeedProfileBraking,'speedProfileTrainType':railML.Common.SpeedProfiles.SpeedProfile.SpeedProfile.create_SpeedProfileTrainType, # SpeedProfile
-                #'geometricPositioningSystems':railML.Common.PositioningSystems.PositioningSystems.create_GeometricPositioningSystems,'linearPositioningSystems':railML.Common.PositioningSystems.PositioningSystems.create_LinearPositioningSystems,'screenPositioningSystems':railML.Common.PositioningSystems.PositioningSystems.create_ScreenPositioningSystems, # PositioningSystems
+                'geometricPositioningSystems':railML.Common.PositioningSystems.PositioningSystems.create_GeometricPositioningSystems,'linearPositioningSystems':railML.Common.PositioningSystems.PositioningSystems.create_LinearPositioningSystems,'screenPositioningSystems':railML.Common.PositioningSystems.PositioningSystems.create_ScreenPositioningSystems, # PositioningSystems
+                'geometricPositioningSystem':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystems.create_GeometricPositioningSystem, # GeometricPositioningSystems
+                'linearPositioningSystem':railML.Common.PositioningSystems.LinearPositioningSystems.LinearPositioningSystems.create_LinearPositioningSystem, # LinearPositioningSystem
+                'screenPositioningSystem':railML.Common.PositioningSystems.ScreenPositioningSystems.ScreenPositioningSystems.create_ScreenPositioningSystem, # ScreenPositioningSystems
 
 
                 'topology':railML.Infrastructure.Infrastructure.create_Topology,'geometry':railML.Infrastructure.Infrastructure.create_Geometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.create_FunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.create_PhysicalFacilities,'infrastructureVisualizations':railML.Infrastructure.Infrastructure.create_InfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.create_InfrastructureStates, # Infrastructure
                 
                 
+            
                 
                 }
 
 
-
-
+# TODO IF THE ATTRIBUTE IS 1...* THEN THE ELEMENT 0 HAS NO INFO!
 
 
 def find(lst, a):
@@ -218,17 +218,13 @@ if __name__ == "__main__":
 
     get_branches(RML,root)
     
-    #x = {'name': 'Liechtenstein', 'id' : 'pepe'}
+    #railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystems.RTM_GeometricPositioningSystem
     
-    #print(f'{x} | {[*x]} | {len(x)}')
-    
-    #RML.Common.createElectrificationSystems()
-    #RML.Common.ElectrificationSystems.createElectrificationSystem()
-    #RML.Common.ElectrificationSystems.createElectrificationSystem()
-    #RML.Common.ElectrificationSystems.createElectrificationSystem()
-    
-    #RML.Common = Common.Common()
-    #common_set(root,'common',XMLNS,RML.Common)     
+    #x = get_attributes(railML.Common.PositioningSystems.GeometricPositioningSystems) 
+
+    #print(x)
+
+
 
     #save_xml("F:\PhD\RailML\Example_2.railml")  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
 # %%
