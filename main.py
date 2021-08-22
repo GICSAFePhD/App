@@ -150,16 +150,17 @@ def get_branches(object, root, level = 0):
     print(f'OBJECT:{object}')
     #print(f'A:{root}')
     
-    if type(object) == list:
+    if type(object) == list:    #TODO ONLY 1st OF A LIST WORKS
         for element in object:
             print(f'LISTA:{element}')
+            object = object[0]
     
     if (type(object) != list):    
         if (root.attrib):    
             #print(root.attrib)         
             for j in [*root.attrib]:
                 print(f'{j} : {root.attrib[j]}')
-                setattr(object,j,root.attrib[j]) 
+                setattr(object,j[0].upper()+j[1:],root.attrib[j]) 
                 
     [child,tag] = get_leaves(root)
     #print(child,tag)
