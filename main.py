@@ -50,7 +50,6 @@ def get_leaves(root):
     
     return [leaf,leaves]
 
-
 def metadata_set(root,leaf,tag,object):
     [leaves,ns_leaf] = get_leaves(root,leaf,tag)  
     
@@ -148,16 +147,29 @@ def get_branches(object, root, level = 0):
     #    return
 
     #print(type(object))
-    print(object)
+    print(f'OBJECT:{object}')
+    #print(f'A:{root}')
     
+    if type(object) == list:
+        for element in object:
+            print(f'LISTA:{element}')
+    
+    if (type(object) != list):    
+        if (root.attrib):    
+            #print(root.attrib)         
+            for j in [*root.attrib]:
+                print(f'{j} : {root.attrib[j]}')
+                setattr(object,j,root.attrib[j]) 
+                
     [child,tag] = get_leaves(root)
     #print(child,tag)
     attributes = get_attributes(object)
     #print(f'Attributes:{attributes}|{tag}')
+
     for i in tag:
         capitalized_tag = i[0].upper() + i[1:]
         #print(f'TEST:{capitalized_tag}|{i.title()}||{capitalized_tag in attributes}')
-        
+
         if capitalized_tag == "Metadata":
             continue
         if capitalized_tag == "Infrastructure":
@@ -166,8 +178,8 @@ def get_branches(object, root, level = 0):
             continue
         
         next = attributes.index(i[0].upper() + i[1:])
-        prev = tag.index(i)
-        
+        prev = tag.index(i) 
+                        
         if (capitalized_tag in attributes):
             print('>'*(level+1)+f'{i}') 
             
@@ -175,14 +187,11 @@ def get_branches(object, root, level = 0):
             
             if i in constructors:
                 constructors[i](object) 
-                #print(i)
-                if (child[prev].attrib):                #TODO MOVE TO NEXT CHILD
-                    for j in [*child[prev].attrib]:
-                        print(f'{j} : {child[prev].attrib[j]}')
-                        setattr(object,j,child[prev].attrib[j]) 
+                #print(f'Constructor:{i}')
                     
                 #print(f'Next: {object.__class__.__name__}.{getattr(object, attributes[next])}')
                 #print(f'{len(attributes)}|{next}|{len(child)}{child}')
+                #print(f'*****{child}--{child[prev]}')
                 get_branches(getattr(object,  attributes[next]),child[prev],level+1)
 
 def save_xml(file):    
