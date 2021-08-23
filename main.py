@@ -10,14 +10,14 @@ from RailML.Infrastructure import Infrastructure
 from RailML.Interlocking import Interlocking
 from RailML import aRailML
 
-XMLNS = "https://www.railml.org/schemas/3.1"
-XMLNS_DC ="http://purl.org/dc/elements/1.1/"
-XMLNS_GML="http://www.opengis.net/gml/3.2/"
-XMLNS_XSI="http://www.w3.org/2001/XMLSchema-instance"
-XSI_SCHEMALOCATION="https://www.railml.org/schemas/3.1 https://www.railml.org/schemas/3.1/railml3.xsd"
-VERSION = "3.1"
+#XMLNS = "https://www.railml.org/schemas/3.1"
+#XMLNS_DC ="http://purl.org/dc/elements/1.1/"
+#XMLNS_GML="http://www.opengis.net/gml/3.2/"
+#XMLNS_XSI="http://www.w3.org/2001/XMLSchema-instance"
+#XSI_SCHEMALOCATION="https://www.railml.org/schemas/3.1 https://www.railml.org/schemas/3.1/railml3.xsd"
+#VERSION = "3.1"
 
-ATTRIBUTES = {"xmlns":XMLNS , "xmlns:dc":XMLNS_DC , "xmlns:gml":XMLNS_GML , "xmlns:xsi":XMLNS_XSI , "xsi:schemaLocation":XSI_SCHEMALOCATION , "version":VERSION}
+#ATTRIBUTES = {"xmlns":XMLNS , "xmlns:dc":XMLNS_DC , "xmlns:gml":XMLNS_GML , "xmlns:xsi":XMLNS_XSI , "xsi:schemaLocation":XSI_SCHEMALOCATION , "version":VERSION}
 
 RML = railML.railML()
 
@@ -128,7 +128,7 @@ def get_branches(object, root, level = 0, idx = 0, idx_txt = 0):
         if (capitalized_tag in attributes):
             next = attributes.index(i[0].upper() + i[1:])
             prev = find(tag,i)
-            #print(f'Trying to create:{attributes[next]}|{i}|{i in constructors}')
+            print(f'Trying to create:{attributes[next]}|{i}|{i in constructors}')
             
             if i in constructors:
                 for p in prev:   
@@ -141,7 +141,7 @@ def get_branches(object, root, level = 0, idx = 0, idx_txt = 0):
                             idx_txt = idx_txt + 1
                         else:    
                             constructors[i](object)
-                        #print(f'Constructor:{i}')
+                        print(f'Constructor:{i}')
                         #print(f'Next: {object.__class__.__name__}.{getattr(object, attributes[next])}')
                         
                         next_object = getattr(object,  attributes[next])
@@ -196,15 +196,21 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'screenPositioningSystem':railML.Common.PositioningSystems.ScreenPositioningSystems.ScreenPositioningSystems.create_ScreenPositioningSystem, # ScreenPositioningSystems
                 'name':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystem.GeometricPositioningSystem.create_Name,'isValid':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystem.GeometricPositioningSystem.create_IsValid, # GeometricPositioningSystem
 
-                'topology':railML.Infrastructure.Infrastructure.create_Topology,'geometry':railML.Infrastructure.Infrastructure.create_Geometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.create_FunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.create_PhysicalFacilities,'infrastructureVisualizations':railML.Infrastructure.Infrastructure.create_InfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.create_InfrastructureStates, # Infrastructure
+                'topology':railML.Infrastructure.Infrastructure.create_Topology,#'geometry':railML.Infrastructure.Infrastructure.create_Geometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.create_FunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.create_PhysicalFacilities,'infrastructureVisualizations':railML.Infrastructure.Infrastructure.create_InfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.create_InfrastructureStates, # Infrastructure
+                'netElements':railML.Infrastructure.Topology.Topology.create_NetElements, 'netRelations':railML.Infrastructure.Topology.Topology.create_NetRelations,'network':railML.Infrastructure.Topology.Topology.create_Networks, # Topology
+                'netElement':railML.Infrastructure.Topology.NetElements.NetElements.create_NetElement, # NetElements
+                #'tLengthM':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_tLengthM,'associatedPositioningSystem':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_AssociatedPositioningSystem,'elementCollectionOrdered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionOrdered,'elementCollectionUnordered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionUnordered,'isValid':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_IsValid,'name':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Name,
+                'relation':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Relation, # NetElement
                 
                 
-            
+                
+                
+                
                 
                 }
 
 
-# TODO IF THE ATTRIBUTE IS 1...* THEN THE ELEMENT 0 HAS NO INFO!
+
 
 
 def find(lst, a):
