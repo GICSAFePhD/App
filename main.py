@@ -37,7 +37,7 @@ def print_leaves(root,leaf,tag):
 def get_leaves(root):
     leaves = []
     leaf = []
-    att = []
+    text = []
     #ns_leaf = '{'+tag+'}'
     
     for i in root:  # HERE I CAN DO IT GENERIC
@@ -45,23 +45,10 @@ def get_leaves(root):
         leaves.append(i.tag[len(ns):])
         leaf.append(i)
         
-        #if i.attrib:
-        #    print(i.attrib)
+        if i.text and i.text[0] != '\n':
+            text.append(i.text)
     
-    return [leaf,leaves]
-
-def metadata_set(root,leaf,tag,object):
-    [leaves,ns_leaf] = get_leaves(root,leaf,tag)  
-    
-    object.Title = leaves[0].text
-    object.Date = leaves[1].text
-    object.Creator = leaves[2].text
-    object.Source = leaves[3].text
-    object.Identifier = leaves[4].text
-    object.Subject = leaves[5].text
-    object.Format = leaves[6].text
-    object.Description = leaves[7].text
-    object.Publisher = "GICSAFe"    #leaves[8].text
+    return [leaf,leaves,text]
 
 def metadata_to_XML(root_ML,metadata):
     #ET.SubElement(root_ML, "field3", name="blah").text = "some value1"
@@ -99,17 +86,13 @@ def load_xml(file):
     # common_set(root,'common',XMLNS,RML.Common)  
     # #print(RML.Common)
 
-def get_branches(object, root, level = 0, idx = 0):
+def get_branches(object, root, level = 0, idx = 0, idx_txt = 0):
 
     # root: the old-tree
     # child[i]: the new-tree
     
     #if level >= 3:
     #    return
-
-    #print(type(object))
-    
-    #print(f'A:{root}')
     
     if type(object) == list:
         #print(f'LISTA:{root}|{object[idx]}|{idx}')
@@ -124,44 +107,54 @@ def get_branches(object, root, level = 0, idx = 0):
                 #print(f'{j} : {root.attrib[j]}')
                 setattr(object,j[0].upper()+j[1:],root.attrib[j]) 
                 
-    [child,tag] = get_leaves(root)
-    #print(child,tag)
+    [child,tag,text] = get_leaves(root)
+    #print(child,tag,text)
     attributes = get_attributes(object)
     #print(f'Attributes:{attributes}|{tag}')
 
     for i in tag:
         capitalized_tag = i[0].upper() + i[1:]
         #print(f'TEST:{capitalized_tag}|{i.title()}||{capitalized_tag in attributes}')
-        print(f'TAG:{tag}|{len(tag)}')
+        #print(f'TAG:{tag}')
         if capitalized_tag == "Metadata":
             continue
-        if capitalized_tag == "Infrastructure":
+        if capitalized_tag == "Common":
             continue
+        #if capitalized_tag == "Infrastructure":
+        #    continue
         if capitalized_tag == "Interlocking":
             continue
         
         if (capitalized_tag in attributes):
             next = attributes.index(i[0].upper() + i[1:])
             prev = find(tag,i)
-            #print(f'Trying to create:{attributes[next]}|{i}')
+            #print(f'Trying to create:{attributes[next]}|{i}|{i in constructors}')
             
             if i in constructors:
                 for p in prev:   
-                    print(f'PREV:{prev}|{len(prev)}')
+                    #print(f'PREV:{prev}|{idx}')
                     if idx < len(prev):
                         print('>'*(level+1)+f'{i}') 
-                        constructors[i](object)
+                        if text:
+                            #print(f'{text}|{text[idx_txt]}')
+                            constructors[i](object,i[0].upper() + i[1:],text[idx_txt])
+                            idx_txt = idx_txt + 1
+                        else:    
+                            constructors[i](object)
                         #print(f'Constructor:{i}')
                         #print(f'Next: {object.__class__.__name__}.{getattr(object, attributes[next])}')
+                        
                         next_object = getattr(object,  attributes[next])
-                        print(f'NEXT:{next_object}|||{idx}')
+                        #print(f'NEXT:{next_object}|||{idx}')
                         
                         if(type(next_object) == list):
-                            if idx < len(prev):
+                            if len (prev) == 1:
+                                get_branches(next_object[0],child[p],level+1)
+                            if idx < len(prev) and 1 < len(prev):
                                 idx = idx + 1
                                 get_branches(next_object[-1],child[p],level+1,idx)
                         else:
-                            get_branches(next_object,child[p],level+1)
+                            get_branches(next_object,child[p],level+1,idx_txt=idx_txt)
 
 def save_xml(file):    
     root_ML = ET.Element("railML",attrib = ATTRIBUTES)
@@ -180,8 +173,16 @@ def save_xml(file):
     
 def get_attributes(object):
     return [i for i in type(object).__dict__.keys() if (i[:1] != '_' and i[:1] != 'c')]
+
+def set_text(object,tag,text):
+    setattr(object,tag,text)
+
     
-constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.create_common,'infrastructure':railML.railML.create_infrastructure,'interlocking':railML.railML.create_interlocking,
+    
+constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.create_common,'infrastructure':railML.railML.create_infrastructure,'interlocking':railML.railML.create_interlocking, # RailML
+                'title':set_text,'date':set_text,'creator':set_text,'source':set_text,'identifier':set_text,'subject':set_text,'format':set_text,'description':set_text,'publisher':set_text,   # Metadata
+                
+                
                 
                 'electrificationSystems':railML.Common.Common.create_ElectrificationSystems,'organizationalUnits':railML.Common.Common.create_OrganizationalUnits,'speedProfiles':railML.Common.Common.create_SpeedProfiles,'positioning':railML.Common.Common.create_PositioningSystems,  # Common
                 'electrificationSystem':railML.Common.ElectrificationSystems.ElectrificationSystems.create_ElectrificationSystem, # ElectrificationSystems
@@ -193,7 +194,7 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'geometricPositioningSystem':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystems.create_GeometricPositioningSystem, # GeometricPositioningSystems
                 'linearPositioningSystem':railML.Common.PositioningSystems.LinearPositioningSystems.LinearPositioningSystems.create_LinearPositioningSystem, # LinearPositioningSystem
                 'screenPositioningSystem':railML.Common.PositioningSystems.ScreenPositioningSystems.ScreenPositioningSystems.create_ScreenPositioningSystem, # ScreenPositioningSystems
-
+                'name':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystem.GeometricPositioningSystem.create_Name,'isValid':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystem.GeometricPositioningSystem.create_IsValid, # GeometricPositioningSystem
 
                 'topology':railML.Infrastructure.Infrastructure.create_Topology,'geometry':railML.Infrastructure.Infrastructure.create_Geometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.create_FunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.create_PhysicalFacilities,'infrastructureVisualizations':railML.Infrastructure.Infrastructure.create_InfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.create_InfrastructureStates, # Infrastructure
                 
