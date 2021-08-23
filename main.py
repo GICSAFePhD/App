@@ -99,7 +99,7 @@ def get_branches(object, root, level = 0, idx = 0, idx_txt = 0):
         if len(object) > 1:
             object = object[idx+1]
         
-    print(f'OBJECT:{object}|{idx}')                  
+    #print(f'OBJECT:{object}|{idx}')                  
     if (type(object) != list):    
         if (root.attrib):    
             #print(root.attrib)         
@@ -110,8 +110,8 @@ def get_branches(object, root, level = 0, idx = 0, idx_txt = 0):
     [child,tag,text] = get_leaves(root)
     #print(child,tag,text)
     attributes = get_attributes(object)
-    #print(f'Attributes:{attributes}|{tag}')
-
+    #print(f'Attributes:{attributes}')
+    print(f'Tags:{tag}')
     for i in tag:
         capitalized_tag = i[0].upper() + i[1:]
         #print(f'TEST:{capitalized_tag}|{i.title()}||{capitalized_tag in attributes}')
@@ -128,20 +128,20 @@ def get_branches(object, root, level = 0, idx = 0, idx_txt = 0):
         if (capitalized_tag in attributes):
             next = attributes.index(i[0].upper() + i[1:])
             prev = find(tag,i)
-            print(f'Trying to create:{attributes[next]}|{i}|{i in constructors}')
+            #print(f'Trying to create:{attributes[next]}|{i}|{i in constructors}')
             
             if i in constructors:
                 for p in prev:   
                     #print(f'PREV:{prev}|{idx}')
                     if idx < len(prev):
-                        print('>'*(level+1)+f'{i}') 
+                        print('>'*(level+1)+f'{i}[{idx}]') 
                         if text:
                             #print(f'{text}|{text[idx_txt]}')
                             constructors[i](object,i[0].upper() + i[1:],text[idx_txt])
                             idx_txt = idx_txt + 1
                         else:    
                             constructors[i](object)
-                        print(f'Constructor:{i}')
+                        #print(f'Constructor:{i}')
                         #print(f'Next: {object.__class__.__name__}.{getattr(object, attributes[next])}')
                         
                         next_object = getattr(object,  attributes[next])
