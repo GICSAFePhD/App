@@ -86,35 +86,44 @@ def load_xml(file):
     # common_set(root,'common',XMLNS,RML.Common)  
     # #print(RML.Common)
 
-def get_branches(object, root, level = 0, idx = 0, idx_txt = 0):
-
-    # root: the old-tree
+def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
+    a = 0
+    # xml_node: the old-tree
     # child[i]: the new-tree
     
     #if level >= 3:
     #    return
     
-    if type(object) == list:
-        #print(f'LISTA:{root}|{object[idx]}|{idx}')
-        if len(object) > 1:
-            object = object[idx+1]
+    if len(idx) == 0:
+        idx = 0
+    else:
+        idx = int(idx)
+    
+    if type(current_object) == list:
+        #print(f'LISTA:{xml_node}|{current_object[idx]}|{idx}')
+        if len(current_object) > 1:
+            current_object = current_object[idx+1]
         
-    #print(f'OBJECT:{object}|{idx}')                  
-    if (type(object) != list):    
-        if (root.attrib):    
-            #print(root.attrib)         
-            for j in [*root.attrib]:
-                #print(f'{j} : {root.attrib[j]}')
-                setattr(object,j[0].upper()+j[1:],root.attrib[j]) 
+    #print(f'OBJECT:{current_object}|{idx}')                  
+    if (type(current_object) != list):    
+        if (xml_node.attrib):    
+            #print(xml_node.attrib)         
+            for tag_i in [*xml_node.attrib]:
+                attribute_tag = tag_i[0].upper()+tag_i[1:]
+                print(f'{attribute_tag} : {xml_node.attrib[tag_i]}')
+                setattr(current_object,attribute_tag,xml_node.attrib[tag_i]) 
                 
-    [child,tag,text] = get_leaves(root)
-    #print(child,tag,text)
-    attributes = get_attributes(object)
-    #print(f'Attributes:{attributes}')
-    print(f'Tags:{tag}')
-    for i in tag:
-        capitalized_tag = i[0].upper() + i[1:]
-        #print(f'TEST:{capitalized_tag}|{i.title()}||{capitalized_tag in attributes}')
+    [xml_child,xml_tag,xml_text] = get_leaves(xml_node)
+    #print(xml_child,tag,xml_text)
+    object_attributes = get_attributes(current_object)
+    #print(f'Attributes:{object_attributes}')
+    print(f'Tags:{xml_tag}')
+    
+    idx = 0
+    
+    for xml_tag_i in xml_tag:
+        capitalized_tag = xml_tag_i[0].upper() + xml_tag_i[1:]
+        #print(f'TEST:{capitalized_tag}|{i.title()}||{capitalized_tag in object_attributes}')
         #print(f'TAG:{tag}')
         if capitalized_tag == "Metadata":
             continue
@@ -124,37 +133,45 @@ def get_branches(object, root, level = 0, idx = 0, idx_txt = 0):
         #    continue
         if capitalized_tag == "Interlocking":
             continue
+        if capitalized_tag == "NetRelation":
+            continue
         
-        if (capitalized_tag in attributes):
-            next = attributes.index(i[0].upper() + i[1:])
-            prev = find(tag,i)
+        if (capitalized_tag in object_attributes):
+            next_attribute_position = object_attributes.index(capitalized_tag)
+            next_attribute = object_attributes[next_attribute_position]
+            prev_tag_positions = find(xml_tag,xml_tag_i)
+            size_prev_tag_positions = len(prev_tag_positions)
             #print(f'Trying to create:{attributes[next]}|{i}|{i in constructors}')
+            #print(f'TAG_i:{prev_tag_positions}|Size: {size_prev_tag_positions}')
             
-            if i in constructors:
-                for p in prev:   
+            if xml_tag_i in constructors:
+                for prev_tag_position in prev_tag_positions: 
+                    next_xml_child = xml_child[prev_tag_position] 
                     #print(f'PREV:{prev}|{idx}')
-                    if idx < len(prev):
-                        print('>'*(level+1)+f'{i}[{idx}]') 
-                        if text:
+                    if idx < size_prev_tag_positions:
+                        print('>'*(level+1)+f'{xml_tag_i}[{idx}]') 
+                        if xml_text:
                             #print(f'{text}|{text[idx_txt]}')
-                            constructors[i](object,i[0].upper() + i[1:],text[idx_txt])
+                            constructors[xml_tag_i](current_object,capitalized_tag,xml_text[idx_txt])
                             idx_txt = idx_txt + 1
                         else:    
-                            constructors[i](object)
-                        #print(f'Constructor:{i}')
-                        #print(f'Next: {object.__class__.__name__}.{getattr(object, attributes[next])}')
+                            constructors[xml_tag_i](current_object)
+                        #print(f'Constructor:{xml_tag_i}')
+                        #print(f'Next: {current_object.__class__.__name__}.{getattr(current_object, next_attribute)}')
                         
-                        next_object = getattr(object,  attributes[next])
-                        #print(f'NEXT:{next_object}|||{idx}')
+                        next_object = getattr(current_object,  next_attribute)
+                        print(f'NEXT:{next_object}|||{idx}')
                         
                         if(type(next_object) == list):
-                            if len (prev) == 1:
-                                get_branches(next_object[0],child[p],level+1)
-                            if idx < len(prev) and 1 < len(prev):
+                            if size_prev_tag_positions == 1:
+                                get_branches(next_object[0],next_xml_child,level+1)
+                            if idx < size_prev_tag_positions and 1 < size_prev_tag_positions:
+                                print(f'----------------INCREMENTANDO:{xml_tag_i}[{idx}->{idx+1}]') 
                                 idx = idx + 1
-                                get_branches(next_object[-1],child[p],level+1,idx)
+                                get_branches(next_object[-1],next_xml_child,level+1,str(idx))
                         else:
-                            get_branches(next_object,child[p],level+1,idx_txt=idx_txt)
+                            get_branches(next_object,next_xml_child,level+1,idx_txt=idx_txt)
+
 
 def save_xml(file):    
     root_ML = ET.Element("railML",attrib = ATTRIBUTES)
@@ -201,11 +218,6 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'netElement':railML.Infrastructure.Topology.NetElements.NetElements.create_NetElement, # NetElements
                 #'tLengthM':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_tLengthM,'associatedPositioningSystem':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_AssociatedPositioningSystem,'elementCollectionOrdered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionOrdered,'elementCollectionUnordered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionUnordered,'isValid':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_IsValid,'name':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Name,
                 'relation':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Relation, # NetElement
-                
-                
-                
-                
-                
                 
                 }
 
