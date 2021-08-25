@@ -18,6 +18,7 @@ from RailML import aRailML
 #VERSION = "3.1"
 
 #ATTRIBUTES = {"xmlns":XMLNS , "xmlns:dc":XMLNS_DC , "xmlns:gml":XMLNS_GML , "xmlns:xsi":XMLNS_XSI , "xsi:schemaLocation":XSI_SCHEMALOCATION , "version":VERSION}
+ATTRIBUTES = 0
 
 RML = railML.railML()
 
@@ -94,10 +95,10 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
     #if level >= 3:
     #    return
     
-    if len(idx) == 0:
-        idx = 0
-    else:
-        idx = int(idx)
+    #if len(idx) == 0:
+    #    idx = 0
+    #else:
+    #    idx = int(idx)
     
     if type(current_object) == list:
         #print(f'LISTA:{xml_node}|{current_object[idx]}|{idx}')
@@ -110,20 +111,21 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
             #print(xml_node.attrib)         
             for tag_i in [*xml_node.attrib]:
                 attribute_tag = tag_i[0].upper()+tag_i[1:]
-                print(f'{attribute_tag} : {xml_node.attrib[tag_i]}')
+                #print(f'{attribute_tag} : {xml_node.attrib[tag_i]}')
                 setattr(current_object,attribute_tag,xml_node.attrib[tag_i]) 
                 
     [xml_child,xml_tag,xml_text] = get_leaves(xml_node)
     #print(xml_child,tag,xml_text)
     object_attributes = get_attributes(current_object)
     #print(f'Attributes:{object_attributes}')
-    print(f'Tags:{xml_tag}')
+    #if xml_tag:
+    #    print(f'Tags:{xml_tag}')
     
-    idx = 0
-    
-    for xml_tag_i in xml_tag:
-        capitalized_tag = xml_tag_i[0].upper() + xml_tag_i[1:]
-        #print(f'TEST:{capitalized_tag}|{i.title()}||{capitalized_tag in object_attributes}')
+
+    size_xml_tag = len(xml_tag)
+    for xml_tag_i in range(size_xml_tag):
+        capitalized_tag = xml_tag[xml_tag_i][0].upper() + xml_tag[xml_tag_i][1:]
+        #print(f'TEST:{capitalized_tag}|{xml_tag_i.title()}||{capitalized_tag in object_attributes}')
         #print(f'TAG:{tag}')
         if capitalized_tag == "Metadata":
             continue
@@ -135,42 +137,61 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
             continue
         if capitalized_tag == "NetRelation":
             continue
+        #if capitalized_tag == "Relation":
+        #    continue
         
         if (capitalized_tag in object_attributes):
             next_attribute_position = object_attributes.index(capitalized_tag)
             next_attribute = object_attributes[next_attribute_position]
-            prev_tag_positions = find(xml_tag,xml_tag_i)
-            size_prev_tag_positions = len(prev_tag_positions)
-            #print(f'Trying to create:{attributes[next]}|{i}|{i in constructors}')
-            #print(f'TAG_i:{prev_tag_positions}|Size: {size_prev_tag_positions}')
+                        
+            #if xml_tag:
+            #    intersection_tag_attribute = list_intersect(object_attributes, [i[0].upper()+i[1:] for i in xml_tag])
+                #print(f'Attributes:{object_attributes}|Tags:{[i[0].upper()+i[1:] for i in xml_tag]}||| {intersection_tag_attribute}')    #TODO SEARCH ALL THE TAGS IN ATTR
+                
             
-            if xml_tag_i in constructors:
-                for prev_tag_position in prev_tag_positions: 
-                    next_xml_child = xml_child[prev_tag_position] 
-                    #print(f'PREV:{prev}|{idx}')
-                    if idx < size_prev_tag_positions:
-                        print('>'*(level+1)+f'{xml_tag_i}[{idx}]') 
-                        if xml_text:
-                            #print(f'{text}|{text[idx_txt]}')
-                            constructors[xml_tag_i](current_object,capitalized_tag,xml_text[idx_txt])
-                            idx_txt = idx_txt + 1
-                        else:    
-                            constructors[xml_tag_i](current_object)
-                        #print(f'Constructor:{xml_tag_i}')
-                        #print(f'Next: {current_object.__class__.__name__}.{getattr(current_object, next_attribute)}')
+            #print(f'A:{xml_tag}|{xml_tag_i}--{intersection_tag_attribute}')   
+            #prev_tag_positions = find(xml_tag,xml_tag_i) 
+            
+            
+            #print(f'B:{prev_tag_positions}--{intersection_tag_attribute}')   
+            #size_prev_tag_positions = len(xml_tag)
+            #idx = 0
+            #print(f'{xml_tag_i}:{idx}|Size: {size_prev_tag_positions}')
+            
+            #if xml_tag_i in constructors:
+                #print(f'Trying to create:{next_attribute}[{idx} de {size_prev_tag_positions}]|{xml_tag_i}|{xml_tag_i in constructors}')
+                #for prev_tag_position in prev_tag_positions:
+                #for prev_tag_position in range(size_prev_tag_positions): 
+                    #print(f'C:{xml_child}')
+            next_xml_child = xml_child[xml_tag_i] 
+            #print(f'C:{xml_child}|{next_xml_child}')
+                    
+                    #if idx < size_prev_tag_positions:
                         
-                        next_object = getattr(current_object,  next_attribute)
-                        print(f'NEXT:{next_object}|||{idx}')
-                        
-                        if(type(next_object) == list):
-                            if size_prev_tag_positions == 1:
-                                get_branches(next_object[0],next_xml_child,level+1)
-                            if idx < size_prev_tag_positions and 1 < size_prev_tag_positions:
-                                print(f'----------------INCREMENTANDO:{xml_tag_i}[{idx}->{idx+1}]') 
-                                idx = idx + 1
-                                get_branches(next_object[-1],next_xml_child,level+1,str(idx))
-                        else:
-                            get_branches(next_object,next_xml_child,level+1,idx_txt=idx_txt)
+            print('>'*(level+1)+f'{xml_tag[xml_tag_i]}[{xml_tag_i+1} de {size_xml_tag}]') 
+            if xml_text:
+                #print(f'{text}|{text[idx_txt]}')
+                constructors[xml_tag[xml_tag_i]](current_object,capitalized_tag,xml_text[idx_txt])
+                idx_txt = idx_txt + 1
+            else:
+                if xml_tag[xml_tag_i] in constructors:    
+                    constructors[xml_tag[xml_tag_i]](current_object)
+            #print(f'Constructor:{xml_tag_i}')
+            #print(f'Next: {current_object.__class__.__name__}.{getattr(current_object, next_attribute)}')
+            
+            next_object = getattr(current_object,  next_attribute)
+            #print(f'NEXT:{next_object}|||{idx}')
+            
+            #idx = idx + 1
+            if(type(next_object) == list):
+                if size_xml_tag == 1:
+                    get_branches(next_object[0],next_xml_child,level+1)
+                if xml_tag_i < size_xml_tag and 1 < size_xml_tag:
+                    #print(f'----------------INCREMENTANDO:{xml_tag_i}[{idx}->{idx+1}]') 
+                    #idx = idx + 1
+                    get_branches(next_object[-1],next_xml_child,level+1)
+            else:
+                get_branches(next_object,next_xml_child,level+1,idx_txt=idx_txt)
 
 
 def save_xml(file):    
@@ -194,7 +215,13 @@ def get_attributes(object):
 def set_text(object,tag,text):
     setattr(object,tag,text)
 
-    
+def list_intersect(list_a, list_b):
+    """ Finds the intersection of 2 lists including common duplicates"""
+    intersection = []
+    for b in range(len(list_b)):
+        if list_b[b] in list_a:
+            intersection.append(list_a.index(list_b[b]))    
+    return intersection
     
 constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.create_common,'infrastructure':railML.railML.create_infrastructure,'interlocking':railML.railML.create_interlocking, # RailML
                 'title':set_text,'date':set_text,'creator':set_text,'source':set_text,'identifier':set_text,'subject':set_text,'format':set_text,'description':set_text,'publisher':set_text,   # Metadata
@@ -216,7 +243,7 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'topology':railML.Infrastructure.Infrastructure.create_Topology,#'geometry':railML.Infrastructure.Infrastructure.create_Geometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.create_FunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.create_PhysicalFacilities,'infrastructureVisualizations':railML.Infrastructure.Infrastructure.create_InfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.create_InfrastructureStates, # Infrastructure
                 'netElements':railML.Infrastructure.Topology.Topology.create_NetElements, 'netRelations':railML.Infrastructure.Topology.Topology.create_NetRelations,'network':railML.Infrastructure.Topology.Topology.create_Networks, # Topology
                 'netElement':railML.Infrastructure.Topology.NetElements.NetElements.create_NetElement, # NetElements
-                #'tLengthM':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_tLengthM,'associatedPositioningSystem':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_AssociatedPositioningSystem,'elementCollectionOrdered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionOrdered,'elementCollectionUnordered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionUnordered,'isValid':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_IsValid,'name':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Name,
+                'tLengthM':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_tLengthM,'associatedPositioningSystem':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_AssociatedPositioningSystem,'elementCollectionOrdered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionOrdered,'elementCollectionUnordered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionUnordered,'isValid':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_IsValid,'name':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Name,
                 'relation':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Relation, # NetElement
                 
                 }
