@@ -117,9 +117,9 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
     [xml_child,xml_tag,xml_text] = get_leaves(xml_node)
     #print(xml_child,xml_tag,xml_text)
     object_attributes = get_attributes(current_object)
-    #print(f'Attributes:{object_attributes}')
-    #if xml_tag:
-    #    print(f'Tags:{xml_tag}')
+    print(f'Attributes:{object_attributes}')
+    if xml_tag:
+        print(f'Tags:{xml_tag}')
 
     size_xml_tag = len(xml_tag)
 
@@ -153,7 +153,7 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
                 constructors[xml_tag[xml_tag_i]](current_object,capitalized_tag,xml_text[idx_txt])
                 idx_txt = idx_txt + 1
             else:
-                #print(f'TRYING:{xml_tag[xml_tag_i]}|{xml_tag[xml_tag_i] in constructors}')
+                print(f'TRYING:{xml_tag[xml_tag_i]}|{xml_tag[xml_tag_i] in constructors}')
                 if xml_tag[xml_tag_i] in constructors:    
                     constructors[xml_tag[xml_tag_i]](current_object)
             #print(f'Constructor:{xml_tag_i}')
@@ -212,7 +212,7 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'name':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystem.GeometricPositioningSystem.create_Name,'isValid':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystem.GeometricPositioningSystem.create_IsValid, # GeometricPositioningSystem
 
                 'topology':railML.Infrastructure.Infrastructure.create_Topology,#'geometry':railML.Infrastructure.Infrastructure.create_Geometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.create_FunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.create_PhysicalFacilities,'infrastructureVisualizations':railML.Infrastructure.Infrastructure.create_InfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.create_InfrastructureStates, # Infrastructure
-                'netElements':railML.Infrastructure.Topology.Topology.create_NetElements, 'netRelations':railML.Infrastructure.Topology.Topology.create_NetRelations,'network':railML.Infrastructure.Topology.Topology.create_Networks, # Topology
+                'netElements':railML.Infrastructure.Topology.Topology.create_NetElements, 'netRelations':railML.Infrastructure.Topology.Topology.create_NetRelations,'networks':railML.Infrastructure.Topology.Topology.create_Networks, # Topology
                 'netElement':railML.Infrastructure.Topology.NetElements.NetElements.create_NetElement, # NetElements
                 'tLengthM':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_tLengthM,'associatedPositioningSystem':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_AssociatedPositioningSystem,'elementCollectionOrdered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionOrdered,'elementCollectionUnordered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionUnordered,'isValid':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_IsValid,'name':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Name,'relation':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Relation, # NetElement
                 'positioningSystemRef':railML.Infrastructure.Topology.NetElements.NetElement.RTM_AssociatedPositioningSystem.RTM_AssociatedPositioningSystem.create_PositioningSystemRef,'intrinsicCoordinate':railML.Infrastructure.Topology.NetElements.NetElement.RTM_AssociatedPositioningSystem.RTM_AssociatedPositioningSystem.create_IntrinsicCoordinate,'isValid':railML.Infrastructure.Topology.NetElements.NetElement.RTM_AssociatedPositioningSystem.RTM_AssociatedPositioningSystem.create_IsValid, # AssociatedPositionyngSystem
@@ -223,12 +223,10 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'navigability':railML.Infrastructure.Topology.NetElements.NetElement.RTM_Relation.RTM_Relation.create_Navigability,'positionOnA':railML.Infrastructure.Topology.NetElements.NetElement.RTM_Relation.RTM_Relation.create_PositionOnA,'positionOnB':railML.Infrastructure.Topology.NetElements.NetElement.RTM_Relation.RTM_Relation.create_PositionOnB,'elementA':railML.Infrastructure.Topology.NetElements.NetElement.RTM_Relation.RTM_Relation.create_ElementA,'elementB':railML.Infrastructure.Topology.NetElements.NetElement.RTM_Relation.RTM_Relation.create_ElementB, # Relation
             
                 'netRelation':railML.Infrastructure.Topology.NetRelations.NetRelations.create_Relation, # NetRelations
+                'network':railML.Infrastructure.Topology.Networks.Networks.create_Network, # Networks
+                'level':railML.Infrastructure.Topology.Networks.Network.Network.create_Level,'networkResource':railML.Infrastructure.Topology.Networks.Network.RTM_Network.RTM_Network.create_NetworkResource, # RTM_Network
                 
                 
-                
-                
-            
-            
             
                 }
 
