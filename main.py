@@ -100,26 +100,26 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
     #else:
     #    idx = int(idx)
     
-    if type(current_object) == list:
-        #print(f'LISTA:{xml_node}|{current_object[idx]}|{idx}')
-        if len(current_object) > 1:
-            current_object = current_object[idx+1]
+    #if type(current_object) == list:
+    #    print(f'LISTA:{xml_node}|{current_object[idx]}|{idx}')
+    #    if len(current_object) > 1:
+    #        current_object = current_object[idx+1]
         
-    #print(f'OBJECT:{current_object}|{idx}')                  
+    print(f'OBJECT:{current_object}')                  
     if (type(current_object) != list):    
         if (xml_node.attrib):    
             #print(xml_node.attrib)         
             for tag_i in [*xml_node.attrib]:
                 attribute_tag = tag_i[0].upper()+tag_i[1:]
-                #print(f'{attribute_tag} : {xml_node.attrib[tag_i]}')
+                print(f'{current_object}|{attribute_tag} : {xml_node.attrib[tag_i]}')
                 setattr(current_object,attribute_tag,xml_node.attrib[tag_i]) 
                 
     [xml_child,xml_tag,xml_text] = get_leaves(xml_node)
     #print(xml_child,xml_tag,xml_text)
     object_attributes = get_attributes(current_object)
-    print(f'Attributes:{object_attributes}')
-    if xml_tag:
-        print(f'Tags:{xml_tag}')
+    #print(f'Attributes:{object_attributes}')
+    #if xml_tag:
+    #    print(f'Tags:{xml_tag}')
 
     size_xml_tag = len(xml_tag)
 
@@ -134,8 +134,8 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
         #    continue
         if capitalized_tag == "Interlocking":
             continue
-        #if capitalized_tag == "NetRelation":
-        #    continue
+        if capitalized_tag == "Topology": #TODO POINTER CONNECTION
+            continue
         #if capitalized_tag == "Relation":
         #    continue
         
@@ -153,7 +153,7 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
                 constructors[xml_tag[xml_tag_i]](current_object,capitalized_tag,xml_text[idx_txt])
                 idx_txt = idx_txt + 1
             else:
-                print(f'TRYING:{xml_tag[xml_tag_i]}|{xml_tag[xml_tag_i] in constructors}')
+                #print(f'TRYING:{xml_tag[xml_tag_i]}|{xml_tag[xml_tag_i] in constructors}')
                 if xml_tag[xml_tag_i] in constructors:    
                     constructors[xml_tag[xml_tag_i]](current_object)
             #print(f'Constructor:{xml_tag_i}')
@@ -197,8 +197,6 @@ def set_text(object,tag,text):
 constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.create_common,'infrastructure':railML.railML.create_infrastructure,'interlocking':railML.railML.create_interlocking, # RailML
                 'title':set_text,'date':set_text,'creator':set_text,'source':set_text,'identifier':set_text,'subject':set_text,'format':set_text,'description':set_text,'publisher':set_text,   # Metadata
                 
-                
-                
                 'electrificationSystems':railML.Common.Common.create_ElectrificationSystems,'organizationalUnits':railML.Common.Common.create_OrganizationalUnits,'speedProfiles':railML.Common.Common.create_SpeedProfiles,'positioning':railML.Common.Common.create_PositioningSystems,  # Common
                 'electrificationSystem':railML.Common.ElectrificationSystems.ElectrificationSystems.create_ElectrificationSystem, # ElectrificationSystems
                 'tVoltageVolt':railML.Common.ElectrificationSystems.ElectrificationSystem.ElectrificationSystem.create_tVoltageVolt,'frequencyHertz':railML.Common.ElectrificationSystems.ElectrificationSystem.ElectrificationSystem.create_tFrequencyHertz, # ElectrificationSystem              
@@ -211,7 +209,7 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'screenPositioningSystem':railML.Common.PositioningSystems.ScreenPositioningSystems.ScreenPositioningSystems.create_ScreenPositioningSystem, # ScreenPositioningSystems
                 'name':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystem.GeometricPositioningSystem.create_Name,'isValid':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystem.GeometricPositioningSystem.create_IsValid, # GeometricPositioningSystem
 
-                'topology':railML.Infrastructure.Infrastructure.create_Topology,#'geometry':railML.Infrastructure.Infrastructure.create_Geometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.create_FunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.create_PhysicalFacilities,'infrastructureVisualizations':railML.Infrastructure.Infrastructure.create_InfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.create_InfrastructureStates, # Infrastructure
+                'topology':railML.Infrastructure.Infrastructure.create_Topology,'geometry':railML.Infrastructure.Infrastructure.create_Geometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.create_FunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.create_PhysicalFacilities,#'infrastructureVisualizations':railML.Infrastructure.Infrastructure.create_InfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.create_InfrastructureStates, # Infrastructure
                 'netElements':railML.Infrastructure.Topology.Topology.create_NetElements, 'netRelations':railML.Infrastructure.Topology.Topology.create_NetRelations,'networks':railML.Infrastructure.Topology.Topology.create_Networks, # Topology
                 'netElement':railML.Infrastructure.Topology.NetElements.NetElements.create_NetElement, # NetElements
                 'tLengthM':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_tLengthM,'associatedPositioningSystem':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_AssociatedPositioningSystem,'elementCollectionOrdered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionOrdered,'elementCollectionUnordered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionUnordered,'isValid':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_IsValid,'name':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Name,'relation':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Relation, # NetElement
@@ -221,13 +219,27 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'lateralSide':railML.Infrastructure.Topology.NetElements.NetElement.RTM_AssociatedPositioningSystem.RTM_IntrinsicCoordinate.RTM_LinearCoordinate.RTM_LinearCoordinate.create_LateralSide,'verticalSide':railML.Infrastructure.Topology.NetElements.NetElement.RTM_AssociatedPositioningSystem.RTM_IntrinsicCoordinate.RTM_LinearCoordinate.RTM_LinearCoordinate.create_VerticalSide, # LinearCoordinate
                 'elementPart':railML.Infrastructure.Topology.NetElements.NetElement.RTM_OrderedCollection.RTM_OrderedCollection.create_ElementPart, # ElementPart
                 'navigability':railML.Infrastructure.Topology.NetElements.NetElement.RTM_Relation.RTM_Relation.create_Navigability,'positionOnA':railML.Infrastructure.Topology.NetElements.NetElement.RTM_Relation.RTM_Relation.create_PositionOnA,'positionOnB':railML.Infrastructure.Topology.NetElements.NetElement.RTM_Relation.RTM_Relation.create_PositionOnB,'elementA':railML.Infrastructure.Topology.NetElements.NetElement.RTM_Relation.RTM_Relation.create_ElementA,'elementB':railML.Infrastructure.Topology.NetElements.NetElement.RTM_Relation.RTM_Relation.create_ElementB, # Relation
-            
                 'netRelation':railML.Infrastructure.Topology.NetRelations.NetRelations.create_Relation, # NetRelations
                 'network':railML.Infrastructure.Topology.Networks.Networks.create_Network, # Networks
                 'level':railML.Infrastructure.Topology.Networks.Network.Network.create_Level,'networkResource':railML.Infrastructure.Topology.Networks.Network.RTM_Network.RTM_Network.create_NetworkResource, # RTM_Network
                 
+                'horizontalCurves':railML.Infrastructure.Geometry.Geometry.create_HorizontalCurves,'gradientCurves':railML.Infrastructure.Geometry.Geometry.create_GradientCurves,'geometryPoints':railML.Infrastructure.Geometry.Geometry.create_GeometryPoints, # Geometry
+                'horizontalCurve':railML.Infrastructure.Geometry.HorizontalCurves.HorizontalCurves.create_HorizontalCurve, # HorizontalCurves
+                'curveType':railML.Infrastructure.Geometry.HorizontalCurves.HorizontalCurve.HorizontalCurve.create_CurveType,'azimuth':railML.Infrastructure.Geometry.HorizontalCurves.HorizontalCurve.HorizontalCurve.create_Azimuth,'deltaAzimuth':railML.Infrastructure.Geometry.HorizontalCurves.HorizontalCurve.HorizontalCurve.create_DeltaAzimuth,'radius':railML.Infrastructure.Geometry.HorizontalCurves.HorizontalCurve.HorizontalCurve.create_Radius,'length':railML.Infrastructure.Geometry.HorizontalCurves.HorizontalCurve.HorizontalCurve.create_Length, # HorizontalCurve
+                'gradienteCurve':railML.Infrastructure.Geometry.GradientCurves.GradientCurves.create_GradientCurve, # GradienteCurves
+                'curveType':railML.Infrastructure.Geometry.GradientCurves.GradientCurve.GradientCurve.create_CurveType,'gradient':railML.Infrastructure.Geometry.GradientCurves.GradientCurve.GradientCurve.create_Gradient,'deltaGradient':railML.Infrastructure.Geometry.GradientCurves.GradientCurve.GradientCurve.create_DeltaGradient,'radius':railML.Infrastructure.Geometry.GradientCurves.GradientCurve.GradientCurve.create_Radius,'length':railML.Infrastructure.Geometry.GradientCurves.GradientCurve.GradientCurve.create_Length, # GradientCurve
+                'geometryPoint':railML.Infrastructure.Geometry.GeometryPoints.GeometryPoints.create_GeometryPoint, # GeometryPoints
+                'radius':railML.Infrastructure.Geometry.GeometryPoints.GeometryPoint.GeometryPoint.create_Radius,'gradient':railML.Infrastructure.Geometry.GeometryPoints.GeometryPoint.GeometryPoint.create_Gradient,'azimuth':railML.Infrastructure.Geometry.GeometryPoints.GeometryPoint.GeometryPoint.create_Azimuth, # GeometryPoint
                 
-            
+                'balises':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Balises,'borders':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Borders,#'bufferStops':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_BufferStops,'crossings':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Crossings,'derailersIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_DerailersIS,'electrifications':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Electrifications,'keyLocksIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_KeyLocksIS,'levelCrossingsIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_LevelCrossingsIS,'lines':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Lines,'loadingGauges':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_LoadingGauges,'operationalPoints':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_OperationalPoints,'overCrossings':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_OverCrossings,'platforms':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Platforms,'restrictionAreas':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_RestrictionAreas,'serviceSections':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_ServiceSections,'signalsIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_SignalsIS,'speeds':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Speeds,'stoppingPlaces':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_StoppingPlaces,'switchesIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_SwitchesIS,'tracks':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Tracks,'trackBeds':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrackBeds,'trackGauges':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrackGauges,'trainDetectionElements':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrainDetectionElements,'trainProtectionElements':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrainProtectionElements,'trainRadios':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrainRadios,'underCrossing':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_UnderCrossings,'weightLimits':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_WeightLimits, # FunctionalInfrastructure
+                # Balises
+                'border':railML.Infrastructure.FunctionalInfrastructure.Borders.Borders.create_Border, # Borders
+
+
+
+
+                
+
                 }
 
 
