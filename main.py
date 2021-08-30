@@ -23,7 +23,10 @@ ATTRIBUTES = 0
 
 RML = railML.railML()
 
-IGNORE = {'Metadata','Common','Interlocking','Topology','SignalsIS','SwitchesIS','Tracks','TrainDetectionElements','BufferStops'}
+IGNORE = {'Metadata','Common','Interlocking','Topology',
+          'SignalsIS',
+          #'SwitchesIS',
+          'Tracks','TrainDetectionElements','Borders','BufferStops'}
 
 #%%
 def print_leaves(root,leaf,tag):
@@ -108,13 +111,13 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
     #    if len(current_object) > 1:
     #        current_object = current_object[idx+1]
         
-    print(f'OBJECT:{current_object}')                  
+    #print(f'OBJECT:{current_object}')                  
     if (type(current_object) != list and current_object != None):    
         if (xml_node.attrib):    
             #print(xml_node.attrib)         
             for tag_i in [*xml_node.attrib]:
                 attribute_tag = tag_i[0].upper()+tag_i[1:]
-                #print(f'{current_object}|{attribute_tag} : {xml_node.attrib[tag_i]}')
+                print(f'{current_object}|{attribute_tag} : {xml_node.attrib[tag_i]}')
                 setattr(current_object,attribute_tag,xml_node.attrib[tag_i]) 
                 
     [xml_child,xml_tag,xml_text] = get_leaves(xml_node)
@@ -132,7 +135,7 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
         if capitalized_tag in IGNORE:
             continue
         
-        #print(f'{capitalized_tag}|{capitalized_tag in object_attributes}')
+        print(f'{capitalized_tag}|{capitalized_tag in object_attributes}')
         if (capitalized_tag in object_attributes):
             next_attribute_position = object_attributes.index(capitalized_tag)
             next_attribute = object_attributes[next_attribute_position]
@@ -187,7 +190,7 @@ def get_attributes(object):
         attribute_inherated = []
         for i in type(object).mro()[:-1]:
             attribute_inherated += [j for j in i.__dict__ if not j.startswith('__') and not j.startswith('create')]
-        #print(attribute_inherated) 
+        print(attribute_inherated) 
         return attribute_inherated
     except:
         pass
@@ -233,15 +236,13 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'geometryPoint':railML.Infrastructure.Geometry.GeometryPoints.GeometryPoints.create_GeometryPoint, # GeometryPoints
                 'radius':railML.Infrastructure.Geometry.GeometryPoints.GeometryPoint.GeometryPoint.create_Radius,'gradient':railML.Infrastructure.Geometry.GeometryPoints.GeometryPoint.GeometryPoint.create_Gradient,'azimuth':railML.Infrastructure.Geometry.GeometryPoints.GeometryPoint.GeometryPoint.create_Azimuth, # GeometryPoint
                 
+                'balises':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Balises,'borders':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Borders,'bufferStops':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_BufferStops,'crossings':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Crossings,'derailersIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_DerailersIS,'electrifications':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Electrifications,'keyLocksIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_KeyLocksIS,'levelCrossingsIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_LevelCrossingsIS,'lines':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Lines,'loadingGauges':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_LoadingGauges,'operationalPoints':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_OperationalPoints,'overCrossings':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_OverCrossings,'platforms':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Platforms,'restrictionAreas':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_RestrictionAreas,'serviceSections':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_ServiceSections,'signalsIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_SignalsIS,'speeds':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Speeds,'stoppingPlaces':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_StoppingPlaces,'switchesIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_SwitchesIS,'tracks':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Tracks,'trackBeds':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrackBeds,'trackGauges':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrackGauges,'trainDetectionElements':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrainDetectionElements,'trainProtectionElements':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrainProtectionElements,'trainRadios':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrainRadios,'underCrossing':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_UnderCrossings,'weightLimits':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_WeightLimits, # FunctionalInfrastructure
                 
-                
-                
-                'balises':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Balises,'borders':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Borders,'bufferStops':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_BufferStops,'crossings':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Crossings,'derailersIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_DerailersIS,'electrifications':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Electrifications,'keyLocksIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_KeyLocksIS,'levelCrossingsIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_LevelCrossingsIS,'lines':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Lines,'loadingGauges':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_LoadingGauges,'operationalPoints':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_OperationalPoints,'overCrossings':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_OverCrossings,'platforms':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Platforms,'restrictionAreas':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_RestrictionAreas,'serviceSections':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_ServiceSections,#'signalsIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_SignalsIS,'speeds':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Speeds,'stoppingPlaces':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_StoppingPlaces,'switchesIS':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_SwitchesIS,'tracks':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_Tracks,'trackBeds':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrackBeds,'trackGauges':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrackGauges,'trainDetectionElements':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrainDetectionElements,'trainProtectionElements':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrainProtectionElements,'trainRadios':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_TrainRadios,'underCrossing':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_UnderCrossings,'weightLimits':railML.Infrastructure.FunctionalInfrastructure.FunctionalInfrastructure.create_WeightLimits, # FunctionalInfrastructure
                 'balise':railML.Infrastructure.FunctionalInfrastructure.Balises.Balises.create_Balise, # Balises
                 'type':railML.Infrastructure.FunctionalInfrastructure.Balises.Balise.Balise.create_Type,'belongsToParent':railML.Infrastructure.FunctionalInfrastructure.Balises.Balise.Balise.create_BelongsToParent,'basedOnTemplate':railML.Infrastructure.FunctionalInfrastructure.Balises.Balise.Balise.create_BasedOnTemplate,'baliseGroupType':railML.Infrastructure.FunctionalInfrastructure.Balises.Balise.Balise.create_BaliseGroupType, # Balise         
-                'border':railML.Infrastructure.FunctionalInfrastructure.Borders.Borders.create_Border, # Borders
-                'type':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_Type,'id':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_Id, # Border
                 
+                'border':railML.Infrastructure.FunctionalInfrastructure.Borders.Borders.create_Border, # Borders
+                'type':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_Type,'id':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_Id, # Border 
                 'designator':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_Designator,
                 'external':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_External,
                 'name':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_Name,
@@ -251,27 +252,53 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'linearLocation':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_LinearLocation,
                 'spotLocation':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_SpotLocation,
                 
-                
-                
-                
-                
                 'bufferstop':railML.Infrastructure.FunctionalInfrastructure.BufferStops.BufferStops.create_BufferStop, # BufferStops
+                'type':railML.Infrastructure.FunctionalInfrastructure.BufferStops.BufferStop.BufferStop.create_Type, # BufferStop
+                
                 'crossing':railML.Infrastructure.FunctionalInfrastructure.Crossings.Crossings.create_Crossing, # Crossings
                 'derailerIS':railML.Infrastructure.FunctionalInfrastructure.DerailersIS.DerailersIS.create_DerailerIS, # DerailersIS
+                'derailSide':railML.Infrastructure.FunctionalInfrastructure.DerailersIS.DerailerIS.DerailerIS.create_DerailSide, # DerailerIs
+                
                 'electrificationSection':railML.Infrastructure.FunctionalInfrastructure.Electrifications.Electrifications.create_ElectrificationSection, # Electrifications
+                'contactLineType':railML.Infrastructure.FunctionalInfrastructure.Electrifications.ElectrificationSection.ElectrificationSection.create_ContactLineType,'isInsulatedSection':railML.Infrastructure.FunctionalInfrastructure.Electrifications.ElectrificationSection.ElectrificationSection.create_IsInsulatedSection,'belongsToParent':railML.Infrastructure.FunctionalInfrastructure.Electrifications.ElectrificationSection.ElectrificationSection.create_BelongsToParent,'electrificationSystemRef':railML.Infrastructure.FunctionalInfrastructure.Electrifications.ElectrificationSection.ElectrificationSection.create_ElectrificationSystemRef,'energyCatenary':railML.Infrastructure.FunctionalInfrastructure.Electrifications.ElectrificationSection.ElectrificationSection.create_EnergyCatenary,'energyPantograph':railML.Infrastructure.FunctionalInfrastructure.Electrifications.ElectrificationSection.ElectrificationSection.create_EnergyPantograph,'energyRollingstock':railML.Infrastructure.FunctionalInfrastructure.Electrifications.ElectrificationSection.ElectrificationSection.create_EnergyRollingstock,'contactWire':railML.Infrastructure.FunctionalInfrastructure.Electrifications.ElectrificationSection.ElectrificationSection.create_ContactWire,'pantographSpacingn':railML.Infrastructure.FunctionalInfrastructure.Electrifications.ElectrificationSection.ElectrificationSection. create_PantographSpacingn,'phaseSeparationSection':railML.Infrastructure.FunctionalInfrastructure.Electrifications.ElectrificationSection.ElectrificationSection.create_PhaseSeparationSection,'systemSeparationSection':railML.Infrastructure.FunctionalInfrastructure.Electrifications.ElectrificationSection.ElectrificationSection.create_SystemSeparationSection, # ElectrificationSection
+
                 'keyLockIS':railML.Infrastructure.FunctionalInfrastructure.KeyLocksIS.KeyLocksIS.create_KeyLockIS, # KeyLocksIS
-                'levelCrossingIS':railML.Infrastructure.FunctionalInfrastructure.LevelCrossingsIS.LevelCrossingsIS.create_LevelCrossingIS, # LevelCrossingIS
+                'levelCrossingIS':railML.Infrastructure.FunctionalInfrastructure.LevelCrossingsIS.LevelCrossingsIS.create_LevelCrossingIS, # LevelCrossingsIS
+                'protection':railML.Infrastructure.FunctionalInfrastructure.LevelCrossingsIS.LevelCrossingIS.LevelCrossingIS.create_Protection, # LevelCrossingIS
+                
                 'line':railML.Infrastructure.FunctionalInfrastructure.Lines.Lines.create_Line, # Lines
+                'beginsInOP':railML.Infrastructure.FunctionalInfrastructure.Lines.Line.Line.create_BeginsInOP,'endsInOP':railML.Infrastructure.FunctionalInfrastructure.Lines.Line.Line.create_EndsInOP,'length':railML.Infrastructure.FunctionalInfrastructure.Lines.Line.Line.create_Length,'lineTrafficCode':railML.Infrastructure.FunctionalInfrastructure.Lines.Line.Line.create_LineTrafficCode,'lineCombinedTransportCode':railML.Infrastructure.FunctionalInfrastructure.Lines.Line.Line.create_LineCombinedTransportCode,'lineLayout':railML.Infrastructure.FunctionalInfrastructure.Lines.Line.Line.create_LineLayout,'linePerformance':railML.Infrastructure.FunctionalInfrastructure.Lines.Line.Line. create_LinePerformance, # Line
+
                 'loadingGauge':railML.Infrastructure.FunctionalInfrastructure.LoadingGauges.LoadingGauges.create_LoadingGauge, # LoadingGauges
                 'operationalPoint':railML.Infrastructure.FunctionalInfrastructure.OperationalPoints.OperationalPoints.create_OperationalPoint, # OperationalPoints
+                'infrastructureManagerRef':railML.Infrastructure.FunctionalInfrastructure.OperationalPoints.OperationalPoint.OperationalPoint.create_InfrastructureManagerRef,'connectedToLine':railML.Infrastructure.FunctionalInfrastructure.OperationalPoints.OperationalPoint.OperationalPoint.create_ConnectedToLine,'limitedByBorder':railML.Infrastructure.FunctionalInfrastructure.OperationalPoints.OperationalPoint.OperationalPoint.create_LimitedByBorder,'opEquipment':railML.Infrastructure.FunctionalInfrastructure.OperationalPoints.OperationalPoint.OperationalPoint.create_OpEquipment,'opOperations':railML.Infrastructure.FunctionalInfrastructure.OperationalPoints.OperationalPoint.OperationalPoint.create_OpOperations, # OperationalPoint
+                
                 'overCrossing':railML.Infrastructure.FunctionalInfrastructure.OverCrossings.OverCrossings.create_OverCrossing, # OverCrossings
+                'allowedLoadingGauge':railML.Infrastructure.FunctionalInfrastructure.OverCrossings.OverCrossing.OverCrossing.create_AllowedLoadingGauge,'length':railML.Infrastructure.FunctionalInfrastructure.OverCrossings.OverCrossing.OverCrossing.create_Length, # OverCrossing
+                
                 'platform':railML.Infrastructure.FunctionalInfrastructure.Platforms.Platforms.create_Platform, # Platforms
+                'ownsPlatformEdge':railML.Infrastructure.FunctionalInfrastructure.Platforms.Platform.Platform.create_OwnsPlatformEdge,'width':railML.Infrastructure.FunctionalInfrastructure.Platforms.Platform.Platform.create_Width,'length':railML.Infrastructure.FunctionalInfrastructure.Platforms.Platform.Platform.create_Length, # Platform
+                
                 'restrictionArea':railML.Infrastructure.FunctionalInfrastructure.RestrictionAreas.RestrictionAreas.create_RestrictionArea, # RestrictionAreas
                 'serviceSection':railML.Infrastructure.FunctionalInfrastructure.ServiceSections.ServiceSections.create_ServiceSection, # ServiceSections
-                #'signalIS':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalsIS.create_SignalIS, # SignalsIS
+                
+                'signalIS':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalsIS.create_SignalIS, # SignalsIS
+                'isSignalAnnouncement':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalAnnouncement,'isSignalCatenary':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalCatenary,'isSignalDanger':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalDanger,'isSignalEtcs':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalEtcs,'isSignalInformation':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalInformation,'isSignalLevelCrossing':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalLevelCrossing,'isSignalMilepost':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalMilepost,'isSignalSpeed':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalSpeed,'isSignalStopPost':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalStopPost,'isSignalTrainMovement':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalTrainMovement,'isSignalRadio':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalRadio,'isSignalVehicleEquipment':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_IsSignalVehicleEquipment,'connectedWithBaliseGroup':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_ConnectedWithBaliseGroup,'signalConstruction':railML.Infrastructure.FunctionalInfrastructure.SignalsIS.SignalIS.SignalIS.create_SignalConstruction, # SignalIS
+                
                 'speedSection':railML.Infrastructure.FunctionalInfrastructure.Speeds.Speeds.create_SpeedSection, # Speeds
+                'validForSpeedProfil':railML.Infrastructure.FunctionalInfrastructure.Speeds.SpeedSection.SpeedSection.create_ValidForSpeedProfile, # SpeedSection
+                
                 'stoppingPlace':railML.Infrastructure.FunctionalInfrastructure.StoppingPlaces.StoppingPlaces.create_StoppingPlace, # StoppingPlaces
+                'validForTrainMovement':railML.Infrastructure.FunctionalInfrastructure.StoppingPlaces.StoppingPlace.StoppingPlace.create_ValidForTrainMovement, # StoppingPlace
+                
                 'switchIS':railML.Infrastructure.FunctionalInfrastructure.SwitchesIS.SwitchesIS.create_SwitchIS, # SwitchesIS
+                
+                'leftBranch':railML.Infrastructure.FunctionalInfrastructure.SwitchesIS.SwitchIS.SwitchIS.create_LeftBranch,
+                'rightBranch':railML.Infrastructure.FunctionalInfrastructure.SwitchesIS.SwitchIS.SwitchIS.create_RightBranch,
+                'straightBranch':railML.Infrastructure.FunctionalInfrastructure.SwitchesIS.SwitchIS.SwitchIS.create_StraightBranch,
+                'turningBranch':railML.Infrastructure.FunctionalInfrastructure.SwitchesIS.SwitchIS.SwitchIS.create_TurningBranch, # SwitchIS
+                
+                
                 'track':railML.Infrastructure.FunctionalInfrastructure.Tracks.Tracks.create_Track, # Tracks
                 'trackBed':railML.Infrastructure.FunctionalInfrastructure.TrackBeds.TrackBeds.create_TrackBed, # TrackBeds
                 'trackGauge':railML.Infrastructure.FunctionalInfrastructure.TrackGauges.TrackGauges.create_TrackGauge, # TrackGauges
@@ -299,13 +326,6 @@ if __name__ == "__main__":
     #x = get_attributes(railML.Common.PositioningSystems.GeometricPositioningSystems) 
 
     #print(x)
-
-    railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.__mro__
-    mros = inspect.getmro(railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border) #returns a tuple with the class in parameter at the first position, the rest should be the parent class(es)
-    child_attrs = dir(mros[0])
-    parent_attrs = dir(mros[1])
-
-    inherited_attr = [item for item in child_attrs if item in parent_attrs]
 
     #print(f'PARENT:{parent_attrs}')
     #x = [name for name in parent_attrs if not name.startswith('__') and not name.startswith('create')]
