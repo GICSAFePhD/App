@@ -25,8 +25,9 @@ RML = railML.railML()
 
 IGNORE = {'Metadata','Common','Interlocking','Topology',
           'SignalsIS',
-          #'SwitchesIS',
-          'Tracks','TrainDetectionElements','Borders','BufferStops'}
+          'SwitchesIS',
+          #'Tracks',
+          'TrainDetectionElements','Borders','BufferStops'}
 
 #%%
 def print_leaves(root,leaf,tag):
@@ -297,9 +298,10 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'rightBranch':railML.Infrastructure.FunctionalInfrastructure.SwitchesIS.SwitchIS.SwitchIS.create_RightBranch,
                 'straightBranch':railML.Infrastructure.FunctionalInfrastructure.SwitchesIS.SwitchIS.SwitchIS.create_StraightBranch,
                 'turningBranch':railML.Infrastructure.FunctionalInfrastructure.SwitchesIS.SwitchIS.SwitchIS.create_TurningBranch, # SwitchIS
-                
-                
+
                 'track':railML.Infrastructure.FunctionalInfrastructure.Tracks.Tracks.create_Track, # Tracks
+                'trackBegin':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.create_TrackBegin,'trackEnd':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.create_TrackEnd,'length':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.create_Length, # Track
+                
                 'trackBed':railML.Infrastructure.FunctionalInfrastructure.TrackBeds.TrackBeds.create_TrackBed, # TrackBeds
                 'trackGauge':railML.Infrastructure.FunctionalInfrastructure.TrackGauges.TrackGauges.create_TrackGauge, # TrackGauges
                 'trainDetectionElement':railML.Infrastructure.FunctionalInfrastructure.TrainDetectionElements.TrainDetectionElements.create_TrainDetectionElement, # TrainDetectionElements
