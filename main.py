@@ -1,7 +1,7 @@
 import sys
 sys.path.append('.')
 import xml.etree.cElementTree as ET
-from xml.dom import minidom
+from xml.dom import XHTML_NAMESPACE, minidom
 import re
 import inspect
 from RailML import railML
@@ -26,8 +26,9 @@ RML = railML.railML()
 IGNORE = {'Metadata','Common','Interlocking','Topology',
           'SignalsIS',
           'SwitchesIS',
-          #'Tracks',
-          'TrainDetectionElements','Borders','BufferStops'}
+          'Tracks',
+          'TrainDetectionElements',
+          'Borders','BufferStops'}
 
 #%%
 def print_leaves(root,leaf,tag):
@@ -150,7 +151,7 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
                 constructors[xml_tag[xml_tag_i]](current_object,capitalized_tag,xml_text[idx_txt])
                 idx_txt = idx_txt + 1
             else:
-                #print(f'TRYING:{xml_tag[xml_tag_i]}|{xml_tag[xml_tag_i] in constructors}')
+                print(f'TRYING:{xml_tag[xml_tag_i]}|{xml_tag[xml_tag_i] in constructors}')
                 if xml_tag[xml_tag_i] in constructors:    
                     constructors[xml_tag[xml_tag_i]](current_object)
             #print(f'Constructor:{xml_tag_i}')
@@ -215,7 +216,7 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'screenPositioningSystem':railML.Common.PositioningSystems.ScreenPositioningSystems.ScreenPositioningSystems.create_ScreenPositioningSystem, # ScreenPositioningSystems
                 'name':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystem.GeometricPositioningSystem.create_Name,'isValid':railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystem.GeometricPositioningSystem.create_IsValid, # GeometricPositioningSystem
 
-                'topology':railML.Infrastructure.Infrastructure.create_Topology,'geometry':railML.Infrastructure.Infrastructure.create_Geometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.create_FunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.create_PhysicalFacilities,#'infrastructureVisualizations':railML.Infrastructure.Infrastructure.create_InfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.create_InfrastructureStates, # Infrastructure
+                'topology':railML.Infrastructure.Infrastructure.create_Topology,'geometry':railML.Infrastructure.Infrastructure.create_Geometry,'functionalInfrastructure':railML.Infrastructure.Infrastructure.create_FunctionalInfrastructure,'physicalFacilities':railML.Infrastructure.Infrastructure.create_PhysicalFacilities,'infrastructureVisualizations':railML.Infrastructure.Infrastructure.create_InfrastructureVisualizations,'infrastructureStates':railML.Infrastructure.Infrastructure.create_InfrastructureStates, # Infrastructure
                 'netElements':railML.Infrastructure.Topology.Topology.create_NetElements, 'netRelations':railML.Infrastructure.Topology.Topology.create_NetRelations,'networks':railML.Infrastructure.Topology.Topology.create_Networks, # Topology
                 'netElement':railML.Infrastructure.Topology.NetElements.NetElements.create_NetElement, # NetElements
                 'tLengthM':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_tLengthM,'associatedPositioningSystem':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_AssociatedPositioningSystem,'elementCollectionOrdered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionOrdered,'elementCollectionUnordered':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_ElementCollectionUnordered,'isValid':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_IsValid,'name':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Name,'relation':railML.Infrastructure.Topology.NetElements.NetElement.NetElement.create_Relation, # NetElement
@@ -300,17 +301,30 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'turningBranch':railML.Infrastructure.FunctionalInfrastructure.SwitchesIS.SwitchIS.SwitchIS.create_TurningBranch, # SwitchIS
 
                 'track':railML.Infrastructure.FunctionalInfrastructure.Tracks.Tracks.create_Track, # Tracks
-                'trackBegin':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.create_TrackBegin,'trackEnd':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.create_TrackEnd,'length':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.create_Length, # Track
-                
+                'trackBegin':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.create_TrackBegin,'trackEnd':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.create_TrackEnd,'length':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.create_Length,'linearLocation':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.create_LinearLocation, # Track
+                'associatedNetElement':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.RTM_LinearLocation.RTM_LinearLocation.create_AssociatedNetElement,'linearCoordinate':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.RTM_LinearLocation.RTM_LinearLocation.create_LinearCoordinate,'geometricCoordinate':railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.RTM_LinearLocation.RTM_LinearLocation.create_GeometricCoordinate, # LinearLocation
+    
                 'trackBed':railML.Infrastructure.FunctionalInfrastructure.TrackBeds.TrackBeds.create_TrackBed, # TrackBeds
                 'trackGauge':railML.Infrastructure.FunctionalInfrastructure.TrackGauges.TrackGauges.create_TrackGauge, # TrackGauges
                 'trainDetectionElement':railML.Infrastructure.FunctionalInfrastructure.TrainDetectionElements.TrainDetectionElements.create_TrainDetectionElement, # TrainDetectionElements
                 'trainProtectionElement':railML.Infrastructure.FunctionalInfrastructure.TrainProtectionElements.TrainProtectionElements.create_TrainProtectionElement, # TrainProtectionElements
                 'trainRadio':railML.Infrastructure.FunctionalInfrastructure.TrainRadios.TrainRadios.create_TrainRadio, # TrainRadios
+                
                 'underCrossing':railML.Infrastructure.FunctionalInfrastructure.UnderCrossings.UnderCrossings.create_UnderCrossing, # UnderCrossings
+                'allowedLoadingGauge':railML.Infrastructure.FunctionalInfrastructure.UnderCrossings.UnderCrossing.UnderCrossing.create_AllowedLoadingGauge,'length':railML.Infrastructure.FunctionalInfrastructure.UnderCrossings.UnderCrossing.UnderCrossing.create_Length, # UnderCrossing
+                
                 'weightLimit':railML.Infrastructure.FunctionalInfrastructure.WeightLimits.WeightLimits.create_WeightLimit, # WeightLimits
 
+                'visualization':railML.Infrastructure.InfrastructureVisualizations.InfrastructureVisualizations.create_Visualization, # InfrastructureVisualizations
+                'spotElementProjection':railML.Infrastructure.InfrastructureVisualizations.Visualization.Visualization.create_SpotElementProjection,'linearElementProjection':railML.Infrastructure.InfrastructureVisualizations.Visualization.Visualization.create_LinearElementProjection,'areaElementProjection':railML.Infrastructure.InfrastructureVisualizations.Visualization.Visualization.create_AreaElementProjection, # Visualization
+
+                'coordinate':railML.Infrastructure.InfrastructureVisualizations.Visualization.SpotProjection.SpotProjection.create_Coordinate, 
+                'usesSymbol':railML.Infrastructure.InfrastructureVisualizations.Visualization.SpotProjection.SpotProjection.create_UsesSymbol, # SpotProjection
+                'coordinate':railML.Infrastructure.InfrastructureVisualizations.Visualization.LinearProjection.LinearProjection.create_Coordinate, # LinearProjection
+                'coordinate':railML.Infrastructure.InfrastructureVisualizations.Visualization.AreaProjection.AreaProjection.create_Coordinate, # SpotProjection
+
                 
+
 
                 }
 
@@ -325,19 +339,18 @@ if __name__ == "__main__":
     
     #railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystems.RTM_GeometricPositioningSystem
     
-    #x = get_attributes(railML.Common.PositioningSystems.GeometricPositioningSystems) 
+    #x = railML.Infrastructure.FunctionalInfrastructure.Tracks.Track
 
-    #print(x)
-
-    #print(f'PARENT:{parent_attrs}')
-    #x = [name for name in parent_attrs if not name.startswith('__') and not name.startswith('create')]
-    #print(f'PRUEBA_X:{x}')
-    #print(f'CHILD:{child_attrs}')
-    #y = [name for name in child_attrs if not name.startswith('__') and not name.startswith('create')]
-    #print(f'PRUEBA_Y:{y}')
-    #print(f'INHERITED:{inherited_attr}')
-    #z = [name for name in inherited_attr if not name.startswith('__') and not name.startswith('create')]
-    #print(f'PRUEBA_X:{z}')
+    #print(railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.__dict__)
+    #attribute_inherated = []
+    #for i in type(x).mro()[:-1]:
+        #print(i.__dict__)
+    #    attribute_inherated += [j for j in i.__dict__ if not j.startswith('__')]
+    #print(attribute_inherated) 
+    
+    
+    
+    
     
     #save_xml("F:\PhD\RailML\Example_2.railml")  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
 # %%
