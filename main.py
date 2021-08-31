@@ -323,9 +323,21 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'coordinate':railML.Infrastructure.InfrastructureVisualizations.Visualization.LinearProjection.LinearProjection.create_Coordinate, # LinearProjection
                 'coordinate':railML.Infrastructure.InfrastructureVisualizations.Visualization.AreaProjection.AreaProjection.create_Coordinate, # SpotProjection
 
+                'infrastructureState':railML.Infrastructure.InfrastructureStates.InfrastructureStates.create_InfrastructureState, # InfrastructureStates
+                'elementState':railML.Infrastructure.InfrastructureStates.InfrastructureState.InfrastructureState.create_ElementState,'validityTime':railML.Infrastructure.InfrastructureStates.InfrastructureState.InfrastructureState.create_ValidityTime, # InfrastructureState
+                'validityTime':railML.Infrastructure.InfrastructureStates.InfrastructureState.ElementState.ElementState.create_ValidityTime, # ElementState            
+                'period':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.Period.create_Period,'periodBitmask':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.Period.create_PeriodBitmask,'periodGeneric':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.Period.create_PeriodGeneric, # Period
+                'periodRule':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.CalendarTimePeriodWithBitmask.CalendarTimePeriodWithBitmask.create_PeriodRule, # CalendarTimePeriodWithBitmask
+                'period':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.CalendarTimePeriodWithBitmask.PeriodRule.PeriodRule.create_Period, # PeriodRule
                 
-
-
+                
+                
+                
+                
+                
+                
+                
+                
                 }
 
 
