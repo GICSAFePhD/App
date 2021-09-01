@@ -23,12 +23,7 @@ ATTRIBUTES = 0
 
 RML = railML.railML()
 
-IGNORE = {'Metadata','Common','Interlocking','Topology',
-          'SignalsIS',
-          'SwitchesIS',
-          'Tracks',
-          'TrainDetectionElements',
-          'Borders','BufferStops'}
+IGNORE = {'Metadata','Common','Infrastructure','TvdSections'}
 
 #%%
 def print_leaves(root,leaf,tag):
@@ -329,11 +324,44 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'period':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.Period.create_Period,'periodBitmask':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.Period.create_PeriodBitmask,'periodGeneric':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.Period.create_PeriodGeneric, # Period
                 'periodRule':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.CalendarTimePeriodWithBitmask.CalendarTimePeriodWithBitmask.create_PeriodRule, # CalendarTimePeriodWithBitmask
                 'period':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.CalendarTimePeriodWithBitmask.PeriodRule.PeriodRule.create_Period, # PeriodRule
+                                
+                'assetsForIL':railML.Interlocking.Interlocking.create_AssetsForIL,'controllers':railML.Interlocking.Interlocking.create_Controllers,'signalBoxes':railML.Interlocking.Interlocking.create_SignalBoxes,'genericIMs':railML.Interlocking.Interlocking.create_GenericIMs, # Interlocking
                 
+                #'tvdSections':railML.Interlocking.AssetsForIL.AssetsForIL.create_TvdSections,
+                'switchesIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_SwitchesIL,
+                #'derailersIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_DerailersIL,
+                #'movableCrossings':railML.Interlocking.AssetsForIL.AssetsForIL.create_MovableCrossings,
+                #'levelCrossingsIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_LevelCrossingsIL,
+                #'keys':railML.Interlocking.AssetsForIL.AssetsForIL.create_Keys,
+                #'keyLocksIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_KeyLocksIL,
+                #'genericDetectors':railML.Interlocking.AssetsForIL.AssetsForIL.create_GenericDetectors,
+                #'signalsIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_SignalsIL,
+                #'ATPdevices':railML.Interlocking.AssetsForIL.AssetsForIL.create_ATPdevices,
+                #'interfaces':railML.Interlocking.AssetsForIL.AssetsForIL.create_Interfaces,
+                #'workZones':railML.Interlocking.AssetsForIL.AssetsForIL.create_WorkZones,
+                #'localOperationAreas':railML.Interlocking.AssetsForIL.AssetsForIL.create_LocalOperationAreas,
+                #'shuntingZones':railML.Interlocking.AssetsForIL.AssetsForIL.create_ShuntingZones,
+                #'permissionZones':railML.Interlocking.AssetsForIL.AssetsForIL.create_PermissionZones,
+                #'routeReleaseGroupsAhead':railML.Interlocking.AssetsForIL.AssetsForIL.create_RouteReleaseGroupsAhead,
+                #'routeReleaseGroupsRear':railML.Interlocking.AssetsForIL.AssetsForIL.create_RouteReleaseGroupsRear,
+                #'routes':railML.Interlocking.AssetsForIL.AssetsForIL.create_Routes,
+                #'conflictingRoutes':railML.Interlocking.AssetsForIL.AssetsForIL.create_ConflictingRoutes,
+                #'routeRelations':railML.Interlocking.AssetsForIL.AssetsForIL.create_RouteRelations,
+                #'combinedRoutes':railML.Interlocking.AssetsForIL.AssetsForIL.create_CombinedRoutes,
+                #'overlaps':railML.Interlocking.AssetsForIL.AssetsForIL.create_Overlaps,
+                #'dangerPoints':railML.Interlocking.AssetsForIL.AssetsForIL.create_DangerPoints,
+                #'destinationPoints':railML.Interlocking.AssetsForIL.AssetsForIL.create_DestinationPoints,
+                #'powerSuppliesIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_PowerSuppliesIL, # AssetsForIL
                 
+                'tvdSection':railML.Interlocking.AssetsForIL.TvdSections.TvdSections.create_TvdSection, # TvdSections
+                'designator':railML.Interlocking.AssetsForIL.TvdSections.TvdSection.TvdSection.create_Designator,'hasDemarcatingBufferstop':railML.Interlocking.AssetsForIL.TvdSections.TvdSection.TvdSection.create_HasDemarcatingBufferstop,'hasExitSignal':railML.Interlocking.AssetsForIL.TvdSections.TvdSection.TvdSection.create_HasExitSignal,'hasDemarcatingTraindetector':railML.Interlocking.AssetsForIL.TvdSections.TvdSection.TvdSection.create_HasDemarcatingTraindetector,'hasResetStrategy':railML.Interlocking.AssetsForIL.TvdSections.TvdSection.TvdSection.create_HasResetStrategy, # TvdSection
                 
+                'switchIL':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchesIL.create_SwitchIL, # SwitchesIL
                 
-                
+                'hasFoulingTrainDetectors':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_HasFoulingTrainDetectors,
+                'branchLeft':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_BranchLeft,
+                'branchRight':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_BranchRight,
+                'hasPositionRestriction':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_HasPositionRestriction, # SwitchIL
                 
                 
                 
