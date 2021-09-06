@@ -23,7 +23,7 @@ ATTRIBUTES = 0
 
 RML = railML.railML()
 
-IGNORE = {'Metadata','Common','Infrastructure','TvdSections'}
+IGNORE = {'Metadata','Common','Infrastructure'}
 
 #%%
 def print_leaves(root,leaf,tag):
@@ -328,8 +328,8 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'assetsForIL':railML.Interlocking.Interlocking.create_AssetsForIL,'controllers':railML.Interlocking.Interlocking.create_Controllers,'signalBoxes':railML.Interlocking.Interlocking.create_SignalBoxes,'genericIMs':railML.Interlocking.Interlocking.create_GenericIMs, # Interlocking
                 
                 #'tvdSections':railML.Interlocking.AssetsForIL.AssetsForIL.create_TvdSections,
-                'switchesIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_SwitchesIL,
-                #'derailersIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_DerailersIL,
+                #'switchesIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_SwitchesIL,
+                'derailersIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_DerailersIL,
                 #'movableCrossings':railML.Interlocking.AssetsForIL.AssetsForIL.create_MovableCrossings,
                 #'levelCrossingsIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_LevelCrossingsIL,
                 #'keys':railML.Interlocking.AssetsForIL.AssetsForIL.create_Keys,
@@ -357,11 +357,33 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'designator':railML.Interlocking.AssetsForIL.TvdSections.TvdSection.TvdSection.create_Designator,'hasDemarcatingBufferstop':railML.Interlocking.AssetsForIL.TvdSections.TvdSection.TvdSection.create_HasDemarcatingBufferstop,'hasExitSignal':railML.Interlocking.AssetsForIL.TvdSections.TvdSection.TvdSection.create_HasExitSignal,'hasDemarcatingTraindetector':railML.Interlocking.AssetsForIL.TvdSections.TvdSection.TvdSection.create_HasDemarcatingTraindetector,'hasResetStrategy':railML.Interlocking.AssetsForIL.TvdSections.TvdSection.TvdSection.create_HasResetStrategy, # TvdSection
                 
                 'switchIL':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchesIL.create_SwitchIL, # SwitchesIL
+                'hasFoulingTrainDetectors':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_HasFoulingTrainDetectors,'branchLeft':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_BranchLeft,'branchRight':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_BranchRight,'hasPositionRestriction':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_HasPositionRestriction,'refersTo':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_RefersTo,'hasGaugeClearanceMarker':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_HasGaugeClearanceMarker,'hasTvdSection':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_HasTvdSection,'connectedToPowerSupply':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_ConnectedToPowerSupply,'relatedMovableElement':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_RelatedMovableElement, # SwitchIL
                 
-                'hasFoulingTrainDetectors':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_HasFoulingTrainDetectors,
-                'branchLeft':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_BranchLeft,
-                'branchRight':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_BranchRight,
-                'hasPositionRestriction':railML.Interlocking.AssetsForIL.SwitchesIL.SwitchIL.SwitchIL.create_HasPositionRestriction, # SwitchIL
+                'derailerIL':railML.Interlocking.AssetsForIL.DerailersIL.DerailersIL.create_DerailerIL, # DerailersIL
+                
+                'movableCrossing':railML.Interlocking.AssetsForIL.MovableCrossings.MovableCrossings.create_MovableCrossing, # MovableCrossings                
+                'branchUpLeft':railML.Interlocking.AssetsForIL.MovableCrossings.MovableCrossing.MovableCrossing.create_BranchUpLeft,'branchUpRight':railML.Interlocking.AssetsForIL.MovableCrossings.MovableCrossing.MovableCrossing.create_BranchUpRight,'branchDownLeft':railML.Interlocking.AssetsForIL.MovableCrossings.MovableCrossing.MovableCrossing.create_BranchDownLeft,'branchDownRight':railML.Interlocking.AssetsForIL.MovableCrossings.MovableCrossing.MovableCrossing.create_BranchDownRight,'hasFoulingTrainDetectors':railML.Interlocking.AssetsForIL.MovableCrossings.MovableCrossing.MovableCrossing.create_HasFoulingTrainDetectors, # MovableCrossing
+                
+                'levelCrossingIL':railML.Interlocking.AssetsForIL.LevelCrossingsIL.LevelCrossingsIL.create_LevelCrossingIL, # LevelCrossingsIL
+                'hasInterface':railML.Interlocking.AssetsForIL.LevelCrossingsIL.LevelCrossingIL.LevelCrossingIL.create_HasInterface,'isLevelCrossingType':railML.Interlocking.AssetsForIL.LevelCrossingsIL.LevelCrossingIL.LevelCrossingIL.create_IsLevelCrossingType,'refersTo':railML.Interlocking.AssetsForIL.LevelCrossingsIL.LevelCrossingIL.LevelCrossingIL.create_RefersTo,'deactivatedBy':railML.Interlocking.AssetsForIL.LevelCrossingsIL.LevelCrossingIL.LevelCrossingIL.create_DeactivatedBy,'activationCondition':railML.Interlocking.AssetsForIL.LevelCrossingsIL.LevelCrossingIL.LevelCrossingIL.create_ActivationCondition,'hasTvdSection':railML.Interlocking.AssetsForIL.LevelCrossingsIL.LevelCrossingIL.LevelCrossingIL.create_HasTvdSection, # LevelCrossingIL
+                
+                'key':railML.Interlocking.AssetsForIL.Keys.Keys.create_Key, # Keys
+                
+                'keyLockIL':railML.Interlocking.AssetsForIL.KeyLocksIL.KeyLocksIL.create_KeyLockIL, # KeyLocksIL
+                'acceptsKey':railML.Interlocking.AssetsForIL.KeyLocksIL.KeyLockIL.KeyLockIL.create_AcceptsKey,'hasTvdSection':railML.Interlocking.AssetsForIL.KeyLocksIL.KeyLockIL.KeyLockIL.create_HasTvdSection,'hasSlaveLock':railML.Interlocking.AssetsForIL.KeyLocksIL.KeyLockIL.KeyLockIL. create_HasSlaveLock, # KeyLockIL
+                
+                'genericDetector':railML.Interlocking.AssetsForIL.GenericDetectors.GenericDetectors.create_GenericDetector, # GenericDetectors
+                'detectorType':railML.Interlocking.AssetsForIL.GenericDetectors.GenericDetector.GenericDetector.create_DetectorType, # GenericDetector
+                
+                'signalIL':railML.Interlocking.AssetsForIL.SignalsIL.SignalsIL.create_SignalIL, # SignalsIL
+                'refersTo':railML.Interlocking.AssetsForIL.SignalsIL.SignalIL.SignalIL.create_RefersTo,'protectsBlockExit':railML.Interlocking.AssetsForIL.SignalsIL.SignalIL.SignalIL.create_ProtectsBlockExit, # SignalIL
+                
+                
+                
+                
+                
+                
+                
                 
                 
                 
