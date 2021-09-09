@@ -401,12 +401,29 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'route':railML.Interlocking.AssetsForIL.Routes.Routes.create_Route, # Routes
                 'handlesRouteType':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_HandlesRouteType,'routeActivationSection':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_RouteActivationSection,'facingSwitchInPosition':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_FacingSwitchInPosition,'hasTvdSection':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_HasTvdSection,'routeEntry':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_RouteEntry,'hasReleaseGroup':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_HasReleaseGroup,'switchPositionInDepartureTrack':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_SwitchPositionInDepartureTrack,'routeExit':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_RouteExit,'additionalRelation':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_AdditionalRelation, # Route
                 
+                'conflictingRoute':railML.Interlocking.AssetsForIL.ConflictingRoutes.ConflictingRoutes.create_ConflictingRoute, # ConflictingRoutes
+                'refersToRoute':railML.Interlocking.AssetsForIL.ConflictingRoutes.ConflictingRoute.ConflictingRoute.create_RefersToRoute,'conflictsWithRoute':railML.Interlocking.AssetsForIL.ConflictingRoutes.ConflictingRoute.ConflictingRoute.create_ConflictsWithRoute,'reasonForConflict':railML.Interlocking.AssetsForIL.ConflictingRoutes.ConflictingRoute.ConflictingRoute.create_ReasonForConflict, # ConflictingRoute
+                
+                'routeRelations':railML.Interlocking.AssetsForIL.RouteRelations.RouteRelations.create_RouteRelation, # RouteRelations
+                'requiredSwitchPosition':railML.Interlocking.AssetsForIL.RouteRelations.RouteRelation.RouteRelation.create_RequiredSwitchPosition,'requiredDerailerPosition':railML.Interlocking.AssetsForIL.RouteRelations.RouteRelation.RouteRelation.create_RequiredDerailerPosition,'requiredCrossingPosition':railML.Interlocking.AssetsForIL.RouteRelations.RouteRelation.RouteRelation.create_RequiredCrossingPosition,'requiredDetectorState':railML.Interlocking.AssetsForIL.RouteRelations.RouteRelation.RouteRelation.create_RequiredDetectorState,'requiredSignalAspect':railML.Interlocking.AssetsForIL.RouteRelations.RouteRelation.RouteRelation.create_RequiredSignalAspect,'requiredSectionState':railML.Interlocking.AssetsForIL.RouteRelations.RouteRelation.RouteRelation.create_RequiredSectionState,'requiredKeyLockState':railML.Interlocking.AssetsForIL.RouteRelations.RouteRelation.RouteRelation.create_RequiredKeyLockState,'requiredLevelCrossingState':railML.Interlocking.AssetsForIL.RouteRelations.RouteRelation.RouteRelation.create_RequiredLevelCrossingState, # RouteRelation
+                
+                'combinedRoute':railML.Interlocking.AssetsForIL.CombinedRoutes.CombinedRoutes.create_CombinedRoute, # CombinedRoutes
+                'comboEntry':railML.Interlocking.AssetsForIL.CombinedRoutes.CombinedRoute.CombinedRoute.create_ComboEntry,'comboExit':railML.Interlocking.AssetsForIL.CombinedRoutes.CombinedRoute.CombinedRoute.create_ComboExit,'containsRoute':railML.Interlocking.AssetsForIL.CombinedRoutes.CombinedRoute.CombinedRoute.create_ContainsRoute, # CombinedRoute
                 
                 
                 
                 
                 
                 
+                'destinationPoint':railML.Interlocking.AssetsForIL.DestinationPoints.DestinationPoints.create_DestinationPoint, # DestinationPoints
+                'rRefersTo':railML.Interlocking.AssetsForIL.DestinationPoints.RouteExit.RouteExit.create_RefersTo,'hasDangerPoint':railML.Interlocking.AssetsForIL.DestinationPoints.RouteExit.RouteExit.create_HasDangerPoint,'hasOverlap':railML.Interlocking.AssetsForIL.DestinationPoints.RouteExit.RouteExit.create_HasOverlap, # RouteExit
+                
+                create_RefersTo
+                create_HasDangerPoint
+                create_HasOverlap
+                
+                
+                'powerSupplyIL':railML.Interlocking.AssetsForIL.PowerSuppliesIL.PowerSuppliesIL.create_PowerSupplyIL, # PowerSuppliesIL
                 
                 
                 }
