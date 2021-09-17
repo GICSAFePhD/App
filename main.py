@@ -394,8 +394,17 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 
                 'powerSupplyIL':railML.Interlocking.AssetsForIL.PowerSuppliesIL.PowerSuppliesIL.create_PowerSupplyIL, # PowerSuppliesIL
                 
-                
                 'controller':railML.Interlocking.Controllers.Controllers.create_Controller, # Controllers 
+                'controlledAssets':railML.Interlocking.Controllers.Controller.Controller.create_ControlledAssets,'itineraries':railML.Interlocking.Controllers.Controller.Controller.create_Itineraries, # Controller
+                'controlledSignalBox':railML.Interlocking.Controllers.Controller.ControlledAssets.ControlledAssets.create_ControlledSignalBox,'systemAssetConnectedToIL':railML.Interlocking.Controllers.Controller.ControlledAssets.ControlledAssets.create_SystemAssetConnectedToIL,    # ControlledAssets
+                
+                'connectedSignalBox':railML.Interlocking.Controllers.Controller.ControlledAssets.ControlledSignalBox.ControlledSignalBox.create_ConnectedSignalBox, # ControlledSignalBox
+                'connectedSystemAsset':railML.Interlocking.Controllers.Controller.ControlledAssets.SystemAssetConnectedToIL.SystemAssetConnectedToIL.create_ConnectedSystemAsset, # SystemAssetConnectedToIL
+                
+                'itinerary':railML.Interlocking.Controllers.Controller.Itineraries.Itineraries.create_Itinerary, # Itineraries
+                
+                
+                
                 
                 
                 
