@@ -23,7 +23,7 @@ ATTRIBUTES = 0
 
 RML = railML.railML()
 
-IGNORE = {'Metadata','Common','Infrastructure','AssetsForIL'}
+IGNORE = {}#'Metadata','Common','Infrastructure','AssetsForIL'}
 
 #%%
 def print_leaves(root,leaf,tag):
@@ -97,12 +97,7 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
     
     #if level >= 3:
     #    return
-    
-    #if len(idx) == 0:
-    #    idx = 0
-    #else:
-    #    idx = int(idx)
-    
+
     #if type(current_object) == list:
     #    print(f'LISTA:{xml_node}|{current_object[idx]}|{idx}')
     #    if len(current_object) > 1:
@@ -114,7 +109,7 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
             #print(xml_node.attrib)         
             for tag_i in [*xml_node.attrib]:
                 attribute_tag = tag_i[0].upper()+tag_i[1:]
-                print(f'{current_object}|{attribute_tag} : {xml_node.attrib[tag_i]}')
+                #print(f'{current_object}|{attribute_tag} : {xml_node.attrib[tag_i]}')
                 setattr(current_object,attribute_tag,xml_node.attrib[tag_i]) 
                 
     [xml_child,xml_tag,xml_text] = get_leaves(xml_node)
@@ -132,7 +127,7 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
         if capitalized_tag in IGNORE:
             continue
         
-        print(f'{capitalized_tag}|{capitalized_tag in object_attributes}')
+        #print(f'{capitalized_tag}|{capitalized_tag in object_attributes}')
         if (capitalized_tag in object_attributes):
             next_attribute_position = object_attributes.index(capitalized_tag)
             next_attribute = object_attributes[next_attribute_position]
@@ -146,7 +141,7 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
                 constructors[xml_tag[xml_tag_i]](current_object,capitalized_tag,xml_text[idx_txt])
                 idx_txt = idx_txt + 1
             else:
-                print(f'TRYING:{xml_tag[xml_tag_i]}|{xml_tag[xml_tag_i] in constructors}')
+                #print(f'TRYING:{xml_tag[xml_tag_i]}|{xml_tag[xml_tag_i] in constructors}')
                 if xml_tag[xml_tag_i] in constructors:    
                     constructors[xml_tag[xml_tag_i]](current_object)
             #print(f'Constructor:{xml_tag_i}')
@@ -187,7 +182,7 @@ def get_attributes(object):
         attribute_inherated = []
         for i in type(object).mro()[:-1]:
             attribute_inherated += [j for j in i.__dict__ if not j.startswith('__') and not j.startswith('create')]
-        print(attribute_inherated) 
+        #print(attribute_inherated) 
         return attribute_inherated
     except:
         pass
@@ -324,7 +319,7 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'periodRule':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.CalendarTimePeriodWithBitmask.CalendarTimePeriodWithBitmask.create_PeriodRule, # CalendarTimePeriodWithBitmask
                 'period':railML.Infrastructure.InfrastructureStates.InfrastructureState.Period.CalendarTimePeriodWithBitmask.PeriodRule.PeriodRule.create_Period, # PeriodRule
 
-                'assetsForIL':railML.Interlocking.Interlocking.create_AssetsForIL,'controllers':railML.Interlocking.Interlocking.create_Controllers,'signalBoxes':railML.Interlocking.Interlocking.create_SignalBoxes,'genericIMs':railML.Interlocking.Interlocking.create_GenericIMs, # Interlocking
+                'assetsForIL':railML.Interlocking.Interlocking.create_AssetsForIL,'controllers':railML.Interlocking.Interlocking.create_Controllers,'signalBoxes':railML.Interlocking.Interlocking.create_SignalBoxes,'specificIMs':railML.Interlocking.Interlocking.create_SpecificIMs, # Interlocking
 
                 'tvdSections':railML.Interlocking.AssetsForIL.AssetsForIL.create_TvdSections,'switchesIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_SwitchesIL,'derailersIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_DerailersIL,'movableCrossings':railML.Interlocking.AssetsForIL.AssetsForIL.create_MovableCrossings,'levelCrossingsIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_LevelCrossingsIL,'keys':railML.Interlocking.AssetsForIL.AssetsForIL.create_Keys,'keyLocksIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_KeyLocksIL,'genericDetectors':railML.Interlocking.AssetsForIL.AssetsForIL.create_GenericDetectors,'signalsIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_SignalsIL,'ATPdevices':railML.Interlocking.AssetsForIL.AssetsForIL.create_ATPdevices,'interfaces':railML.Interlocking.AssetsForIL.AssetsForIL.create_Interfaces,'workZones':railML.Interlocking.AssetsForIL.AssetsForIL.create_WorkZones,'localOperationAreas':railML.Interlocking.AssetsForIL.AssetsForIL.create_LocalOperationAreas,'shuntingZones':railML.Interlocking.AssetsForIL.AssetsForIL.create_ShuntingZones,'permissionZones':railML.Interlocking.AssetsForIL.AssetsForIL.create_PermissionZones,'routeReleaseGroupsAhead':railML.Interlocking.AssetsForIL.AssetsForIL.create_RouteReleaseGroupsAhead,'routeReleaseGroupsRear':railML.Interlocking.AssetsForIL.AssetsForIL.create_RouteReleaseGroupsRear,'routes':railML.Interlocking.AssetsForIL.AssetsForIL.create_Routes,'conflictingRoutes':railML.Interlocking.AssetsForIL.AssetsForIL.create_ConflictingRoutes,'routeRelations':railML.Interlocking.AssetsForIL.AssetsForIL.create_RouteRelations,'combinedRoutes':railML.Interlocking.AssetsForIL.AssetsForIL.create_CombinedRoutes,'overlaps':railML.Interlocking.AssetsForIL.AssetsForIL.create_Overlaps,'dangerPoints':railML.Interlocking.AssetsForIL.AssetsForIL.create_DangerPoints,'destinationPoints':railML.Interlocking.AssetsForIL.AssetsForIL.create_DestinationPoints,'powerSuppliesIL':railML.Interlocking.AssetsForIL.AssetsForIL.create_PowerSuppliesIL, # AssetsForIL
                 'tvdSection':railML.Interlocking.AssetsForIL.TvdSections.TvdSections.create_TvdSection, # TvdSections
@@ -386,18 +381,35 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'refersToSignal':railML.Interlocking.SignalBoxes.SignalBox.SignalPlan.AspectRelation.SignalAndAspect.SignalAndAspect.create_RefersToSignal,'showsAspect':railML.Interlocking.SignalBoxes.SignalBox.SignalPlan.AspectRelation.SignalAndAspect.SignalAndAspect.create_ShowsAspect, # SignalAndAspect
                 'groupType':railML.Interlocking.SignalBoxes.SignalBox.ElementGroup.ElementGroup.create_GroupType,'refersToMember':railML.Interlocking.SignalBoxes.SignalBox.ElementGroup.ElementGroup.create_RefersToMember, # ElementGroup
 
-                'genericIM':railML.Interlocking.GenericIMs.GenericIMs.create_GenericIM, # GenericIMs
+                'specificIM':railML.Interlocking.GenericIMs.GenericIMs.create_SpecificIM, # GenericIMs
                 'ownsSetsOfAssets':railML.Interlocking.GenericIMs.GenericIM.GenericIM.create_OwnsSetsOfAssets,'usesTypes':railML.Interlocking.GenericIMs.GenericIM.GenericIM.create_UsesTypes, # GenericIM
-                'genericAspect':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_GenericAspect,'genericResetStrategy':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_GenericResetStrategy,'genericRouteType':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_GenericRouteType,'levelCrossingTypeList':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_LevelCrossingTypeList,'elementGroupingTypes':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_ElementGroupingTypes,'detectorTypes':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_DetectorTypes, # GenericTypes  
+                'hasAspect':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_HasAspect,'hasTVDresetStrategy':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_HasTVDresetStrategy,'hasRouteType':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_HasRouteType,'hasLevelCrossingType':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_HasLevelCrossingType,'hasElementGroupType':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_HasElementGroupType,'hasDetectorTypes':railML.Interlocking.GenericIMs.GenericIM.GenericTypes.GenericTypes.create_HasDetectorTypes, # GenericTypes  
                 
                 }
 
+def network_connection(object):
+    
+    topology = object.Infrastructure.Topology
+    netElements = topology.NetElements
+    
+    print(netElements)
+    
+    print(get_attributes(netElements))
+    
 
 if __name__ == "__main__":
     root = load_xml("F:\PhD\RailML\Example_1.railml")   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
 
     get_branches(RML,root)
-    #TODO Topology pointer connection
+    
+    network_connection(RML)
+    
+    
+    
+    #network_connection(RML)
+    
+    
+    
     
     #print(railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.__dict__)
     
