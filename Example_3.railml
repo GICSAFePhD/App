@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<railML xmlns="https://www.railml.org/schemas/3.1" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:gml="http://www.opengis.net/gml/3.2/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.railml.org/schemas/3.1 https://www.railml.org/schemas/3.1/railml3.xsd" version="3.1">
+    <metadata>
+        <dc:title>Example_3.railml</dc:title>
+        <dc:date>2021-09-20T17:03:05Z</dc:date>
+        <dc:creator>Neat</dc:creator>
+        <dc:source>RaIL-AiD</dc:source>
+        <dc:identifier>1</dc:identifier>
+        <dc:subject>railML.org</dc:subject>
+        <dc:format>0.9.5</dc:format>
+        <dc:description>Export of Example 3</dc:description>
+        <dc:publisher>This export has been generated using RaIL-AiD framework, a NEAT S.r.l. intellectual property. (http://www.rail-aid.com/) (c) NEAT S.r.l., Rome, Italy (http://www.neat.it)</dc:publisher>
+    </metadata>
+    <common id="co_01">
+        <organizationalUnits>
+            <infrastructureManager id="im_01"/>
+        </organizationalUnits>
+        <positioning>
+            <geometricPositioningSystems>
+                <geometricPositioningSystem id="gps01">
+                    <name name="Example_3.railml" language="en"/>
+                    <isValid from="2019-11-21" to="2020-11-21"/>
+                </geometricPositioningSystem>
+            </geometricPositioningSystems>
+            <linearPositioningSystems>
+                <linearPositioningSystem id="loc-1" units="Km" startMeasure="0" endMeasure="0" linearReferencingMethod="absolute">
+                    <name name="Loc-1" language="en"/>
+                    <isValid from="2019-11-21" to="2020-11-21"/>
+                </linearPositioningSystem>
+            </linearPositioningSystems>
+        </positioning>
+    </common>
+    <infrastructure id="is_01">
+        <topology>
+            <netElements>
+                <netElement id="ne1">
+                    <associatedPositioningSystem id="ne1_aps01">
+                        <intrinsicCoordinate id="ne1_aps01_ic01" intrinsicCoord="0">
+                            <geometricCoordinate positioningSystemRef="gps01" x="-840.000" y="0.000"/>
+                        </intrinsicCoordinate>
+                        <intrinsicCoordinate id="ne1_aps01_ic02" intrinsicCoord="1">
+                            <geometricCoordinate positioningSystemRef="gps01" x="840.000" y="0.000"/>
+                        </intrinsicCoordinate>
+                    </associatedPositioningSystem>
+                </netElement>
+            </netElements>
+            <networks>
+                <network id="nw01">
+                    <level id="lv0" descriptionLevel="Micro">
+                        <networkResource ref="ne1"/>
+                    </level>
+                    <level id="lv1" descriptionLevel="Macro"/>
+                </network>
+            </networks>
+        </topology>
+        <functionalInfrastructure>
+            <borders>
+                <border id="line4" type="station" isOpenEnd="true">
+                    <name name="LineBord01" language="en"/>
+                    <spotLocation id="line4_sloc01" netElementRef="ne1" applicationDirection="both" intrinsicCoord="0.0000"/>
+                    <designator register="_Example" entry="BORDER LineBord01"/>
+                </border>
+                <border id="line5" type="station" isOpenEnd="true">
+                    <name name="LineBord02" language="en"/>
+                    <spotLocation id="line5_sloc01" netElementRef="ne1" applicationDirection="both" intrinsicCoord="1.0000"/>
+                    <designator register="_Example" entry="BORDER LineBord02"/>
+                </border>
+            </borders>
+            <signalsIS>
+                <signalIS id="sig13" isSwitchable="false">
+                    <name name="S01" language="en"/>
+                    <spotLocation id="sig13_sloc01" netElementRef="ne1" applicationDirection="normal" intrinsicCoord="0.0974"/>
+                    <designator register="_Example" entry="SIGNAL S01"/>
+                    <signalConstruction type="light" positionAtTrack="right"/>
+                </signalIS>
+                <signalIS id="sig14" isSwitchable="false">
+                    <name name="S02" language="en"/>
+                    <spotLocation id="sig14_sloc01" netElementRef="ne1" applicationDirection="normal" intrinsicCoord="0.3690"/>
+                    <designator register="_Example" entry="SIGNAL S02"/>
+                    <signalConstruction type="light" positionAtTrack="right"/>
+                </signalIS>
+                <signalIS id="sig15" isSwitchable="false">
+                    <name name="S03" language="en"/>
+                    <spotLocation id="sig15_sloc01" netElementRef="ne1" applicationDirection="normal" intrinsicCoord="0.7132"/>
+                    <designator register="_Example" entry="SIGNAL S03"/>
+                    <signalConstruction type="light" positionAtTrack="right"/>
+                </signalIS>
+                <signalIS id="sig16" isSwitchable="false">
+                    <name name="S04" language="en"/>
+                    <spotLocation id="sig16_sloc01" netElementRef="ne1" applicationDirection="reverse" intrinsicCoord="0.2489"/>
+                    <designator register="_Example" entry="SIGNAL S04"/>
+                    <signalConstruction type="light" positionAtTrack="left"/>
+                </signalIS>
+                <signalIS id="sig17" isSwitchable="false">
+                    <name name="S05" language="en"/>
+                    <spotLocation id="sig17_sloc01" netElementRef="ne1" applicationDirection="reverse" intrinsicCoord="0.5768"/>
+                    <designator register="_Example" entry="SIGNAL S05"/>
+                    <signalConstruction type="light" positionAtTrack="left"/>
+                </signalIS>
+                <signalIS id="sig18" isSwitchable="false">
+                    <name name="S06" language="en"/>
+                    <spotLocation id="sig18_sloc01" netElementRef="ne1" applicationDirection="reverse" intrinsicCoord="0.8755"/>
+                    <designator register="_Example" entry="SIGNAL S06"/>
+                    <signalConstruction type="light" positionAtTrack="left"/>
+                </signalIS>
+            </signalsIS>
+            <tracks>
+                <track id="trk1" mainDirection="both" type="mainTrack" infrastructureManagerRef="im_01">
+                    <name name="track1" language="en"/>
+                    <linearLocation id="trk1_lloc01" applicationDirection="both">
+                        <associatedNetElement keepsOrientation="true" netElementRef="ne1"/>
+                    </linearLocation>
+                    <designator register="_Example" entry="TRACK track1"/>
+                    <trackBegin ref="line4"/>
+                    <trackEnd ref="line5"/>
+                    <length value="1680" type="physical"/>
+                    <!--No mileage values found, the length was calculated from screen coordinates-->
+                </track>
+            </tracks>
+            <trainDetectionElements>
+                <trainDetectionElement id="tde19" type="insulatedRailJoint">
+                    <name name="J01" language="en"/>
+                    <spotLocation id="tde19_sloc01" netElementRef="ne1" applicationDirection="both" intrinsicCoord="0.2823"/>
+                    <designator register="_Example" entry="TRAIN DETECTION ELEMENT J01"/>
+                </trainDetectionElement>
+                <trainDetectionElement id="tde20" type="insulatedRailJoint">
+                    <name name="J02" language="en"/>
+                    <spotLocation id="tde20_sloc01" netElementRef="ne1" applicationDirection="both" intrinsicCoord="0.6809"/>
+                    <designator register="_Example" entry="TRAIN DETECTION ELEMENT J02"/>
+                </trainDetectionElement>
+            </trainDetectionElements>
+        </functionalInfrastructure>
+        <infrastructureVisualizations>
+            <visualization id="vis01" positioningSystemRef="gps01">
+                <name name="Example_3 microscopic screen visualization" language="en"/>
+                <spotElementProjection refersToElement="line4" id="vis01_sep01">
+                    <name name="LineBord01" language="en"/>
+                    <coordinate x="-840.000" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="line5" id="vis01_sep02">
+                    <name name="LineBord02" language="en"/>
+                    <coordinate x="840.000" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="sig13" id="vis01_sep03">
+                    <name name="S01" language="en"/>
+                    <coordinate x="-676.364" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="sig14" id="vis01_sep04">
+                    <name name="S02" language="en"/>
+                    <coordinate x="-220.000" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="sig15" id="vis01_sep05">
+                    <name name="S03" language="en"/>
+                    <coordinate x="358.182" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="sig16" id="vis01_sep06">
+                    <name name="S04" language="en"/>
+                    <coordinate x="-421.818" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="sig17" id="vis01_sep07">
+                    <name name="S05" language="en"/>
+                    <coordinate x="129.091" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="sig18" id="vis01_sep08">
+                    <name name="S06" language="en"/>
+                    <coordinate x="630.909" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="tde19" id="vis01_sep09">
+                    <name name="J01" language="en"/>
+                    <coordinate x="-365.808" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="tde20" id="vis01_sep10">
+                    <name name="J02" language="en"/>
+                    <coordinate x="303.930" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="tvd6" id="vis01_sep11">
+                    <name name="10" language="en"/>
+                    <coordinate x="-20.000" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="tvd21" id="vis01_sep12">
+                    <name name="11" language="en"/>
+                    <coordinate x="-580.562" y="0.000"/>
+                </spotElementProjection>
+                <spotElementProjection refersToElement="tvd22" id="vis01_sep13">
+                    <name name="12" language="en"/>
+                    <coordinate x="630.909" y="0.000"/>
+                </spotElementProjection>
+                <linearElementProjection refersToElement="ne1" id="vis01_lep1">
+                    <name name="netElement_ne1" language="en"/>
+                    <coordinate x="-840.000" y="0.000"/>
+                    <coordinate x="840.000" y="0.000"/>
+                </linearElementProjection>
+            </visualization>
+        </infrastructureVisualizations>
+    </infrastructure>
+    <interlocking>
+        <assetsForIL id="ass_Example_3">
+            <tvdSections>
+                <tvdSection id="tvd6" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
+                    <designator register="_Example" entry="10"/>
+                    <hasDemarcatingTraindetector ref="tde20"/>
+                    <hasDemarcatingTraindetector ref="tde19"/>
+                </tvdSection>
+                <tvdSection id="tvd21" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
+                    <designator register="_Example" entry="11"/>
+                    <hasDemarcatingBufferstop ref="line4"/>
+                    <hasDemarcatingTraindetector ref="tde19"/>
+                </tvdSection>
+                <tvdSection id="tvd22" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
+                    <designator register="_Example" entry="12"/>
+                    <hasDemarcatingBufferstop ref="line5"/>
+                    <hasDemarcatingTraindetector ref="tde20"/>
+                </tvdSection>
+            </tvdSections>
+            <signalsIL>
+                <signalIL id="il_sig13" isVirtual="false" approachSpeed="0" passingSpeed="0" releaseSpeed="0">
+                    <refersTo ref="sig13"/>
+                </signalIL>
+                <signalIL id="il_sig14" isVirtual="false" approachSpeed="0" passingSpeed="0" releaseSpeed="0">
+                    <refersTo ref="sig14"/>
+                </signalIL>
+                <signalIL id="il_sig15" isVirtual="false" approachSpeed="0" passingSpeed="0" releaseSpeed="0">
+                    <refersTo ref="sig15"/>
+                </signalIL>
+                <signalIL id="il_sig16" isVirtual="false" approachSpeed="0" passingSpeed="0" releaseSpeed="0">
+                    <refersTo ref="sig16"/>
+                </signalIL>
+                <signalIL id="il_sig17" isVirtual="false" approachSpeed="0" passingSpeed="0" releaseSpeed="0">
+                    <refersTo ref="sig17"/>
+                </signalIL>
+                <signalIL id="il_sig18" isVirtual="false" approachSpeed="0" passingSpeed="0" releaseSpeed="0">
+                    <refersTo ref="sig18"/>
+                </signalIL>
+            </signalsIL>
+            <routes>
+                <route id="rt_sig13_sig14">
+                    <designator register="_Example" entry="Route S01-S02"/>
+                    <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="tvd21"/>
+                    <hasTvdSection ref="tvd6"/>
+                    <routeEntry id="rts_sig13_rt_sig13_sig14">
+                        <refersTo ref="il_sig13"/>
+                    </routeEntry>
+                    <routeExit id="rtd_sig14_rt_sig13_sig14">
+                        <refersTo ref="il_sig14"/>
+                    </routeExit>
+                </route>
+                <route id="rt_sig14_sig15">
+                    <designator register="_Example" entry="Route S02-S03"/>
+                    <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="tvd6"/>
+                    <hasTvdSection ref="tvd22"/>
+                    <routeEntry id="rts_sig14_rt_sig14_sig15">
+                        <refersTo ref="il_sig14"/>
+                    </routeEntry>
+                    <routeExit id="rtd_sig15_rt_sig14_sig15">
+                        <refersTo ref="il_sig15"/>
+                    </routeExit>
+                </route>
+                <route id="rt_sig17_sig16">
+                    <designator register="_Example" entry="Route S05-S04"/>
+                    <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="tvd6"/>
+                    <hasTvdSection ref="tvd21"/>
+                    <routeEntry id="rts_sig17_rt_sig17_sig16">
+                        <refersTo ref="il_sig17"/>
+                    </routeEntry>
+                    <routeExit id="rtd_sig16_rt_sig17_sig16">
+                        <refersTo ref="il_sig16"/>
+                    </routeExit>
+                </route>
+                <route id="rt_sig18_sig17">
+                    <designator register="_Example" entry="Route S06-S05"/>
+                    <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="tvd22"/>
+                    <hasTvdSection ref="tvd6"/>
+                    <routeEntry id="rts_sig18_rt_sig18_sig17">
+                        <refersTo ref="il_sig18"/>
+                    </routeEntry>
+                    <routeExit id="rtd_sig17_rt_sig18_sig17">
+                        <refersTo ref="il_sig17"/>
+                    </routeExit>
+                </route>
+            </routes>
+        </assetsForIL>
+        <specificIMs>
+            <specificIM>
+                <usesTypes>
+                    <hasAspect id="sig_proceed" genericAspect="proceed"/>
+                    <hasAspect id="sig_warning" genericAspect="warning"/>
+                    <hasRouteType id="rt_main" genericRouteType="normal"/>
+                </usesTypes>
+            </specificIM>
+        </specificIMs>
+    </interlocking>
+</railML>
