@@ -3,7 +3,7 @@ sys.path.append('.')
 import xml.etree.cElementTree as ET
 from xml.dom import XHTML_NAMESPACE, minidom
 import re
-import inspect
+
 from RailML import railML
 from RailML.Common import Metadata
 from RailML.Common import Common
@@ -11,19 +11,26 @@ from RailML.Infrastructure import Infrastructure
 from RailML.Interlocking import Interlocking
 from RailML import aRailML
 
-#XMLNS = "https://www.railml.org/schemas/3.1"
-#XMLNS_DC ="http://purl.org/dc/elements/1.1/"
-#XMLNS_GML="http://www.opengis.net/gml/3.2/"
-#XMLNS_XSI="http://www.w3.org/2001/XMLSchema-instance"
-#XSI_SCHEMALOCATION="https://www.railml.org/schemas/3.1 https://www.railml.org/schemas/3.1/railml3.xsd"
-#VERSION = "3.1"
+XMLNS = "https://www.railml.org/schemas/3.1"
+XMLNS_DC ="http://purl.org/dc/elements/1.1/"
+XMLNS_GML="http://www.opengis.net/gml/3.2/"
+XMLNS_XSI="http://www.w3.org/2001/XMLSchema-instance"
+XSI_SCHEMALOCATION="https://www.railml.org/schemas/3.1 https://www.railml.org/schemas/3.1/railml3.xsd"
+VERSION = "3.1"
 
-#ATTRIBUTES = {"xmlns":XMLNS , "xmlns:dc":XMLNS_DC , "xmlns:gml":XMLNS_GML , "xmlns:xsi":XMLNS_XSI , "xsi:schemaLocation":XSI_SCHEMALOCATION , "version":VERSION}
-ATTRIBUTES = 0
+ATTRIBUTES = {"xmlns":XMLNS , "xmlns:dc":XMLNS_DC , "xmlns:gml":XMLNS_GML , "xmlns:xsi":XMLNS_XSI , "xsi:schemaLocation":XSI_SCHEMALOCATION , "version":VERSION}
+#ATTRIBUTES = 0
+
+INPUT_FILE = "F:\PhD\RailML\Example_1.railml"
+OUTPUT_FILE = file = "F:\PhD\RailML\Example_1_B.railml"
 
 RML = railML.railML()
 
-IGNORE = {}#'Metadata','Common','Infrastructure','AssetsForIL'}
+IGNORE = {
+            #'Metadata',
+            'Common',
+            'Infrastructure',
+            'Interlocking'}
 
 #%%
 def print_leaves(root,leaf,tag):
@@ -90,7 +97,7 @@ def load_xml(file):
     # common_set(root,'common',XMLNS,RML.Common)  
     # #print(RML.Common)
 
-def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
+def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0, test = False):
     a = 0
     # xml_node: the old-tree
     # child[i]: the new-tree
@@ -123,7 +130,7 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
 
     for xml_tag_i in range(size_xml_tag):
         capitalized_tag = xml_tag[xml_tag_i][0].upper() + xml_tag[xml_tag_i][1:]
-                
+        
         if capitalized_tag in IGNORE:
             continue
         
@@ -134,8 +141,9 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
             
             next_xml_child = xml_child[xml_tag_i] 
             #print(f'Next_child:{next_xml_child}')
-                        
-            print('>'*(level+1)+f'{xml_tag[xml_tag_i]}[{xml_tag_i+1} de {size_xml_tag}]') 
+            
+            if test:          
+                print('>'*(level+1)+f'{xml_tag[xml_tag_i]}[{xml_tag_i+1} de {size_xml_tag}]') 
             if xml_text:
                 #print(f'{text}|{text[idx_txt]}')
                 constructors[xml_tag[xml_tag_i]](current_object,capitalized_tag,xml_text[idx_txt])
@@ -162,20 +170,42 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0):
         else:
             print(f'{capitalized_tag} doesn\'t exists! in {object_attributes}')
         
-def save_xml(file):    
-    root_ML = ET.Element("railML",attrib = ATTRIBUTES)
-    metadata_ML = ET.SubElement(root_ML, "metadata")
+def save_xml(object,file):    
 
-    metadata_to_XML(metadata_ML,RML.Metadata)
+    #with open(file, "w") as f:
+        #f.write(str(xmlstr.decode('UTF-8')))
+        #f.write(f'<railML>\n')
+        
+        #for i in get_attributes(object):
+            #f.write(f'\t<{i}>\n')
+            #x = get_new_node(i)
+            #print (x)
+            #f.write(x)
+            #f.write(f'\t<\{i}>\n')
+            
+        #f.write(f'<\\railML>\n')
+        #f.close()
+        
+    for i in get_attributes(object):
+        print(i)    
+        
+
+def get_new_node(object,level = 1):
     
-    tree2 = ET.ElementTree(root_ML)
-    tree2.write(file)
 
-    xmlstr = minidom.parseString(ET.tostring(root_ML)).toprettyxml(indent="   ", encoding='UTF-8')
-
-    with open(file, "w") as f:
-        f.write(str(xmlstr.decode('UTF-8')))
-        f.close()
+    
+    for next in get_attributes(object):
+        #print(object)
+        attributes = get_attributes(getattr(object,  next))
+        
+        if len(attributes):
+            print('\t'*(level)+f'<{next}>')
+            next_object = getattr(object,  next)
+            get_new_node(next_object, level +1)
+            print('\t'*(level)+f'<\{next}>')
+            #return  
+    
+    
     
 def get_attributes(object):
     try:
@@ -390,43 +420,30 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
 def network_connection(object):
     
     topology = object.Infrastructure.Topology
-    netElements = topology.NetElements
+    netElements = topology.NetElements.NetElement
+    netRelations = topology.NetRelations.NetRelation
+
+    netElementsId = []
+    netRelationsId = []
     
-    print(netElements)
+    for netElement in netElements:
+        netElementsId.append(netElement.Id)
+    print(f'Nodes:{netElementsId}')
     
-    print(get_attributes(netElements))
+    for netRelation in netRelations:
+        netRelationsId.append(netRelation.Id)
+    print(f'Edges:{netRelationsId}')
     
 
 if __name__ == "__main__":
-    root = load_xml("F:\PhD\RailML\Example_1.railml")   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
-
+    root = load_xml(INPUT_FILE)   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
     get_branches(RML,root)
-    
-    network_connection(RML)
-    
-    
     
     #network_connection(RML)
     
+    print(f'<railML>')
+    get_new_node(RML)
+    print(f'<\\railML>')
     
-    
-    
-    #print(railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.__dict__)
-    
-    #railML.Common.PositioningSystems.GeometricPositioningSystems.GeometricPositioningSystems.RTM_GeometricPositioningSystem
-    
-    #x = railML.Infrastructure.FunctionalInfrastructure.Tracks.Track
-
-    #print(railML.Infrastructure.FunctionalInfrastructure.Tracks.Track.Track.__dict__)
-    #attribute_inherated = []
-    #for i in type(x).mro()[:-1]:
-        #print(i.__dict__)
-    #    attribute_inherated += [j for j in i.__dict__ if not j.startswith('__')]
-    #print(attribute_inherated) 
-    
-    
-    
-    
-    
-    #save_xml("F:\PhD\RailML\Example_2.railml")  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
+    #save_xml(RML,OUTPUT_FILE)  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
 # %%
