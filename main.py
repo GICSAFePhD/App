@@ -27,8 +27,8 @@ OUTPUT_FILE = file = "F:\PhD\RailML\Example_1_B.railml"
 RML = railML.railML()
 
 IGNORE = {
-            #'Metadata',
-            'Common',
+            'Metadata',
+            #'Common',
             'Infrastructure',
             'Interlocking'}
 
@@ -160,13 +160,13 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0, tes
             
             if(type(next_object) == list):
                 if size_xml_tag == 1:
-                    get_branches(next_object[0],next_xml_child,level+1)
+                    get_branches(next_object[0],next_xml_child,level+1, test = test)
                 if xml_tag_i < size_xml_tag and 1 < size_xml_tag:
                     #print(f'----------------INCREMENTANDO:{xml_tag_i}[{idx}->{idx+1}]') 
                     #idx = idx + 1
-                    get_branches(next_object[-1],next_xml_child,level+1)
+                    get_branches(next_object[-1],next_xml_child,level+1, test = test)
             else:
-                get_branches(next_object,next_xml_child,level+1,idx_txt=idx_txt)
+                get_branches(next_object,next_xml_child,level+1,idx_txt=idx_txt, test = test)
         else:
             print(f'{capitalized_tag} doesn\'t exists! in {object_attributes}')
         
@@ -189,21 +189,46 @@ def save_xml(object,file):
     for i in get_attributes(object):
         print(i)    
         
+def get_name(object):
+    return object.__class__.__name__
 
-def get_new_node(object,level = 1):
-    
 
+def get_new_node(object,f,level = 0):
     
-    for next in get_attributes(object):
-        #print(object)
-        attributes = get_attributes(getattr(object,  next))
+    
+    
+    attributes = get_attributes(object)
+    
+    #print('\t'*(level)+f'<{get_name(object)}>')
+    
+    if level > 1:
+        print(f'Att:{attributes}')
+    
+    if 'Id' in attributes:
+        attributes.remove('Id')
+        next_object = getattr(object,  'Id')
+        f.write('\t'*(level)+f'<{get_name(object)} Id="{next_object}">\n')
+    else:
+        f.write('\t'*(level)+f'<{get_name(object)}>\n')
+    
+    
+    for next in attributes:
+        next_object = getattr(object,  next)
+        next_attributes = get_attributes(next_object)
         
-        if len(attributes):
-            print('\t'*(level)+f'<{next}>')
-            next_object = getattr(object,  next)
-            get_new_node(next_object, level +1)
-            print('\t'*(level)+f'<\{next}>')
-            #return  
+        if next_object is not None:        
+            if len(next_attributes):
+                #print(next_attributes)
+                #print(get_name(next_object))
+                #print(next_object)
+                get_new_node(next_object,f,level+1)
+            else:
+                f.write('\t'*(level+1)+f'<{next}>{next_object}<\{next}>\n')
+            
+            
+    f.write('\t'*(level)+f'<\{get_name(object)}>\n')
+    
+    
     
     
     
@@ -211,7 +236,7 @@ def get_attributes(object):
     try:
         attribute_inherated = []
         for i in type(object).mro()[:-1]:
-            attribute_inherated += [j for j in i.__dict__ if not j.startswith('__') and not j.startswith('create')]
+            attribute_inherated += [j for j in i.__dict__ if not j.startswith('__') and not j.startswith('create') and j[0].isupper()]
         #print(attribute_inherated) 
         return attribute_inherated
     except:
@@ -437,13 +462,17 @@ def network_connection(object):
 
 if __name__ == "__main__":
     root = load_xml(INPUT_FILE)   #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
-    get_branches(RML,root)
+    get_branches(RML,root,test = False)
     
     #network_connection(RML)
     
-    print(f'<railML>')
-    get_new_node(RML)
-    print(f'<\\railML>')
+    with open(OUTPUT_FILE, "w") as f:
+        #f.write(str(xmlstr.decode('UTF-8')))
+        
+        get_new_node(RML,f)
+        
+        f.close()
+        
     
     #save_xml(RML,OUTPUT_FILE)  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
 # %%
