@@ -195,42 +195,43 @@ def get_name(object):
 
 def get_new_node(object,f,level = 0):
     
+    all_attributes = get_attributes(object)
     
+    attributes = []
+    nodes = []
     
-    attributes = get_attributes(object)
+    for i in all_attributes:
+        next_object = getattr(object, i)
+        (nodes, attributes)[ next_object != None and  type(next_object) == str ].append(i)    
     
-    #print('\t'*(level)+f'<{get_name(object)}>')
+    print(' '*(level)+f'<{get_name(object)}> | {nodes}')
     
-    if level > 1:
-        print(f'Att:{attributes}')
-    
-    if 'Id' in attributes:
-        attributes.remove('Id')
-        next_object = getattr(object,  'Id')
-        f.write('\t'*(level)+f'<{get_name(object)} Id="{next_object}">\n')
+    if attributes == []:
+        f.write('\t'*(level)+f'<{get_name(object).lower()}>\n')
     else:
-        f.write('\t'*(level)+f'<{get_name(object)}>\n')
+        attr = ""
+        for i in attributes:
+            
+            attr += i[0].lower()+i[1:]+"=\""+getattr(object,i)+"\""
+            if i != attributes[-1]:
+                attr += " "
+                
+        f.write('\t'*(level)+f'<{get_name(object).lower()} {attr}>\n')        
+        print(attr)
     
-    
-    for next in attributes:
-        next_object = getattr(object,  next)
-        next_attributes = get_attributes(next_object)
-        
-        if next_object is not None:        
-            if len(next_attributes):
-                #print(next_attributes)
-                #print(get_name(next_object))
-                #print(next_object)
-                get_new_node(next_object,f,level+1)
+    for i in nodes:
+        next_object = getattr(object,  i)  
+        if next_object != None:
+            print(' '*(level)+f'--{i} -> {next_object}')
+            
+            if (type(next_object) == list):
+                for j in next_object:
+                    get_new_node(j,f,level+1)         
             else:
-                f.write('\t'*(level+1)+f'<{next}>{next_object}<\{next}>\n')
-            
-            
-    f.write('\t'*(level)+f'<\{get_name(object)}>\n')
+                get_new_node(next_object,f,level+1)
     
-    
-    
-    
+    if attributes == []:               
+        f.write('\t'*(level)+f'<\{get_name(object).lower()}>\n')
     
 def get_attributes(object):
     try:
@@ -466,10 +467,12 @@ if __name__ == "__main__":
     
     #network_connection(RML)
     
+    print(dir(RML.Common.Positioning.GeometricPositioningSystems.GeometricPositioningSystem))
+    
     with open(OUTPUT_FILE, "w") as f:
         #f.write(str(xmlstr.decode('UTF-8')))
         
-        get_new_node(RML,f)
+        #get_new_node(RML,f)
         
         f.close()
         
