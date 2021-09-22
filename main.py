@@ -467,12 +467,12 @@ if __name__ == "__main__":
     
     #network_connection(RML)
     
-    print(dir(RML.Common.Positioning.GeometricPositioningSystems.GeometricPositioningSystem))
+    #print(dir(RML.Common.Positioning.GeometricPositioningSystems.GeometricPositioningSystem))
     
     with open(OUTPUT_FILE, "w") as f:
         #f.write(str(xmlstr.decode('UTF-8')))
         
-        #get_new_node(RML,f)
+        get_new_node(RML,f)
         
         f.close()
         
