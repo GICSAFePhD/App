@@ -173,11 +173,15 @@ def get_branches(current_object, xml_node, level = 0, idx = "", idx_txt = 0, tes
 def get_name(object):
     return object.__class__.__name__
 
-def save_xml(object,f,level = 0):
+def save_xml(object,f,name = "",level = 0):
     
     all_attributes = get_attributes(object)
-    tag = get_name(object)[0].lower()+get_name(object)[1:]
     
+    if name == "":
+        tag = get_name(object)[0].lower()+get_name(object)[1:]
+    else:
+        tag = name[0].lower()+name[1:]
+        
     attributes = []
     nodes = []
     
@@ -187,7 +191,7 @@ def save_xml(object,f,level = 0):
             (nodes, attributes)[ type(next_object) == str ].append(i)    
     
     #print(object)
-    print(' '*(level)+f'<{get_name(object)}> | {attributes} & {nodes}')
+    print(' '*(level)+f'<{tag}> | {attributes} & {nodes}')
     
     if attributes == []:
         f.write('\t'*(level)+f'<{tag}>\n')
@@ -198,8 +202,10 @@ def save_xml(object,f,level = 0):
             attr += i[0].lower()+i[1:]+"=\""+getattr(object,i)+"\""
             if i != attributes[-1]:
                 attr += " "
-        
-        f.write('\t'*(level)+f'<{tag} {attr}>\n')        
+        if nodes == []:
+            f.write('\t'*(level)+f'<{tag} {attr}/>\n') 
+        else:
+            f.write('\t'*(level)+f'<{tag} {attr}>\n')        
         #print(attr)
     
     for i in nodes:
@@ -209,9 +215,9 @@ def save_xml(object,f,level = 0):
             
             if (type(next_object) == list):
                 for j in next_object:
-                    save_xml(j,f,level+1)         
+                    save_xml(j,f,i,level+1)         
             else:
-                save_xml(next_object,f,level+1)
+                save_xml(next_object,f,i,level+1)
                 
     if nodes != []:         
         print(' '*(level)+f'<\{tag}>')
@@ -258,7 +264,7 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'navigability':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_Navigability,'positionOnA':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_PositionOnA,'positionOnB':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_PositionOnB,'elementA':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_ElementA,'elementB':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_ElementB, # Relation
                 'netRelation':railML.Infrastructure.Topology.NetRelations.NetRelations.create_Relation, # NetRelations
                 'network':railML.Infrastructure.Topology.Networks.Networks.create_Network, # Networks
-                'level':railML.Infrastructure.Topology.Networks.Network.Network.create_Level,'networkResource':railML.Infrastructure.Topology.Networks.Network.RTM_Network.RTM_Network.create_NetworkResource, # RTM_Network
+                'level':railML.Infrastructure.Topology.Networks.Network.Network.create_Level,'networkResource':railML.Infrastructure.Topology.Networks.Network.RTM_LevelNetwork.RTM_LevelNetwork.create_NetworkResource, # RTM_Network
                 
                 'horizontalCurves':railML.Infrastructure.Geometry.Geometry.create_HorizontalCurves,'gradientCurves':railML.Infrastructure.Geometry.Geometry.create_GradientCurves,'geometryPoints':railML.Infrastructure.Geometry.Geometry.create_GeometryPoints, # Geometry
                 'horizontalCurve':railML.Infrastructure.Geometry.HorizontalCurves.HorizontalCurves.create_HorizontalCurve, # HorizontalCurves
@@ -460,6 +466,11 @@ if __name__ == "__main__":
         
         f.close()
         
-    
-    #save_xml(RML,OUTPUT_FILE)  #A RELATIVE PATH DOESN'T WORK FOR PREVIEW!
+    #x = RML.Infrastructure.Topology.NetRelations.NetRelation[0]
+    #y = get_attributes(x)
+    #for i in y:
+    #    z = getattr(x,i)
+    #    if z != None:
+    #        print(i,z)   
+
 # %%
