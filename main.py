@@ -183,7 +183,8 @@ def save_xml(object,f,level = 0):
     
     for i in all_attributes:
         next_object = getattr(object, i)
-        (nodes, attributes)[ next_object != None and  type(next_object) == str ].append(i)    
+        if next_object != None:
+            (nodes, attributes)[ type(next_object) == str ].append(i)    
     
     #print(object)
     print(' '*(level)+f'<{get_name(object)}> | {attributes} & {nodes}')
@@ -211,11 +212,10 @@ def save_xml(object,f,level = 0):
                     save_xml(j,f,level+1)         
             else:
                 save_xml(next_object,f,level+1)
-            
-            f.write('\t'*(level)+f'<\{tag}>\n')
-    
-    #if nodes != []:         
-    #    f.write('\t'*(level)+f'<\{tag}>\n')
+                
+    if nodes != []:         
+        print(' '*(level)+f'<\{tag}>')
+        f.write('\t'*(level)+f'<\{tag}>\n')
     
 def get_attributes(object):
     try:
@@ -255,7 +255,7 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'linearCoordinate':railML.Infrastructure.Topology.NetElements.NetElement.AssociatedPositioningSystem.IntrinsicCoordinate.IntrinsicCoordinate.create_LinearCoordinate,'geometricCoordinate':railML.Infrastructure.Topology.NetElements.NetElement.AssociatedPositioningSystem.IntrinsicCoordinate.IntrinsicCoordinate.create_GeometricCoordinate, # IntrinsicCoordinate
                 'lateralSide':railML.Infrastructure.Topology.NetElements.NetElement.AssociatedPositioningSystem.IntrinsicCoordinate.RTM_LinearCoordinate.RTM_LinearCoordinate.create_LateralSide,'verticalSide':railML.Infrastructure.Topology.NetElements.NetElement.AssociatedPositioningSystem.IntrinsicCoordinate.RTM_LinearCoordinate.RTM_LinearCoordinate.create_VerticalSide, # LinearCoordinate
                 'elementPart':railML.Infrastructure.Topology.NetElements.NetElement.RTM_OrderedCollection.RTM_OrderedCollection.create_ElementPart, # ElementPart
-                'navigability':railML.Infrastructure.Topology.NetElements.NetElement.Relation.Relation.create_Navigability,'positionOnA':railML.Infrastructure.Topology.NetElements.NetElement.Relation.Relation.create_PositionOnA,'positionOnB':railML.Infrastructure.Topology.NetElements.NetElement.Relation.Relation.create_PositionOnB,'elementA':railML.Infrastructure.Topology.NetElements.NetElement.Relation.Relation.create_ElementA,'elementB':railML.Infrastructure.Topology.NetElements.NetElement.Relation.Relation.create_ElementB, # Relation
+                'navigability':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_Navigability,'positionOnA':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_PositionOnA,'positionOnB':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_PositionOnB,'elementA':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_ElementA,'elementB':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_ElementB, # Relation
                 'netRelation':railML.Infrastructure.Topology.NetRelations.NetRelations.create_Relation, # NetRelations
                 'network':railML.Infrastructure.Topology.Networks.Networks.create_Network, # Networks
                 'level':railML.Infrastructure.Topology.Networks.Network.Network.create_Level,'networkResource':railML.Infrastructure.Topology.Networks.Network.RTM_Network.RTM_Network.create_NetworkResource, # RTM_Network
