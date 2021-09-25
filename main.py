@@ -29,10 +29,10 @@ RML = railML.railML()
 IGNORE = {
             'Metadata',
             'Common',
-            #'Infrastructure',
-            'Interlocking',
+            'Infrastructure',
+            #'Interlocking',
             'Topology',
-            #'FunctionalInfrastructure',
+            'FunctionalInfrastructure',
             'InfrastructureVisualizations',
             'NetElements',
             'NetRelations'}
