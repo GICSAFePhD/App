@@ -11,14 +11,14 @@ from RailML.Infrastructure import Infrastructure
 from RailML.Interlocking import Interlocking
 from RailML import aRailML
 
-XMLNS = "https://www.railml.org/schemas/3.1"
-XMLNS_DC ="http://purl.org/dc/elements/1.1/"
-XMLNS_GML="http://www.opengis.net/gml/3.2/"
-XMLNS_XSI="http://www.w3.org/2001/XMLSchema-instance"
-XSI_SCHEMALOCATION="https://www.railml.org/schemas/3.1 https://www.railml.org/schemas/3.1/railml3.xsd"
-VERSION = "3.1"
+#XMLNS = "https://www.railml.org/schemas/3.1"
+#XMLNS_DC ="http://purl.org/dc/elements/1.1/"
+#XMLNS_GML="http://www.opengis.net/gml/3.2/"
+#XMLNS_XSI="http://www.w3.org/2001/XMLSchema-instance"
+#XSI_SCHEMALOCATION="https://www.railml.org/schemas/3.1 https://www.railml.org/schemas/3.1/railml3.xsd"
+#VERSION = "3.1"
 
-ATTRIBUTES = {"xmlns":XMLNS , "xmlns:dc":XMLNS_DC , "xmlns:gml":XMLNS_GML , "xmlns:xsi":XMLNS_XSI , "xsi:schemaLocation":XSI_SCHEMALOCATION , "version":VERSION}
+#ATTRIBUTES = {"xmlns":XMLNS , "xmlns:dc":XMLNS_DC , "xmlns:gml":XMLNS_GML , "xmlns:xsi":XMLNS_XSI , "xsi:schemaLocation":XSI_SCHEMALOCATION , "version":VERSION}
 #ATTRIBUTES = 0
 
 INPUT_FILE = "F:\PhD\RailML\Example_1.railml"
@@ -30,7 +30,12 @@ IGNORE = {
             'Metadata',
             'Common',
             #'Infrastructure',
-            'Interlocking'}
+            'Interlocking',
+            'Topology',
+            #'FunctionalInfrastructure',
+            'InfrastructureVisualizations',
+            'NetElements',
+            'NetRelations'}
 
 #%%
 def print_leaves(root,leaf,tag):
@@ -214,6 +219,8 @@ def save_xml(object,f,name = "",level = 0):
             #print(' '*(level)+f'--{i} -> {next_object}')
             
             if (type(next_object) == list):
+                #if len(next_object) > 1:
+                #    print(len(next_object))
                 for j in next_object:
                     save_xml(j,f,i,level+1)         
             else:
@@ -264,7 +271,7 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'navigability':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_Navigability,'positionOnA':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_PositionOnA,'positionOnB':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_PositionOnB,'elementA':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_ElementA,'elementB':railML.Infrastructure.Topology.NetRelations.NetRelation.NetRelation.create_ElementB, # Relation
                 'netRelation':railML.Infrastructure.Topology.NetRelations.NetRelations.create_Relation, # NetRelations
                 'network':railML.Infrastructure.Topology.Networks.Networks.create_Network, # Networks
-                'level':railML.Infrastructure.Topology.Networks.Network.Network.create_Level,'networkResource':railML.Infrastructure.Topology.Networks.Network.RTM_LevelNetwork.RTM_LevelNetwork.create_NetworkResource, # RTM_Network
+                'level':railML.Infrastructure.Topology.Networks.Network.RTM_Network.RTM_Network.create_Level,'networkResource':railML.Infrastructure.Topology.Networks.Network.RTM_Network.RTM_LevelNetwork.RTM_LevelNetwork.create_NetworkResource, # RTM_Network
                 
                 'horizontalCurves':railML.Infrastructure.Geometry.Geometry.create_HorizontalCurves,'gradientCurves':railML.Infrastructure.Geometry.Geometry.create_GradientCurves,'geometryPoints':railML.Infrastructure.Geometry.Geometry.create_GeometryPoints, # Geometry
                 'horizontalCurve':railML.Infrastructure.Geometry.HorizontalCurves.HorizontalCurves.create_HorizontalCurve, # HorizontalCurves
@@ -466,8 +473,9 @@ if __name__ == "__main__":
         
         f.close()
         
-    #x = RML.Infrastructure.Topology.NetRelations.NetRelation[0]
+    #x = RML.Infrastructure.Topology.Networks.Network[0]
     #y = get_attributes(x)
+    #print(x,y)
     #for i in y:
     #    z = getattr(x,i)
     #    if z != None:
