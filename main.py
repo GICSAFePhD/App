@@ -26,16 +26,12 @@ OUTPUT_FILE = file = "F:\PhD\RailML\Example_1_B.railml"
 
 RML = railML.railML()
 
-IGNORE = {
-            'Metadata',
-            'Common',
-            'Infrastructure',
+IGNORE = {  None
+            #'Metadata',
+            #'Common',
+            #'Infrastructure',
             #'Interlocking',
-            'Topology',
-            'FunctionalInfrastructure',
-            'InfrastructureVisualizations',
-            'NetElements',
-            'NetRelations'}
+            }
 
 #%%
 def print_leaves(root,leaf,tag):
@@ -199,7 +195,8 @@ def save_xml(object,f,name = "",level = 0):
     print(' '*(level)+f'<{tag}> | {attributes} & {nodes}')
     
     if attributes == []:
-        f.write('\t'*(level)+f'<{tag}>\n')
+        if tag != "railML":
+            f.write('\t'*(level)+f'<{tag}>\n')
     else:
         attr = ""
         for i in attributes:
@@ -207,10 +204,18 @@ def save_xml(object,f,name = "",level = 0):
             attr += i[0].lower()+i[1:]+"=\""+getattr(object,i)+"\""
             if i != attributes[-1]:
                 attr += " "
-        if nodes == []:
-            f.write('\t'*(level)+f'<{tag} {attr}/>\n') 
+        
+        if name == "Metadata":
+            f.write('\t'*(level)+f'<{tag}>\n')
+            for i in attributes:
+                next_object = getattr(object,  i) 
+                f.write('\t'*(level+1)+f'<dc:{i.lower()}>{next_object}</dc:{i.lower()}>\n')
+            f.write('\t'*(level)+f'</{tag}>\n') 
         else:
-            f.write('\t'*(level)+f'<{tag} {attr}>\n')        
+            if nodes == []:
+                f.write('\t'*(level)+f'<{tag} {attr}/>\n') 
+            else:
+                f.write('\t'*(level)+f'<{tag} {attr}>\n')        
         #print(attr)
     
     for i in nodes:
@@ -228,7 +233,7 @@ def save_xml(object,f,name = "",level = 0):
                 
     if nodes != []:         
         print(' '*(level)+f'<\{tag}>')
-        f.write('\t'*(level)+f'<\{tag}>\n')
+        f.write('\t'*(level)+f'</{tag}>\n')
     
 def get_attributes(object):
     try:
@@ -287,7 +292,7 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'type':railML.Infrastructure.FunctionalInfrastructure.Balises.Balise.Balise.create_Type,'belongsToParent':railML.Infrastructure.FunctionalInfrastructure.Balises.Balise.Balise.create_BelongsToParent,'basedOnTemplate':railML.Infrastructure.FunctionalInfrastructure.Balises.Balise.Balise.create_BasedOnTemplate,'baliseGroupType':railML.Infrastructure.FunctionalInfrastructure.Balises.Balise.Balise.create_BaliseGroupType, # Balise         
                 
                 'border':railML.Infrastructure.FunctionalInfrastructure.Borders.Borders.create_Border, # Borders
-                'type':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_Type,'id':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_Id, # Border 
+                'type':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_Type, # Border 
                 'designator':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_Designator,
                 'external':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_External,
                 'name':railML.Infrastructure.FunctionalInfrastructure.Borders.Border.Border.create_Name,
@@ -405,7 +410,7 @@ constructors = {'metadata':railML.railML.create_metadata,'common':railML.railML.
                 'routeReleaseGroupAhead':railML.Interlocking.AssetsForIL.RouteReleaseGroupsAhead.RouteReleaseGroupsAhead.create_RouteReleaseGroupAhead, # RouteReleaseGroupsAhead
                 'routeReleaseGroupRear':railML.Interlocking.AssetsForIL.RouteReleaseGroupsRear.RouteReleaseGroupsRear.create_RouteReleaseGroupRear, # RouteReleaseGroupsRear
                 'route':railML.Interlocking.AssetsForIL.Routes.Routes.create_Route, # Routes
-                'handlesRouteType':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_HandlesRouteType,'routeActivationSection':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_RouteActivationSection,'facingSwitchInPosition':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_FacingSwitchInPosition,'hasTvdSection':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_HasTvdSection,'routeEntry':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_RouteEntry,'hasReleaseGroup':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_HasReleaseGroup,'switchPositionInDepartureTrack':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_SwitchPositionInDepartureTrack,'routeExit':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_RouteExit,'additionalRelation':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_AdditionalRelation, # Route
+                'handlesRouteType':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_HandlesRouteType,'routeActivationSection':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_RouteActivationSection,'facingSwitchInPosition':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_FacingSwitchInPosition,'refersToSwitch':railML.Interlocking.AssetsForIL.Routes.Route.SwitchAndPosition.SwitchAndPosition.create_RefersToSwitch,'hasTvdSection':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_HasTvdSection,'routeEntry':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_RouteEntry,'hasReleaseGroup':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_HasReleaseGroup,'switchPositionInDepartureTrack':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_SwitchPositionInDepartureTrack,'routeExit':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_RouteExit,'additionalRelation':railML.Interlocking.AssetsForIL.Routes.Route.Route.create_AdditionalRelation, # Route
                 'conflictingRoute':railML.Interlocking.AssetsForIL.ConflictingRoutes.ConflictingRoutes.create_ConflictingRoute, # ConflictingRoutes
                 'refersToRoute':railML.Interlocking.AssetsForIL.ConflictingRoutes.ConflictingRoute.ConflictingRoute.create_RefersToRoute,'conflictsWithRoute':railML.Interlocking.AssetsForIL.ConflictingRoutes.ConflictingRoute.ConflictingRoute.create_ConflictsWithRoute,'reasonForConflict':railML.Interlocking.AssetsForIL.ConflictingRoutes.ConflictingRoute.ConflictingRoute.create_ReasonForConflict, # ConflictingRoute
                 'routeRelations':railML.Interlocking.AssetsForIL.RouteRelations.RouteRelations.create_RouteRelation, # RouteRelations
@@ -466,9 +471,10 @@ if __name__ == "__main__":
     
     #print(dir(RML.Common.Positioning.GeometricPositioningSystems.GeometricPositioningSystem))
     
-    with open(OUTPUT_FILE, "w") as f:
-        #f.write(str(xmlstr.decode('UTF-8')))
-        
+    with open(OUTPUT_FILE, "w") as f:        
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        f.write('<railML xmlns="https://www.railml.org/schemas/3.1" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:gml="http://www.opengis.net/gml/3.2/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.railml.org/schemas/3.1 https://www.railml.org/schemas/3.1/railml3.xsd" version="3.1">\n')
+
         save_xml(RML,f)
         
         f.close()
