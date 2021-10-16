@@ -1,7 +1,6 @@
 import sys
 sys.path.append('.')
 
-
 from RailML import railML
 from RailML.Common import Metadata
 from RailML.Common import Common
@@ -15,8 +14,8 @@ from ATG import ATG
 from ACG import ACG
 from AGG import AGG
 
-INPUT_FILE = "F:\PhD\RailML\Example_4.railml"
-OUTPUT_FILE = file = "F:\PhD\RailML\Example_1_B.railml"
+INPUT_FILE  = "F:\PhD\RailML\Example_3.railml"
+OUTPUT_FILE = "F:\PhD\RailML\Example_1_B.railml"
 
 RML = railML.railML()
 
