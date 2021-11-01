@@ -14,7 +14,9 @@ from ATG import ATG
 from ACG import ACG
 from AGG import AGG
 
-INPUT_FILE  = "F:\PhD\RailML\Example_2.railml"
+# NOT 5
+
+INPUT_FILE  = "F:\PhD\RailML\Example_1.railml"
 OUTPUT_FILE = "F:\PhD\RailML\Example_1_B.railml"
 
 RML = railML.railML()
@@ -22,7 +24,7 @@ RML = railML.railML()
 if __name__ == "__main__":
     # Call RNA
     try:
-        RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,True,True)
+        RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,False,True)
         # Call ACG
         try:
             ACG.ACG()
