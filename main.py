@@ -14,20 +14,35 @@ from ATG import ATG
 from ACG import ACG
 from AGG import AGG
 
-INPUT_FILE  = "F:\PhD\RailML\Example_3.railml"
+INPUT_FILE  = "F:\PhD\RailML\Example_2.railml"
 OUTPUT_FILE = "F:\PhD\RailML\Example_1_B.railml"
 
 RML = railML.railML()
 
 if __name__ == "__main__":
     # Call RNA
-    RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,True)
-    
+    try:
+        RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,True,True)
+        # Call ACG
+        try:
+            ACG.ACG()
+        except:
+            print("ACG had an error")   
+        # Call AGG
+        try:
+            AGG.AGG()
+        except:
+            print("AGG had an error")       
+    except:
+        print("RNA had an error")
+
     # Call ATA
-    ATA.ATA()
-    # Call ATG
-    ATG.ATG()
-    # Call ACG
-    ACG.ACG()
-    # Call AGG
-    AGG.AGG()
+    try:
+        ATA.ATA()    
+        # Call ATG
+        try:
+            ATG.ATG()
+        except:
+            print("ATG had an error")
+    except:
+        print("ATA had an error")
