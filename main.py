@@ -16,7 +16,7 @@ from AGG import AGG
 
 # NOT 5
 
-INPUT_FILE  = "F:\PhD\RailML\Example_1.railml"
+INPUT_FILE  = "F:\PhD\RailML\Example_2.railml"
 OUTPUT_FILE = "F:\PhD\RailML\Example_1_B.railml"
 
 RML = railML.railML()
