@@ -16,15 +16,17 @@ from AGG import AGG
 
 # NOT 5
 
-INPUT_FILE  = "F:\PhD\RailML\Example_2.railml"
-OUTPUT_FILE = "F:\PhD\RailML\Example_1_B.railml"
+i = 5
+
+INPUT_FILE  = "F:\PhD\RailML\Example_"+str(i)+".railml"
+OUTPUT_FILE = "F:\PhD\RailML\Example_"+str(i)+"_B.railml"
 
 RML = railML.railML()
 
 if __name__ == "__main__":
     # Call RNA
     try:
-        RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,False,True)
+        RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,True,True)
         # Call ACG
         try:
             ACG.ACG()
