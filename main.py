@@ -16,7 +16,7 @@ from AGG import AGG
 
 # NOT 5
 
-i = 0
+i = 6
 
 INPUT_FILE  = "F:\PhD\RailML\Example_"+str(i)+".railml"
 OUTPUT_FILE = "F:\PhD\RailML\Example_"+str(i)+"_B.railml"
