@@ -22,9 +22,9 @@
     </Globals>
     <MacroAreas/>
     <BackgroundImage/>
-    <IdGenerators nextRailId="12" nextEntityId="25">
+    <IdGenerators nextRailId="12" nextEntityId="26">
         <EntityName definitionId="BufferStopNameGen" nextId="15"/>
-        <EntityName definitionId="ConnectionNameGen" nextId="6"/>
+        <EntityName definitionId="ConnectionNameGen" nextId="7"/>
         <EntityName definitionId="RailPointNameGen" nextId="6"/>
     </IdGenerators>
     <Rails>
@@ -355,6 +355,18 @@
             <Attributes>
                 <Attribute id="A_Layer">L_Default</Attribute>
                 <Attribute id="A_Name">J05</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde25" type="T_Connection">
+            <Placement x="765.942" y="-450"/>
+            <Ports>
+                <Port rail="ne5" side="0.517713"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J06</Attribute>
                 <Attribute id="A_Operational">true</Attribute>
                 <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
             </Attributes>
