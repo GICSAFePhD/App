@@ -22,8 +22,8 @@
     </Globals>
     <MacroAreas/>
     <BackgroundImage/>
-    <IdGenerators nextRailId="20" nextEntityId="41">
-        <EntityName definitionId="BufferStopNameGen" nextId="22"/>
+    <IdGenerators nextRailId="20" nextEntityId="42">
+        <EntityName definitionId="BufferStopNameGen" nextId="23"/>
         <EntityName definitionId="ConnectionNameGen" nextId="11"/>
         <EntityName definitionId="RailPointNameGen" nextId="10"/>
     </IdGenerators>
@@ -101,6 +101,8 @@
             <Path>
                 <Point x="1320" y="-1380"/>
                 <Point x="1950" y="-1380"/>
+                <Point x="2160" y="-1590"/>
+                <Point x="2520" y="-1590"/>
             </Path>
         </Rail>
         <Rail id="ne19" macro-area="">
@@ -279,9 +281,9 @@
             </Attributes>
         </Entity>
         <Entity id="tde21" type="T_Connection">
-            <Placement x="1688.72" y="-450" flipAcross="true"/>
+            <Placement x="1653.78" y="-450" flipAcross="true"/>
             <Ports>
-                <Port rail="ne11" side="0.65163"/>
+                <Port rail="ne11" side="0.605034"/>
             </Ports>
             <Attributes>
                 <Attribute id="A_Layer">L_Default</Attribute>
@@ -338,7 +340,7 @@
             </Attributes>
         </Entity>
         <Entity id="swi34" type="T_RailPoint">
-            <Placement x="30" y="-1080" angle="-45" flipAcross="true"/>
+            <Placement x="30" y="-1080" angle="315" flipAcross="true"/>
             <Ports>
                 <Port rail="ne7" side="end"/>
                 <Port rail="ne17" side="start"/>
@@ -359,17 +361,6 @@
                 <Attribute id="A_railML_MaxThrowTime">PT10S</Attribute>
                 <Attribute id="A_railML_TypicalThrowTime">PT6S</Attribute>
                 <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
-            </Attributes>
-        </Entity>
-        <Entity id="bus35" type="T_BufferStop">
-            <Placement x="1950" y="-1380" flipAlong="true"/>
-            <Ports>
-                <Port rail="ne18" side="end"/>
-            </Ports>
-            <Attributes>
-                <Attribute id="A_Name">Buf20</Attribute>
-                <Attribute id="A_Operational">true</Attribute>
-                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
             </Attributes>
         </Entity>
         <Entity id="swi36" type="T_RailPoint">
@@ -417,6 +408,17 @@
                 <Attribute id="A_Name">J08</Attribute>
                 <Attribute id="A_Operational">true</Attribute>
                 <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus41" type="T_BufferStop">
+            <Placement x="2520" y="-1590" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne18" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf22</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
             </Attributes>
         </Entity>
     </Entities>
