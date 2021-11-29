@@ -340,7 +340,7 @@
             </Attributes>
         </Entity>
         <Entity id="swi44" type="T_RailPoint">
-            <Placement x="30" y="-1080" angle="-45" flipAcross="true"/>
+            <Placement x="30" y="-1080" angle="315" flipAcross="true"/>
             <Ports>
                 <Port rail="ne7" side="end"/>
                 <Port rail="ne27" side="end"/>
@@ -354,7 +354,7 @@
                 <Attribute id="A_railML_JoiningSpeedRight">60</Attribute>
                 <Attribute id="A_railML_JoiningSpeedLeft">60</Attribute>
                 <Attribute id="A_railML_Radius">500</Attribute>
-                <Attribute id="A_railML_ContinueCourse">right</Attribute>
+                <Attribute id="A_railML_ContinueCourse">left</Attribute>
                 <Attribute id="A_railML_SwPosition">nominal</Attribute>
                 <Attribute id="A_railML_IsKeyLocked">false</Attribute>
                 <Attribute id="A_railML_ReturnsToPreferredPosition">false</Attribute>
