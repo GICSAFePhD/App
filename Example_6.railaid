@@ -222,18 +222,6 @@
                 <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
             </Attributes>
         </Entity>
-        <Entity id="tde16" type="T_Connection">
-            <Placement x="-1060.66" y="-450" flipAcross="true"/>
-            <Ports>
-                <Port rail="ne1" side="0.488156"/>
-            </Ports>
-            <Attributes>
-                <Attribute id="A_Layer">L_Default</Attribute>
-                <Attribute id="A_Name">J01</Attribute>
-                <Attribute id="A_Operational">true</Attribute>
-                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
-            </Attributes>
-        </Entity>
         <Entity id="swi17" type="T_RailPoint">
             <Placement x="1200" y="-450"/>
             <Ports>
@@ -283,7 +271,7 @@
         <Entity id="tde21" type="T_Connection">
             <Placement x="1653.78" y="-450" flipAcross="true"/>
             <Ports>
-                <Port rail="ne11" side="0.605034"/>
+                <Port rail="ne11" side="0.60504"/>
             </Ports>
             <Attributes>
                 <Attribute id="A_Layer">L_Default</Attribute>
@@ -407,6 +395,18 @@
                 <Attribute id="A_railML_MaxThrowTime">PT10S</Attribute>
                 <Attribute id="A_railML_TypicalThrowTime">PT6S</Attribute>
                 <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde16" type="T_Connection">
+            <Placement x="-1060.66" y="-450" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne1" side="0.488156"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
             </Attributes>
         </Entity>
     </Entities>
