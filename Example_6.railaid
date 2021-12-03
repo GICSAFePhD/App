@@ -22,9 +22,9 @@
     </Globals>
     <MacroAreas/>
     <BackgroundImage/>
-    <IdGenerators nextRailId="29" nextEntityId="51">
+    <IdGenerators nextRailId="29" nextEntityId="52">
         <EntityName definitionId="BufferStopNameGen" nextId="28"/>
-        <EntityName definitionId="ConnectionNameGen" nextId="11"/>
+        <EntityName definitionId="ConnectionNameGen" nextId="12"/>
         <EntityName definitionId="RailPointNameGen" nextId="14"/>
     </IdGenerators>
     <Rails>
