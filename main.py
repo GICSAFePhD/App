@@ -18,8 +18,10 @@ from AGG import AGG
 
 i = 6
 
-INPUT_FILE  = "F:\PhD\RailML\Example_"+str(i)+".railml"
-OUTPUT_FILE = "F:\PhD\RailML\Example_"+str(i)+"_B.railml"
+#INPUT_FILE  = "F:\PhD\RailML\Example_"+str(i)+".railml"
+INPUT_FILE  = "C:\PhD\RailML\Example_"+str(i)+".railml"
+#OUTPUT_FILE = "F:\PhD\RailML\Example_"+str(i)+"_B.railml"
+OUTPUT_FILE = "C:\PhD\RailML\Example_"+str(i)+"_B.railml"
 
 RML = railML.railML()
 
