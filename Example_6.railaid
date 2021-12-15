@@ -22,7 +22,7 @@
     </Globals>
     <MacroAreas/>
     <BackgroundImage/>
-    <IdGenerators nextRailId="29" nextEntityId="52">
+    <IdGenerators nextRailId="29" nextEntityId="53">
         <EntityName definitionId="BufferStopNameGen" nextId="28"/>
         <EntityName definitionId="ConnectionNameGen" nextId="12"/>
         <EntityName definitionId="RailPointNameGen" nextId="14"/>
@@ -246,17 +246,6 @@
                 <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
             </Attributes>
         </Entity>
-        <Entity id="bus18" type="T_BufferStop">
-            <Placement x="1950" y="-450" flipAlong="true"/>
-            <Ports>
-                <Port rail="ne11" side="end"/>
-            </Ports>
-            <Attributes>
-                <Attribute id="A_Name">Buf12</Attribute>
-                <Attribute id="A_Operational">true</Attribute>
-                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
-            </Attributes>
-        </Entity>
         <Entity id="bus19" type="T_BufferStop">
             <Placement x="1950" y="-1080" flipAlong="true"/>
             <Ports>
@@ -314,17 +303,6 @@
                 <Attribute id="A_Name">J06</Attribute>
                 <Attribute id="A_Operational">true</Attribute>
                 <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
-            </Attributes>
-        </Entity>
-        <Entity id="bus13" type="T_BufferStop">
-            <Placement x="-1500" y="-450" angle="180" flipAlong="true"/>
-            <Ports>
-                <Port rail="ne1" side="start"/>
-            </Ports>
-            <Attributes>
-                <Attribute id="A_Name">Buf09</Attribute>
-                <Attribute id="A_Operational">true</Attribute>
-                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
             </Attributes>
         </Entity>
         <Entity id="swi44" type="T_RailPoint">
@@ -407,6 +385,28 @@
                 <Attribute id="A_Name">J01</Attribute>
                 <Attribute id="A_Operational">true</Attribute>
                 <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="oe51" type="T_LineBorder">
+            <Placement x="-1500" y="-450" angle="180" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne1" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf09</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">station</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="oe52" type="T_LineBorder">
+            <Placement x="1950" y="-450" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne11" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf12</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">station</Attribute>
             </Attributes>
         </Entity>
     </Entities>
