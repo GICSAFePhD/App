@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RaILAiD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.rail-aid.com/schema/ SchematicPlan-1.8.xsd" version="1.8">
+    <Globals>
+        <Attribute id="R_Main.A_Path">F:/PhD/App/Example_7.railaid</Attribute>
+        <Attribute id="R_Main.A_Created">sáb. dic. 18 19:19:33 2021</Attribute>
+        <Attribute id="R_Main.A_Object_Library_Version">Italia 4.6</Attribute>
+        <Attribute id="R_Main.A_Object_Library_FileName">ObjectLibrary_GA.xml</Attribute>
+        <Attribute id="R_Main.A_RaILAiD_Version">1.1.9</Attribute>
+        <Attribute id="R_Main.A_RailML_Version">3.1</Attribute>
+        <Attribute id="R_Main.A_RailMLPlugin_Version">0.9.5</Attribute>
+        <Attribute id="_R_Core.A_RouteTerminalCategory">signals</Attribute>
+        <Attribute id="_R_Core.A_RouteRailSetCategory">tvdSections</Attribute>
+        <Attribute id="R_Project_Info.A_Project_Name">Example_7</Attribute>
+        <Attribute id="R_Project_Info.A_Revision">1</Attribute>
+        <Attribute id="R_Project_Info.A_Author">Martin</Attribute>
+        <Attribute id="R_Project_Info.A_Comments">Example_7</Attribute>
+        <Attribute id="R_railML_Info.A_Description">Platform and Station</Attribute>
+        <Attribute id="R_railML_Info.A_Author">Martin</Attribute>
+        <Attribute id="R_railML_Info.A_Designator_registry">_Example</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_from">2021-12-18</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_to">2022-12-18</Attribute>
+    </Globals>
+    <MacroAreas/>
+    <BackgroundImage/>
+    <IdGenerators nextRailId="2" nextEntityId="4">
+        <EntityName definitionId="BufferStopNameGen" nextId="3"/>
+        <EntityName definitionId="ConnectionNameGen" nextId="2"/>
+    </IdGenerators>
+    <Rails>
+        <Rail id="ne1" macro-area="">
+            <Path>
+                <Point x="-1050" y="150"/>
+                <Point x="1350" y="150"/>
+            </Path>
+        </Rail>
+    </Rails>
+    <LinearLocationSystems>
+        <LinearLocationSystem id="loc-1" unit="Km">Loc-1</LinearLocationSystem>
+    </LinearLocationSystems>
+    <Entities>
+        <Entity id="bus1" type="T_BufferStop">
+            <Placement x="-1050" y="150"/>
+            <Ports>
+                <Port rail="ne1" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus2" type="T_BufferStop">
+            <Placement x="1350" y="150" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne1" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf02</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+    </Entities>
+    <TrackCircuits/>
+</RaILAiD>
