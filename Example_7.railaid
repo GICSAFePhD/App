@@ -2,7 +2,7 @@
 <RaILAiD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.rail-aid.com/schema/ SchematicPlan-1.8.xsd" version="1.8">
     <Globals>
         <Attribute id="R_Main.A_Path">F:/PhD/App/Example_7.railaid</Attribute>
-        <Attribute id="R_Main.A_Created">dom. dic. 19 13:50:48 2021</Attribute>
+        <Attribute id="R_Main.A_Created">dom. dic. 19 15:39:23 2021</Attribute>
         <Attribute id="R_Main.A_Object_Library_Version">Italia 4.6</Attribute>
         <Attribute id="R_Main.A_Object_Library_FileName">ObjectLibrary_GA.xml</Attribute>
         <Attribute id="R_Main.A_RaILAiD_Version">1.1.9</Attribute>
@@ -18,7 +18,9 @@
     </Globals>
     <MacroAreas/>
     <BackgroundImage/>
-    <IdGenerators nextRailId="2" nextEntityId="10"/>
+    <IdGenerators nextRailId="2" nextEntityId="12">
+        <EntityName definitionId="PlatformNameGen" nextId="3"/>
+    </IdGenerators>
     <Rails>
         <Rail id="ne1" macro-area="">
             <Path>
@@ -73,6 +75,21 @@
                 <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
                 <Attribute id="A_railML_ControlType"></Attribute>
                 <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="plf10" type="T_Platform">
+            <Placement x="669.091" y="150" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne1" side="0.716288"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Type">V_short</Attribute>
+                <Attribute id="A_Name">Plat01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Length">200</Attribute>
+                <Attribute id="A_railML_Height">0</Attribute>
+                <Attribute id="A_railML_ValidForDirection">both</Attribute>
             </Attributes>
         </Entity>
     </Entities>
