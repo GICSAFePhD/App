@@ -18,8 +18,9 @@
     </Globals>
     <MacroAreas/>
     <BackgroundImage/>
-    <IdGenerators nextRailId="5" nextEntityId="31">
-        <EntityName definitionId="BufferStopNameGen" nextId="3"/>
+    <IdGenerators nextRailId="3" nextEntityId="33">
+        <EntityName definitionId="BufferStopNameGen" nextId="4"/>
+        <EntityName definitionId="ConnectionNameGen" nextId="2"/>
         <EntityName definitionId="RailPointNameGen" nextId="3"/>
     </IdGenerators>
     <Rails>
@@ -32,7 +33,7 @@
         <Rail id="ne2" macro-area="">
             <Path>
                 <Point x="-1050" y="-150"/>
-                <Point x="1350" y="-150"/>
+                <Point x="1950" y="-150"/>
             </Path>
         </Rail>
     </Rails>
@@ -79,7 +80,7 @@
         <Entity id="lcr22" type="T_LevelCrossing_SingleLine_SB">
             <Placement x="-74.6936" y="-150" flipAlong="true"/>
             <Ports>
-                <Port rail="ne2" side="0.406378"/>
+                <Port rail="ne2" side="0.325102"/>
             </Ports>
             <Attributes>
                 <Attribute id="A_Layer">L_Default</Attribute>
@@ -135,7 +136,7 @@
         <Entity id="plf26" type="T_Platform">
             <Placement x="247.335" y="-150"/>
             <Ports>
-                <Port rail="ne2" side="0.540556"/>
+                <Port rail="ne2" side="0.432445"/>
             </Ports>
             <Attributes>
                 <Attribute id="A_Layer">L_Default</Attribute>
@@ -148,15 +149,27 @@
                 <Attribute id="A_railML_ValidForDirection">both</Attribute>
             </Attributes>
         </Entity>
-        <Entity id="bus30" type="T_BufferStop">
-            <Placement x="1350" y="-150" flipAlong="true"/>
+        <Entity id="bus31" type="T_BufferStop">
+            <Placement x="1950" y="-150" flipAlong="true"/>
             <Ports>
                 <Port rail="ne2" side="end"/>
             </Ports>
             <Attributes>
-                <Attribute id="A_Name">Buf02</Attribute>
+                <Attribute id="A_Name">Buf03</Attribute>
                 <Attribute id="A_Operational">true</Attribute>
                 <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde32" type="T_Connection">
+            <Placement x="1193.43" y="-150" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne2" side="0.747811"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
             </Attributes>
         </Entity>
     </Entities>
