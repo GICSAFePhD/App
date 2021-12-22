@@ -2,7 +2,7 @@
 <RaILAiD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.rail-aid.com/schema/ SchematicPlan-1.8.xsd" version="1.8">
     <Globals>
         <Attribute id="R_Main.A_Path">F:/PhD/App/Example_7.railaid</Attribute>
-        <Attribute id="R_Main.A_Created">mar. dic. 21 21:19:34 2021</Attribute>
+        <Attribute id="R_Main.A_Created">mié. dic. 22 10:50:34 2021</Attribute>
         <Attribute id="R_Main.A_Object_Library_Version">Italia 4.6</Attribute>
         <Attribute id="R_Main.A_Object_Library_FileName">ObjectLibrary_GA.xml</Attribute>
         <Attribute id="R_Main.A_RaILAiD_Version">1.1.9</Attribute>
@@ -13,12 +13,15 @@
         <Attribute id="R_railML_Info.A_Description">Platform and Station</Attribute>
         <Attribute id="R_railML_Info.A_Author">Martin</Attribute>
         <Attribute id="R_railML_Info.A_Designator_registry">_Example</Attribute>
-        <Attribute id="R_railML_Info.A_Validity_from">2021-12-21</Attribute>
-        <Attribute id="R_railML_Info.A_Validity_to">2022-12-21</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_from">2021-12-22</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_to">2022-12-22</Attribute>
     </Globals>
     <MacroAreas/>
     <BackgroundImage/>
-    <IdGenerators nextRailId="3" nextEntityId="27"/>
+    <IdGenerators nextRailId="5" nextEntityId="31">
+        <EntityName definitionId="BufferStopNameGen" nextId="3"/>
+        <EntityName definitionId="RailPointNameGen" nextId="3"/>
+    </IdGenerators>
     <Rails>
         <Rail id="ne1" macro-area="">
             <Path>
@@ -73,22 +76,10 @@
                 <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
             </Attributes>
         </Entity>
-        <Entity id="bus12" type="T_BufferStop">
-            <Placement x="1350" y="-150" flipAlong="true"/>
-            <Ports>
-                <Port rail="ne2" side="end"/>
-            </Ports>
-            <Attributes>
-                <Attribute id="A_Name">Buf02</Attribute>
-                <Attribute id="A_Operational">true</Attribute>
-                <Attribute id="A_railML_Designator_Entry">BUFFERSTOP Buf02</Attribute>
-                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
-            </Attributes>
-        </Entity>
         <Entity id="lcr22" type="T_LevelCrossing_SingleLine_SB">
-            <Placement x="-7.46777" y="-150" flipAlong="true"/>
+            <Placement x="-74.6936" y="-150" flipAlong="true"/>
             <Ports>
-                <Port rail="ne2" side="0.434388"/>
+                <Port rail="ne2" side="0.406378"/>
             </Ports>
             <Attributes>
                 <Attribute id="A_Layer">L_Default</Attribute>
@@ -101,7 +92,7 @@
                 <Attribute id="A_railML_Acoustic">none</Attribute>
                 <Attribute id="A_railML_PreferredPosition">unknown</Attribute>
                 <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
-                <Attribute id="A_railML_ControlType"></Attribute>
+                <Attribute id="A_railML_ControlType">autonomous</Attribute>
                 <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
             </Attributes>
         </Entity>
@@ -121,7 +112,7 @@
                 <Attribute id="A_railML_Acoustic">none</Attribute>
                 <Attribute id="A_railML_PreferredPosition">unknown</Attribute>
                 <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
-                <Attribute id="A_railML_ControlType"></Attribute>
+                <Attribute id="A_railML_ControlType">autonomous</Attribute>
                 <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
             </Attributes>
         </Entity>
@@ -142,9 +133,9 @@
             </Attributes>
         </Entity>
         <Entity id="plf26" type="T_Platform">
-            <Placement x="332.728" y="-150"/>
+            <Placement x="247.335" y="-150"/>
             <Ports>
-                <Port rail="ne2" side="0.576136"/>
+                <Port rail="ne2" side="0.540556"/>
             </Ports>
             <Attributes>
                 <Attribute id="A_Layer">L_Default</Attribute>
@@ -155,6 +146,17 @@
                 <Attribute id="A_railML_Length">200</Attribute>
                 <Attribute id="A_railML_Height">0</Attribute>
                 <Attribute id="A_railML_ValidForDirection">both</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus30" type="T_BufferStop">
+            <Placement x="1350" y="-150" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne2" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf02</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
             </Attributes>
         </Entity>
     </Entities>
