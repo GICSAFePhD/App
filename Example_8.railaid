@@ -22,9 +22,9 @@
     </Globals>
     <MacroAreas/>
     <BackgroundImage/>
-    <IdGenerators nextRailId="8" nextEntityId="9">
-        <EntityName definitionId="BufferStopNameGen" nextId="6"/>
-        <EntityName definitionId="RailPointNameGen" nextId="4"/>
+    <IdGenerators nextRailId="31" nextEntityId="30">
+        <EntityName definitionId="BufferStopNameGen" nextId="17"/>
+        <EntityName definitionId="RailPointNameGen" nextId="14"/>
     </IdGenerators>
     <Rails>
         <Rail id="ne1" macro-area="">
@@ -33,30 +33,30 @@
                 <Point x="150" y="30"/>
             </Path>
         </Rail>
-        <Rail id="ne2" macro-area="">
-            <Path>
-                <Point x="150" y="30"/>
-                <Point x="630" y="30"/>
-                <Point x="960" y="360"/>
-            </Path>
-        </Rail>
-        <Rail id="ne3" macro-area="">
+        <Rail id="ne27" macro-area="">
             <Path>
                 <Point x="150" y="30"/>
                 <Point x="444.449" y="-480"/>
                 <Point x="1080" y="-480"/>
             </Path>
         </Rail>
-        <Rail id="ne6" macro-area="">
+        <Rail id="ne28" macro-area="">
             <Path>
-                <Point x="960" y="360"/>
-                <Point x="1530" y="360"/>
+                <Point x="150" y="30"/>
+                <Point x="630" y="30"/>
+                <Point x="1020" y="420"/>
             </Path>
         </Rail>
-        <Rail id="ne7" macro-area="">
+        <Rail id="ne29" macro-area="">
             <Path>
-                <Point x="960" y="360"/>
-                <Point x="360" y="360"/>
+                <Point x="1020" y="420"/>
+                <Point x="1680" y="420"/>
+            </Path>
+        </Rail>
+        <Rail id="ne30" macro-area="">
+            <Path>
+                <Point x="1020" y="420"/>
+                <Point x="120" y="420"/>
             </Path>
         </Rail>
     </Rails>
@@ -75,15 +75,26 @@
                 <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
             </Attributes>
         </Entity>
-        <Entity id="swi3" type="T_RailPoint">
-            <Placement x="150" y="30" offx="-8.45299" offy="0"/>
+        <Entity id="bus4" type="T_BufferStop">
+            <Placement x="1080" y="-480" flipAlong="true"/>
             <Ports>
-                <Port rail="ne1" side="end"/>
-                <Port rail="ne2" side="start"/>
-                <Port rail="ne3" side="start"/>
+                <Port rail="ne27" side="end"/>
             </Ports>
             <Attributes>
-                <Attribute id="A_Name">Sw01</Attribute>
+                <Attribute id="A_Name">Buf03</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="swi25" type="T_RailPoint">
+            <Placement x="150" y="30" offx="-8.45298" offy="0"/>
+            <Ports>
+                <Port rail="ne1" side="end"/>
+                <Port rail="ne28" side="start"/>
+                <Port rail="ne27" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Sw12</Attribute>
                 <Attribute id="A_Operational">true</Attribute>
                 <Attribute id="A_railML_BranchingSpeedRight">60</Attribute>
                 <Attribute id="A_railML_BranchingSpeedLeft">60</Attribute>
@@ -99,37 +110,15 @@
                 <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
             </Attributes>
         </Entity>
-        <Entity id="bus4" type="T_BufferStop">
-            <Placement x="1080" y="-480" flipAlong="true"/>
+        <Entity id="swi27" type="T_RailPoint">
+            <Placement x="1020" y="420" flipAlong="true"/>
             <Ports>
-                <Port rail="ne3" side="end"/>
+                <Port rail="ne29" side="start"/>
+                <Port rail="ne30" side="start"/>
+                <Port rail="ne28" side="end"/>
             </Ports>
             <Attributes>
-                <Attribute id="A_Name">Buf03</Attribute>
-                <Attribute id="A_Operational">true</Attribute>
-                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
-            </Attributes>
-        </Entity>
-        <Entity id="bus6" type="T_BufferStop">
-            <Placement x="1530" y="360" flipAlong="true"/>
-            <Ports>
-                <Port rail="ne6" side="end"/>
-            </Ports>
-            <Attributes>
-                <Attribute id="A_Name">Buf04</Attribute>
-                <Attribute id="A_Operational">true</Attribute>
-                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
-            </Attributes>
-        </Entity>
-        <Entity id="swi7" type="T_RailPoint">
-            <Placement x="960" y="360" flipAlong="true"/>
-            <Ports>
-                <Port rail="ne6" side="start"/>
-                <Port rail="ne7" side="start"/>
-                <Port rail="ne2" side="end"/>
-            </Ports>
-            <Attributes>
-                <Attribute id="A_Name">Sw03</Attribute>
+                <Attribute id="A_Name">Sw13</Attribute>
                 <Attribute id="A_Operational">true</Attribute>
                 <Attribute id="A_railML_BranchingSpeedRight">60</Attribute>
                 <Attribute id="A_railML_BranchingSpeedLeft">60</Attribute>
@@ -145,13 +134,24 @@
                 <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
             </Attributes>
         </Entity>
-        <Entity id="bus8" type="T_BufferStop">
-            <Placement x="360" y="360" angle="180" flipAlong="true"/>
+        <Entity id="bus28" type="T_BufferStop">
+            <Placement x="120" y="420" angle="180" flipAlong="true"/>
             <Ports>
-                <Port rail="ne7" side="end"/>
+                <Port rail="ne30" side="end"/>
             </Ports>
             <Attributes>
-                <Attribute id="A_Name">Buf05</Attribute>
+                <Attribute id="A_Name">Buf15</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus29" type="T_BufferStop">
+            <Placement x="1680" y="420" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne29" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf16</Attribute>
                 <Attribute id="A_Operational">true</Attribute>
                 <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
             </Attributes>
