@@ -22,8 +22,8 @@
     </Globals>
     <MacroAreas/>
     <BackgroundImage/>
-    <IdGenerators nextRailId="31" nextEntityId="30">
-        <EntityName definitionId="BufferStopNameGen" nextId="17"/>
+    <IdGenerators nextRailId="31" nextEntityId="34">
+        <EntityName definitionId="BufferStopNameGen" nextId="21"/>
         <EntityName definitionId="RailPointNameGen" nextId="14"/>
     </IdGenerators>
     <Rails>
@@ -50,13 +50,13 @@
         <Rail id="ne29" macro-area="">
             <Path>
                 <Point x="1020" y="420"/>
-                <Point x="1680" y="420"/>
+                <Point x="2040" y="420"/>
             </Path>
         </Rail>
         <Rail id="ne30" macro-area="">
             <Path>
                 <Point x="1020" y="420"/>
-                <Point x="120" y="420"/>
+                <Point x="0" y="420"/>
             </Path>
         </Rail>
     </Rails>
@@ -134,24 +134,24 @@
                 <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
             </Attributes>
         </Entity>
-        <Entity id="bus28" type="T_BufferStop">
-            <Placement x="120" y="420" angle="180" flipAlong="true"/>
+        <Entity id="bus31" type="T_BufferStop">
+            <Placement x="0" y="420" angle="180" flipAlong="true"/>
             <Ports>
                 <Port rail="ne30" side="end"/>
             </Ports>
             <Attributes>
-                <Attribute id="A_Name">Buf15</Attribute>
+                <Attribute id="A_Name">Buf18</Attribute>
                 <Attribute id="A_Operational">true</Attribute>
                 <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
             </Attributes>
         </Entity>
-        <Entity id="bus29" type="T_BufferStop">
-            <Placement x="1680" y="420" flipAlong="true"/>
+        <Entity id="bus33" type="T_BufferStop">
+            <Placement x="2040" y="420" flipAlong="true"/>
             <Ports>
                 <Port rail="ne29" side="end"/>
             </Ports>
             <Attributes>
-                <Attribute id="A_Name">Buf16</Attribute>
+                <Attribute id="A_Name">Buf20</Attribute>
                 <Attribute id="A_Operational">true</Attribute>
                 <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
             </Attributes>
