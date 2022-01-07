@@ -14,9 +14,8 @@ from ATG import ATG
 from ACG import ACG
 from AGG import AGG
 
-i = 6
+i = 8
 
-#TODO SIMPLIFY S07 y S17, TURN S24 AND S25
 
 INPUT_FILE  = "F:\PhD\RailML\Example_"+str(i)+".railml"
 OUTPUT_FILE = "F:\PhD\RailML\Example_"+str(i)+"_B.railml"
