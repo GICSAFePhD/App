@@ -33,7 +33,7 @@
         <Rail id="ne2" macro-area="">
             <Path>
                 <Point x="-1050" y="-150"/>
-                <Point x="1950" y="-150"/>
+                <Point x="1350" y="-150"/>
             </Path>
         </Rail>
     </Rails>
@@ -80,7 +80,7 @@
         <Entity id="lcr22" type="T_LevelCrossing_SingleLine_SB">
             <Placement x="-74.6936" y="-150" flipAlong="true"/>
             <Ports>
-                <Port rail="ne2" side="0.325102"/>
+                <Port rail="ne2" side="0.406378"/>
             </Ports>
             <Attributes>
                 <Attribute id="A_Layer">L_Default</Attribute>
@@ -136,7 +136,7 @@
         <Entity id="plf26" type="T_Platform">
             <Placement x="247.335" y="-150"/>
             <Ports>
-                <Port rail="ne2" side="0.432445"/>
+                <Port rail="ne2" side="0.540556"/>
             </Ports>
             <Attributes>
                 <Attribute id="A_Layer">L_Default</Attribute>
@@ -150,7 +150,7 @@
             </Attributes>
         </Entity>
         <Entity id="bus31" type="T_BufferStop">
-            <Placement x="1950" y="-150" flipAlong="true"/>
+            <Placement x="1350" y="-150" flipAlong="true"/>
             <Ports>
                 <Port rail="ne2" side="end"/>
             </Ports>
@@ -158,18 +158,6 @@
                 <Attribute id="A_Name">Buf03</Attribute>
                 <Attribute id="A_Operational">true</Attribute>
                 <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
-            </Attributes>
-        </Entity>
-        <Entity id="tde32" type="T_Connection">
-            <Placement x="1193.43" y="-150" flipAcross="true"/>
-            <Ports>
-                <Port rail="ne2" side="0.747811"/>
-            </Ports>
-            <Attributes>
-                <Attribute id="A_Layer">L_Default</Attribute>
-                <Attribute id="A_Name">J01</Attribute>
-                <Attribute id="A_Operational">true</Attribute>
-                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
             </Attributes>
         </Entity>
     </Entities>
