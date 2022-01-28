@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RaILAiD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.rail-aid.com/schema/ SchematicPlan-1.8.xsd" version="1.8">
     <Globals>
-        <Attribute id="R_Main.A_Path">C:/Users/Fabiana/Projects/Tools/RaIL-AiD/trunk/RaILAiD/data/examples/Example_2.railaid</Attribute>
+        <Attribute id="R_Main.A_Path">F:/PhD/App/Example_2.railaid</Attribute>
         <Attribute id="R_Main.A_Created">gio ago 29 12:01:11 2019</Attribute>
         <Attribute id="R_Main.A_Object_Library_Version">Italia 4.6</Attribute>
         <Attribute id="R_Main.A_Object_Library_FileName">ObjectLibrary_GAv4.0.xml</Attribute>
         <Attribute id="R_Main.A_RaILAiD_Version">1.1.9</Attribute>
         <Attribute id="R_Main.A_RailML_Version">3.1</Attribute>
         <Attribute id="R_Main.A_RailMLPlugin_Version">0.9.5</Attribute>
+        <Attribute id="_R_Core.A_RouteTerminalCategory">signals</Attribute>
+        <Attribute id="_R_Core.A_RouteRailSetCategory">tvdSections</Attribute>
         <Attribute id="R_railML_Info.A_Description">Export of Example 2</Attribute>
         <Attribute id="R_railML_Info.A_Author">Neat</Attribute>
         <Attribute id="R_railML_Info.A_Designator_registry">_Example</Attribute>

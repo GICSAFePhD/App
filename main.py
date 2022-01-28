@@ -1,5 +1,6 @@
 import sys
 sys.path.append('.')
+import time
 
 from RailML import railML
 from RailML.Common import Metadata
@@ -14,7 +15,7 @@ from ATG import ATG
 from ACG import ACG
 from AGG import AGG
 
-i = 6
+i = 1
 
 INPUT_FILE  = "F:\PhD\RailML\Example_"+str(i)+".railml"
 OUTPUT_FILE = "F:\PhD\RailML\Example_"+str(i)+"_B.railml"
@@ -22,6 +23,7 @@ OUTPUT_FILE = "F:\PhD\RailML\Example_"+str(i)+"_B.railml"
 RML = railML.railML()
 
 if __name__ == "__main__":
+    start = time.process_time()
     # Call RNA
     try:
         RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,False,True)
@@ -48,3 +50,6 @@ if __name__ == "__main__":
             print(f'ATG had an error: {e}')
     except Exception as e:
         print(f'ATA had an error: {e}')
+    
+    end = time.process_time()
+    print(f'Processing time: {(end - start)*1000} ms')

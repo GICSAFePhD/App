@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RaILAiD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.rail-aid.com/schema/ SchematicPlan-1.8.xsd" version="1.8">
     <Globals>
-        <Attribute id="R_Main.A_Path">F:/PhD/App/Example_1.railaid</Attribute>
+        <Attribute id="R_Main.A_Path">F:/PhD/App/Layout_1_A.railaid</Attribute>
         <Attribute id="R_Main.A_Created">ven nov 22 16:55:28 2019</Attribute>
         <Attribute id="R_Main.A_Object_Library_Version">Italia 4.6</Attribute>
         <Attribute id="R_Main.A_Object_Library_FileName">ObjectLibrary_GAv4.0.xml</Attribute>
