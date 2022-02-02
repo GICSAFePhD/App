@@ -15,10 +15,10 @@ from ATG import ATG
 from ACG import ACG
 from AGG import AGG
 
-i = 1
+i = 2
 
-INPUT_FILE  = "F:\PhD\RailML\Example_"+str(i)+".railml"
-OUTPUT_FILE = "F:\PhD\RailML\Example_"+str(i)+"_B.railml"
+INPUT_FILE  = "F:\PhD\RailML\Layouts\Example_"+str(i)+".railml"
+OUTPUT_FILE = "F:\PhD\RailML\Layouts\Example_"+str(i)+"_B.railml"
 
 RML = railML.railML()
 
@@ -53,3 +53,4 @@ if __name__ == "__main__":
     
     end = time.process_time()
     print(f'Processing time: {(end - start)*1000} ms')
+    
