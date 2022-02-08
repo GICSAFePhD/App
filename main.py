@@ -15,7 +15,7 @@ from ATG import ATG
 from ACG import ACG
 from AGG import AGG
 
-i = 2
+i = 3
 
 INPUT_FILE  = "F:\PhD\RailML\Layouts\Example_"+str(i)+".railml"
 OUTPUT_FILE = "F:\PhD\RailML\Layouts\Example_"+str(i)+"_B.railml"
