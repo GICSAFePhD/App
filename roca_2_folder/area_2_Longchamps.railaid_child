@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RaILAiD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.rail-aid.com/schema/ SchematicPlan-1.8.xsd" version="1.8">
+    <Globals>
+        <Attribute id="R_Main.A_Path">F:/PhD/App/roca_2.railaid</Attribute>
+        <Attribute id="R_Main.A_Created">dom. ene. 16 20:12:32 2022</Attribute>
+        <Attribute id="R_Main.A_Object_Library_Version">Italia 4.6</Attribute>
+        <Attribute id="R_Main.A_Object_Library_FileName">ObjectLibrary_GA.xml</Attribute>
+        <Attribute id="R_Main.A_RaILAiD_Version">1.1.9</Attribute>
+        <Attribute id="R_Main.A_RailML_Version">3.1</Attribute>
+        <Attribute id="R_Main.A_RailMLPlugin_Version">0.9.5</Attribute>
+        <Attribute id="_R_Core.A_RouteTerminalCategory">signals</Attribute>
+        <Attribute id="_R_Core.A_RouteRailSetCategory">tvdSections</Attribute>
+        <Attribute id="R_railML_Info.A_Designator_registry">_Example</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_from">2022-01-16</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_to">2023-01-16</Attribute>
+    </Globals>
+    <MacroAreas/>
+    <BackgroundImage/>
+    <Rails>
+        <Rail id="ne4" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Path>
+                <Point x="152.727" y="-300"/>
+                <Point x="-1350.91" y="-300"/>
+            </Path>
+        </Rail>
+        <Rail id="ne6" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Path>
+                <Point x="-1354.55" y="-150"/>
+                <Point x="-900" y="-150"/>
+            </Path>
+        </Rail>
+        <Rail id="ne7" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Path>
+                <Point x="-900" y="-150"/>
+                <Point x="-450" y="-150"/>
+            </Path>
+        </Rail>
+        <Rail id="ne8" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Path>
+                <Point x="-450" y="-150"/>
+                <Point x="152.727" y="-150"/>
+            </Path>
+        </Rail>
+        <Rail id="ne9" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Path>
+                <Point x="-900" y="-150"/>
+                <Point x="-750" y="2.84217e-14"/>
+            </Path>
+        </Rail>
+        <Rail id="ne10" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Path>
+                <Point x="-600" y="2.84217e-14"/>
+                <Point x="-450" y="-150"/>
+            </Path>
+        </Rail>
+        <Rail id="ne11" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Path>
+                <Point x="-600" y="2.84217e-14"/>
+                <Point x="-450" y="2.84217e-14"/>
+            </Path>
+        </Rail>
+        <Rail id="ne12" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Path>
+                <Point x="-750" y="2.84217e-14"/>
+                <Point x="-600" y="2.84217e-14"/>
+            </Path>
+        </Rail>
+        <Rail id="ne13" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Path>
+                <Point x="-750" y="2.84217e-14"/>
+                <Point x="-900" y="2.84217e-14"/>
+            </Path>
+        </Rail>
+    </Rails>
+    <LinearLocationSystems>
+        <LinearLocationSystem id="loc-1" unit="Km">Loc-1</LinearLocationSystem>
+    </LinearLocationSystems>
+    <Entities>
+        <Entity id="sb5" type="T_RailBoundary">
+            <Placement x="152.727" y="-150" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne8" side="end"/>
+                <Port/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">SB01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="sb6" type="T_RailBoundary">
+            <Placement x="152.727" y="-300" angle="180"/>
+            <Ports>
+                <Port/>
+                <Port rail="ne4" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">SB02</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="sb7" type="T_RailBoundary">
+            <Placement x="-1350.91" y="-300" angle="180" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne4" side="end"/>
+                <Port/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">SB03</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="sb8" type="T_RailBoundary">
+            <Placement x="-1354.55" y="-150" flipAcross="true"/>
+            <Ports>
+                <Port/>
+                <Port rail="ne6" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">SB04</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="plf9" type="T_Platform" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-670.909" y="-300" angle="180" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne4" side="0.547762"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Type">V_short</Attribute>
+                <Attribute id="A_Name">Plat01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Length">0</Attribute>
+                <Attribute id="A_railML_Height">0</Attribute>
+                <Attribute id="A_railML_ValidForDirection">both</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="plf10" type="T_Platform" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-670.909" y="-150" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne7" side="0.509091"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Type">V_short</Attribute>
+                <Attribute id="A_Name">Plat02</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Length">0</Attribute>
+                <Attribute id="A_railML_Height">0</Attribute>
+                <Attribute id="A_railML_ValidForDirection">both</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="swi11" type="T_RailPoint" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-900" y="-150" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne6" side="end"/>
+                <Port rail="ne7" side="start"/>
+                <Port rail="ne9" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Sw01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_BranchingSpeedRight">60</Attribute>
+                <Attribute id="A_railML_BranchingSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedRight">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_Radius">500</Attribute>
+                <Attribute id="A_railML_ContinueCourse">right</Attribute>
+                <Attribute id="A_railML_SwPosition">nominal</Attribute>
+                <Attribute id="A_railML_IsKeyLocked">false</Attribute>
+                <Attribute id="A_railML_ReturnsToPreferredPosition">false</Attribute>
+                <Attribute id="A_railML_MaxThrowTime">PT10S</Attribute>
+                <Attribute id="A_railML_TypicalThrowTime">PT6S</Attribute>
+                <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="swi12" type="T_RailPoint" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-450" y="-150" offx="8.13802e-6" offy="0" flipAlong="true" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne8" side="start"/>
+                <Port rail="ne7" side="end"/>
+                <Port rail="ne10" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Sw02</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_BranchingSpeedRight">60</Attribute>
+                <Attribute id="A_railML_BranchingSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedRight">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_Radius">500</Attribute>
+                <Attribute id="A_railML_ContinueCourse">right</Attribute>
+                <Attribute id="A_railML_SwPosition">nominal</Attribute>
+                <Attribute id="A_railML_IsKeyLocked">false</Attribute>
+                <Attribute id="A_railML_ReturnsToPreferredPosition">false</Attribute>
+                <Attribute id="A_railML_MaxThrowTime">PT10S</Attribute>
+                <Attribute id="A_railML_TypicalThrowTime">PT6S</Attribute>
+                <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="swi13" type="T_RailPoint" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-600" y="2.84217e-14" offx="-8.13802e-6" offy="0"/>
+            <Ports>
+                <Port rail="ne12" side="end"/>
+                <Port rail="ne11" side="start"/>
+                <Port rail="ne10" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Sw03</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_BranchingSpeedRight">60</Attribute>
+                <Attribute id="A_railML_BranchingSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedRight">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_Radius">500</Attribute>
+                <Attribute id="A_railML_ContinueCourse">right</Attribute>
+                <Attribute id="A_railML_SwPosition">nominal</Attribute>
+                <Attribute id="A_railML_IsKeyLocked">false</Attribute>
+                <Attribute id="A_railML_ReturnsToPreferredPosition">false</Attribute>
+                <Attribute id="A_railML_MaxThrowTime">PT10S</Attribute>
+                <Attribute id="A_railML_TypicalThrowTime">PT6S</Attribute>
+                <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus14" type="T_BufferStop" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-450" y="2.84217e-14" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne11" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf05</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="swi15" type="T_RailPoint" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-750" y="2.84217e-14" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne12" side="start"/>
+                <Port rail="ne13" side="start"/>
+                <Port rail="ne9" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Sw04</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_BranchingSpeedRight">60</Attribute>
+                <Attribute id="A_railML_BranchingSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedRight">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_Radius">500</Attribute>
+                <Attribute id="A_railML_ContinueCourse">right</Attribute>
+                <Attribute id="A_railML_SwPosition">nominal</Attribute>
+                <Attribute id="A_railML_IsKeyLocked">false</Attribute>
+                <Attribute id="A_railML_ReturnsToPreferredPosition">false</Attribute>
+                <Attribute id="A_railML_MaxThrowTime">PT10S</Attribute>
+                <Attribute id="A_railML_TypicalThrowTime">PT6S</Attribute>
+                <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus16" type="T_BufferStop" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-900" y="2.84217e-14" angle="180" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne13" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf06</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="lcr17" type="T_LevelCrossing_Old" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-9.09091" y="-300" angle="180"/>
+            <Ports>
+                <Port rail="ne4" side="0.107618"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">Lc01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Activation">none</Attribute>
+                <Attribute id="A_railML_Light">none</Attribute>
+                <Attribute id="A_railML_Barriers">none</Attribute>
+                <Attribute id="A_railML_Acoustic">none</Attribute>
+                <Attribute id="A_railML_PreferredPosition">unknown</Attribute>
+                <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
+                <Attribute id="A_railML_ControlType">autonomous</Attribute>
+                <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="lcr18" type="T_LevelCrossing_Old" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-141.818" y="-150" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne8" side="0.511313"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">Lc02</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Activation">none</Attribute>
+                <Attribute id="A_railML_Light">none</Attribute>
+                <Attribute id="A_railML_Barriers">none</Attribute>
+                <Attribute id="A_railML_Acoustic">none</Attribute>
+                <Attribute id="A_railML_PreferredPosition">unknown</Attribute>
+                <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
+                <Attribute id="A_railML_ControlType">autonomous</Attribute>
+                <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="lcr19" type="T_LevelCrossing_Old" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-1190.91" y="-150" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne6" side="0.36"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">Lc03</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Activation">none</Attribute>
+                <Attribute id="A_railML_Light">none</Attribute>
+                <Attribute id="A_railML_Barriers">none</Attribute>
+                <Attribute id="A_railML_Acoustic">none</Attribute>
+                <Attribute id="A_railML_PreferredPosition">unknown</Attribute>
+                <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
+                <Attribute id="A_railML_ControlType">autonomous</Attribute>
+                <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="lcr20" type="T_LevelCrossing_Old" macro-area="{ab35597d-b1fb-4f40-8382-b064676a8f45}">
+            <Placement x="-1061.82" y="-300" angle="180"/>
+            <Ports>
+                <Port rail="ne4" side="0.807739"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">Lc04</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Activation">none</Attribute>
+                <Attribute id="A_railML_Light">none</Attribute>
+                <Attribute id="A_railML_Barriers">none</Attribute>
+                <Attribute id="A_railML_Acoustic">none</Attribute>
+                <Attribute id="A_railML_PreferredPosition">unknown</Attribute>
+                <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
+                <Attribute id="A_railML_ControlType">autonomous</Attribute>
+                <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
+            </Attributes>
+        </Entity>
+    </Entities>
+    <TrackCircuits/>
+</RaILAiD>

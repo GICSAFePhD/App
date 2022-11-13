@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RaILAiD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.rail-aid.com/schema/ SchematicPlan-1.8.xsd" version="1.8">
+    <Globals>
+        <Attribute id="R_Main.A_Path">F:/PhD/App/Example_7.railaid</Attribute>
+        <Attribute id="R_Main.A_Created">mié. dic. 22 10:50:34 2021</Attribute>
+        <Attribute id="R_Main.A_Object_Library_Version">Italia 4.6</Attribute>
+        <Attribute id="R_Main.A_Object_Library_FileName">ObjectLibrary_GA.xml</Attribute>
+        <Attribute id="R_Main.A_RaILAiD_Version">1.1.9</Attribute>
+        <Attribute id="R_Main.A_RailML_Version">3.1</Attribute>
+        <Attribute id="R_Main.A_RailMLPlugin_Version">0.9.5</Attribute>
+        <Attribute id="_R_Core.A_RouteTerminalCategory">signals</Attribute>
+        <Attribute id="_R_Core.A_RouteRailSetCategory">tvdSections</Attribute>
+        <Attribute id="R_railML_Info.A_Description">Platform and Station</Attribute>
+        <Attribute id="R_railML_Info.A_Author">Martin</Attribute>
+        <Attribute id="R_railML_Info.A_Designator_registry">_Example</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_from">2021-12-22</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_to">2022-12-22</Attribute>
+    </Globals>
+    <MacroAreas/>
+    <BackgroundImage/>
+    <IdGenerators nextRailId="3" nextEntityId="33">
+        <EntityName definitionId="BufferStopNameGen" nextId="4"/>
+        <EntityName definitionId="ConnectionNameGen" nextId="2"/>
+        <EntityName definitionId="RailPointNameGen" nextId="3"/>
+    </IdGenerators>
+    <Rails>
+        <Rail id="ne1" macro-area="">
+            <Path>
+                <Point x="-1050" y="150"/>
+                <Point x="1350" y="150"/>
+            </Path>
+        </Rail>
+        <Rail id="ne2" macro-area="">
+            <Path>
+                <Point x="-1050" y="-150"/>
+                <Point x="1350" y="-150"/>
+            </Path>
+        </Rail>
+    </Rails>
+    <LinearLocationSystems>
+        <LinearLocationSystem id="loc-1" unit="Km">Loc-1</LinearLocationSystem>
+    </LinearLocationSystems>
+    <Entities>
+        <Entity id="bus1" type="T_BufferStop">
+            <Placement x="-1050" y="150"/>
+            <Ports>
+                <Port rail="ne1" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Designator_Entry">BUFFERSTOP Buf01</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus2" type="T_BufferStop">
+            <Placement x="1350" y="150" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne1" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf02</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Designator_Entry">BUFFERSTOP Buf02</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus11" type="T_BufferStop">
+            <Placement x="-1050" y="-150"/>
+            <Ports>
+                <Port rail="ne2" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Designator_Entry">BUFFERSTOP Buf01</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="lcr22" type="T_LevelCrossing_SingleLine_SB">
+            <Placement x="-74.6936" y="-150" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne2" side="0.406378"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">Lc07</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Designator_Entry">LEVEL CROSSING Lc07</Attribute>
+                <Attribute id="A_railML_Activation">none</Attribute>
+                <Attribute id="A_railML_Light">none</Attribute>
+                <Attribute id="A_railML_Barriers">none</Attribute>
+                <Attribute id="A_railML_Acoustic">none</Attribute>
+                <Attribute id="A_railML_PreferredPosition">unknown</Attribute>
+                <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
+                <Attribute id="A_railML_ControlType">autonomous</Attribute>
+                <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="lcr23" type="T_LevelCrossing_SingleLine_SB">
+            <Placement x="-329.286" y="150" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne1" side="0.300297"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">Lc08</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Designator_Entry">LEVEL CROSSING Lc08</Attribute>
+                <Attribute id="A_railML_Activation">none</Attribute>
+                <Attribute id="A_railML_Light">none</Attribute>
+                <Attribute id="A_railML_Barriers">none</Attribute>
+                <Attribute id="A_railML_Acoustic">none</Attribute>
+                <Attribute id="A_railML_PreferredPosition">unknown</Attribute>
+                <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
+                <Attribute id="A_railML_ControlType">autonomous</Attribute>
+                <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="plf25" type="T_Platform">
+            <Placement x="687.273" y="150"/>
+            <Ports>
+                <Port rail="ne1" side="0.723864"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Type">V_short</Attribute>
+                <Attribute id="A_Name">Plat02</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Designator_Entry">PLATFORM Plat02</Attribute>
+                <Attribute id="A_railML_Length">200</Attribute>
+                <Attribute id="A_railML_Height">0</Attribute>
+                <Attribute id="A_railML_ValidForDirection">both</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="plf26" type="T_Platform">
+            <Placement x="247.335" y="-150"/>
+            <Ports>
+                <Port rail="ne2" side="0.540556"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Type">V_short</Attribute>
+                <Attribute id="A_Name">Plat03</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Designator_Entry">PLATFORM Plat03</Attribute>
+                <Attribute id="A_railML_Length">200</Attribute>
+                <Attribute id="A_railML_Height">0</Attribute>
+                <Attribute id="A_railML_ValidForDirection">both</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus31" type="T_BufferStop">
+            <Placement x="1350" y="-150" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne2" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf03</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+    </Entities>
+    <TrackCircuits/>
+</RaILAiD>

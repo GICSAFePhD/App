@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RaILAiD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.rail-aid.com/schema/ SchematicPlan-1.8.xsd" version="1.8">
+    <Globals>
+        <Attribute id="R_Main.A_Path">F:/PhD/App/roca_2.railaid</Attribute>
+        <Attribute id="R_Main.A_Created">dom. ene. 16 20:12:32 2022</Attribute>
+        <Attribute id="R_Main.A_Object_Library_Version">Italia 4.6</Attribute>
+        <Attribute id="R_Main.A_Object_Library_FileName">ObjectLibrary_GA.xml</Attribute>
+        <Attribute id="R_Main.A_RaILAiD_Version">1.1.9</Attribute>
+        <Attribute id="R_Main.A_RailML_Version">3.1</Attribute>
+        <Attribute id="R_Main.A_RailMLPlugin_Version">0.9.5</Attribute>
+        <Attribute id="_R_Core.A_RouteTerminalCategory">signals</Attribute>
+        <Attribute id="_R_Core.A_RouteRailSetCategory">tvdSections</Attribute>
+        <Attribute id="R_railML_Info.A_Designator_registry">_Example</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_from">2022-01-16</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_to">2023-01-16</Attribute>
+    </Globals>
+    <MacroAreas>
+        <MacroArea id="{e18a1b29-2929-4e46-8109-c54f2a51f52a}" name="longchamps-glew" type="line" status="offline">
+            <Filepath>F:/PhD/App/roca_2_folder/area_0_longchamps-glew.railaid_child</Filepath>
+            <Links></Links>
+            <Bounds x="147.727" y="-305" width="768.721" height="160"/>
+        </MacroArea>
+        <MacroArea id="{526ffd3f-39bd-4ed8-bb53-a05b7299a163}" name="Glew" type="station" status="offline">
+            <Filepath>F:/PhD/App/roca_2_folder/area_1_Glew.railaid_child</Filepath>
+            <Links></Links>
+            <Bounds x="904.629" y="-480.5" width="1958.42" height="511"/>
+        </MacroArea>
+        <MacroArea id="{ab35597d-b1fb-4f40-8382-b064676a8f45}" name="Longchamps" type="station" status="online">
+            <Filepath>F:/PhD/App/roca_2_folder/area_2_Longchamps.railaid_child</Filepath>
+            <Links></Links>
+            <Bounds x="-1359.55" y="-371" width="1517.28" height="401.5"/>
+        </MacroArea>
+    </MacroAreas>
+    <BackgroundImage/>
+    <IdGenerators nextRailId="32" nextEntityId="46">
+        <EntityName definitionId="BufferStopNameGen" nextId="20"/>
+        <EntityName definitionId="LevelCrossingNameGen" nextId="5"/>
+        <EntityName definitionId="PlatformNameGen" nextId="3"/>
+        <EntityName definitionId="RailPointNameGen" nextId="13"/>
+        <EntityName definitionId="StationBoundaryNameGen" nextId="9"/>
+    </IdGenerators>
+    <Rails>
+        <Rail id="ne1" macro-area="">
+            <Path>
+                <Point x="-1500" y="-150"/>
+                <Point x="-1354.55" y="-150"/>
+            </Path>
+        </Rail>
+        <Rail id="ne2" macro-area="">
+            <Path>
+                <Point x="3000" y="-300"/>
+                <Point x="2858.05" y="-300"/>
+            </Path>
+        </Rail>
+        <Rail id="ne5" macro-area="">
+            <Path>
+                <Point x="-1350.91" y="-300"/>
+                <Point x="-1500" y="-300"/>
+            </Path>
+        </Rail>
+        <Rail id="ne31" macro-area="">
+            <Path>
+                <Point x="2854.42" y="-150"/>
+                <Point x="3000" y="-150"/>
+            </Path>
+        </Rail>
+    </Rails>
+    <LinearLocationSystems>
+        <LinearLocationSystem id="loc-1" unit="Km">Loc-1</LinearLocationSystem>
+    </LinearLocationSystems>
+    <Entities>
+        <Entity id="bus1" type="T_BufferStop">
+            <Placement x="-1500" y="-150"/>
+            <Ports>
+                <Port rail="ne1" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus4" type="T_BufferStop">
+            <Placement x="-1500" y="-300" angle="180" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne5" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf04</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus42" type="T_BufferStop">
+            <Placement x="3000" y="-300" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne2" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf18</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus43" type="T_BufferStop">
+            <Placement x="3000" y="-150" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne31" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf19</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="sb44" type="T_RailBoundary">
+            <Placement x="2858.05" y="-300" angle="180" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne2" side="end"/>
+                <Port/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">SB07</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="sb45" type="T_RailBoundary">
+            <Placement x="2854.42" y="-150"/>
+            <Ports>
+                <Port/>
+                <Port rail="ne31" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">SB08</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+            </Attributes>
+        </Entity>
+    </Entities>
+    <TrackCircuits/>
+</RaILAiD>
