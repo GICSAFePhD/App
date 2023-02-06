@@ -14,14 +14,12 @@ from ATG import ATG
 from ACG import ACG
 from AGG import AGG
 
-# NOT 5
-
-i = 9
+i = 2
 
 #INPUT_FILE  = "F:\PhD\RailML\Example_"+str(i)+".railml"
-INPUT_FILE  = "C:\PhD\RailML\Example_"+str(i)+".railml"
+INPUT_FILE  = "C:\PhD\Layouts\Example_4\Example_4.railml"
 #OUTPUT_FILE = "F:\PhD\RailML\Example_"+str(i)+"_B.railml"
-OUTPUT_FILE = "C:\PhD\RailML\Example_"+str(i)+"_B.railml"
+OUTPUT_FILE = "C:\PhD\Layouts\Example_4\Example_4_B.railml"
 
 RML = railML.railML()
 
