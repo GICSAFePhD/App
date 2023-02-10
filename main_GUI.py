@@ -18,7 +18,7 @@ from tkinter import *
 root = Tk()
 
 root.title('Railway Network Analyzer')
-root.geometry('500x300')
+root.geometry('500x350')
 root.configure(bg='#dddddd')
 
 frame1 = Label(root, bg='#dddddd')
@@ -31,13 +31,14 @@ languages = ['Example_1', 'Example_2', 'Example_3', 'Example_4', 'Example_5', 'E
 n = StringVar(frame3)
 n.set(languages[0])
 
-Checkbutton1 = IntVar()
-Checkbutton2 = IntVar()
-Checkbutton3 = IntVar()
-Checkbutton4 = IntVar()
-Checkbutton5 = IntVar()
-Checkbutton6 = IntVar()
-Checkbutton7 = IntVar()
+Checkbutton1 = IntVar(value = 1)
+Checkbutton2 = IntVar(value = 1)
+Checkbutton3 = IntVar(value = 1)
+Checkbutton4 = IntVar(value = 1)
+Checkbutton5 = IntVar(value = 1)
+Checkbutton6 = IntVar(value = 1)
+Checkbutton7 = IntVar(value = 1)
+Checkbutton8 = IntVar()
 
 var_r = StringVar()
 var_r.set('')
@@ -57,7 +58,6 @@ def callback(selection):
 
 option_menu = OptionMenu(frame3, n ,*languages)
 
-
 RML = railML.railML()
 
 def launchSystem():
@@ -65,19 +65,19 @@ def launchSystem():
     #Label(root, text=f'Running RNA ... ').pack()
     # Call RNA
     try:
-        config = [Checkbutton1.get(),Checkbutton2.get(),Checkbutton3.get(),Checkbutton4.get(),Checkbutton5.get(),Checkbutton6.get(),Checkbutton7.get()]
+        config = [Checkbutton1.get(),Checkbutton2.get(),Checkbutton3.get(),Checkbutton4.get(),Checkbutton5.get(),Checkbutton6.get(),Checkbutton7.get(),Checkbutton8.get()]
      
         i = 2
 
         INPUT_FILE  = "C:\PhD\Layouts\Example_"+str(i)+"\Example_"+str(i)+".railml"
         OUTPUT_FILE = "C:\PhD\Layouts\Example_"+str(i)+"\Example_"+str(i)+"_B.railml"
 
-        #print(n.get())
+        #print(n.get()[-1])
 
         INPUT_FILE= "C:\PhD\Layouts\\"+str(n.get())+"\\"+str(n.get())+".railml"
         OUTPUT_FILE= "C:\PhD\Layouts\\"+str(n.get())+"\\"+str(n.get())+"_B.railml"
 
-        x = RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,False,True,config)
+        x = RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,False,True,config,int(n.get()[-1]))
         #Label(root, text=f'{x}').pack()
         var_r.set(f'Analysis for {n.get()} done > {x[1]}')
         var_l.set(x[0])
@@ -141,7 +141,8 @@ def main():
     Checkbutton(frame2, text="Analyze level crossings", variable=Checkbutton4, onvalue=1, offvalue=0, command=isChecked).pack()
     Checkbutton(frame2, text="Analyze platforms", variable=Checkbutton5, onvalue=1, offvalue=0, command=isChecked).pack()
     Checkbutton(frame2, text="Analyze switches", variable=Checkbutton6, onvalue=1, offvalue=0, command=isChecked).pack()
-    Checkbutton(frame2, text="Simplify signals", variable=Checkbutton7, onvalue=1, offvalue=0, command=isChecked).pack()
+    Checkbutton(frame2, text="One direction only", variable=Checkbutton7, onvalue=1, offvalue=0, command=isChecked).pack()
+    Checkbutton(frame2, text="Simplify signals", variable=Checkbutton8, onvalue=1, offvalue=0, command=isChecked).pack()
     button.pack() 
     
     root.mainloop()
