@@ -26,6 +26,9 @@ frame1.pack()
 frame3 = LabelFrame(frame1, text='Example', padx=40, pady=20)
 frame2 = LabelFrame(frame1, text='Configuration', padx=40, pady=10)
 
+slider = StringVar()
+slider.set('0.00')
+
 languages = ['Example_1', 'Example_2', 'Example_3', 'Example_4', 'Example_5', 'Example_6', 'Example_7']
 
 n = StringVar(frame3)
@@ -50,23 +53,24 @@ r = Label(root, textvariable = var_r)
 r.pack()
 
 l = Label(frame3, textvariable = var_l)
-#l.pack()
 l.grid (row = 2, column = 0)
+
+option_menu = OptionMenu(frame3, n ,*languages)
+slide_bar =  Scale(frame2, from_= 300, to =  500, orient = HORIZONTAL, label = 'Distance Lc-Ptf')
+
+RML = railML.railML()
 
 def callback(selection):
     print(n.get())
 
-option_menu = OptionMenu(frame3, n ,*languages)
-
-RML = railML.railML()
 
 def launchSystem():
     #Label(root, text=f'Running RNA ... {Checkbutton1.get()}').pack()
     #Label(root, text=f'Running RNA ... ').pack()
     # Call RNA
     try:
-        config = [Checkbutton1.get(),Checkbutton2.get(),Checkbutton3.get(),Checkbutton4.get(),Checkbutton5.get(),Checkbutton6.get(),Checkbutton7.get(),Checkbutton8.get()]
-     
+        config = [Checkbutton1.get(),Checkbutton2.get(),Checkbutton3.get(),Checkbutton4.get(),Checkbutton5.get(),Checkbutton6.get(),Checkbutton7.get(),Checkbutton8.get(),slide_bar.get()]
+        
         i = 2
 
         INPUT_FILE  = "C:\PhD\Layouts\Example_"+str(i)+"\Example_"+str(i)+".railml"
@@ -106,7 +110,6 @@ def launchSystem():
     except Exception as e:
         print(f'ATA had an error: {e}')
 
-
 button = Button(frame2, text='no RNA!', state=DISABLED, padx=20, pady=5, command = launchSystem)
 
 def isChecked():
@@ -117,21 +120,18 @@ def isChecked():
         button['state'] = DISABLED
         button.configure(text='No RNA!',command = launchSystem)
     
-
-
 def main():
     
     #root.withdraw()
     #root.geometry("500x300")
     frame3.pack(padx = 10 , pady = 10 , side = LEFT)
     
-    
     #option_menu.pack()
-    
     #label = Label(frame3, text='')
     
-
     option_menu.grid(row=1, column=0)
+    slide_bar.pack()#grid(row=1, column=0)
+
 
     frame2.pack(padx = 10 , pady = 10 , side = RIGHT)
 
@@ -143,6 +143,7 @@ def main():
     Checkbutton(frame2, text="Analyze switches", variable=Checkbutton6, onvalue=1, offvalue=0, command=isChecked).pack()
     Checkbutton(frame2, text="One direction only", variable=Checkbutton7, onvalue=1, offvalue=0, command=isChecked).pack()
     Checkbutton(frame2, text="Simplify signals", variable=Checkbutton8, onvalue=1, offvalue=0, command=isChecked).pack()
+
     button.pack() 
     
     root.mainloop()
