@@ -18,16 +18,19 @@ from tkinter import *
 root = Tk()
 
 root.title('Railway Network Analyzer')
-root.geometry('500x350')
-root.configure(bg='#dddddd')
+root.geometry('500x450')
+root.configure(bg='#DDDDDD')
 
-frame1 = Label(root, bg='#dddddd')
+frame1 = Label(root, bg='#DDDDDD')
 frame1.pack()
 frame3 = LabelFrame(frame1, text='Example', padx=40, pady=20)
 frame2 = LabelFrame(frame1, text='Configuration', padx=40, pady=10)
 
 slider = StringVar()
-slider.set('0.00')
+slider.set('300.00')
+
+slider2 = StringVar()
+slider2.set('300.00')
 
 languages = ['Example_1', 'Example_2', 'Example_3', 'Example_4', 'Example_5', 'Example_6', 'Example_7']
 
@@ -57,19 +60,22 @@ l.grid (row = 2, column = 0)
 
 option_menu = OptionMenu(frame3, n ,*languages)
 slide_bar =  Scale(frame2, from_= 300, to =  500, orient = HORIZONTAL, label = 'Distance Lc-Ptf')
+slide_bar2 =  Scale(frame2, from_= 200, to =  500, orient = HORIZONTAL, label = 'Max Track length')
+
+slide_bar.set(300)
+slide_bar2.set(200)
 
 RML = railML.railML()
 
 def callback(selection):
     print(n.get())
 
-
 def launchSystem():
     #Label(root, text=f'Running RNA ... {Checkbutton1.get()}').pack()
     #Label(root, text=f'Running RNA ... ').pack()
     # Call RNA
     try:
-        config = [Checkbutton1.get(),Checkbutton2.get(),Checkbutton3.get(),Checkbutton4.get(),Checkbutton5.get(),Checkbutton6.get(),Checkbutton7.get(),Checkbutton8.get(),slide_bar.get()]
+        config = [Checkbutton1.get(),Checkbutton2.get(),Checkbutton3.get(),Checkbutton4.get(),Checkbutton5.get(),Checkbutton6.get(),Checkbutton7.get(),Checkbutton8.get(),slide_bar.get(),slide_bar2.get()]
         
         i = 2
 
@@ -131,7 +137,7 @@ def main():
     
     option_menu.grid(row=1, column=0)
     slide_bar.pack()#grid(row=1, column=0)
-
+    slide_bar2.pack()
 
     frame2.pack(padx = 10 , pady = 10 , side = RIGHT)
 
