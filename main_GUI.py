@@ -32,7 +32,7 @@ slider.set('300.00')
 slider2 = StringVar()
 slider2.set('300.00')
 
-languages = ['Example_1', 'Example_2', 'Example_3', 'Example_4', 'Example_5', 'Example_6', 'Example_7']
+languages = ['Example_1', 'Example_2', 'Example_3', 'Example_4', 'Example_5', 'Example_6', 'Example_7', 'Example_8']
 
 n = StringVar(frame3)
 n.set(languages[0])
@@ -43,7 +43,7 @@ Checkbutton3 = IntVar(value = 1)
 Checkbutton4 = IntVar(value = 1)
 Checkbutton5 = IntVar(value = 1)
 Checkbutton6 = IntVar(value = 1)
-Checkbutton7 = IntVar(value = 1)
+Checkbutton7 = IntVar(value = 0)
 Checkbutton8 = IntVar()
 
 var_r = StringVar()
@@ -77,15 +77,10 @@ def launchSystem():
     try:
         config = [Checkbutton1.get(),Checkbutton2.get(),Checkbutton3.get(),Checkbutton4.get(),Checkbutton5.get(),Checkbutton6.get(),Checkbutton7.get(),Checkbutton8.get(),slide_bar.get(),slide_bar2.get()]
         
-        i = 2
-
-        INPUT_FILE  = "C:\PhD\Layouts\Example_"+str(i)+"\Example_"+str(i)+".railml"
-        OUTPUT_FILE = "C:\PhD\Layouts\Example_"+str(i)+"\Example_"+str(i)+"_B.railml"
-
         #print(n.get()[-1])
 
-        INPUT_FILE= "C:\PhD\Layouts\\"+str(n.get())+"\\"+str(n.get())+".railml"
-        OUTPUT_FILE= "C:\PhD\Layouts\\"+str(n.get())+"\\"+str(n.get())+"_B.railml"
+        INPUT_FILE= "C:\PhD\RailML\Layouts\\"+str(n.get())+"\\"+str(n.get())+".railml"
+        OUTPUT_FILE= "C:\PhD\RailML\Layouts\\"+str(n.get())+"\\"+str(n.get())+"_B.railml"
 
         x = RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,False,True,config,int(n.get()[-1]))
         #Label(root, text=f'{x}').pack()
