@@ -32,7 +32,7 @@ slider.set('300.00')
 slider2 = StringVar()
 slider2.set('300.00')
 
-languages = ['Example_1', 'Example_2', 'Example_3', 'Example_4', 'Example_5', 'Example_6', 'Example_7', 'Example_8']
+languages = ['Example_1', 'Example_2', 'Example_3', 'Example_4', 'Example_5', 'Example_6', 'Example_7', 'Example_8', 'Example_9']
 
 n = StringVar(frame3)
 n.set(languages[0])
@@ -44,7 +44,7 @@ Checkbutton4 = IntVar(value = 1)
 Checkbutton5 = IntVar(value = 1)
 Checkbutton6 = IntVar(value = 1)
 Checkbutton7 = IntVar(value = 0)
-Checkbutton8 = IntVar()
+Checkbutton8 = IntVar(value = 0)
 
 var_r = StringVar()
 var_r.set('')
