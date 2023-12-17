@@ -1,0 +1,596 @@
+Nodes: 53 | Switches: 15 | Signals: 0 | Detectors: 7 | Ends: 30 | Barriers: 1
+Node ne1:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track1
+	TrainDetectionElements -> ac235
+		Type -> axleCounter
+		Side -> right
+	Type = BufferStop -> ['bus2']
+	Neighbours = 2 -> ['ne9', 'ne7']
+Node ne4:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track3
+	Type = BufferStop -> ['bus5']
+	Neighbours = 1 -> ['ne106']
+Node ne7:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track5
+	TrainDetectionElements -> ac236
+		Type -> axleCounter
+		Side -> left
+	Type = BufferStop -> ['bus8']
+	Neighbours = 2 -> ['ne1', 'ne9']
+Node ne9:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track6
+	TrainDetectionElements -> ac237
+		Type -> axleCounter
+		Side -> right
+	TrainDetectionElements -> ac238
+		Type -> axleCounter
+		Side -> right
+	Neighbours = 3 -> ['ne1', 'ne7', 'ne95']
+	Switches -> 68W02
+		ContinueCourse -> right -> ne1
+		BranchCourse -> left -> ne7
+Node ne11:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track8
+	Neighbours = 4 -> ['ne59', 'ne17', 'ne52', 'ne14']
+Node ne14:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track4
+	Derailer -> der172
+		 Side -> left
+	Type = BufferStop -> ['bus6']
+	Neighbours = 2 -> ['ne11', 'ne52']
+Node ne17:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track7
+	Neighbours = 4 -> ['ne11', 'ne78', 'ne79', 'ne59']
+Node ne23:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track12
+	Neighbours = 3 -> ['ne64', 'ne24', 'ne26']
+Node ne24:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track11
+	Neighbours = 3 -> ['ne23', 'ne64', 'ne26']
+Node ne26:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track13
+	Neighbours = 3 -> ['ne23', 'ne24', 'ne65']
+	Switches -> 70W02
+		ContinueCourse -> right -> ne23
+		BranchCourse -> left -> ne24
+Node ne29:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track16
+	Neighbours = 4 -> ['ne30', 'ne83', 'ne32', 'ne110']
+Node ne30:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track14
+	Neighbours = 4 -> ['ne29', 'ne83', 'ne89', 'ne91']
+	Switches -> Sw08
+		ContinueCourse -> right -> ne83
+		BranchCourse -> left -> ne29
+	Switches -> Sw12
+		ContinueCourse -> left -> ne89
+		BranchCourse -> right -> ne91
+Node ne32:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track18
+	Neighbours = 4 -> ['ne29', 'ne83', 'ne82', 'ne110']
+	Switches -> Sw04
+		ContinueCourse -> right -> ne83
+		BranchCourse -> left -> ne82
+Node ne41:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track19
+	Type = BufferStop -> ['bus37']
+	Neighbours = 3 -> ['ne82', 'ne84', 'ne85']
+Node ne43:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track21
+	Neighbours = 4 -> ['ne44', 'ne48', 'ne47', 'ne102']
+Node ne44:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track20
+	Neighbours = 3 -> ['ne43', 'ne101', 'ne102']
+	Switches -> 71W01
+		ContinueCourse -> left -> ne102
+		BranchCourse -> right -> ne43
+Node ne47:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track23
+	Type = BufferStop -> ['bus50']
+	Neighbours = 2 -> ['ne43', 'ne48']
+Node ne48:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track22
+	Neighbours = 2 -> ['ne43', 'ne47']
+	Switches -> 71W02
+		ContinueCourse -> right -> ne43
+		BranchCourse -> left -> ne47
+Node ne59:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	TrainDetectionElements -> ac241
+		Type -> axleCounter
+		Side -> left
+	Neighbours = 3 -> ['ne11', 'ne17', 'ne95']
+	Switches -> 69W03
+		ContinueCourse -> left -> ne17
+		BranchCourse -> right -> ne11
+Node ne64:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track10
+	Neighbours = 3 -> ['ne23', 'ne24', 'ne103']
+	Switches -> 70W01
+		ContinueCourse -> right -> ne24
+		BranchCourse -> left -> ne23
+Node ne65:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 2 -> ['ne26', 'ne102']
+Node ne67:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 2 -> ['ne70', 'ne103']
+Node ne70:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 2 -> ['ne67', 'ne104']
+Node ne78:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 3 -> ['ne17', 'ne79', 'ne93']
+	Switches -> Sw06
+		ContinueCourse -> right -> ne17
+		BranchCourse -> left -> ne79
+Node ne79:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track24
+	Neighbours = 5 -> ['ne17', 'ne78', 'ne94', 'ne77', 'ne21']
+Node ne82:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track25
+	Neighbours = 5 -> ['ne32', 'ne41', 'ne83', 'ne84', 'ne85']
+Node ne83:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track15
+	Neighbours = 4 -> ['ne29', 'ne30', 'ne32', 'ne82']
+Node ne84:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track26
+	Type = BufferStop -> ['bus327']
+	Neighbours = 3 -> ['ne41', 'ne82', 'ne85']
+Node ne86:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track28
+	Type = BufferStop -> ['bus331']
+	Neighbours = 2 -> ['ne88', 'ne87']
+	Switches -> Sw11
+		ContinueCourse -> left -> ne88
+		BranchCourse -> right -> ne87
+Node ne87:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track30
+	Neighbours = 4 -> ['ne86', 'ne88', 'ne91', 'ne90']
+Node ne88:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track29
+	Type = BufferStop -> ['bus332']
+	Neighbours = 2 -> ['ne86', 'ne87']
+Node ne89:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track27
+	Type = BufferStop -> ['bus330']
+	Neighbours = 2 -> ['ne30', 'ne91']
+Node ne90:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track32
+	Type = BufferStop -> ['bus335']
+	Neighbours = 2 -> ['ne87', 'ne91']
+Node ne91:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track31
+	Neighbours = 4 -> ['ne30', 'ne87', 'ne89', 'ne90']
+	Switches -> Sw13
+		ContinueCourse -> right -> ne87
+		BranchCourse -> left -> ne90
+Node ne93:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 2 -> ['ne78', 'ne96']
+Node ne94:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 4 -> ['ne79', 'ne97', 'ne77', 'ne21']
+Node ne95:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	TrainDetectionElements -> ac239
+		Type -> axleCounter
+		Side -> left
+	TrainDetectionElements -> ac240
+		Type -> axleCounter
+		Side -> left
+	Neighbours = 2 -> ['ne9', 'ne59']
+	Level crossing -> Lc01
+		Protection -> true | Barriers -> doubleHalfBarrier | Lights -> none Acoustic -> bell
+		Position -> [1145, -300] | Coordinate: 0.5254
+Node ne96:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 2 -> ['ne93', 'ne98']
+Node ne97:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 2 -> ['ne94', 'ne99']
+Node ne98:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 2 -> ['ne96', 'ne105']
+Node ne99:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 2 -> ['ne97', 'ne106']
+Node ne100:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 3 -> ['ne101', 'ne110', 'ne85']
+	Switches -> Sw41
+		ContinueCourse -> right -> ne110
+		BranchCourse -> left -> ne85
+Node ne101:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 2 -> ['ne44', 'ne100']
+Node ne102:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 3 -> ['ne43', 'ne44', 'ne65']
+Node ne103:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 2 -> ['ne64', 'ne67']
+Node ne105:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track2
+	Type = BufferStop -> ['bus3']
+	Neighbours = 1 -> ['ne98']
+Node ne106:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 2 -> ['ne4', 'ne99']
+Node ne85:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track33
+	Neighbours = 5 -> ['ne41', 'ne82', 'ne84', 'ne100', 'ne110']
+Node ne77:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track34
+	Neighbours = 5 -> ['ne79', 'ne94', 'ne104', 'ne52', 'ne21']
+Node ne104:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Neighbours = 4 -> ['ne70', 'ne77', 'ne21', 'ne52']
+Node ne52:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track9
+	Neighbours = 5 -> ['ne11', 'ne14', 'ne77', 'ne104', 'ne21']
+	Switches -> 69W04
+		ContinueCourse -> left -> ne14
+		BranchCourse -> right -> ne11
+Node ne21:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track35
+	Neighbours = 5 -> ['ne79', 'ne94', 'ne77', 'ne104', 'ne52']
+Node ne110:
+	Lines -> line442
+	Lines -> line443
+	Lines -> line451
+	Lines -> line445
+	Lines -> line446
+	Lines -> line447
+	Lines -> line448
+	Track = track17
+	Neighbours = 4 -> ['ne29', 'ne32', 'ne100', 'ne85']
+	Switches -> Sw09
+		ContinueCourse -> left -> ne32
+		BranchCourse -> right -> ne29

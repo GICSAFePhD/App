@@ -1,0 +1,36 @@
+Nodes: 7 | Switches: 3 | Signals: 0 | Detectors: 0 | Ends: 5 | Barriers: 0
+Node ne1:
+	Track = track1
+	Type = BufferStop -> ['bus1']
+	Neighbours = 2 -> ['ne41', 'ne40']
+	Switches -> Sw18
+		ContinueCourse -> right -> ne41
+		BranchCourse -> left -> ne40
+Node ne31:
+	Track = track2
+	Type = BufferStop -> ['bus4']
+	Neighbours = 2 -> ['ne40', 'ne32']
+Node ne32:
+	Track = track4
+	Type = BufferStop -> ['bus35']
+	Neighbours = 2 -> ['ne31', 'ne40']
+Node ne40:
+	Track = track3
+	Neighbours = 4 -> ['ne1', 'ne31', 'ne32', 'ne41']
+	Switches -> Sw14
+		ContinueCourse -> left -> ne32
+		BranchCourse -> right -> ne31
+Node ne41:
+	Track = track5
+	Neighbours = 4 -> ['ne1', 'ne40', 'ne42', 'ne43']
+Node ne42:
+	Track = track6
+	Type = BufferStop -> ['bus48']
+	Neighbours = 2 -> ['ne41', 'ne43']
+	Switches -> Sw19
+		ContinueCourse -> left -> ne43
+		BranchCourse -> right -> ne41
+Node ne43:
+	Track = track7
+	Type = BufferStop -> ['bus47']
+	Neighbours = 2 -> ['ne41', 'ne42']

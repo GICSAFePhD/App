@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RaILAiD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.rail-aid.com/schema/ SchematicPlan-1.8.xsd" version="1.8">
+    <Globals>
+        <Attribute id="R_Main.A_Path">C:/PhD/RailML/Layouts/Example_9/Example_9.railaid</Attribute>
+        <Attribute id="R_Main.A_Created">mié. jul. 26 18:18:37 2023</Attribute>
+        <Attribute id="R_Main.A_Object_Library_Version">Italia 4.6</Attribute>
+        <Attribute id="R_Main.A_Object_Library_FileName">ObjectLibrary_GA.xml</Attribute>
+        <Attribute id="R_Main.A_RaILAiD_Version">1.1.9</Attribute>
+        <Attribute id="R_Main.A_RailML_Version">3.1</Attribute>
+        <Attribute id="R_Main.A_RailMLPlugin_Version">0.9.5</Attribute>
+        <Attribute id="_R_Core.A_RouteTerminalCategory">signals</Attribute>
+        <Attribute id="_R_Core.A_RouteRailSetCategory">tvdSections</Attribute>
+        <Attribute id="R_Project_Info.A_Project_Name">Ejemplo_9</Attribute>
+        <Attribute id="R_Project_Info.A_Revision">r0</Attribute>
+        <Attribute id="R_Project_Info.A_Author">Trenes_Argentinos</Attribute>
+        <Attribute id="R_Project_Info.A_Comments">Ejemplo de prueba</Attribute>
+        <Attribute id="R_railML_Info.A_Description">Ejemplo_real</Attribute>
+        <Attribute id="R_railML_Info.A_Author">Trenes_Argentinos</Attribute>
+        <Attribute id="R_railML_Info.A_Designator_registry">_Example</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_from">2023-07-26</Attribute>
+        <Attribute id="R_railML_Info.A_Validity_to">2024-07-26</Attribute>
+    </Globals>
+    <MacroAreas/>
+    <BackgroundImage/>
+    <IdGenerators nextRailId="54" nextEntityId="89">
+        <EntityName definitionId="BufferStopNameGen" nextId="10"/>
+        <EntityName definitionId="ConnectionNameGen" nextId="22"/>
+        <EntityName definitionId="LevelCrossingNameGen" nextId="12"/>
+        <EntityName definitionId="PlatformNameGen" nextId="15"/>
+        <EntityName definitionId="RailPointNameGen" nextId="34"/>
+    </IdGenerators>
+    <Rails>
+        <Rail id="ne3" macro-area="">
+            <Path>
+                <Point x="9384.05" y="7.39263e-14"/>
+                <Point x="7584.77" y="2.42058e-14"/>
+            </Path>
+        </Rail>
+        <Rail id="ne40" macro-area="">
+            <Path>
+                <Point x="1680" y="-7.12669e-14"/>
+                <Point x="3796.65" y="-9.20912e-14"/>
+            </Path>
+        </Rail>
+        <Rail id="ne46" macro-area="">
+            <Path>
+                <Point x="3796.65" y="-9.20912e-14"/>
+                <Point x="7584.77" y="2.42058e-14"/>
+            </Path>
+        </Rail>
+        <Rail id="ne48" macro-area="">
+            <Path>
+                <Point x="4216.65" y="-420"/>
+                <Point x="3796.65" y="-7.66046e-14"/>
+            </Path>
+        </Rail>
+        <Rail id="ne49" macro-area="">
+            <Path>
+                <Point x="4216.65" y="-420"/>
+                <Point x="4666.65" y="-870"/>
+                <Point x="6714.77" y="-870"/>
+                <Point x="7164.77" y="-420"/>
+            </Path>
+        </Rail>
+        <Rail id="ne50" macro-area="">
+            <Path>
+                <Point x="7164.77" y="-420"/>
+                <Point x="4216.65" y="-420"/>
+            </Path>
+        </Rail>
+        <Rail id="ne53" macro-area="">
+            <Path>
+                <Point x="7164.77" y="-420"/>
+                <Point x="7584.77" y="3.70823e-14"/>
+            </Path>
+        </Rail>
+    </Rails>
+    <LinearLocationSystems>
+        <LinearLocationSystem id="loc-1" unit="Km">Loc-1</LinearLocationSystem>
+    </LinearLocationSystems>
+    <Entities>
+        <Entity id="bus1" type="T_BufferStop">
+            <Placement x="1680" y="-7.12669e-14"/>
+            <Ports>
+                <Port rail="ne40" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf01</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="bus5" type="T_BufferStop">
+            <Placement x="9384.05" y="7.39263e-14" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne3" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Buf05</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">fixedBufferStop</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="lcr29" type="T_LevelCrossing_SingleLine_SB">
+            <Placement x="6051.45" y="-420" angle="180"/>
+            <Ports>
+                <Port rail="ne50" side="0.377637"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">Lc09</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Activation">none</Attribute>
+                <Attribute id="A_railML_Light">none</Attribute>
+                <Attribute id="A_railML_Barriers">none</Attribute>
+                <Attribute id="A_railML_Acoustic">none</Attribute>
+                <Attribute id="A_railML_PreferredPosition">unknown</Attribute>
+                <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
+                <Attribute id="A_railML_ControlType">autonomous</Attribute>
+                <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="lcr30" type="T_LevelCrossing_SingleLine_SB">
+            <Placement x="5960.43" y="-5.08814e-14"/>
+            <Ports>
+                <Port rail="ne46" side="0.571202"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">Lc10</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Activation">none</Attribute>
+                <Attribute id="A_railML_Light">none</Attribute>
+                <Attribute id="A_railML_Barriers">none</Attribute>
+                <Attribute id="A_railML_Acoustic">none</Attribute>
+                <Attribute id="A_railML_PreferredPosition">unknown</Attribute>
+                <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
+                <Attribute id="A_railML_ControlType">autonomous</Attribute>
+                <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="lcr31" type="T_LevelCrossing_SingleLine_SB">
+            <Placement x="6051.45" y="-870" flipAlong="true" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne49" side="1.67613"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">Lc11</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Activation">none</Attribute>
+                <Attribute id="A_railML_Light">none</Attribute>
+                <Attribute id="A_railML_Barriers">none</Attribute>
+                <Attribute id="A_railML_Acoustic">none</Attribute>
+                <Attribute id="A_railML_PreferredPosition">unknown</Attribute>
+                <Attribute id="A_railML_TypicalTimeToClose">PT10S</Attribute>
+                <Attribute id="A_railML_ControlType">autonomous</Attribute>
+                <Attribute id="A_railML_AllowsLocalOperation">false</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="plf64" type="T_Platform">
+            <Placement x="8542.65" y="5.06755e-14" angle="180" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne3" side="0.46763"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Type">V_short</Attribute>
+                <Attribute id="A_Name">Plat10</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Length">0</Attribute>
+                <Attribute id="A_railML_Height">0</Attribute>
+                <Attribute id="A_railML_ValidForDirection">both</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="plf65" type="T_Platform">
+            <Placement x="5487.41" y="-870" flipAlong="true" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne49" side="1.40074"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Type">V_short</Attribute>
+                <Attribute id="A_Name">Plat11</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Length">0</Attribute>
+                <Attribute id="A_railML_Height">0</Attribute>
+                <Attribute id="A_railML_ValidForDirection">both</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="plf66" type="T_Platform">
+            <Placement x="5487.41" y="-420" angle="180"/>
+            <Ports>
+                <Port rail="ne50" side="0.568959"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Type">V_short</Attribute>
+                <Attribute id="A_Name">Plat12</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Length">0</Attribute>
+                <Attribute id="A_railML_Height">0</Attribute>
+                <Attribute id="A_railML_ValidForDirection">both</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="plf67" type="T_Platform">
+            <Placement x="5487.41" y="-4.14647e-14" angle="1.83563e-15" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne46" side="0.446332"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Type">V_short</Attribute>
+                <Attribute id="A_Name">Plat13</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Length">0</Attribute>
+                <Attribute id="A_railML_Height">0</Attribute>
+                <Attribute id="A_railML_ValidForDirection">both</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="plf68" type="T_Platform">
+            <Placement x="2848.79" y="-1.7343e-13" flipAlong="true" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne40" side="0.552189"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Type">V_short</Attribute>
+                <Attribute id="A_Name">Plat14</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Length">0</Attribute>
+                <Attribute id="A_railML_Height">0</Attribute>
+                <Attribute id="A_railML_ValidForDirection">both</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde69" type="T_Connection">
+            <Placement x="4952.85" y="-870" flipAlong="true" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne49" side="1.13974"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J10</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde70" type="T_Connection">
+            <Placement x="4952.85" y="-420" angle="180" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne50" side="0.750281"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J11</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde71" type="T_Connection">
+            <Placement x="4952.85" y="-5.75353e-14" angle="1.83563e-15" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne46" side="0.305217"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J12</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="swi73" type="T_RailPoint">
+            <Placement x="3796.65" y="-9.20912e-14" offx="4.54646e-7" offy="1.45658e-23" angle="1.83563e-15"/>
+            <Ports>
+                <Port rail="ne40" side="end"/>
+                <Port rail="ne46" side="start"/>
+                <Port rail="ne48" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Sw27</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_BranchingSpeedRight">60</Attribute>
+                <Attribute id="A_railML_BranchingSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedRight">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_Radius">500</Attribute>
+                <Attribute id="A_railML_ContinueCourse">right</Attribute>
+                <Attribute id="A_railML_SwPosition">nominal</Attribute>
+                <Attribute id="A_railML_IsKeyLocked">false</Attribute>
+                <Attribute id="A_railML_ReturnsToPreferredPosition">false</Attribute>
+                <Attribute id="A_railML_MaxThrowTime">PT10S</Attribute>
+                <Attribute id="A_railML_TypicalThrowTime">PT6S</Attribute>
+                <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="swi75" type="T_RailPoint">
+            <Placement x="4216.65" y="-420" angle="315" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne48" side="start"/>
+                <Port rail="ne49" side="start"/>
+                <Port rail="ne50" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Sw29</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_BranchingSpeedRight">60</Attribute>
+                <Attribute id="A_railML_BranchingSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedRight">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_Radius">500</Attribute>
+                <Attribute id="A_railML_ContinueCourse">right</Attribute>
+                <Attribute id="A_railML_SwPosition">nominal</Attribute>
+                <Attribute id="A_railML_IsKeyLocked">false</Attribute>
+                <Attribute id="A_railML_ReturnsToPreferredPosition">false</Attribute>
+                <Attribute id="A_railML_MaxThrowTime">PT10S</Attribute>
+                <Attribute id="A_railML_TypicalThrowTime">PT6S</Attribute>
+                <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="swi77" type="T_RailPoint">
+            <Placement x="7584.77" y="2.42058e-14" offx="-8.09483e-6" offy="-2.5934e-22" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne3" side="end"/>
+                <Port rail="ne46" side="end"/>
+                <Port rail="ne53" side="end"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Sw31</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_BranchingSpeedRight">60</Attribute>
+                <Attribute id="A_railML_BranchingSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedRight">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_Radius">500</Attribute>
+                <Attribute id="A_railML_ContinueCourse">right</Attribute>
+                <Attribute id="A_railML_SwPosition">nominal</Attribute>
+                <Attribute id="A_railML_IsKeyLocked">false</Attribute>
+                <Attribute id="A_railML_ReturnsToPreferredPosition">false</Attribute>
+                <Attribute id="A_railML_MaxThrowTime">PT10S</Attribute>
+                <Attribute id="A_railML_TypicalThrowTime">PT6S</Attribute>
+                <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="swi79" type="T_RailPoint">
+            <Placement x="7164.77" y="-420" angle="225"/>
+            <Ports>
+                <Port rail="ne53" side="start"/>
+                <Port rail="ne49" side="end"/>
+                <Port rail="ne50" side="start"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Name">Sw33</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_BranchingSpeedRight">60</Attribute>
+                <Attribute id="A_railML_BranchingSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedRight">60</Attribute>
+                <Attribute id="A_railML_JoiningSpeedLeft">60</Attribute>
+                <Attribute id="A_railML_Radius">500</Attribute>
+                <Attribute id="A_railML_ContinueCourse">right</Attribute>
+                <Attribute id="A_railML_SwPosition">nominal</Attribute>
+                <Attribute id="A_railML_IsKeyLocked">false</Attribute>
+                <Attribute id="A_railML_ReturnsToPreferredPosition">false</Attribute>
+                <Attribute id="A_railML_MaxThrowTime">PT10S</Attribute>
+                <Attribute id="A_railML_TypicalThrowTime">PT6S</Attribute>
+                <Attribute id="A_railML_Type">ordinarySwitch</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde80" type="T_Connection">
+            <Placement x="6424.38" y="-870" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne49" side="1.85822"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J13</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde81" type="T_Connection">
+            <Placement x="6424.38" y="-420" angle="180" flipAlong="true"/>
+            <Ports>
+                <Port rail="ne50" side="0.251139"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J14</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde82" type="T_Connection">
+            <Placement x="6424.38" y="-1.29705e-14" angle="1.83563e-15"/>
+            <Ports>
+                <Port rail="ne46" side="0.693677"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J15</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde83" type="T_Connection">
+            <Placement x="7864.63" y="3.19394e-14" angle="180"/>
+            <Ports>
+                <Port rail="ne3" side="0.844459"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J16</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde84" type="T_Connection">
+            <Placement x="8219.51" y="4.1746e-14" angle="180"/>
+            <Ports>
+                <Port rail="ne3" side="0.647224"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J17</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde85" type="T_Connection">
+            <Placement x="8867.95" y="5.96647e-14" angle="180"/>
+            <Ports>
+                <Port rail="ne3" side="0.286835"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J18</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde86" type="T_Connection">
+            <Placement x="3428.72" y="-8.84714e-14" angle="360" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne40" side="0.826175"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J19</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde87" type="T_Connection">
+            <Placement x="2485.82" y="-7.91949e-14" angle="360" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne40" side="0.380707"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J20</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+        <Entity id="tde88" type="T_Connection">
+            <Placement x="2149.81" y="-7.5889e-14" angle="360" flipAcross="true"/>
+            <Ports>
+                <Port rail="ne40" side="0.221959"/>
+            </Ports>
+            <Attributes>
+                <Attribute id="A_Layer">L_Default</Attribute>
+                <Attribute id="A_Name">J21</Attribute>
+                <Attribute id="A_Operational">true</Attribute>
+                <Attribute id="A_railML_Type">insulatedRailJoint</Attribute>
+            </Attributes>
+        </Entity>
+    </Entities>
+    <TrackCircuits/>
+</RaILAiD>

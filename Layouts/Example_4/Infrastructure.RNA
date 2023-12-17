@@ -1,0 +1,256 @@
+Nodes: 47 | Switches: 21 | Signals: 0 | Detectors: 8 | Ends: 19 | Barriers: 6
+Node ne991:
+	Track = track1
+	Type = BufferStop -> ['E16']
+	Neighbours = 2 -> ['ne288', 'ne290']
+	Switches -> D01
+		ContinueCourse -> right -> ne290
+		BranchCourse -> left -> ne288
+Node ne61:
+	Track = track17
+	Neighbours = 4 -> ['ne99', 'ne63', 'ne404', 'ne123']
+	Switches -> D08
+		ContinueCourse -> right -> ne404
+		BranchCourse -> left -> ne123
+Node ne63:
+	Track = track16
+	Neighbours = 4 -> ['ne61', 'ne99', 'ne65', 'ne124']
+	Switches -> D18
+		ContinueCourse -> left -> ne65
+		BranchCourse -> right -> ne124
+Node ne65:
+	Track = track35
+	Neighbours = 4 -> ['ne63', 'ne992', 'ne994', 'ne124']
+Node ne910:
+	Track = track20
+	Neighbours = 4 -> ['ne912', 'ne101', 'ne130', 'ne135']
+	Switches -> D10
+		ContinueCourse -> right -> ne130
+		BranchCourse -> left -> ne135
+Node ne912:
+	Track = track19
+	TrainDetectionElements -> tde527
+		Type -> insulatedRailJoint
+		Side -> left
+	Neighbours = 4 -> ['ne910', 'ne101', 'ne131', 'ne132']
+	Switches -> D20
+		ContinueCourse -> left -> ne132
+		BranchCourse -> right -> ne131
+Node ne114:
+	TrainDetectionElements -> tde534
+		Type -> insulatedRailJoint
+		Side -> left
+	Neighbours = 3 -> ['ne132', 'ne129', 'ne102']
+	Switches -> D23
+		ContinueCourse -> left -> ne132
+		BranchCourse -> right -> ne129
+Node ne288:
+	Track = track22
+	Neighbours = 4 -> ['ne991', 'ne290', 'ne295', 'ne110']
+	Switches -> D03
+		ContinueCourse -> right -> ne295
+		BranchCourse -> left -> ne110
+Node ne290:
+	Track = track21
+	TrainDetectionElements -> tde502
+		Type -> insulatedRailJoint
+		Side -> left
+	Neighbours = 4 -> ['ne991', 'ne288', 'ne292', 'ne111']
+	Switches -> D14
+		ContinueCourse -> left -> ne292
+		BranchCourse -> right -> ne111
+Node ne292:
+	Track = track33
+	TrainDetectionElements -> tde511
+		Type -> insulatedRailJoint
+		Side -> right
+	Neighbours = 4 -> ['ne290', 'ne996', 'ne997', 'ne111']
+Node ne295:
+	Track = track23
+	Neighbours = 4 -> ['ne288', 'ne297', 'ne384', 'ne110']
+Node ne297:
+	Track = track25
+	Neighbours = 4 -> ['ne295', 'ne384', 'ne995', 'ne997']
+	Switches -> D04
+		ContinueCourse -> left -> ne295
+		BranchCourse -> right -> ne384
+	Switches -> Sw03
+		ContinueCourse -> left -> ne995
+		BranchCourse -> right -> ne997
+Node ne377:
+	Track = track3
+	Type = BufferStop -> ['E305']
+	Neighbours = 2 -> ['ne111', 'ne113']
+	Switches -> D15
+		ContinueCourse -> left -> ne113
+		BranchCourse -> right -> ne111
+Node ne384:
+	Track = track26
+	Neighbours = 4 -> ['ne295', 'ne297', 'ne104', 'ne110']
+Node ne400:
+	Track = track27
+	Neighbours = 4 -> ['ne404', 'ne407', 'ne993', 'ne994']
+	Switches -> D07
+		ContinueCourse -> left -> ne404
+		BranchCourse -> right -> ne407
+	Switches -> Sw02
+		ContinueCourse -> left -> ne993
+		BranchCourse -> right -> ne994
+Node ne404:
+	Track = track28
+	Neighbours = 4 -> ['ne61', 'ne400', 'ne407', 'ne123']
+Node ne407:
+	Track = track29
+	Neighbours = 4 -> ['ne400', 'ne404', 'ne122', 'ne123']
+	Switches -> D16
+		ContinueCourse -> left -> ne123
+		BranchCourse -> right -> ne122
+Node ne421:
+	Track = track8
+	Type = BufferStop -> ['E418']
+	Neighbours = 2 -> ['ne124', 'ne126']
+	Switches -> D19
+		ContinueCourse -> left -> ne126
+		BranchCourse -> right -> ne124
+Node ne450:
+	Track = track12
+	Type = BufferStop -> ['E478']
+	Neighbours = 3 -> ['ne127', 'ne129', 'ne130']
+Node ne465:
+	Track = track10
+	Type = BufferStop -> ['E462']
+	Neighbours = 2 -> ['ne131', 'ne133']
+	Switches -> D21
+		ContinueCourse -> left -> ne133
+		BranchCourse -> right -> ne131
+Node ne98:
+	Neighbours = 2 -> ['ne996', 'ne99']
+	Level crossing -> Lc01
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [2464, 0] | Coordinate: 0.4218
+	Level crossing -> Lc02
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [2464, 0] | Coordinate: 0.4218
+Node ne99:
+	Track = track15
+	Neighbours = 3 -> ['ne61', 'ne63', 'ne98']
+	Switches -> D05
+		ContinueCourse -> right -> ne63
+		BranchCourse -> left -> ne61
+Node ne100:
+	Neighbours = 2 -> ['ne992', 'ne101']
+	Level crossing -> Lc03
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [9391, 0] | Coordinate: 0.4325
+	Level crossing -> Lc04
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [10172, 0] | Coordinate: 0.7643
+	Level crossing -> Lc05
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [9392, 0] | Coordinate: 0.4331
+	Level crossing -> Lc06
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [10172, 0] | Coordinate: 0.7643
+Node ne101:
+	Track = track18
+	TrainDetectionElements -> tde526
+		Type -> insulatedRailJoint
+		Side -> left
+	Neighbours = 3 -> ['ne910', 'ne912', 'ne100']
+	Switches -> D09
+		ContinueCourse -> right -> ne912
+		BranchCourse -> left -> ne910
+Node ne102:
+	Track = track2
+	Type = BufferStop -> ['E109']
+	Neighbours = 1 -> ['ne114']
+Node ne104:
+	Track = track13
+	Type = BufferStop -> ['bus541']
+	Neighbours = 2 -> ['ne384', 'ne110']
+Node ne110:
+	Track = track24
+	Neighbours = 4 -> ['ne288', 'ne295', 'ne384', 'ne104']
+Node ne111:
+	Track = track34
+	Neighbours = 4 -> ['ne290', 'ne292', 'ne377', 'ne113']
+Node ne113:
+	Track = track5
+	Type = BufferStop -> ['E368']
+	Neighbours = 2 -> ['ne377', 'ne111']
+Node ne122:
+	Track = track6
+	Type = BufferStop -> ['E408']
+	Neighbours = 2 -> ['ne407', 'ne123']
+Node ne123:
+	Track = track30
+	Neighbours = 4 -> ['ne61', 'ne404', 'ne407', 'ne122']
+Node ne124:
+	Track = track36
+	Neighbours = 4 -> ['ne63', 'ne65', 'ne421', 'ne126']
+Node ne126:
+	Track = track9
+	Type = BufferStop -> ['E422']
+	Neighbours = 2 -> ['ne421', 'ne124']
+Node ne127:
+	Track = track39
+	Neighbours = 5 -> ['ne450', 'ne129', 'ne130', 'ne135', 'ne134']
+	Switches -> D24
+		ContinueCourse -> left -> ne135
+		BranchCourse -> right -> ne134
+Node ne129:
+	Track = track38
+	Neighbours = 5 -> ['ne114', 'ne450', 'ne127', 'ne130', 'ne132']
+Node ne130:
+	Track = track31
+	Neighbours = 5 -> ['ne910', 'ne450', 'ne127', 'ne129', 'ne135']
+Node ne131:
+	Track = track40
+	Neighbours = 4 -> ['ne912', 'ne465', 'ne132', 'ne133']
+Node ne132:
+	Track = track37
+	TrainDetectionElements -> tde533
+		Type -> insulatedRailJoint
+		Side -> right
+	Neighbours = 4 -> ['ne912', 'ne114', 'ne129', 'ne131']
+Node ne133:
+	Track = track11
+	Type = BufferStop -> ['E466']
+	Neighbours = 2 -> ['ne465', 'ne131']
+Node ne134:
+	Track = track14
+	Type = BufferStop -> ['bus570']
+	Neighbours = 2 -> ['ne127', 'ne135']
+Node ne135:
+	Track = track32
+	Neighbours = 4 -> ['ne910', 'ne127', 'ne130', 'ne134']
+Node ne992:
+	TrainDetectionElements -> tde525
+		Type -> insulatedRailJoint
+		Side -> right
+	Neighbours = 3 -> ['ne65', 'ne100', 'ne994']
+	Switches -> Sw01
+		ContinueCourse -> left -> ne65
+		BranchCourse -> right -> ne994
+Node ne993:
+	Track = track7
+	Type = BufferStop -> ['E412']
+	Neighbours = 2 -> ['ne400', 'ne994']
+Node ne994:
+	Track = track41
+	Neighbours = 4 -> ['ne65', 'ne400', 'ne992', 'ne993']
+Node ne995:
+	Track = track4
+	Type = BufferStop -> ['E313']
+	Neighbours = 2 -> ['ne297', 'ne997']
+Node ne996:
+	TrainDetectionElements -> tde514
+		Type -> insulatedRailJoint
+		Side -> right
+	Neighbours = 3 -> ['ne292', 'ne98', 'ne997']
+	Switches -> Sw04
+		ContinueCourse -> left -> ne292
+		BranchCourse -> right -> ne997
+Node ne997:
+	Track = track42
+	Neighbours = 4 -> ['ne292', 'ne297', 'ne995', 'ne996']

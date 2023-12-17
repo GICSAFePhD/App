@@ -1,0 +1,17 @@
+Route , Signal_start , Signal_end , Direction , netElements , switch , platform , crossing
+R_01 , S03 , S15 , >> , ne03-ne04 , - , - , -
+R_02 , S04 , S13 , << , ne03-ne01 , - , - , -
+R_03 , S05 , S13 , << , ne02-ne01 , - , - , -
+R_04 , S06 , S15 , >> , ne02-ne04 , - , - , -
+R_05 , S08 , S14 , << , ne07-ne05 , - , - , -
+R_06 , S09 , S16 , >> , ne07-ne08 , - , - , -
+R_07 , S10 , S14 , << , ne06-ne05 , - , - , -
+R_08 , S11 , S16 , >> , ne06-ne08 , - , - , -
+R_09 , S12 , S10 , << , ne08-ne06 , Sw04N , - , -
+R_10 , S12 , S08 , << , ne08-ne07 , Sw04R , - , -
+R_11 , S02 , S05 , << , ne04-ne02 , Sw02N , - , -
+R_12 , S02 , S04 , << , ne04-ne03 , Sw02R , - , -
+R_13 , S01 , S06 , >> , ne01-ne02 , Sw01N , - , -
+R_14 , S01 , S03 , >> , ne01-ne03 , Sw01R , - , -
+R_15 , S07 , S11 , >> , ne05-ne06 , Sw03N , - , -
+R_16 , S07 , S09 , >> , ne05-ne07 , Sw03R , - , -

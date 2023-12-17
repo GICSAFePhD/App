@@ -1,0 +1,12 @@
+Route , Signal_start , Signal_end , Direction , netElements , switch , platform , crossing
+R_01 , S02 , S14 , >> , ne1-ne1 ,  ,  , 
+R_02 , S04 , S01 , << , ne31-ne1 , Sw14_R-Sw18_R ,  , 
+R_03 , S06 , S01 , << , ne32-ne1 , Sw14_N-Sw18_R ,  , 
+R_04 , S08 , S20 , << , ne42-ne42 ,  ,  , 
+R_05 , S10 , S07 , >> , ne43-ne42 , Sw19_N ,  , 
+R_06 , S14 , S18 , >> , ne1-ne41 , Sw18_N ,  , 
+R_07 , S14 , S03 , >> , ne1-ne31 , Sw14_R-Sw18_R ,  , 
+R_08 , S14 , S05 , >> , ne1-ne32 , Sw14_N-Sw18_R ,  , 
+R_09 , S18 , S07 , >> , ne41-ne42 , Sw19_R ,  , 
+R_10 , S20 , S01 , << , ne42-ne1 , Sw18_N-Sw19_R ,  , 
+R_11 , S20 , S09 , << , ne42-ne43 , Sw19_N ,  , 

@@ -1,0 +1,40 @@
+Nodes: 5 | Switches: 2 | Signals: 0 | Detectors: 0 | Ends: 4 | Barriers: 6
+Node ne3:
+	Track = track2
+	Neighbours = 2 -> ['ne26', 'ne27']
+	Level crossing -> Lc06
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [1491, -120] | Coordinate: 0.5373
+	Switches -> Sw12
+		ContinueCourse -> right -> ne26
+		BranchCourse -> left -> ne27
+Node ne23:
+	Track = track3
+	Neighbours = 2 -> ['ne25', 'ne27']
+	Level crossing -> Lc07
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [-449, 300] | Coordinate: 0.3273
+	Level crossing -> Lc09
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [311, 300] | Coordinate: 0.8148
+	Switches -> Sw11
+		ContinueCourse -> right -> ne25
+		BranchCourse -> left -> ne27
+Node ne25:
+	Track = track4
+	Neighbours = 2 -> ['ne23', 'ne27']
+	Level crossing -> Lc05
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [1211, 300] | Coordinate: 0.4248
+Node ne26:
+	Track = track1
+	Neighbours = 2 -> ['ne3', 'ne27']
+	Level crossing -> Lc03
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [-449, -120] | Coordinate: 0.7421
+	Level crossing -> Lc04
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [527, -120] | Coordinate: 0.2487
+Node ne27:
+	Track = track5
+	Neighbours = 4 -> ['ne3', 'ne23', 'ne25', 'ne26']

@@ -1,5 +1,6 @@
 import sys
 sys.path.append('.')
+from os import path
 
 from RailML import railML
 from RailML.Common import Metadata
@@ -79,9 +80,11 @@ def launchSystem():
         
         #print(n.get()[-1])
 
-        INPUT_FILE= "C:\PhD\RailML\Layouts\\"+str(n.get())+"\\"+str(n.get())+".railml"
-        OUTPUT_FILE= "C:\PhD\RailML\Layouts\\"+str(n.get())+"\\"+str(n.get())+"_B.railml"
+        INPUT_FILE= "App\\Layouts\\"+str(n.get())+"\\"+str(n.get())+".railml"
+        OUTPUT_FILE= "App\\Layouts\\"+str(n.get())+"\\"+str(n.get())+"_B.railml"
 
+        #EXPORT_TO = path.relpath(OUTPUT_FILE)
+    
         x = RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,False,True,config,int(n.get()[-1]))
         #Label(root, text=f'{x}').pack()
         var_r.set(f'Analysis for {n.get()} done > {x[1]}')
@@ -89,7 +92,7 @@ def launchSystem():
         #Label(root, text=f'Analysis done!').pack()
         # Call ACG
         try:
-            ACG.ACG()
+            ACG.ACG(RML)
         except Exception as e:
             print(f'ACG had an error: {e}') 
         # Call AGG

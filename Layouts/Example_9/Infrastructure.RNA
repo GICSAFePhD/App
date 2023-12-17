@@ -1,0 +1,69 @@
+Nodes: 7 | Switches: 4 | Signals: 0 | Detectors: 12 | Ends: 2 | Barriers: 3
+Node ne3:
+	Track = track2
+	TrainDetectionElements -> tde83
+		Type -> insulatedRailJoint
+	TrainDetectionElements -> tde84
+		Type -> insulatedRailJoint
+	TrainDetectionElements -> tde85
+		Type -> insulatedRailJoint
+	Type = BufferStop -> ['bus5']
+	Neighbours = 2 -> ['ne46', 'ne53']
+	Switches -> Sw31
+		ContinueCourse -> left -> ne46
+		BranchCourse -> right -> ne53
+Node ne40:
+	Track = track1
+	TrainDetectionElements -> tde86
+		Type -> insulatedRailJoint
+	TrainDetectionElements -> tde87
+		Type -> insulatedRailJoint
+	TrainDetectionElements -> tde88
+		Type -> insulatedRailJoint
+	Type = BufferStop -> ['bus1']
+	Neighbours = 2 -> ['ne46', 'ne48']
+	Switches -> Sw27
+		ContinueCourse -> right -> ne46
+		BranchCourse -> left -> ne48
+Node ne46:
+	Track = track3
+	TrainDetectionElements -> tde71
+		Type -> insulatedRailJoint
+	TrainDetectionElements -> tde82
+		Type -> insulatedRailJoint
+	Neighbours = 4 -> ['ne3', 'ne40', 'ne48', 'ne53']
+	Level crossing -> Lc10
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [5960, 0] | Coordinate: 0.5712
+Node ne48:
+	Track = track4
+	Neighbours = 4 -> ['ne40', 'ne46', 'ne49', 'ne50']
+	Switches -> Sw29
+		ContinueCourse -> left -> ne49
+		BranchCourse -> right -> ne50
+Node ne49:
+	Track = track5
+	TrainDetectionElements -> tde69
+		Type -> insulatedRailJoint
+	TrainDetectionElements -> tde80
+		Type -> insulatedRailJoint
+	Neighbours = 3 -> ['ne48', 'ne50', 'ne53']
+	Level crossing -> Lc11
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [6051, -870] | Coordinate: 0.6086
+Node ne50:
+	Track = track6
+	TrainDetectionElements -> tde70
+		Type -> insulatedRailJoint
+	TrainDetectionElements -> tde81
+		Type -> insulatedRailJoint
+	Neighbours = 3 -> ['ne48', 'ne49', 'ne53']
+	Level crossing -> Lc09
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [6051, -420] | Coordinate: 0.3776
+Node ne53:
+	Track = track7
+	Neighbours = 4 -> ['ne3', 'ne46', 'ne49', 'ne50']
+	Switches -> Sw33
+		ContinueCourse -> right -> ne49
+		BranchCourse -> left -> ne50

@@ -1,0 +1,62 @@
+Nodes: 11 | Switches: 5 | Signals: 0 | Detectors: 2 | Ends: 7 | Barriers: 2
+Node ne1:
+	Track = track1
+	Neighbours = 2 -> ['ne8', 'ne9']
+	Switches -> Sw04
+		ContinueCourse -> right -> ne8
+		BranchCourse -> left -> ne9
+Node ne2:
+	Track = track7
+	Neighbours = 2 -> ['ne12', 'ne13']
+	Switches -> Sw06
+		ContinueCourse -> right -> ne12
+		BranchCourse -> left -> ne13
+Node ne8:
+	Track = track2
+	Neighbours = 4 -> ['ne1', 'ne9', 'ne22', 'ne24']
+	Switches -> Sw12
+		ContinueCourse -> left -> ne22
+		BranchCourse -> right -> ne24
+Node ne9:
+	Track = track3
+	Neighbours = 4 -> ['ne1', 'ne8', 'ne14', 'ne15']
+	Switches -> Sw07
+		ContinueCourse -> left -> ne15
+		BranchCourse -> right -> ne14
+Node ne12:
+	Track = track8
+	Neighbours = 4 -> ['ne2', 'ne13', 'ne23', 'ne24']
+	Switches -> Sw13
+		ContinueCourse -> left -> ne23
+		BranchCourse -> right -> ne24
+Node ne13:
+	Track = track9
+	Type = BufferStop -> ['bus56']
+	Neighbours = 2 -> ['ne2', 'ne12']
+	Level crossing -> Lc08
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [1317, 180] | Coordinate: 0.7059
+Node ne14:
+	Track = track4
+	Type = BufferStop -> ['bus10']
+	Neighbours = 2 -> ['ne9', 'ne15']
+	Level crossing -> Lc06
+		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
+		Position -> [1990, -360] | Coordinate: 0.3197
+Node ne15:
+	Track = track10
+	Type = BufferStop -> ['bus59']
+	Neighbours = 2 -> ['ne9', 'ne14']
+Node ne22:
+	Track = track6
+	TrainDetectionElements -> tde78
+		Type -> insulatedRailJoint
+	Neighbours = 2 -> ['ne8', 'ne24']
+Node ne23:
+	Track = track5
+	TrainDetectionElements -> tde77
+		Type -> insulatedRailJoint
+	Neighbours = 2 -> ['ne12', 'ne24']
+Node ne24:
+	Track = track11
+	Neighbours = 4 -> ['ne8', 'ne12', 'ne22', 'ne23']
