@@ -1,4 +1,4 @@
-Nodes: 53 | Switches: 15 | Signals: 0 | Detectors: 7 | Ends: 30 | Barriers: 1
+Nodes: 53 | Switches: 19 | Signals: 0 | Detectors: 7 | Ends: 30 | Barriers: 1
 Node ne1:
 	Lines -> line442
 	Lines -> line443
@@ -297,6 +297,9 @@ Node ne79:
 	Lines -> line448
 	Track = track24
 	Neighbours = 5 -> ['ne17', 'ne78', 'ne94', 'ne77', 'ne21']
+	Switches -> Sw07A
+		ContinueCourse -> right -> ne21
+		BranchCourse -> left -> ne77
 Node ne82:
 	Lines -> line442
 	Lines -> line443
@@ -307,6 +310,9 @@ Node ne82:
 	Lines -> line448
 	Track = track25
 	Neighbours = 5 -> ['ne32', 'ne41', 'ne83', 'ne84', 'ne85']
+	Switches -> Sw05A
+		ContinueCourse -> right -> ne41
+		BranchCourse -> left -> ne84
 Node ne83:
 	Lines -> line442
 	Lines -> line443
@@ -416,6 +422,9 @@ Node ne94:
 	Lines -> line447
 	Lines -> line448
 	Neighbours = 4 -> ['ne79', 'ne97', 'ne77', 'ne21']
+	Switches -> Sw07B
+		ContinueCourse -> right -> ne77
+		BranchCourse -> left -> ne21
 Node ne95:
 	Lines -> line442
 	Lines -> line443
@@ -539,6 +548,9 @@ Node ne85:
 	Lines -> line448
 	Track = track33
 	Neighbours = 5 -> ['ne41', 'ne82', 'ne84', 'ne100', 'ne110']
+	Switches -> Sw05B
+		ContinueCourse -> right -> ne84
+		BranchCourse -> left -> ne41
 Node ne77:
 	Lines -> line442
 	Lines -> line443

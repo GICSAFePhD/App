@@ -1,4 +1,4 @@
-Nodes: 47 | Switches: 21 | Signals: 0 | Detectors: 8 | Ends: 19 | Barriers: 6
+Nodes: 47 | Switches: 23 | Signals: 0 | Detectors: 8 | Ends: 19 | Barriers: 6
 Node ne991:
 	Track = track1
 	Type = BufferStop -> ['E16']
@@ -195,6 +195,9 @@ Node ne126:
 Node ne127:
 	Track = track39
 	Neighbours = 5 -> ['ne450', 'ne129', 'ne130', 'ne135', 'ne134']
+	Switches -> D12A
+		ContinueCourse -> right -> ne450
+		BranchCourse -> left -> ne129
 	Switches -> D24
 		ContinueCourse -> left -> ne135
 		BranchCourse -> right -> ne134
@@ -204,6 +207,9 @@ Node ne129:
 Node ne130:
 	Track = track31
 	Neighbours = 5 -> ['ne910', 'ne450', 'ne127', 'ne129', 'ne135']
+	Switches -> D12B
+		ContinueCourse -> right -> ne129
+		BranchCourse -> left -> ne450
 Node ne131:
 	Track = track40
 	Neighbours = 4 -> ['ne912', 'ne465', 'ne132', 'ne133']
