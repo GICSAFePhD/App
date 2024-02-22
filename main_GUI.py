@@ -92,7 +92,7 @@ def launchSystem():
         #Label(root, text=f'Analysis done!').pack()
         # Call ACG
         try:
-            ACG.ACG(RML)
+            ACG.ACG(RML,example = int(n.get()[-1]))
         except Exception as e:
             print(f'ACG had an error: {e}') 
         # Call AGG

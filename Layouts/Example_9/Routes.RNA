@@ -1,0 +1,50 @@
+route_1 [S02 << S42]:
+	Path: ['ne3']
+route_2 [S04 >> S25]:
+	Path: ['ne40']
+route_3 [S05 >> S11]:
+	Path: ['ne49']
+route_4 [S06 << S24]:
+	Path: ['ne49', 'ne48', 'ne40']
+route_5 [S07 >> S13]:
+	Path: ['ne50']
+route_6 [S09 >> S31]:
+	Path: ['ne46']
+route_7 [S10 << S24]:
+	Path: ['ne46', 'ne40']
+route_8 [S11 >> S17]:
+	Path: ['ne49', 'ne53', 'ne3']
+route_9 [S12 << S06]:
+	Path: ['ne49']
+route_10 [S13 >> S17]:
+	Path: ['ne50', 'ne53', 'ne3']
+route_11 [S14 << S46]:
+	Path: ['ne50']
+route_12 [S16 << S10]:
+	Path: ['ne46']
+route_13 [S21 >> S01]:
+	Path: ['ne3']
+route_14 [S25 >> S01]:
+	Path: ['ne40']
+route_15 [S26 << S03]:
+	Path: ['ne40']
+route_16 [S31 >> S17]:
+	Path: ['ne46', 'ne3']
+route_17 [S33 >> S17]:
+	Path: ['ne49', 'ne53', 'ne3']
+route_18 [S36 >> S09]:
+	Path: ['ne40', 'ne46']
+route_19 [S36 >> S05]:
+	Path: ['ne40', 'ne48', 'ne49']
+route_20 [S36 >> S07]:
+	Path: ['ne40', 'ne48', 'ne50']
+route_21 [S41 >> S17]:
+	Path: ['ne46', 'ne3']
+route_22 [S42 << S16]:
+	Path: ['ne3', 'ne46']
+route_23 [S42 << S12]:
+	Path: ['ne3', 'ne53', 'ne49']
+route_24 [S42 << S14]:
+	Path: ['ne3', 'ne53', 'ne50']
+route_25 [S46 << S24]:
+	Path: ['ne50', 'ne48', 'ne40']

@@ -1,0 +1,104 @@
+graph finite_state_machine {
+	graph [center=1 labelloc=t overlap=false rankdir=LR splines=true]
+	node [fillcolor=white fontname="Courier New" pendwidth=5 shape=Mrecord style="filled,bold"]
+	ne61 -- ne99
+	ne63 -- ne99
+	ne63 -- ne65
+	ne65 -- ne992
+	ne114 -- ne132
+	ne114 -- ne129
+	ne288 -- ne991
+	ne288 -- ne295
+	ne290 -- ne991
+	ne290 -- ne292
+	ne292 -- ne996
+	ne295 -- ne297
+	ne297 -- ne384
+	ne297 -- ne995
+	ne297 -- ne997
+	ne400 -- ne404
+	ne400 -- ne407
+	ne400 -- ne993
+	ne400 -- ne994
+	ne404 -- ne61
+	ne98 -- ne996
+	ne98 -- ne99
+	ne100 -- ne992
+	ne100 -- ne101
+	ne101 -- ne912
+	ne101 -- ne910
+	ne102 -- ne114
+	ne104 -- ne384
+	ne110 -- ne384
+	ne110 -- ne288
+	ne111 -- ne290
+	ne111 -- ne377
+	ne113 -- ne377
+	ne122 -- ne407
+	ne123 -- ne407
+	ne123 -- ne61
+	ne124 -- ne63
+	ne124 -- ne421
+	ne126 -- ne421
+	ne127 -- ne129
+	ne127 -- ne450
+	ne127 -- ne135
+	ne127 -- ne134
+	ne129 -- ne130
+	ne130 -- ne450
+	ne130 -- ne910
+	ne131 -- ne912
+	ne131 -- ne465
+	ne132 -- ne912
+	ne133 -- ne465
+	ne135 -- ne910
+	ne992 -- ne994
+	ne996 -- ne997
+	ne991 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne991</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D01</td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf01</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T01 T02 S72</td></tr></table>>]
+	ne61 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne61</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D08</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">S87</td></tr></table>>]
+	ne63 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne63</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D18</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">C62 S104</td></tr></table>>]
+	ne65 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne65</font></td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">C103 C128</td></tr></table>>]
+	ne910 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne910</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D10</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">S90</td></tr></table>>]
+	ne912 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne912</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D20</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">J45 S119</td></tr></table>>]
+	ne114 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne114</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D23</td></tr><tr><td bgcolor="grey" align="right">Border</td><td align="left" port="r2">SB05</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">L29 J48 S110</td></tr></table>>]
+	ne288 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne288</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D03</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">S77</td></tr></table>>]
+	ne290 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne290</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D14</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">J35 S95</td></tr></table>>]
+	ne292 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne292</font></td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">J36 J37</td></tr></table>>]
+	ne295 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne295</font></td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">C75 C78</td></tr></table>>]
+	ne297 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne297</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D04 Sw03</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">S80 S132</td></tr></table>>]
+	ne377 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne377</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D15</td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf04</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T03 T04</td></tr></table>>]
+	ne384 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne384</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">Sw02</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">B79</td></tr></table>>]
+	ne400 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne400</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D07 Sw02</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">S83 S92</td></tr></table>>]
+	ne404 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne404</font></td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">C82 C85</td></tr></table>>]
+	ne407 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne407</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D16</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">S102</td></tr></table>>]
+	ne421 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne421</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D19</td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf09</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T05 T06</td></tr></table>>]
+	ne450 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne450</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D12</td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf14</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T07 T08</td></tr></table>>]
+	ne465 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne465</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D21</td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf11</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T09 T10</td></tr></table>>]
+	ne98 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne98</font></td></tr><tr><td bgcolor="grey" align="right">Border</td><td align="left" port="r2">SB02</td></tr><tr><td bgcolor="grey" align="right">LevelCrossing</td><td align="left" port="r2">Lc01 Lc02</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">L30 X52 X53</td></tr></table>>]
+	ne99 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne99</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D05</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">S63</td></tr></table>>]
+	ne100 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne100</font></td></tr><tr><td bgcolor="grey" align="right">Border</td><td align="left" port="r2">SB04</td></tr><tr><td bgcolor="grey" align="right">LevelCrossing</td><td align="left" port="r2">Lc03 Lc04 Lc05 Lc06</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">L31 X58 X59 X60 X61</td></tr></table>>]
+	ne101 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne101</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D09</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">J43 S67</td></tr></table>>]
+	ne102 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne102</font></td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf02</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T11 T12</td></tr></table>>]
+	ne104 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne104</font></td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf03</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T13 T14</td></tr></table>>]
+	ne110 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne110</font></td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">B76</td></tr></table>>]
+	ne111 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne111</font></td></tr></table>>]
+	ne113 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne113</font></td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf06</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T15 T16</td></tr></table>>]
+	ne122 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne122</font></td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf07</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T17 T18</td></tr></table>>]
+	ne123 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne123</font></td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">B86</td></tr></table>>]
+	ne124 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne124</font></td></tr></table>>]
+	ne126 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne126</font></td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf10</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T19 T20</td></tr></table>>]
+	ne127 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne127</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D12 D24</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">S113 S126</td></tr></table>>]
+	ne129 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne129</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D12</td></tr></table>>]
+	ne130 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne130</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">D12</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">C88 S116</td></tr></table>>]
+	ne131 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne131</font></td></tr></table>>]
+	ne132 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne132</font></td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">J46 J47</td></tr></table>>]
+	ne133 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne133</font></td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf12</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T21 T22</td></tr></table>>]
+	ne134 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne134</font></td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf13</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T23 T24</td></tr></table>>]
+	ne135 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne135</font></td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">B89</td></tr></table>>]
+	ne992 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne992</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">Sw01</td></tr><tr><td bgcolor="grey" align="right">Border</td><td align="left" port="r2">SB03</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">J40 S129</td></tr></table>>]
+	ne993 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne993</font></td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf08</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T25 C91</td></tr></table>>]
+	ne994 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne994</font></td></tr></table>>]
+	ne995 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne995</font></td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf05</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T27 C131</td></tr></table>>]
+	ne996 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne996</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">Sw04</td></tr><tr><td bgcolor="grey" align="right">Border</td><td align="left" port="r2">SB01</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">J38 S135</td></tr></table>>]
+	ne997 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne997</font></td></tr></table>>]
+}

@@ -1,0 +1,259 @@
+route_1 [S02 >> S72]:
+	Path: ['ne991']
+route_2 [S04 << S35]:
+	Path: ['ne377', 'ne111', 'ne290']
+	Switches: ['D14_R', 'D15_R']
+route_3 [S04 << S15]:
+	Path: ['ne377', 'ne113']
+	Switches: ['D15_N']
+route_4 [S06 << S62]:
+	Path: ['ne421', 'ne124', 'ne63']
+	Switches: ['D18_R', 'D19_R']
+route_5 [S06 << S19]:
+	Path: ['ne421', 'ne126']
+	Switches: ['D19_N']
+route_6 [S08 << S126]:
+	Path: ['ne450', 'ne127']
+route_7 [S08 << S88]:
+	Path: ['ne450', 'ne130']
+route_8 [S10 << S45]:
+	Path: ['ne465', 'ne131', 'ne912']
+	Switches: ['D20_R', 'D21_R']
+route_9 [S10 << S21]:
+	Path: ['ne465', 'ne133']
+	Switches: ['D21_N']
+route_10 [S12 << S110]:
+	Path: ['ne102', 'ne114']
+route_11 [S14 >> S132]:
+	Path: ['ne104', 'ne384', 'ne297']
+	Switches: ['D04_R']
+route_12 [S16 >> S03]:
+	Path: ['ne113', 'ne377']
+	Switches: ['D15_N']
+route_13 [S18 >> S92]:
+	Path: ['ne122', 'ne407', 'ne400']
+	Switches: ['D07_R', 'D16_R']
+route_14 [S20 >> S05]:
+	Path: ['ne126', 'ne421']
+	Switches: ['D19_N']
+route_15 [S22 >> S09]:
+	Path: ['ne133', 'ne465']
+	Switches: ['D21_N']
+route_16 [S24 >> S113]:
+	Path: ['ne134', 'ne127']
+	Switches: ['D24_R']
+route_17 [S29 >> S48]:
+	Path: ['ne114']
+route_18 [S30 >> S52]:
+	Path: ['ne98']
+route_19 [S31 >> S58]:
+	Path: ['ne100']
+route_20 [S35 << S01]:
+	Path: ['ne290', 'ne991']
+	Switches: ['D01_N']
+route_21 [S36 >> S38]:
+	Path: ['ne292', 'ne996']
+	Switches: ['Sw04_N']
+route_22 [S37 << S35]:
+	Path: ['ne292', 'ne290']
+	Switches: ['D14_N']
+route_23 [S38 >> S30]:
+	Path: ['ne996', 'ne98']
+route_24 [S40 >> S31]:
+	Path: ['ne992', 'ne100']
+route_25 [S43 << S61]:
+	Path: ['ne101', 'ne100']
+route_26 [S45 << S43]:
+	Path: ['ne912', 'ne101']
+	Switches: ['D09_N']
+route_27 [S46 >> S29]:
+	Path: ['ne132', 'ne114']
+	Switches: ['D23_N']
+route_28 [S47 << S45]:
+	Path: ['ne132', 'ne912']
+	Switches: ['D20_N']
+route_29 [S48 >> S11]:
+	Path: ['ne114', 'ne102']
+route_30 [S52 >> S63]:
+	Path: ['ne98', 'ne99']
+	Crossings: ['Lc01', 'Lc02']
+route_31 [S53 << S135]:
+	Path: ['ne98', 'ne996']
+	Crossings: ['Lc01', 'Lc02']
+route_32 [S58 >> S67]:
+	Path: ['ne100', 'ne101']
+	Crossings: ['Lc03', 'Lc04', 'Lc05', 'Lc06']
+route_33 [S59 << S129]:
+	Path: ['ne100', 'ne992']
+	Crossings: ['Lc03', 'Lc05']
+route_34 [S60 >> S67]:
+	Path: ['ne100', 'ne101']
+	Crossings: ['Lc04', 'Lc06']
+route_35 [S61 << S59]:
+	Path: ['ne100']
+	Crossings: ['Lc04', 'Lc06']
+route_36 [S62 << S53]:
+	Path: ['ne63', 'ne99', 'ne98']
+	Switches: ['D05_N']
+route_37 [S63 >> S87]:
+	Path: ['ne99', 'ne61']
+	Switches: ['D05_R']
+route_38 [S63 >> S104]:
+	Path: ['ne99', 'ne63']
+	Switches: ['D05_N']
+route_39 [S67 >> S119]:
+	Path: ['ne101', 'ne912']
+	Switches: ['D09_N']
+route_40 [S67 >> S90]:
+	Path: ['ne101', 'ne910']
+	Switches: ['D09_R']
+route_41 [S72 >> S77]:
+	Path: ['ne991', 'ne288']
+	Switches: ['D01_R']
+route_42 [S72 >> S95]:
+	Path: ['ne991', 'ne290']
+	Switches: ['D01_N']
+route_43 [S75 << S01]:
+	Path: ['ne295', 'ne288', 'ne991']
+	Switches: ['D01_R', 'D03_N']
+route_44 [S76 >> S132]:
+	Path: ['ne110', 'ne384', 'ne297']
+	Switches: ['D04_R']
+route_45 [S77 >> S78]:
+	Path: ['ne288', 'ne295']
+	Switches: ['D03_N']
+route_46 [S77 >> S76]:
+	Path: ['ne288', 'ne110']
+	Switches: ['D03_R']
+route_47 [S78 >> S132]:
+	Path: ['ne295', 'ne297']
+	Switches: ['D04_N']
+route_48 [S79 << S13]:
+	Path: ['ne384', 'ne104']
+route_49 [S79 << S01]:
+	Path: ['ne384', 'ne110', 'ne288', 'ne991']
+	Switches: ['D01_R', 'D03_R']
+route_50 [S80 << S75]:
+	Path: ['ne297', 'ne295']
+	Switches: ['D04_N']
+route_51 [S80 << S79]:
+	Path: ['ne297', 'ne384']
+	Switches: ['D04_R']
+route_52 [S82 >> S92]:
+	Path: ['ne404', 'ne400']
+	Switches: ['D07_N']
+route_53 [S83 << S85]:
+	Path: ['ne400', 'ne404']
+	Switches: ['D07_N']
+route_54 [S83 << S102]:
+	Path: ['ne400', 'ne407']
+	Switches: ['D07_R']
+route_55 [S85 << S53]:
+	Path: ['ne404', 'ne61', 'ne99', 'ne98']
+	Switches: ['D05_R', 'D08_N']
+route_56 [S86 >> S92]:
+	Path: ['ne123', 'ne407', 'ne400']
+	Switches: ['D07_R', 'D16_N']
+route_57 [S87 >> S82]:
+	Path: ['ne61', 'ne404']
+	Switches: ['D08_N']
+route_58 [S87 >> S86]:
+	Path: ['ne61', 'ne123']
+	Switches: ['D08_R']
+route_59 [S88 << S43]:
+	Path: ['ne130', 'ne910', 'ne101']
+	Switches: ['D09_R', 'D10_N']
+route_60 [S89 >> S113]:
+	Path: ['ne135', 'ne127']
+	Switches: ['D24_N']
+route_61 [S90 >> S116]:
+	Path: ['ne910', 'ne130']
+	Switches: ['D10_N']
+route_62 [S90 >> S89]:
+	Path: ['ne910', 'ne135']
+	Switches: ['D10_R']
+route_63 [S91 << S83]:
+	Path: ['ne993', 'ne400']
+	Switches: ['Sw02_N']
+route_64 [S92 >> S25]:
+	Path: ['ne400', 'ne993']
+	Switches: ['Sw02_N']
+route_65 [S92 >> S40]:
+	Path: ['ne400', 'ne994', 'ne992']
+	Switches: ['Sw02_R', 'Sw01_R']
+route_66 [S95 >> S36]:
+	Path: ['ne290', 'ne292']
+	Switches: ['D14_N']
+route_67 [S95 >> S03]:
+	Path: ['ne290', 'ne111', 'ne377']
+	Switches: ['D14_R', 'D15_R']
+route_68 [S102 << S17]:
+	Path: ['ne407', 'ne122']
+	Switches: ['D16_R']
+route_69 [S102 << S53]:
+	Path: ['ne407', 'ne123', 'ne61', 'ne99', 'ne98']
+	Switches: ['D05_R', 'D08_R', 'D16_N']
+route_70 [S103 << S62]:
+	Path: ['ne65', 'ne63']
+	Switches: ['D18_N']
+route_71 [S104 >> S128]:
+	Path: ['ne63', 'ne65']
+	Switches: ['D18_N']
+route_72 [S104 >> S05]:
+	Path: ['ne63', 'ne124', 'ne421']
+	Switches: ['D18_R', 'D19_R']
+route_73 [S110 << S47]:
+	Path: ['ne114', 'ne132']
+	Switches: ['D23_N']
+route_74 [S110 << S126]:
+	Path: ['ne114', 'ne129', 'ne127']
+	Switches: ['D23_R']
+route_75 [S110 << S88]:
+	Path: ['ne114', 'ne129', 'ne130']
+	Switches: ['D23_R']
+route_76 [S113 >> S29]:
+	Path: ['ne127', 'ne129', 'ne114']
+	Switches: ['D23_R']
+route_77 [S113 >> S07]:
+	Path: ['ne127', 'ne450']
+route_78 [S116 >> S29]:
+	Path: ['ne130', 'ne129', 'ne114']
+	Switches: ['D23_R']
+route_79 [S116 >> S07]:
+	Path: ['ne130', 'ne450']
+route_80 [S119 >> S09]:
+	Path: ['ne912', 'ne131', 'ne465']
+	Switches: ['D20_R', 'D21_R']
+route_81 [S119 >> S46]:
+	Path: ['ne912', 'ne132']
+	Switches: ['D20_N']
+route_82 [S126 << S43]:
+	Path: ['ne127', 'ne135', 'ne910', 'ne101']
+	Switches: ['D09_R', 'D10_R', 'D24_N']
+route_83 [S126 << S23]:
+	Path: ['ne127', 'ne134']
+	Switches: ['D24_R']
+route_84 [S128 >> S40]:
+	Path: ['ne65', 'ne992']
+	Switches: ['Sw01_N']
+route_85 [S129 << S103]:
+	Path: ['ne992', 'ne65']
+	Switches: ['Sw01_N']
+route_86 [S129 << S83]:
+	Path: ['ne992', 'ne994', 'ne400']
+	Switches: ['Sw02_R', 'Sw01_R']
+route_87 [S131 << S80]:
+	Path: ['ne995', 'ne297']
+	Switches: ['Sw03_N']
+route_88 [S132 >> S27]:
+	Path: ['ne297', 'ne995']
+	Switches: ['Sw03_N']
+route_89 [S132 >> S38]:
+	Path: ['ne297', 'ne997', 'ne996']
+	Switches: ['Sw03_R', 'Sw04_R']
+route_90 [S135 << S37]:
+	Path: ['ne996', 'ne292']
+	Switches: ['Sw04_N']
+route_91 [S135 << S80]:
+	Path: ['ne996', 'ne997', 'ne297']
+	Switches: ['Sw03_R', 'Sw04_R']
