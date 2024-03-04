@@ -1,20 +1,23 @@
-digraph finite_state_machine {
+graph finite_state_machine {
 	graph [center=1 labelloc=t overlap=false rankdir=LR splines=true]
 	node [fillcolor=white fontname="Courier New" pendwidth=5 shape=Mrecord style="filled,bold"]
-	ne14 -> ne16
-	ne14 -> ne15
-	ne15 -> ne16
-	ne16 -> ne18
-	ne16 -> ne17
-	ne17 -> ne18
-	ne17 -> ne20
-	ne17 -> ne19
-	ne19 -> ne20
-	ne14 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne14</font></td></tr><tr><td bgcolor="grey" align="right">Border</td><td align="left" port="r2">LineBord01</td></tr><tr><td bgcolor="grey" align="right">Platform</td><td align="left" port="r2">Plat01</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">P09 C13</td></tr></table>>]
-	ne15 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne15</font></td></tr><tr><td bgcolor="grey" align="right">Border</td><td align="left" port="r2">LineBord02</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">L04 B14</td></tr></table>>]
-	ne16 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne16</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">Sw01 Sw02</td></tr><tr><td bgcolor="grey" align="right">LevelCrossing</td><td align="left" port="r2">Lc01</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">S15 S18</td></tr></table>>]
+	ne19 -- ne20 [label=R_01]
+	ne14 -- ne16 [label=R_02]
+	ne15 -- ne16 [label=R_03]
+	ne16 -- ne14 [label=R_04]
+	ne16 -- ne15 [label=R_05]
+	ne18 -- ne16 [label=R_06]
+	ne16 -- ne18 [label=R_07]
+	ne16 -- ne17 [label=R_08]
+	ne17 -- ne20 [label=R_08]
+	ne20 -- ne17 [label=R_09]
+	ne17 -- ne16 [label=R_09]
+	ne20 -- ne19 [label=R_10]
+	ne14 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne14</font></td></tr><tr><td bgcolor="lightslateblue" align="right">Border</td><td align="left" port="r2">LineBord01</td></tr><tr><td bgcolor="cornflowerblue" align="right">Platform</td><td align="left" port="r2">Plat01</td></tr><tr><td bgcolor="yellowgreen" align="right">Signal</td><td align="left" port="r2">P09 C13</td></tr></table>>]
+	ne15 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne15</font></td></tr><tr><td bgcolor="lightslateblue" align="right">Border</td><td align="left" port="r2">LineBord02</td></tr><tr><td bgcolor="yellowgreen" align="right">Signal</td><td align="left" port="r2">L04 B14</td></tr></table>>]
+	ne16 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne16</font></td></tr><tr><td bgcolor="red" align="right">Switch</td><td align="left" port="r2">Sw01 Sw02</td></tr><tr><td bgcolor="darkcyan" align="right">LevelCrossing</td><td align="left" port="r2">Lc01</td></tr><tr><td bgcolor="yellowgreen" align="right">Signal</td><td align="left" port="r2">S15 S18</td></tr></table>>]
 	ne17 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne17</font></td></tr></table>>]
-	ne18 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne18</font></td></tr><tr><td bgcolor="grey" align="right">Border</td><td align="left" port="r2">LineBord03</td></tr><tr><td bgcolor="grey" align="right">Platform</td><td align="left" port="r2">Plat02</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">P12 C17</td></tr></table>>]
-	ne19 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne19</font></td></tr><tr><td bgcolor="grey" align="right">BufferStop</td><td align="left" port="r2">Buf07</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">T01 T02</td></tr></table>>]
-	ne20 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne20</font></td></tr><tr><td bgcolor="grey" align="right">Switch</td><td align="left" port="r2">Sw03</td></tr><tr><td bgcolor="grey" align="right">Border</td><td align="left" port="r2">LineBord04</td></tr><tr><td bgcolor="grey" align="right">Signal</td><td align="left" port="r2">L06 S21</td></tr></table>>]
+	ne18 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne18</font></td></tr><tr><td bgcolor="lightslateblue" align="right">Border</td><td align="left" port="r2">LineBord03</td></tr><tr><td bgcolor="cornflowerblue" align="right">Platform</td><td align="left" port="r2">Plat02</td></tr><tr><td bgcolor="yellowgreen" align="right">Signal</td><td align="left" port="r2">P12 C17</td></tr></table>>]
+	ne19 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne19</font></td></tr><tr><td bgcolor="olive" align="right">BufferStop</td><td align="left" port="r2">Buf07</td></tr><tr><td bgcolor="yellowgreen" align="right">Signal</td><td align="left" port="r2">T01 T02</td></tr></table>>]
+	ne20 [label=<<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ne20</font></td></tr><tr><td bgcolor="red" align="right">Switch</td><td align="left" port="r2">Sw03</td></tr><tr><td bgcolor="lightslateblue" align="right">Border</td><td align="left" port="r2">LineBord04</td></tr><tr><td bgcolor="yellowgreen" align="right">Signal</td><td align="left" port="r2">L06 S21</td></tr></table>>]
 }

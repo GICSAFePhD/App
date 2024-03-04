@@ -45,7 +45,7 @@ Checkbutton4 = IntVar(value = 1)
 Checkbutton5 = IntVar(value = 1)
 Checkbutton6 = IntVar(value = 1)
 Checkbutton7 = IntVar(value = 0)
-Checkbutton8 = IntVar(value = 0)
+Checkbutton8 = IntVar(value = 1)
 
 var_r = StringVar()
 var_r.set('')
@@ -85,14 +85,14 @@ def launchSystem():
 
         #EXPORT_TO = path.relpath(OUTPUT_FILE)
     
-        x = RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,False,True,config,int(n.get()[-1]))
+        x,routes = RNA.RNA(RML,INPUT_FILE,OUTPUT_FILE,False,True,config,int(n.get()[-1]))
         #Label(root, text=f'{x}').pack()
         var_r.set(f'Analysis for {n.get()} done > {x[1]}')
         var_l.set(x[0])
         #Label(root, text=f'Analysis done!').pack()
         # Call ACG
         try:
-            ACG.ACG(RML,example = int(n.get()[-1]))
+            ACG.ACG(RML,routes,example = int(n.get()[-1]))
         except Exception as e:
             print(f'ACG had an error: {e}') 
         # Call AGG
@@ -114,7 +114,7 @@ def launchSystem():
     except Exception as e:
         print(f'ATA had an error: {e}')
 
-button = Button(frame2, text='no RNA!', state=DISABLED, padx=20, pady=5, command = launchSystem)
+button = Button(frame2, text='Run RNA!', state=NORMAL, padx=20, pady=5, command = launchSystem)
 
 def isChecked():
     if (Checkbutton1.get() == 1 or Checkbutton2.get() == 1 or Checkbutton3.get() == 1 or Checkbutton4.get() == 1 or Checkbutton5.get() == 1 or Checkbutton6.get() == 1):
@@ -140,9 +140,9 @@ def main():
     frame2.pack(padx = 10 , pady = 10 , side = RIGHT)
 
     Checkbutton(frame2, text="Analyze bufferStops", variable=Checkbutton1, onvalue=1, offvalue=0, command=isChecked).pack()
-    Checkbutton(frame2, text="Analyze lineborders", variable=Checkbutton2, onvalue=1, offvalue=0, command=isChecked).pack()
+    Checkbutton(frame2, text="Analyze lineBorders", variable=Checkbutton2, onvalue=1, offvalue=0, command=isChecked).pack()
     Checkbutton(frame2, text="Analyze railJoints", variable=Checkbutton3, onvalue=1, offvalue=0, command=isChecked).pack()
-    Checkbutton(frame2, text="Analyze level crossings", variable=Checkbutton4, onvalue=1, offvalue=0, command=isChecked).pack()
+    Checkbutton(frame2, text="Analyze levelCrossings", variable=Checkbutton4, onvalue=1, offvalue=0, command=isChecked).pack()
     Checkbutton(frame2, text="Analyze platforms", variable=Checkbutton5, onvalue=1, offvalue=0, command=isChecked).pack()
     Checkbutton(frame2, text="Analyze switches", variable=Checkbutton6, onvalue=1, offvalue=0, command=isChecked).pack()
     Checkbutton(frame2, text="One direction only", variable=Checkbutton7, onvalue=1, offvalue=0, command=isChecked).pack()
