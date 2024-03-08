@@ -6,31 +6,31 @@ use IEEE.numeric_std.all;
 use work.my_package.all;
 	entity interlocking is
 		generic(
-			N : natural := 326;
+			N : natural := 321;
 			N_SIGNALS : natural := 79;
 			N_LEVELCROSSINGS : natural := 2;
-			N_SINGLESWITCHES : natural := 20;
-			N_DOUBLEWITCHES : natural := 4;
+			N_SINGLESWITCHES : natural := 21;
+			N_DOUBLEWITCHES : natural := 1;
 			N_TRACKCIRCUITS : natural := 47
 		);
 		port(
 			clock : in std_logic;
 			processing : in std_logic;
 			processed : out std_logic;
-			packet_i : in std_logic_vector(326-1 downto 0);
-			packet_o : out std_logic_vector(279-1 downto 0);
+			packet_i : in std_logic_vector(321-1 downto 0);
+			packet_o : out std_logic_vector(274-1 downto 0);
 			reset : in std_logic
 		);
 	end entity interlocking;
 architecture Behavioral of interlocking is
 	component splitter is
 		generic(
-			N : natural := 326;
+			N : natural := 321;
 			N_SIGNALS : natural := 79;
 			N_ROUTES : natural := 91;
 			N_LEVELCROSSINGS : natural := 2;
-			N_SINGLESWITCHES : natural := 20;
-			N_DOUBLESWITCHES : natural := 4;
+			N_SINGLESWITCHES : natural := 21;
+			N_DOUBLESWITCHES : natural := 1;
 			N_TRACKCIRCUITS : natural := 47
 		);
 		port(
@@ -43,18 +43,18 @@ architecture Behavioral of interlocking is
 			routes :  out std_logic_vector(N_ROUTES-1 downto 0);
 			levelCrossings :  out std_logic_vector(N_LEVELCROSSINGS-1 downto 0);
 			singleSwitches :  out std_logic_vector(N_SINGLESWITCHES-1 downto 0);
-			doubleSwitches :  out std_logic_vector(N_DOUBLESWITCHES-1 downto 0);
+			doubleSwitches :  out std_logic;
 			reset :  in std_logic
 		);
 	end component splitter;
 	component network is
 		generic(
-			N : natural := 326;
+			N : natural := 321;
 			N_SIGNALS : natural := 79;
 			N_ROUTES : natural := 91;
 			N_LEVELCROSSINGS : natural := 2;
-			N_SINGLESWITCHES : natural := 20;
-			N_DOUBLEWITCHES : natural := 4;
+			N_SINGLESWITCHES : natural := 21;
+			N_DOUBLEWITCHES : natural := 1;
 			N_TRACKCIRCUITS : natural := 47
 		);
 		port(
@@ -77,12 +77,12 @@ architecture Behavioral of interlocking is
 	end component network;
 	component mediator is
 		generic(
-			N : natural := 326;
+			N : natural := 321;
 			N_SIGNALS : natural := 79;
 			N_ROUTES : natural := 91;
 			N_LEVELCROSSINGS : natural := 2;
-			N_SINGLESWITCHES : natural := 20;
-			N_DOUBLESWITCHES : natural := 4;
+			N_SINGLESWITCHES : natural := 21;
+			N_DOUBLESWITCHES : natural := 1;
 			N_TRACKCIRCUITS : natural := 47
 		);
 		port(
@@ -94,7 +94,7 @@ architecture Behavioral of interlocking is
 			levelCrossings : in std_logic_vector(N_LEVELCROSSINGS-1 downto 0);
 			singleSwitches : in std_logic_vector(N_SINGLESWITCHES-1 downto 0);
 			doubleSwitches : in dSwitches_type;
-			output : out std_logic_vector(279-1 downto 0);
+			output : out std_logic_vector(274-1 downto 0);
 			reset : in std_logic
 		);
 	end component mediator;
@@ -102,7 +102,7 @@ architecture Behavioral of interlocking is
 	Signal sig_s_i,sig_s_o : signals_type;
 	Signal rt_s_i,rt_s_o : std_logic_vector(91-1 downto 0);
 	Signal lc_s_i,lc_s_o : std_logic_vector(2-1 downto 0);
-	Signal ssw_s_i,ssw_s_o : std_logic_vector(20-1 downto 0);
+	Signal ssw_s_i,ssw_s_o : std_logic_vector(21-1 downto 0);
 	Signal dsw_s_i,dsw_s_o : dSwitches_type;
 	Signal process_spt_int, process_int_med : std_logic;
 

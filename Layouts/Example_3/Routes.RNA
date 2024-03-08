@@ -12,10 +12,10 @@ route_4 [S12 >> S29]:
 	Switches: ['71W02_R']
 route_5 [S14 >> S100]:
 	Path: ['ne84', 'ne82', 'ne32']
-	Switches: ['Sw04_R']
+	Switches: ['Sw04_R', 'Sw05_RR']
 route_6 [S14 >> S105]:
 	Path: ['ne84', 'ne85', 'ne100', 'ne101', 'ne44']
-	Switches: ['Sw41_R']
+	Switches: ['Sw05_NR', 'Sw41_R']
 route_7 [S20 >> S97]:
 	Path: ['ne89', 'ne30']
 	Switches: ['Sw12_N']
@@ -61,10 +61,10 @@ route_24 [S46 >> S35]:
 	Path: ['ne9', 'ne95']
 route_25 [S50 >> S83]:
 	Path: ['ne95', 'ne59']
-	Crossings: ['Lc01']
+	LevelCrossings: ['Lc01']
 route_26 [S51 << S80]:
 	Path: ['ne95', 'ne9']
-	Crossings: ['Lc01']
+	LevelCrossings: ['Lc01']
 route_27 [S60 << S27]:
 	Path: ['ne23', 'ne26']
 	Switches: ['70W02_N']
@@ -87,9 +87,10 @@ route_35 [S72 << S144]:
 	Path: ['ne21']
 route_36 [S73 >> S33]:
 	Path: ['ne21', 'ne79', 'ne78']
-	Switches: ['Sw06_R']
+	Switches: ['Sw06_R', 'Sw07_RN']
 route_37 [S73 >> S69]:
 	Path: ['ne21', 'ne94', 'ne97', 'ne99']
+	Switches: ['Sw07_NN']
 	Platforms: ['Plat10']
 route_38 [S78 >> S46]:
 	Path: ['ne1', 'ne9']
@@ -181,11 +182,11 @@ route_64 [S110 << S82]:
 	Platforms: ['Plat09']
 route_65 [S110 << S133]:
 	Path: ['ne78', 'ne79', 'ne77']
-	Switches: ['Sw06_R']
+	Switches: ['Sw06_R', 'Sw07_RR']
 	Platforms: ['Plat08', 'Plat13']
 route_66 [S110 << S72]:
 	Path: ['ne78', 'ne79', 'ne21']
-	Switches: ['Sw06_R']
+	Switches: ['Sw06_R', 'Sw07_RN']
 	Platforms: ['Plat12']
 route_67 [S114 >> S100]:
 	Path: ['ne83', 'ne32']
@@ -196,11 +197,11 @@ route_68 [S115 << S95]:
 	Platforms: ['Plat03']
 route_69 [S115 << S58]:
 	Path: ['ne32', 'ne82', 'ne41']
-	Switches: ['Sw04_R']
+	Switches: ['Sw04_R', 'Sw05_RN']
 	Platforms: ['Plat04']
 route_70 [S115 << S13]:
 	Path: ['ne32', 'ne82', 'ne84']
-	Switches: ['Sw04_R']
+	Switches: ['Sw04_R', 'Sw05_RR']
 route_71 [S118 << S15]:
 	Path: ['ne88', 'ne86']
 	Switches: ['Sw11_N']
@@ -221,24 +222,28 @@ route_76 [S122 << S21]:
 	Switches: ['Sw12_R', 'Sw13_R']
 route_77 [S130 >> S100]:
 	Path: ['ne41', 'ne82', 'ne32']
-	Switches: ['Sw04_R']
+	Switches: ['Sw04_R', 'Sw05_RN']
 	Platforms: ['Plat04']
 route_78 [S130 >> S105]:
 	Path: ['ne41', 'ne85', 'ne100', 'ne101', 'ne44']
-	Switches: ['Sw41_R']
+	Switches: ['Sw05_NN', 'Sw41_R']
 	Platforms: ['Plat04']
 route_79 [S131 << S58]:
 	Path: ['ne85', 'ne41']
+	Switches: ['Sw05_NN']
 	Platforms: ['Plat04']
 route_80 [S131 << S13]:
 	Path: ['ne85', 'ne84']
+	Switches: ['Sw05_NR']
 route_81 [S133 << S86]:
 	Path: ['ne77', 'ne52']
 route_82 [S135 << S133]:
 	Path: ['ne94', 'ne77']
+	Switches: ['Sw07_NR']
 	Platforms: ['Plat08', 'Plat13']
 route_83 [S135 << S72]:
 	Path: ['ne94', 'ne21']
+	Switches: ['Sw07_NN']
 	Platforms: ['Plat12']
 route_84 [S138 >> S105]:
 	Path: ['ne110', 'ne100', 'ne101', 'ne44']
@@ -255,9 +260,10 @@ route_88 [S144 << S143]:
 	Path: ['ne21', 'ne104']
 route_89 [S145 >> S33]:
 	Path: ['ne77', 'ne79', 'ne78']
-	Switches: ['Sw06_R']
+	Switches: ['Sw06_R', 'Sw07_RR']
 route_90 [S145 >> S69]:
 	Path: ['ne77', 'ne94', 'ne97', 'ne99']
+	Switches: ['Sw07_NR']
 	Platforms: ['Plat10']
 route_91 [S146 >> S145]:
 	Path: ['ne52', 'ne77']

@@ -5624,11 +5624,15 @@
 					</routeExit>
 					<designator register="_Example" entry="Route S12-S29 (71W02R)"/>
 				</route>
-				<route id="rt_sig14_sig100_Sw04R">
+				<route id="rt_sig14_sig100_Sw04R_Sw05RR">
 					<handlesRouteType ref="rt_main"/>
-					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw04_rt_sig14_sig100_Sw04R">
+					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw04_rt_sig14_sig100_Sw04R_Sw05RR">
 						<refersToSwitch ref="il_Sw04"/>
 						<designator register="_Example" entry="Sw04 in left"/>
+					</facingSwitchInPosition>
+					<facingSwitchInPosition id="rp_rt_Sw05R_rt_sig14_sig100_Sw04R_Sw05RR">
+						<refersToSwitch ref="il_Sw05R"/>
+						<designator register="_Example" entry=""/>
 					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig14_rt_sig14_sig100">
@@ -5637,11 +5641,15 @@
 					<routeExit id="rts_sig100_rt_sig14_sig100">
 						<refersTo ref="il_sig100"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S14-S100 (Sw04R)"/>
+					<designator register="_Example" entry="Route S14-S100 (Sw04R-Sw05RR)"/>
 				</route>
-				<route id="rt_sig14_sig105_Sw41R">
+				<route id="rt_sig14_sig105_Sw05NR_Sw41R">
 					<handlesRouteType ref="rt_main"/>
-					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw41_rt_sig14_sig105_Sw41R">
+					<facingSwitchInPosition id="rp_rt_Sw05N_rt_sig14_sig105_Sw05NR_Sw41R">
+						<refersToSwitch ref="il_Sw05N"/>
+						<designator register="_Example" entry=""/>
+					</facingSwitchInPosition>
+					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw41_rt_sig14_sig105_Sw05NR_Sw41R">
 						<refersToSwitch ref="il_Sw41"/>
 						<designator register="_Example" entry="Sw41 in left"/>
 					</facingSwitchInPosition>
@@ -5652,7 +5660,7 @@
 					<routeExit id="rts_sig105_rt_sig14_sig105">
 						<refersTo ref="il_sig105"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S14-S105 (Sw41R)"/>
+					<designator register="_Example" entry="Route S14-S105 (Sw05NR-Sw41R)"/>
 				</route>
 				<route id="rt_sig20_sig97_Sw12N">
 					<handlesRouteType ref="rt_main"/>
@@ -6001,11 +6009,15 @@
 					</routeExit>
 					<designator register="_Example" entry="Route S72-S144"/>
 				</route>
-				<route id="rt_sig73_sig33_Sw06R">
+				<route id="rt_sig73_sig33_Sw06R_Sw07RN">
 					<handlesRouteType ref="rt_main"/>
-					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw06_rt_sig73_sig33_Sw06R">
+					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw06_rt_sig73_sig33_Sw06R_Sw07RN">
 						<refersToSwitch ref="il_Sw06"/>
 						<designator register="_Example" entry="Sw06 in left"/>
+					</facingSwitchInPosition>
+					<facingSwitchInPosition id="rp_rt_Sw07R_rt_sig73_sig33_Sw06R_Sw07RN">
+						<refersToSwitch ref="il_Sw07R"/>
+						<designator register="_Example" entry=""/>
 					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig73_rt_sig73_sig33">
@@ -6014,10 +6026,14 @@
 					<routeExit id="rts_sig33_rt_sig73_sig33">
 						<refersTo ref="il_sig33"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S73-S33 (Sw06R)"/>
+					<designator register="_Example" entry="Route S73-S33 (Sw06R-Sw07RN)"/>
 				</route>
-				<route id="rt_sig73_sig69">
+				<route id="rt_sig73_sig69_Sw07NN">
 					<handlesRouteType ref="rt_main"/>
+					<facingSwitchInPosition id="rp_rt_Sw07N_rt_sig73_sig69_Sw07NN">
+						<refersToSwitch ref="il_Sw07N"/>
+						<designator register="_Example" entry=""/>
+					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig73_rt_sig73_sig69">
 						<refersTo ref="il_sig73"/>
@@ -6025,7 +6041,7 @@
 					<routeExit id="rts_sig69_rt_sig73_sig69">
 						<refersTo ref="il_sig69"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S73-S69"/>
+					<designator register="_Example" entry="Route S73-S69 (Sw07NN)"/>
 				</route>
 				<route id="rt_sig78_sig46_68W02N">
 					<handlesRouteType ref="rt_main"/>
@@ -6444,11 +6460,15 @@
 					</routeExit>
 					<designator register="_Example" entry="Route S110-S82 (Sw06N)"/>
 				</route>
-				<route id="rt_sig110_sig133_Sw06R">
+				<route id="rt_sig110_sig133_Sw06R_Sw07RR">
 					<handlesRouteType ref="rt_main"/>
-					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw06_rt_sig110_sig133_Sw06R">
+					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw06_rt_sig110_sig133_Sw06R_Sw07RR">
 						<refersToSwitch ref="il_Sw06"/>
 						<designator register="_Example" entry="Sw06 in left"/>
+					</facingSwitchInPosition>
+					<facingSwitchInPosition id="rp_rt_Sw07R_rt_sig110_sig133_Sw06R_Sw07RR">
+						<refersToSwitch ref="il_Sw07R"/>
+						<designator register="_Example" entry=""/>
 					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig110_rt_sig110_sig133">
@@ -6457,13 +6477,17 @@
 					<routeExit id="rts_sig133_rt_sig110_sig133">
 						<refersTo ref="il_sig133"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S110-S133 (Sw06R)"/>
+					<designator register="_Example" entry="Route S110-S133 (Sw06R-Sw07RR)"/>
 				</route>
-				<route id="rt_sig110_sig72_Sw06R">
+				<route id="rt_sig110_sig72_Sw06R_Sw07RN">
 					<handlesRouteType ref="rt_main"/>
-					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw06_rt_sig110_sig72_Sw06R">
+					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw06_rt_sig110_sig72_Sw06R_Sw07RN">
 						<refersToSwitch ref="il_Sw06"/>
 						<designator register="_Example" entry="Sw06 in left"/>
+					</facingSwitchInPosition>
+					<facingSwitchInPosition id="rp_rt_Sw07R_rt_sig110_sig72_Sw06R_Sw07RN">
+						<refersToSwitch ref="il_Sw07R"/>
+						<designator register="_Example" entry=""/>
 					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig110_rt_sig110_sig72">
@@ -6472,7 +6496,7 @@
 					<routeExit id="rts_sig72_rt_sig110_sig72">
 						<refersTo ref="il_sig72"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S110-S72 (Sw06R)"/>
+					<designator register="_Example" entry="Route S110-S72 (Sw06R-Sw07RN)"/>
 				</route>
 				<route id="rt_sig114_sig100_Sw04N">
 					<handlesRouteType ref="rt_main"/>
@@ -6504,11 +6528,15 @@
 					</routeExit>
 					<designator register="_Example" entry="Route S115-S95 (Sw04N)"/>
 				</route>
-				<route id="rt_sig115_sig58_Sw04R">
+				<route id="rt_sig115_sig58_Sw04R_Sw05RN">
 					<handlesRouteType ref="rt_main"/>
-					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw04_rt_sig115_sig58_Sw04R">
+					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw04_rt_sig115_sig58_Sw04R_Sw05RN">
 						<refersToSwitch ref="il_Sw04"/>
 						<designator register="_Example" entry="Sw04 in left"/>
+					</facingSwitchInPosition>
+					<facingSwitchInPosition id="rp_rt_Sw05R_rt_sig115_sig58_Sw04R_Sw05RN">
+						<refersToSwitch ref="il_Sw05R"/>
+						<designator register="_Example" entry=""/>
 					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig115_rt_sig115_sig58">
@@ -6517,13 +6545,17 @@
 					<routeExit id="rts_sig58_rt_sig115_sig58">
 						<refersTo ref="il_sig58"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S115-S58 (Sw04R)"/>
+					<designator register="_Example" entry="Route S115-S58 (Sw04R-Sw05RN)"/>
 				</route>
-				<route id="rt_sig115_sig13_Sw04R">
+				<route id="rt_sig115_sig13_Sw04R_Sw05RR">
 					<handlesRouteType ref="rt_main"/>
-					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw04_rt_sig115_sig13_Sw04R">
+					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw04_rt_sig115_sig13_Sw04R_Sw05RR">
 						<refersToSwitch ref="il_Sw04"/>
 						<designator register="_Example" entry="Sw04 in left"/>
+					</facingSwitchInPosition>
+					<facingSwitchInPosition id="rp_rt_Sw05R_rt_sig115_sig13_Sw04R_Sw05RR">
+						<refersToSwitch ref="il_Sw05R"/>
+						<designator register="_Example" entry=""/>
 					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig115_rt_sig115_sig13">
@@ -6532,7 +6564,7 @@
 					<routeExit id="rts_sig13_rt_sig115_sig13">
 						<refersTo ref="il_sig13"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S115-S13 (Sw04R)"/>
+					<designator register="_Example" entry="Route S115-S13 (Sw04R-Sw05RR)"/>
 				</route>
 				<route id="rt_sig118_sig15_Sw11N">
 					<handlesRouteType ref="rt_main"/>
@@ -6644,11 +6676,15 @@
 					</routeExit>
 					<designator register="_Example" entry="Route S122-S21 (Sw12R-Sw13R)"/>
 				</route>
-				<route id="rt_sig130_sig100_Sw04R">
+				<route id="rt_sig130_sig100_Sw04R_Sw05RN">
 					<handlesRouteType ref="rt_main"/>
-					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw04_rt_sig130_sig100_Sw04R">
+					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw04_rt_sig130_sig100_Sw04R_Sw05RN">
 						<refersToSwitch ref="il_Sw04"/>
 						<designator register="_Example" entry="Sw04 in left"/>
+					</facingSwitchInPosition>
+					<facingSwitchInPosition id="rp_rt_Sw05R_rt_sig130_sig100_Sw04R_Sw05RN">
+						<refersToSwitch ref="il_Sw05R"/>
+						<designator register="_Example" entry=""/>
 					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig130_rt_sig130_sig100">
@@ -6657,11 +6693,15 @@
 					<routeExit id="rts_sig100_rt_sig130_sig100">
 						<refersTo ref="il_sig100"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S130-S100 (Sw04R)"/>
+					<designator register="_Example" entry="Route S130-S100 (Sw04R-Sw05RN)"/>
 				</route>
-				<route id="rt_sig130_sig105_Sw41R">
+				<route id="rt_sig130_sig105_Sw05NN_Sw41R">
 					<handlesRouteType ref="rt_main"/>
-					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw41_rt_sig130_sig105_Sw41R">
+					<facingSwitchInPosition id="rp_rt_Sw05N_rt_sig130_sig105_Sw05NN_Sw41R">
+						<refersToSwitch ref="il_Sw05N"/>
+						<designator register="_Example" entry=""/>
+					</facingSwitchInPosition>
+					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw41_rt_sig130_sig105_Sw05NN_Sw41R">
 						<refersToSwitch ref="il_Sw41"/>
 						<designator register="_Example" entry="Sw41 in left"/>
 					</facingSwitchInPosition>
@@ -6672,10 +6712,14 @@
 					<routeExit id="rts_sig105_rt_sig130_sig105">
 						<refersTo ref="il_sig105"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S130-S105 (Sw41R)"/>
+					<designator register="_Example" entry="Route S130-S105 (Sw05NN-Sw41R)"/>
 				</route>
-				<route id="rt_sig131_sig58">
+				<route id="rt_sig131_sig58_Sw05NN">
 					<handlesRouteType ref="rt_main"/>
+					<facingSwitchInPosition id="rp_rt_Sw05N_rt_sig131_sig58_Sw05NN">
+						<refersToSwitch ref="il_Sw05N"/>
+						<designator register="_Example" entry=""/>
+					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig131_rt_sig131_sig58">
 						<refersTo ref="il_sig131"/>
@@ -6683,10 +6727,14 @@
 					<routeExit id="rts_sig58_rt_sig131_sig58">
 						<refersTo ref="il_sig58"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S131-S58"/>
+					<designator register="_Example" entry="Route S131-S58 (Sw05NN)"/>
 				</route>
-				<route id="rt_sig131_sig13">
+				<route id="rt_sig131_sig13_Sw05NR">
 					<handlesRouteType ref="rt_main"/>
+					<facingSwitchInPosition id="rp_rt_Sw05N_rt_sig131_sig13_Sw05NR">
+						<refersToSwitch ref="il_Sw05N"/>
+						<designator register="_Example" entry=""/>
+					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig131_rt_sig131_sig13">
 						<refersTo ref="il_sig131"/>
@@ -6694,7 +6742,7 @@
 					<routeExit id="rts_sig13_rt_sig131_sig13">
 						<refersTo ref="il_sig13"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S131-S13"/>
+					<designator register="_Example" entry="Route S131-S13 (Sw05NR)"/>
 				</route>
 				<route id="rt_sig133_sig86">
 					<handlesRouteType ref="rt_main"/>
@@ -6707,8 +6755,12 @@
 					</routeExit>
 					<designator register="_Example" entry="Route S133-S86"/>
 				</route>
-				<route id="rt_sig135_sig133">
+				<route id="rt_sig135_sig133_Sw07NR">
 					<handlesRouteType ref="rt_main"/>
+					<facingSwitchInPosition id="rp_rt_Sw07N_rt_sig135_sig133_Sw07NR">
+						<refersToSwitch ref="il_Sw07N"/>
+						<designator register="_Example" entry=""/>
+					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig135_rt_sig135_sig133">
 						<refersTo ref="il_sig135"/>
@@ -6716,10 +6768,14 @@
 					<routeExit id="rts_sig133_rt_sig135_sig133">
 						<refersTo ref="il_sig133"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S135-S133"/>
+					<designator register="_Example" entry="Route S135-S133 (Sw07NR)"/>
 				</route>
-				<route id="rt_sig135_sig72">
+				<route id="rt_sig135_sig72_Sw07NN">
 					<handlesRouteType ref="rt_main"/>
+					<facingSwitchInPosition id="rp_rt_Sw07N_rt_sig135_sig72_Sw07NN">
+						<refersToSwitch ref="il_Sw07N"/>
+						<designator register="_Example" entry=""/>
+					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig135_rt_sig135_sig72">
 						<refersTo ref="il_sig135"/>
@@ -6727,7 +6783,7 @@
 					<routeExit id="rts_sig72_rt_sig135_sig72">
 						<refersTo ref="il_sig72"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S135-S72"/>
+					<designator register="_Example" entry="Route S135-S72 (Sw07NN)"/>
 				</route>
 				<route id="rt_sig138_sig105_Sw41N">
 					<handlesRouteType ref="rt_main"/>
@@ -6796,11 +6852,15 @@
 					</routeExit>
 					<designator register="_Example" entry="Route S144-S143"/>
 				</route>
-				<route id="rt_sig145_sig33_Sw06R">
+				<route id="rt_sig145_sig33_Sw06R_Sw07RR">
 					<handlesRouteType ref="rt_main"/>
-					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw06_rt_sig145_sig33_Sw06R">
+					<facingSwitchInPosition inPosition="left" id="rp_rt_Sw06_rt_sig145_sig33_Sw06R_Sw07RR">
 						<refersToSwitch ref="il_Sw06"/>
 						<designator register="_Example" entry="Sw06 in left"/>
+					</facingSwitchInPosition>
+					<facingSwitchInPosition id="rp_rt_Sw07R_rt_sig145_sig33_Sw06R_Sw07RR">
+						<refersToSwitch ref="il_Sw07R"/>
+						<designator register="_Example" entry=""/>
 					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig145_rt_sig145_sig33">
@@ -6809,10 +6869,14 @@
 					<routeExit id="rts_sig33_rt_sig145_sig33">
 						<refersTo ref="il_sig33"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S145-S33 (Sw06R)"/>
+					<designator register="_Example" entry="Route S145-S33 (Sw06R-Sw07RR)"/>
 				</route>
-				<route id="rt_sig145_sig69">
+				<route id="rt_sig145_sig69_Sw07NR">
 					<handlesRouteType ref="rt_main"/>
+					<facingSwitchInPosition id="rp_rt_Sw07N_rt_sig145_sig69_Sw07NR">
+						<refersToSwitch ref="il_Sw07N"/>
+						<designator register="_Example" entry=""/>
+					</facingSwitchInPosition>
 					<hasTvdSection ref="tvd_XX"/>
 					<routeEntry id="rts_sig145_rt_sig145_sig69">
 						<refersTo ref="il_sig145"/>
@@ -6820,7 +6884,7 @@
 					<routeExit id="rts_sig69_rt_sig145_sig69">
 						<refersTo ref="il_sig69"/>
 					</routeExit>
-					<designator register="_Example" entry="Route S145-S69"/>
+					<designator register="_Example" entry="Route S145-S69 (Sw07NR)"/>
 				</route>
 				<route id="rt_sig146_sig145">
 					<handlesRouteType ref="rt_main"/>

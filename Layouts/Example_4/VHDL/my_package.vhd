@@ -11,17 +11,13 @@ use IEEE.numeric_std.all;
 			lsb : std_logic;
 		end record sSwitch_type;
 		type sSwitches_type is record
-			msb : std_logic_vector(20-1 downto 0);
-			lsb : std_logic_vector(20-1 downto 0);
+			msb : std_logic_vector(21-1 downto 0);
+			lsb : std_logic_vector(21-1 downto 0);
 		end record sSwitches_type;
 		type dSwitch_type is record
 			msb : std_logic;
 			lsb : std_logic;
 		end record dSwitch_type;
-		type dSwitches_type is record
-			msb : std_logic_vector(4-1 downto 0);
-			lsb : std_logic_vector(4-1 downto 0);
-		end record dSwitches_type;
 		type levelCrossingStates is (DOWN,UP,TRANSITION,RESERVED,LOCKED);
 		type levelCrossing_type is record
 			msb : std_logic;

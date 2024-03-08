@@ -6,12 +6,12 @@ use IEEE.numeric_std.all;
 use work.my_package.all;
 	entity mediator is
 		generic(
-			N : natural := 326;
+			N : natural := 321;
 			N_SIGNALS : natural := 79;
 			N_ROUTES : natural := 91;
 			N_LEVELCROSSINGS : natural := 2;
-			N_SINGLESWITCHES : natural := 20;
-			N_DOUBLESWITCHES : natural := 4;
+			N_SINGLESWITCHES : natural := 21;
+			N_DOUBLESWITCHES : natural := 1;
 			N_TRACKCIRCUITS : natural := 47
 		);
 		port(
@@ -23,7 +23,7 @@ use work.my_package.all;
 			levelCrossings : in std_logic_vector(N_LEVELCROSSINGS-1 downto 0);
 			singleSwitches : in std_logic_vector(N_SINGLESWITCHES-1 downto 0);
 			doubleSwitches : in dSwitches_type;
-			output : out std_logic_vector(279-1 downto 0);
+			output : out std_logic_vector(274-1 downto 0);
 			reset : in std_logic
 		);
 	end entity mediator;
@@ -198,15 +198,9 @@ begin
 					output(247) <= signals.msb(78);
 					output(248) <= signals.lsb(78);
 					output(250 downto 249) <= levelCrossings;
-					output(270 downto 251) <= singleSwitches;
+					output(271 downto 251) <= singleSwitches;
 					output(0) <= doubleSwitches.msb(0);
 					output(1) <= doubleSwitches.lsb(0);
-					output(2) <= doubleSwitches.msb(1);
-					output(3) <= doubleSwitches.lsb(1);
-					output(4) <= doubleSwitches.msb(2);
-					output(5) <= doubleSwitches.lsb(2);
-					output(6) <= doubleSwitches.msb(3);
-					output(7) <= doubleSwitches.lsb(3);
 				end if;
 			end if;
 		end if;

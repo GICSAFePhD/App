@@ -30,3 +30,9 @@ use work.my_package.all;
 		);
 	end entity network;
 architecture Behavioral of network is
+	component levelCrossing_0 is
+		port(
+			clock : in std_logic;
+			ocupation_ne46 : in std_logic;
+			ocupation_ne3 : in std_logic;
+			ocupation_ne40 : in std_logic;

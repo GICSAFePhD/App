@@ -57,12 +57,12 @@ architecture Behavioral of network is
 	component singleSwitch_0 is
 		port(
 			clock : in std_logic;
-			R8_command : in routeCommands;
-			R10_command : in routeCommands;
-			R11_command : in routeCommands;
-			R12_command : in routeCommands;
-			R13_command : in routeCommands;
-			R17_command : in routeCommands;
+			R8_command : in routeCommands;
+			R10_command : in routeCommands;
+			R11_command : in routeCommands;
+			R12_command : in routeCommands;
+			R13_command : in routeCommands;
+			R17_command : in routeCommands;
 			indication : in std_logic;
 			command : out std_logic;
 			correspondence_Sw04 : out singleSwitchStates
@@ -71,10 +71,10 @@ architecture Behavioral of network is
 	component singleSwitch_1 is
 		port(
 			clock : in std_logic;
-			R9_command : in routeCommands;
-			R14_command : in routeCommands;
-			R15_command : in routeCommands;
-			R16_command : in routeCommands;
+			R9_command : in routeCommands;
+			R14_command : in routeCommands;
+			R15_command : in routeCommands;
+			R16_command : in routeCommands;
 			indication : in std_logic;
 			command : out std_logic;
 			correspondence_Sw06 : out singleSwitchStates
@@ -83,10 +83,10 @@ architecture Behavioral of network is
 	component singleSwitch_2 is
 		port(
 			clock : in std_logic;
-			R5_command : in routeCommands;
-			R18_command : in routeCommands;
-			R19_command : in routeCommands;
-			R21_command : in routeCommands;
+			R5_command : in routeCommands;
+			R18_command : in routeCommands;
+			R19_command : in routeCommands;
+			R21_command : in routeCommands;
 			indication : in std_logic;
 			command : out std_logic;
 			correspondence_Sw12 : out singleSwitchStates
@@ -95,10 +95,10 @@ architecture Behavioral of network is
 	component singleSwitch_3 is
 		port(
 			clock : in std_logic;
-			R8_command : in routeCommands;
-			R12_command : in routeCommands;
-			R13_command : in routeCommands;
-			R17_command : in routeCommands;
+			R8_command : in routeCommands;
+			R12_command : in routeCommands;
+			R13_command : in routeCommands;
+			R17_command : in routeCommands;
 			indication : in std_logic;
 			command : out std_logic;
 			correspondence_Sw07 : out singleSwitchStates
@@ -107,10 +107,10 @@ architecture Behavioral of network is
 	component singleSwitch_4 is
 		port(
 			clock : in std_logic;
-			R6_command : in routeCommands;
-			R19_command : in routeCommands;
-			R20_command : in routeCommands;
-			R21_command : in routeCommands;
+			R6_command : in routeCommands;
+			R19_command : in routeCommands;
+			R20_command : in routeCommands;
+			R21_command : in routeCommands;
 			indication : in std_logic;
 			command : out std_logic;
 			correspondence_Sw13 : out singleSwitchStates

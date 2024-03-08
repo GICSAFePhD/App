@@ -1,7 +1,7 @@
 route_1 [S02 >> S20]:
 	Path: ['ne13']
 	Platforms: ['Plat13']
-	Crossings: ['Lc08']
+	LevelCrossings: ['Lc08']
 route_2 [S04 << S16]:
 	Path: ['ne14']
 	Platforms: ['Plat11']
@@ -18,11 +18,11 @@ route_6 [S13 >> S25]:
 route_7 [S15 >> S03]:
 	Path: ['ne14']
 	Platforms: ['Plat11']
-	Crossings: ['Lc06']
+	LevelCrossings: ['Lc06']
 route_8 [S16 << S07]:
 	Path: ['ne14', 'ne9', 'ne1']
 	Switches: ['Sw04_R', 'Sw07_R']
-	Crossings: ['Lc06']
+	LevelCrossings: ['Lc06']
 route_9 [S20 >> S08]:
 	Path: ['ne13', 'ne2']
 	Switches: ['Sw06_R']
@@ -48,7 +48,7 @@ route_16 [S27 << S01]:
 	Path: ['ne2', 'ne13']
 	Switches: ['Sw06_R']
 	Platforms: ['Plat13']
-	Crossings: ['Lc08']
+	LevelCrossings: ['Lc08']
 route_17 [S29 << S07]:
 	Path: ['ne15', 'ne9', 'ne1']
 	Switches: ['Sw04_R', 'Sw07_N']

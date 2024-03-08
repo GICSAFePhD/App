@@ -14,8 +14,10 @@ route_5 [S06 << S19]:
 	Switches: ['D19_N']
 route_6 [S08 << S126]:
 	Path: ['ne450', 'ne127']
+	Switches: ['D12_RN']
 route_7 [S08 << S88]:
 	Path: ['ne450', 'ne130']
+	Switches: ['D12_NN']
 route_8 [S10 << S45]:
 	Path: ['ne465', 'ne131', 'ne912']
 	Switches: ['D20_R', 'D21_R']
@@ -76,22 +78,22 @@ route_29 [S48 >> S11]:
 	Path: ['ne114', 'ne102']
 route_30 [S52 >> S63]:
 	Path: ['ne98', 'ne99']
-	Crossings: ['Lc01', 'Lc02']
+	LevelCrossings: ['Lc01', 'Lc02']
 route_31 [S53 << S135]:
 	Path: ['ne98', 'ne996']
-	Crossings: ['Lc01', 'Lc02']
+	LevelCrossings: ['Lc01', 'Lc02']
 route_32 [S58 >> S67]:
 	Path: ['ne100', 'ne101']
-	Crossings: ['Lc03', 'Lc04', 'Lc05', 'Lc06']
+	LevelCrossings: ['Lc03', 'Lc04', 'Lc05', 'Lc06']
 route_33 [S59 << S129]:
 	Path: ['ne100', 'ne992']
-	Crossings: ['Lc03', 'Lc05']
+	LevelCrossings: ['Lc03', 'Lc05']
 route_34 [S60 >> S67]:
 	Path: ['ne100', 'ne101']
-	Crossings: ['Lc04', 'Lc06']
+	LevelCrossings: ['Lc04', 'Lc06']
 route_35 [S61 << S59]:
 	Path: ['ne100']
-	Crossings: ['Lc04', 'Lc06']
+	LevelCrossings: ['Lc04', 'Lc06']
 route_36 [S62 << S53]:
 	Path: ['ne63', 'ne99', 'ne98']
 	Switches: ['D05_N']
@@ -207,20 +209,22 @@ route_73 [S110 << S47]:
 	Switches: ['D23_N']
 route_74 [S110 << S126]:
 	Path: ['ne114', 'ne129', 'ne127']
-	Switches: ['D23_R']
+	Switches: ['D23_R', 'D12_RR']
 route_75 [S110 << S88]:
 	Path: ['ne114', 'ne129', 'ne130']
-	Switches: ['D23_R']
+	Switches: ['D23_R', 'D12_NR']
 route_76 [S113 >> S29]:
 	Path: ['ne127', 'ne129', 'ne114']
-	Switches: ['D23_R']
+	Switches: ['D23_R', 'D12_RR']
 route_77 [S113 >> S07]:
 	Path: ['ne127', 'ne450']
+	Switches: ['D12_RN']
 route_78 [S116 >> S29]:
 	Path: ['ne130', 'ne129', 'ne114']
-	Switches: ['D23_R']
+	Switches: ['D23_R', 'D12_NR']
 route_79 [S116 >> S07]:
 	Path: ['ne130', 'ne450']
+	Switches: ['D12_NN']
 route_80 [S119 >> S09]:
 	Path: ['ne912', 'ne131', 'ne465']
 	Switches: ['D20_R', 'D21_R']
