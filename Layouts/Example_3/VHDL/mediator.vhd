@@ -23,7 +23,7 @@ use work.my_package.all;
 			routes : in std_logic_vector(N_ROUTES-1 downto 0);
 			levelCrossings : in std_logic;
 			singleSwitches : in std_logic_vector(N_SINGLESWITCHES-1 downto 0);
-			scrissorCrossings : in std_logic;
+			scissorCrossings : in std_logic;
 			doubleSwitches : in dSwitches_type;
 			output : out std_logic_vector(276-1 downto 0);
 			reset : in std_logic
@@ -207,10 +207,10 @@ begin
 					output(254) <= signals.lsb(81);
 					output(255) <= levelCrossings;
 					output(270 downto 256) <= singleSwitches;
-					output(0) <= doubleSwitches.msb(0);
-					output(1) <= doubleSwitches.lsb(0);
-					output(2) <= doubleSwitches.msb(1);
-					output(3) <= doubleSwitches.lsb(1);
+					output(271) <= doubleSwitches.msb(0);
+					output(272) <= doubleSwitches.lsb(0);
+					output(273) <= doubleSwitches.msb(1);
+					output(274) <= doubleSwitches.lsb(1);
 					output(275) <= scissorCrossings;
 				end if;
 			end if;

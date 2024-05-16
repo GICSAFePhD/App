@@ -92,12 +92,14 @@ def launchSystem():
         #Label(root, text=f'Analysis done!').pack()
         # Call ACG
         try:
-            ACG.ACG(RML,routes,example = int(n.get()[-1]))
+            ACGx = ACG.ACG(RML,routes,example = int(n.get()[-1]))
+            parameters = ACGx.get_data()
+            print(parameters)
         except Exception as e:
             print(f'ACG had an error: {e}') 
         # Call AGG
         try:
-            AGG.AGG()
+            AGG.AGG(RML,routes,parameters)
         except Exception as e:
             print(f'AGG had an error: {e}')      
     except Exception as e:
@@ -154,4 +156,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    

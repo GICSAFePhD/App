@@ -1,52 +1,52 @@
-sig01 [T01] <<:
+T01 [T01] <<:
 	From: ne1 | To: bus1_left
 	Type: Stop | Direction: reverse | AtTrack: right 
 	Position: [-670, 30] | Coordinate: 0.0970
-sig02 [T02] >>:
+T02 [T02] >>:
 	From: ne1 | To: ne1_right
 	Type: Stop | Direction: normal | AtTrack: left 
 	Position: [-670, 30] | Coordinate: 0.0970
-sig03 [T03] >>:
+T03 [T03] >>:
 	From: ne31 | To: bus4_right
 	Type: Stop | Direction: normal | AtTrack: left 
 	Position: [1090, -480] | Coordinate: 0.8427
-sig04 [T04] <<:
+T04 [T04] <<:
 	From: ne31 | To: ne31_left
 	Type: Stop | Direction: reverse | AtTrack: right 
 	Position: [1090, -480] | Coordinate: 0.8427
-sig05 [T05] >>:
+T05 [T05] >>:
 	From: ne32 | To: bus35_right
 	Type: Stop | Direction: normal | AtTrack: left 
 	Position: [1360, -957] | Coordinate: 0.9153
-sig06 [T06] <<:
+T06 [T06] <<:
 	From: ne32 | To: ne32_left
 	Type: Stop | Direction: reverse | AtTrack: right 
 	Position: [1360, -957] | Coordinate: 0.9153
-sig07 [T07] >>:
+T07 [T07] >>:
 	From: ne42 | To: bus48_right
 	Type: Stop | Direction: normal | AtTrack: left 
 	Position: [1630, 420] | Coordinate: 0.8550
-sig08 [T08] <<:
+T08 [T08] <<:
 	From: ne42 | To: ne42_left
 	Type: Stop | Direction: reverse | AtTrack: right 
 	Position: [1630, 420] | Coordinate: 0.8550
-sig09 [T09] <<:
+T09 [T09] <<:
 	From: ne43 | To: bus47_left
 	Type: Stop | Direction: normal | AtTrack: left 
 	Position: [540, 420] | Coordinate: 0.1666
-sig10 [T10] >>:
+T10 [T10] >>:
 	From: ne43 | To: ne43_right
 	Type: Stop | Direction: reverse | AtTrack: right 
 	Position: [540, 420] | Coordinate: 0.1666
-sig14 [S14] >>:
+S14 [S14] >>:
 	From: ne1 | To: ne1_right
 	Type: Circulation | Direction: normal | AtTrack: left 
 	Position: [54.0, 30] | Coordinate: 0.8
-sig18 [B18] >>:
+B18 [B18] >>:
 	From: ne41 | To: ne41_right
 	Type: Manouver | Direction: normal | AtTrack: left 
 	Position: [550.0, 30] | Coordinate: 0.8937
-sig20 [H20] <<:
+H20 [H20] <<:
 	From: ne42 | To: ne42_left
 	Type: Manouver | Direction: reverse | AtTrack: right 
 	Position: [1270.0, 420] | Coordinate: 0.3333

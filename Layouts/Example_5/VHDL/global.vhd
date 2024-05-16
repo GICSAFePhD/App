@@ -12,7 +12,7 @@ use IEEE.numeric_std.all;
 			rgb_2 : out std_logic_vector(3-1 downto 0);
 			selector1 : in std_logic;
 			selector2 : in std_logic;
-			Reset : in std_logic
+			reset : in std_logic
 		);
 	end entity global;
 architecture Behavioral of global is

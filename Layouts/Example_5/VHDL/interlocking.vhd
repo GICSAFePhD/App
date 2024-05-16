@@ -25,6 +25,7 @@ architecture Behavioral of interlocking is
 		generic(
 			N : natural := 60;
 			N_SIGNALS : natural := 16;
+			N_ROUTES : natural := 16;
 			N_SINGLESWITCHES : natural := 4;
 			N_TRACKCIRCUITS : natural := 8
 		);
@@ -66,6 +67,7 @@ architecture Behavioral of interlocking is
 		generic(
 			N : natural := 60;
 			N_SIGNALS : natural := 16;
+			N_ROUTES : natural := 16;
 			N_SINGLESWITCHES : natural := 4;
 			N_TRACKCIRCUITS : natural := 8
 		);

@@ -9,32 +9,27 @@ use IEEE.numeric_std.all;
 			processed : out std_logic;
 			packet_i : in std_logic_vector(74-1 downto 0);
 			w_data : out std_logic_vector(8-1 downto 0);
-			wr_uart : out std_logic; -- 'char_disp'
-			reset : in std_logic
+			wr_uart : out std_logic -- 'char_disp'
 		);
 	end entity printer;
 architecture Behavioral of printer is
 	type states_t is (RESTART,CYCLE_1,CYCLE_2);
-	signal state, next_state : states_t;
-	signal mux_out_s,ena_s,rst_s,reg_aux : std_logic;
-	signal mux_s : std_logic_vector(7-1 downto 0);
+	signal state, next_state : states_t := RESTART;
+	signal mux_out_s,ena_s,rst_s,reg_aux : std_logic := '0';
+	signal mux_s : std_logic_vector(7-1 downto 0) := (others => '0');
 begin
 	contador : process(clock)
 	begin
 		if (clock = '1' and clock'event) then
-			if reset = '1' then
-				mux_s <= "0000000";
-			else
-				if (ena_s = '1') then
-					if (mux_s /= "1001010") then
-						if (state = CYCLE_1 or state = CYCLE_2) then
-							mux_s <= std_logic_vector(to_unsigned(to_integer(unsigned(mux_s)) + 1 , 7));
-						end if;
+			if (ena_s = '1') then
+				if (mux_s /= "1001010") then
+					if (state = CYCLE_1 or state = CYCLE_2) then
+						mux_s <= std_logic_vector(to_unsigned(to_integer(unsigned(mux_s)) + 1 , 7));
 					end if;
 				end if;
-				if (processing = '0') then
-					mux_s <= "0000000";
-				end if;
+			end if;
+			if (processing = '0') then
+				mux_s <= "0000000";
 			end if;
 		end if;
 	end process;
@@ -122,14 +117,10 @@ begin
 	FSM_reset : process(clock)
 	begin
 		if (clock = '1' and clock'event) then
-			if reset = '1' then
-				state <= RESTART;
+			if (processing = '1') then
+				state <= next_state;
 			else
-				if (processing = '1') then
-					state <= next_state;
-				else
-					state <= RESTART;
-				end if;
+				state <= RESTART;
 			end if;
 		end if;
 	end process;

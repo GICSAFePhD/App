@@ -7,33 +7,61 @@ use work.my_package.all;
 	entity node_40 is
 		port(
 			clock : in std_logic;
+			reset : in std_logic;
 			ocupation : in std_logic;
-			R60_command : in routeCommands;
-			R62_command : in routeCommands;
-			R82_command : in routeCommands;
-			state : out nodeStates
+			R56_command : in routeCommands;
+			R58_command : in routeCommands;
+			R77_command : in routeCommands;
+			state : out nodeStates;
+			locking : out objectLock
 		);
-	end entity node_40;
-architecture Behavioral of node_40 is
-begin
-	process(clock)
-	begin
-		if (clock = '1' and clock'Event) then
-			if (R60_command = RELEASE and R62_command = RELEASE and R82_command = RELEASE) then
-				if ocupation = '1' then
-					state <= FREE;
-				else
-					state <= OCCUPIED;
-				end if;
-			else
-				if (R60_command = RESERVE or R62_command = RESERVE or R82_command = RESERVE) then
-					state <= RESERVED;
-				end if;
-				if (R60_command = LOCK or R62_command = LOCK or R82_command = LOCK) then
-					state <= LOCKED;
-				end if;
-			end if;
-		else
-		end if;
+	end entity node_40;
+architecture Behavioral of node_40 is
+	signal commandState : routeCommands;
+begin
+
+	process(clock)
+	begin
+		if (clock = '1' and clock'Event) then
+			if (reset = '1') then
+				commandState <= RELEASE;
+			else
+				if (R56_command = RELEASE and R58_command = RELEASE and R77_command = RELEASE) then
+					commandState <= RELEASE;
+				else
+					if (R56_command = RESERVE or R58_command = RESERVE or R77_command = RESERVE) then
+						commandState <= RESERVE;
+					end if;
+					if (R56_command = LOCK or R58_command = LOCK or R77_command = LOCK) then
+						commandState <= LOCK;
+					end if;
+				end if;
+			end if;
+		end if;
+	end process;
+
+	process(commandState)
+	begin
+		case commandState is
+			when RELEASE => -- AUTOMATIC
+				locking <= RELEASED;
+			when RESERVE => -- DONT CHANGE
+				locking <= RESERVED;
+			when LOCK => -- DONT CHANGE
+				locking <= LOCKED;
+			when others =>
+				locking <= LOCKED;
+		end case;
+	end process;
+
+	process(clock)
+	begin
+		if (clock = '1' and clock'Event) then
+			if (ocupation = '1') then
+				state <= FREE;
+			else
+				state <= OCCUPIED;
+			end if;
+		end if;
 	end process;
 end Behavioral;

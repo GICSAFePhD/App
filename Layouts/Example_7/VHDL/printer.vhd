@@ -7,7 +7,7 @@ use IEEE.numeric_std.all;
 			clock : in std_logic;
 			processing : in std_logic;
 			processed : out std_logic;
-			packet_i : in std_logic_vector(38-1 downto 0);
+			packet_i : in std_logic_vector(40-1 downto 0);
 			w_data : out std_logic_vector(8-1 downto 0);
 			wr_uart : out std_logic; -- 'char_disp'
 			reset : in std_logic
@@ -26,7 +26,7 @@ begin
 				mux_s <= "000000";
 			else
 				if (ena_s = '1') then
-					if (mux_s /= "100110") then
+					if (mux_s /= "101000") then
 						if (state = CYCLE_1 or state = CYCLE_2) then
 							mux_s <= std_logic_vector(to_unsigned(to_integer(unsigned(mux_s)) + 1 , 6));
 						end if;
@@ -79,6 +79,8 @@ begin
 			when "100011" => mux_out_s <= packet_i(35);
 			when "100100" => mux_out_s <= packet_i(36);
 			when "100101" => mux_out_s <= packet_i(37);
+			when "100110" => mux_out_s <= packet_i(38);
+			when "100111" => mux_out_s <= packet_i(39);
 			when others => mux_out_s <= '0';
 		end case;
 	end process;
@@ -107,7 +109,7 @@ begin
 				ena_s <= '0';
 				processed <= '0';
 				reg_aux <= '0';
-				if (processing = '1' and mux_s /= "100110" ) then
+				if (processing = '1' and mux_s /= "101000" ) then
 					next_state <= CYCLE_1;
 				end if;
 			when CYCLE_1 =>
@@ -122,7 +124,7 @@ begin
 				ena_s <= '1';
 				processed <= '0';
 				reg_aux <= '0';
-				if mux_s = "100101" then
+				if mux_s = "100111" then
 					processed <= '1';
 					reg_aux <= '1';
 					next_state <= RESTART;

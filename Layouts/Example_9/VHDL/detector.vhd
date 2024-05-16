@@ -9,7 +9,7 @@ use IEEE.numeric_std.all;
 			r_available : in std_logic;
 			led_rgb_1 : out std_logic_vector(3-1 downto 0);
 			led_rgb_2 : out std_logic_vector(3-1 downto 0);
-			packet : out std_logic_vector(89-1 downto 0);
+			packet : out std_logic_vector(91-1 downto 0);
 			processing : in std_logic;
 			processed : out std_logic;
 			N : in integer;
@@ -21,8 +21,8 @@ use IEEE.numeric_std.all;
 architecture Behavioral of detector is
 	type states_t is (start,reading,final,error);
 	signal state, next_state : states_t;
-	shared variable counter : integer range 0 to 134 := 0;
-	signal packet_aux : std_logic_vector(89-1 downto 0);
+	shared variable counter : integer range 0 to 136 := 0;
+	signal packet_aux : std_logic_vector(91-1 downto 0);
 	signal new_data : std_logic;
 	signal length_ok,tags_ok : std_logic;
 	signal tags_start,tags_end : std_logic;
@@ -53,12 +53,12 @@ begin
 			else
 				if r_available = '1' then
 					if state = reading then
-						if counter < 91 then
+						if counter < 93 then
 							counter := counter + 1;
 						end if;
 					end if;
 				end if;
-				if counter > 89 and counter < 91 then
+				if counter > 91 and counter < 93 then
 					counter := counter + 1;
 				end if;
 				if state = final or state = error then
@@ -76,12 +76,12 @@ begin
 			else
 				if state = reading then
 					if r_available = '1' then
-						if counter < 90 then
+						if counter < 92 then
 							if r_data = char_0 then
-								packet_aux(89-counter) <= '0';
+								packet_aux(91-counter) <= '0';
 							end if;
 							if r_data = char_1 then
-								packet_aux(89-counter) <= '1';
+								packet_aux(91-counter) <= '1';
 							end if;
 						end if;
 						new_data <= '1';
@@ -112,7 +112,7 @@ begin
 							next_state <= reading;
 						end if;
 					when reading =>
-						if counter = 91 then -- 89 (it fits 89)
+						if counter = 93 then -- 91 (it fits 91)
 							if r_data = tag_end then --  r_data = '>'
 								tags_end <= '1';
 								next_state <= final;
@@ -176,7 +176,7 @@ begin
 				length_ok <= '0';
 				led_rgb_2 <= "001"; -- red
 			else
-				if N = 91 then
+				if N = 93 then
 					length_ok <= '1';
 					led_rgb_2 <= "010"; -- green
 				else

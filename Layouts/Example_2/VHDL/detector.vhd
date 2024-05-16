@@ -9,7 +9,7 @@ use IEEE.numeric_std.all;
 			r_available : in std_logic;
 			led_rgb_1 : out std_logic_vector(3-1 downto 0);
 			led_rgb_2 : out std_logic_vector(3-1 downto 0);
-			packet : out std_logic_vector(44-1 downto 0);
+			packet : out std_logic_vector(45-1 downto 0);
 			processing : in std_logic;
 			processed : out std_logic;
 			N : in integer;
@@ -20,12 +20,12 @@ use IEEE.numeric_std.all;
 	end entity detector;
 architecture Behavioral of detector is
 	type states_t is (start,reading,final,error);
-	signal state, next_state : states_t;
-	shared variable counter : integer range 0 to 66 := 0;
-	signal packet_aux : std_logic_vector(44-1 downto 0);
-	signal new_data : std_logic;
-	signal length_ok,tags_ok : std_logic;
-	signal tags_start,tags_end : std_logic;
+	signal state, next_state : states_t := start;
+	shared variable counter : integer range 0 to 68 := 0;
+	signal packet_aux : std_logic_vector(45-1 downto 0) := (others => '0');
+	signal new_data : std_logic := '0';
+	signal length_ok,tags_ok : std_logic := '0';
+	signal tags_start,tags_end : std_logic := '0';
 	constant tag_start : std_logic_vector(8-1 downto 0) := "00111100"; -- r_data = '<'
 	constant tag_end : std_logic_vector(8-1 downto 0) := "00111110"; -- r_data = '>'
 	constant char_0 : std_logic_vector(8-1 downto 0) := "00110000"; -- r_data = '0'
@@ -53,12 +53,12 @@ begin
 			else
 				if r_available = '1' then
 					if state = reading then
-						if counter < 46 then
+						if counter < 47 then
 							counter := counter + 1;
 						end if;
 					end if;
 				end if;
-				if counter > 44 and counter < 46 then
+				if counter > 45 and counter < 47 then
 					counter := counter + 1;
 				end if;
 				if state = final or state = error then
@@ -76,12 +76,12 @@ begin
 			else
 				if state = reading then
 					if r_available = '1' then
-						if counter < 45 then
+						if counter < 46 then
 							if r_data = char_0 then
-								packet_aux(44-counter) <= '0';
+								packet_aux(45-counter) <= '0';
 							end if;
 							if r_data = char_1 then
-								packet_aux(44-counter) <= '1';
+								packet_aux(45-counter) <= '1';
 							end if;
 						end if;
 						new_data <= '1';
@@ -112,7 +112,7 @@ begin
 							next_state <= reading;
 						end if;
 					when reading =>
-						if counter = 46 then -- 44 (it fits 44)
+						if counter = 47 then -- 45 (it fits 45)
 							if r_data = tag_end then --  r_data = '>'
 								tags_end <= '1';
 								next_state <= final;
@@ -176,7 +176,7 @@ begin
 				length_ok <= '0';
 				led_rgb_2 <= "001"; -- red
 			else
-				if N = 46 then
+				if N = 47 then
 					length_ok <= '1';
 					led_rgb_2 <= "010"; -- green
 				else

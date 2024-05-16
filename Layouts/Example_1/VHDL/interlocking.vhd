@@ -17,8 +17,7 @@ use work.my_package.all;
 			processing : in std_logic;
 			processed : out std_logic;
 			packet_i : in std_logic_vector(85-1 downto 0);
-			packet_o : out std_logic_vector(74-1 downto 0);
-			reset : in std_logic
+			packet_o : out std_logic_vector(74-1 downto 0)
 		);
 	end entity interlocking;
 architecture Behavioral of interlocking is
@@ -33,15 +32,14 @@ architecture Behavioral of interlocking is
 		);
 		port(
 			clock : in std_logic;
-			processing : in std_logic;
-			processed : out std_logic;
 			packet : in std_logic_vector(N-1 downto 0);
 			ocupation : out std_logic_vector(N_TRACKCIRCUITS-1 downto 0);
 			signals : out signals_type;
 			routes :  out std_logic_vector(N_ROUTES-1 downto 0);
 			levelCrossings :  out std_logic_vector(N_LEVELCROSSINGS-1 downto 0);
 			singleSwitches :  out std_logic_vector(N_SINGLESWITCHES-1 downto 0);
-			reset :  in std_logic
+			processing : in std_logic;
+			processed : out std_logic
 		);
 	end component splitter;
 	component network is
@@ -55,8 +53,6 @@ architecture Behavioral of interlocking is
 		);
 		port(
 			clock : in std_logic;
-			processing : in std_logic;
-			processed : out std_logic;
 			ocupation : in std_logic_vector(N_TRACKCIRCUITS-1 downto 0);
 			signals_i : in signals_type;
 			signals_o : out signals_type;
@@ -66,7 +62,8 @@ architecture Behavioral of interlocking is
 			levelCrossings_o : out std_logic_vector(N_LEVELCROSSINGS-1 downto 0);
 			singleSwitches_i : in std_logic_vector(N_SINGLESWITCHES-1 downto 0);
 			singleSwitches_o : out std_logic_vector(N_SINGLESWITCHES-1 downto 0);
-			reset : in std_logic
+			processing : in std_logic;
+			processed : out std_logic
 		);
 	end component network;
 	component mediator is
@@ -86,29 +83,27 @@ architecture Behavioral of interlocking is
 			routes : in std_logic_vector(N_ROUTES-1 downto 0);
 			levelCrossings : in std_logic_vector(N_LEVELCROSSINGS-1 downto 0);
 			singleSwitches : in std_logic_vector(N_SINGLESWITCHES-1 downto 0);
-			output : out std_logic_vector(74-1 downto 0);
-			reset : in std_logic
+			output : out std_logic_vector(74-1 downto 0)
 		);
 	end component mediator;
-	Signal tc_s : std_logic_vector(11-1 downto 0);
-	Signal sig_s_i,sig_s_o : signals_type;
-	Signal rt_s_i,rt_s_o : std_logic_vector(21-1 downto 0);
-	Signal lc_s_i,lc_s_o : std_logic_vector(2-1 downto 0);
-	Signal ssw_s_i,ssw_s_o : std_logic_vector(5-1 downto 0);
-	Signal process_spt_int, process_int_med : std_logic;
+	Signal tc_s : std_logic_vector(11-1 downto 0) := (others => '0');
+	Signal sig_s_i,sig_s_o : signals_type := (msb => (others => '0'), lsb => (others => '0'));
+	Signal rt_s_i,rt_s_o : std_logic_vector(21-1 downto 0) := (others => '0');
+	Signal lc_s_i,lc_s_o : std_logic_vector(2-1 downto 0) := (others => '0');
+	Signal ssw_s_i,ssw_s_o : std_logic_vector(5-1 downto 0) := (others => '0');
+	Signal process_spt_int, process_int_med : std_logic := '0';
 
 begin
 	splitter_i : splitter port map(
 		clock => clock,
 		packet => packet_i,
-		processing => processing,
-		processed => process_spt_int,
 		ocupation => tc_s,
 		signals => sig_s_i,
 		routes => rt_s_i,
 		levelCrossings => lc_s_i,
 		singleSwitches => ssw_s_i,
-		reset => reset
+		processing => processing,
+		processed => process_spt_int
 		);
 	mediator_i : mediator port map(
 		clock => clock,
@@ -118,14 +113,11 @@ begin
 		routes => rt_s_o,
 		levelCrossings => lc_s_o,
 		singleSwitches => ssw_s_o,
-		output => packet_o,
-		reset => reset
+		output => packet_o
 		);
 	network_i : network port map(
 		clock => clock,
 		ocupation => tc_s,
-		processing => process_spt_int,
-		processed => process_int_med,
 		signals_i => sig_s_i,
 		signals_o => sig_s_o,
 		routes_i => rt_s_i,
@@ -134,6 +126,7 @@ begin
 		levelCrossings_o => lc_s_o,
 		singleSwitches_i => ssw_s_i,
 		singleSwitches_o => ssw_s_o,
-		reset => reset
+		processing => process_spt_int,
+		processed => process_int_med
 		);
 end Behavioral;

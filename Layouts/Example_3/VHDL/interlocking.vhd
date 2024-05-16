@@ -45,7 +45,7 @@ architecture Behavioral of interlocking is
 			routes :  out std_logic_vector(N_ROUTES-1 downto 0);
 			levelCrossings :  out std_logic;
 			singleSwitches :  out std_logic_vector(N_SINGLESWITCHES-1 downto 0);
-			doubleSwitches :  out std_logic_vector(N_DOUBLESWITCHES-1 downto 0);
+			doubleSwitches :  out dSwitches_type;
 			scissorCrossings :  out std_logic;
 			reset :  in std_logic
 		);
@@ -76,8 +76,8 @@ architecture Behavioral of interlocking is
 			singleSwitches_o : out std_logic_vector(N_SINGLESWITCHES-1 downto 0);
 			doubleSwitches_i : in dSwitches_type;
 			doubleSwitches_o : out dSwitches_type;
-			scrissorCrossings_i : in std_logic;
-			scrissorCrossings_o : out std_logic;
+			scissorCrossings_i : in std_logic;
+			scissorCrossings_o : out std_logic;
 			reset : in std_logic
 		);
 	end component network;
@@ -158,8 +158,8 @@ begin
 		singleSwitches_o => ssw_s_o,
 		doubleSwitches_i => dsw_s_i,
 		doubleSwitches_o => dsw_s_o,
-		scrissorCrossings_i => sc_s_i,
-		scrissorCrossings_o => sc_s_o,
+		scissorCrossings_i => sc_s_i,
+		scissorCrossings_o => sc_s_o,
 		reset => reset
 		);
 end Behavioral;

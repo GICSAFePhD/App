@@ -6,8 +6,8 @@ use IEEE.numeric_std.all;
 use work.my_package.all;
 	entity mediator is
 		generic(
-			N : natural := 45;
-			N_SIGNALS : natural := 12;
+			N : natural := 47;
+			N_SIGNALS : natural := 13;
 			N_ROUTES : natural := 11;
 			N_SINGLESWITCHES : natural := 3;
 			N_TRACKCIRCUITS : natural := 7
@@ -19,7 +19,7 @@ use work.my_package.all;
 			signals : in signals_type;
 			routes : in std_logic_vector(N_ROUTES-1 downto 0);
 			singleSwitches : in std_logic_vector(N_SINGLESWITCHES-1 downto 0);
-			output : out std_logic_vector(38-1 downto 0);
+			output : out std_logic_vector(40-1 downto 0);
 			reset : in std_logic
 		);
 	end entity mediator;
@@ -59,7 +59,9 @@ begin
 					output(32) <= signals.lsb(10);
 					output(33) <= signals.msb(11);
 					output(34) <= signals.lsb(11);
-					output(37 downto 35) <= singleSwitches;
+					output(35) <= signals.msb(12);
+					output(36) <= signals.lsb(12);
+					output(39 downto 37) <= singleSwitches;
 				end if;
 			end if;
 		end if;

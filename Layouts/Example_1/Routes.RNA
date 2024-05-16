@@ -1,66 +1,66 @@
-route_1 [S02 >> S20]:
+route_1 [T02 >> P20]:
 	Path: ['ne13']
 	Platforms: ['Plat13']
 	LevelCrossings: ['Lc08']
-route_2 [S04 << S16]:
+route_2 [T04 << X16]:
 	Path: ['ne14']
 	Platforms: ['Plat11']
-route_3 [S06 << S29]:
+route_3 [T06 << C29]:
 	Path: ['ne15']
-route_4 [S11 >> S09]:
+route_4 [J11 >> L09]:
 	Path: ['ne22']
-route_5 [S12 << S21]:
+route_5 [J12 << C21]:
 	Path: ['ne22', 'ne8']
 	Switches: ['Sw12_N']
-route_6 [S13 >> S25]:
+route_6 [J13 >> C25]:
 	Path: ['ne23', 'ne12']
 	Switches: ['Sw13_N']
-route_7 [S15 >> S03]:
+route_7 [X15 >> T03]:
 	Path: ['ne14']
 	Platforms: ['Plat11']
 	LevelCrossings: ['Lc06']
-route_8 [S16 << S07]:
+route_8 [X16 << L07]:
 	Path: ['ne14', 'ne9', 'ne1']
 	Switches: ['Sw04_R', 'Sw07_R']
 	LevelCrossings: ['Lc06']
-route_9 [S20 >> S08]:
+route_9 [P20 >> L08]:
 	Path: ['ne13', 'ne2']
 	Switches: ['Sw06_R']
-route_10 [S21 << S07]:
+route_10 [C21 << L07]:
 	Path: ['ne8', 'ne1']
 	Switches: ['Sw04_N']
 route_11 [S22 >> S32]:
 	Path: ['ne1', 'ne8']
 	Switches: ['Sw04_N']
-route_12 [S22 >> S15]:
+route_12 [S22 >> X15]:
 	Path: ['ne1', 'ne9', 'ne14']
 	Switches: ['Sw04_R', 'Sw07_R']
-route_13 [S22 >> S05]:
+route_13 [S22 >> T05]:
 	Path: ['ne1', 'ne9', 'ne15']
 	Switches: ['Sw04_R', 'Sw07_N']
-route_14 [S25 >> S08]:
+route_14 [C25 >> L08]:
 	Path: ['ne12', 'ne2']
 	Switches: ['Sw06_N']
 route_15 [S27 << S35]:
 	Path: ['ne2', 'ne12']
 	Switches: ['Sw06_N']
-route_16 [S27 << S01]:
+route_16 [S27 << T01]:
 	Path: ['ne2', 'ne13']
 	Switches: ['Sw06_R']
 	Platforms: ['Plat13']
 	LevelCrossings: ['Lc08']
-route_17 [S29 << S07]:
+route_17 [C29 << L07]:
 	Path: ['ne15', 'ne9', 'ne1']
 	Switches: ['Sw04_R', 'Sw07_N']
-route_18 [S32 >> S11]:
+route_18 [S32 >> J11]:
 	Path: ['ne8', 'ne22']
 	Switches: ['Sw12_N']
-route_19 [S32 >> S25]:
+route_19 [S32 >> C25]:
 	Path: ['ne8', 'ne24', 'ne12']
 	Switches: ['Sw12_R', 'Sw13_R']
-route_20 [S35 << S14]:
+route_20 [S35 << J14]:
 	Path: ['ne12', 'ne23']
 	Switches: ['Sw13_N']
-route_21 [S35 << S21]:
+route_21 [S35 << C21]:
 	Path: ['ne12', 'ne24', 'ne8']
 	Switches: ['Sw12_R', 'Sw13_R']

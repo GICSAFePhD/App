@@ -1,14 +1,14 @@
-Route , Signal_start , Signal_end , Direction , netElements , switch , platform , crossing
-R_01 , S06 , S24 , >> , ne26-ne26 ,  , Plat01 , Lc03
-R_02 , S07 , S04 , << , ne26-ne26 ,  , Plat01 , Lc03
-R_03 , S09 , S22 , >> , ne23-ne23 ,  , Plat02 , Lc07
-R_04 , S12 , S22 , << , ne23-ne23 ,  ,  , Lc09
-R_05 , S13 , S03 , >> , ne25-ne25 ,  ,  , Lc05
-R_06 , S14 , S12 , << , ne25-ne23 , Sw11_N ,  , Lc05
-R_07 , S16 , S01 , >> , ne3-ne3 ,  ,  , Lc06
-R_08 , S19 , S02 , << , ne23-ne23 ,  ,  , Lc07
-R_09 , S22 , S13 , >> , ne23-ne25 , Sw11_N ,  , Lc09
-R_10 , S22 , S16 , >> , ne23-ne3 , Sw11_R-Sw12_R ,  , Lc09
-R_11 , S24 , S16 , >> , ne26-ne3 , Sw12_N ,  , Lc04
-R_12 , S25 , S07 , << , ne3-ne26 , Sw12_N ,  , Lc06
-R_13 , S25 , S12 , << , ne3-ne23 , Sw11_R-Sw12_R ,  , Lc06
+Route , Signal_start , Signal_end , Direction , netElements , switch , platform , LevelCrossings
+R_01 , X06 , C24 , >> , ne26-ne26 ,  , Plat01 , Lc03
+R_02 , X07 , L04 , << , ne26-ne26 ,  , Plat01 , Lc03
+R_03 , X09 , S22 , >> , ne23-ne23 ,  , Plat02 , Lc07
+R_04 , X12 , P19 , << , ne23-ne23 ,  , Plat02 , Lc09
+R_05 , X13 , L03 , >> , ne25-ne25 ,  ,  , Lc05
+R_06 , X14 , X12 , << , ne25-ne23 , Sw11_N ,  , Lc05
+R_07 , X16 , L01 , >> , ne3-ne3 ,  ,  , Lc06
+R_08 , P19 , L02 , << , ne23-ne23 ,  ,  , Lc07
+R_09 , S22 , X13 , >> , ne23-ne25 , Sw11_N ,  , Lc09
+R_10 , S22 , X16 , >> , ne23-ne3 , Sw11_R-Sw12_R ,  , Lc09
+R_11 , C24 , X16 , >> , ne26-ne3 , Sw12_N ,  , Lc04
+R_12 , S25 , X07 , << , ne3-ne26 , Sw12_N ,  , Lc06
+R_13 , S25 , X12 , << , ne3-ne23 , Sw11_R-Sw12_R ,  , Lc06

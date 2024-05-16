@@ -1,4 +1,4 @@
-Nodes: 47 | Switches: 23 | Signals: 0 | Detectors: 8 | Ends: 19 | Barriers: 6
+Nodes: 47 | Switches: 24 | Signals: 0 | Detectors: 8 | Ends: 19 | Barriers: 2
 Node ne991:
 	Track = track1
 	Type = BufferStop -> ['E16']
@@ -87,13 +87,16 @@ Node ne377:
 Node ne384:
 	Track = track26
 	Neighbours = 4 -> ['ne295', 'ne297', 'ne104', 'ne110']
+	Switches -> Sw02
+		ContinueCourse -> left -> ne110
+		BranchCourse -> right -> ne104
 Node ne400:
 	Track = track27
 	Neighbours = 4 -> ['ne404', 'ne407', 'ne993', 'ne994']
 	Switches -> D07
 		ContinueCourse -> left -> ne404
 		BranchCourse -> right -> ne407
-	Switches -> Sw02
+	Switches -> Sw05
 		ContinueCourse -> left -> ne993
 		BranchCourse -> right -> ne994
 Node ne404:
@@ -128,9 +131,6 @@ Node ne98:
 	Level crossing -> Lc01
 		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
 		Position -> [2464, 0] | Coordinate: 0.4218
-	Level crossing -> Lc02
-		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
-		Position -> [2464, 0] | Coordinate: 0.4218
 Node ne99:
 	Track = track15
 	Neighbours = 3 -> ['ne61', 'ne63', 'ne98']
@@ -139,16 +139,7 @@ Node ne99:
 		BranchCourse -> left -> ne61
 Node ne100:
 	Neighbours = 2 -> ['ne992', 'ne101']
-	Level crossing -> Lc03
-		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
-		Position -> [9391, 0] | Coordinate: 0.4325
 	Level crossing -> Lc04
-		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
-		Position -> [10172, 0] | Coordinate: 0.7643
-	Level crossing -> Lc05
-		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
-		Position -> [9392, 0] | Coordinate: 0.4331
-	Level crossing -> Lc06
 		Protection -> true | Barriers -> none | Lights -> none Acoustic -> none
 		Position -> [10172, 0] | Coordinate: 0.7643
 Node ne101:

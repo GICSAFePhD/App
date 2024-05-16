@@ -6,7 +6,7 @@ use IEEE.numeric_std.all;
 use work.my_package.all;
 	entity interlocking is
 		generic(
-			N : natural := 89;
+			N : natural := 91;
 			N_SIGNALS : natural := 25;
 			N_LEVELCROSSINGS : natural := 3;
 			N_SINGLESWITCHES : natural := 4;
@@ -16,17 +16,17 @@ use work.my_package.all;
 			clock : in std_logic;
 			processing : in std_logic;
 			processed : out std_logic;
-			packet_i : in std_logic_vector(89-1 downto 0);
-			packet_o : out std_logic_vector(82-1 downto 0);
+			packet_i : in std_logic_vector(91-1 downto 0);
+			packet_o : out std_logic_vector(84-1 downto 0);
 			reset : in std_logic
 		);
 	end entity interlocking;
 architecture Behavioral of interlocking is
 	component splitter is
 		generic(
-			N : natural := 89;
+			N : natural := 91;
 			N_SIGNALS : natural := 25;
-			N_ROUTES : natural := 25;
+			N_ROUTES : natural := 27;
 			N_LEVELCROSSINGS : natural := 3;
 			N_SINGLESWITCHES : natural := 4;
 			N_TRACKCIRCUITS : natural := 7
@@ -46,9 +46,9 @@ architecture Behavioral of interlocking is
 	end component splitter;
 	component network is
 		generic(
-			N : natural := 89;
+			N : natural := 91;
 			N_SIGNALS : natural := 25;
-			N_ROUTES : natural := 25;
+			N_ROUTES : natural := 27;
 			N_LEVELCROSSINGS : natural := 3;
 			N_SINGLESWITCHES : natural := 4;
 			N_TRACKCIRCUITS : natural := 7
@@ -71,9 +71,9 @@ architecture Behavioral of interlocking is
 	end component network;
 	component mediator is
 		generic(
-			N : natural := 89;
+			N : natural := 91;
 			N_SIGNALS : natural := 25;
-			N_ROUTES : natural := 25;
+			N_ROUTES : natural := 27;
 			N_LEVELCROSSINGS : natural := 3;
 			N_SINGLESWITCHES : natural := 4;
 			N_TRACKCIRCUITS : natural := 7
@@ -86,13 +86,13 @@ architecture Behavioral of interlocking is
 			routes : in std_logic_vector(N_ROUTES-1 downto 0);
 			levelCrossings : in std_logic_vector(N_LEVELCROSSINGS-1 downto 0);
 			singleSwitches : in std_logic_vector(N_SINGLESWITCHES-1 downto 0);
-			output : out std_logic_vector(82-1 downto 0);
+			output : out std_logic_vector(84-1 downto 0);
 			reset : in std_logic
 		);
 	end component mediator;
 	Signal tc_s : std_logic_vector(7-1 downto 0);
 	Signal sig_s_i,sig_s_o : signals_type;
-	Signal rt_s_i,rt_s_o : std_logic_vector(25-1 downto 0);
+	Signal rt_s_i,rt_s_o : std_logic_vector(27-1 downto 0);
 	Signal lc_s_i,lc_s_o : std_logic_vector(3-1 downto 0);
 	Signal ssw_s_i,ssw_s_o : std_logic_vector(4-1 downto 0);
 	Signal process_spt_int, process_int_med : std_logic;

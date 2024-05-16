@@ -28,7 +28,7 @@ architecture Behavioral of system is
 			r_available :  in std_logic;
 			led_rgb_1 :  out std_logic_vector(3-1 downto 0);
 			led_rgb_2 :  out std_logic_vector(3-1 downto 0);
-			packet :  out std_logic_vector(56-1 downto 0);
+			packet :  out std_logic_vector(58-1 downto 0);
 			processing :  in std_logic;
 			processed :  out std_logic;
 			N :  in integer;
@@ -42,8 +42,8 @@ architecture Behavioral of system is
 			clock :  in std_logic;
 			processing :  in std_logic;
 			processed :  out std_logic;
-			packet_i :  in std_logic_vector(56-1 downto 0);
-			packet_o :  out std_logic_vector(51-1 downto 0);
+			packet_i :  in std_logic_vector(58-1 downto 0);
+			packet_o :  out std_logic_vector(53-1 downto 0);
 			reset :  in std_logic
 		);
 	end component interlocking;
@@ -66,17 +66,17 @@ architecture Behavioral of system is
 			clock :  in std_logic;
 			processing :  in std_logic;
 			processed :  out std_logic;
-			packet_i :  in std_logic_vector(51-1 downto 0);
+			packet_i :  in std_logic_vector(53-1 downto 0);
 			w_data :  out std_logic_vector(8-1 downto 0);
 			wr_uart :  out std_logic;
 			reset :  in std_logic
 		);
 	end component printer;
-	Signal packet_i_s : std_logic_vector(56-1 downto 0);
-	Signal packet_o_s : std_logic_vector(51-1 downto 0);
-	Signal w_data_1,w_data_2,w_data_3 : std_logic_vector(8-1 downto 0);
-	Signal wr_uart_1_s,wr_uart_2_s : std_logic;
-	Signal pro_int_reg,pro_det_enc,pro_reg_det : std_logic;
+	Signal packet_i_s : std_logic_vector(58-1 downto 0) := (others => '0');
+	Signal packet_o_s : std_logic_vector(53-1 downto 0) := (others => '0');
+	Signal w_data_1,w_data_2,w_data_3 : std_logic_vector(8-1 downto 0) := (others => '0');
+	Signal wr_uart_1_s,wr_uart_2_s : std_logic := '0';
+	Signal pro_int_reg,pro_det_enc,pro_reg_det : std_logic := '0';
 begin
 	detector_i : detector
 		port map(

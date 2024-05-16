@@ -1,36 +1,36 @@
-route_1 [S02 >> S06]:
+route_1 [T02 >> L06]:
 	Path: ['ne19', 'ne20']
 	Switches: ['Sw03_N']
-route_2 [S13 >> S18]:
+route_2 [C13 >> S18]:
 	Path: ['ne14', 'ne16']
 	Switches: ['Sw01_N']
-route_3 [S14 >> S18]:
+route_3 [B14 >> S18]:
 	Path: ['ne15', 'ne16']
 	Switches: ['Sw01_R']
-route_4 [S15 << S09]:
+route_4 [S15 << P09]:
 	Path: ['ne16', 'ne14']
 	Switches: ['Sw01_N']
 	Platforms: ['Plat01']
-	Crossings: ['Lc01']
-route_5 [S15 << S04]:
+	LevelCrossings: ['Lc01']
+route_5 [S15 << L04]:
 	Path: ['ne16', 'ne15']
 	Switches: ['Sw01_R']
-	Crossings: ['Lc01']
-route_6 [S17 << S15]:
+	LevelCrossings: ['Lc01']
+route_6 [C17 << S15]:
 	Path: ['ne18', 'ne16']
 	Switches: ['Sw02_N']
-route_7 [S18 >> S12]:
+route_7 [S18 >> P12]:
 	Path: ['ne16', 'ne18']
 	Switches: ['Sw02_N']
 	Platforms: ['Plat02']
-	Crossings: ['Lc01']
-route_8 [S18 >> S06]:
+	LevelCrossings: ['Lc01']
+route_8 [S18 >> L06]:
 	Path: ['ne16', 'ne17', 'ne20']
 	Switches: ['Sw02_R', 'Sw03_R']
-	Crossings: ['Lc01']
+	LevelCrossings: ['Lc01']
 route_9 [S21 << S15]:
 	Path: ['ne20', 'ne17', 'ne16']
 	Switches: ['Sw02_R', 'Sw03_R']
-route_10 [S21 << S01]:
+route_10 [S21 << T01]:
 	Path: ['ne20', 'ne19']
 	Switches: ['Sw03_N']

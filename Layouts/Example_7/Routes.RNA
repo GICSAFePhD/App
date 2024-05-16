@@ -1,31 +1,31 @@
-route_1 [S02 >> S14]:
+route_1 [T02 >> S14]:
 	Path: ['ne1']
-route_2 [S04 << S01]:
+route_2 [T04 << T01]:
 	Path: ['ne31', 'ne40', 'ne1']
 	Switches: ['Sw14_R', 'Sw18_R']
-route_3 [S06 << S01]:
+route_3 [T06 << T01]:
 	Path: ['ne32', 'ne40', 'ne1']
 	Switches: ['Sw14_N', 'Sw18_R']
-route_4 [S08 << S20]:
+route_4 [T08 << H20]:
 	Path: ['ne42']
-route_5 [S10 >> S07]:
+route_5 [T10 >> T07]:
 	Path: ['ne43', 'ne42']
 	Switches: ['Sw19_N']
-route_6 [S14 >> S18]:
+route_6 [S14 >> B18]:
 	Path: ['ne1', 'ne41']
 	Switches: ['Sw18_N']
-route_7 [S14 >> S03]:
+route_7 [S14 >> T03]:
 	Path: ['ne1', 'ne40', 'ne31']
 	Switches: ['Sw14_R', 'Sw18_R']
-route_8 [S14 >> S05]:
+route_8 [S14 >> T05]:
 	Path: ['ne1', 'ne40', 'ne32']
 	Switches: ['Sw14_N', 'Sw18_R']
-route_9 [S18 >> S07]:
+route_9 [B18 >> T07]:
 	Path: ['ne41', 'ne42']
 	Switches: ['Sw19_R']
-route_10 [S20 << S01]:
+route_10 [H20 << T01]:
 	Path: ['ne42', 'ne41', 'ne1']
 	Switches: ['Sw18_N', 'Sw19_R']
-route_11 [S20 << S09]:
+route_11 [H20 << T09]:
 	Path: ['ne42', 'ne43']
 	Switches: ['Sw19_N']

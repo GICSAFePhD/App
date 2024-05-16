@@ -1,48 +1,48 @@
-route_1 [S02 >> S25]:
+route_1 [T02 >> C25]:
 	Path: ['ne01', 'ne02']
 	Switches: ['Sw01_N']
-route_2 [S02 >> S26]:
+route_2 [T02 >> B26]:
 	Path: ['ne01', 'ne03']
 	Switches: ['Sw01_R']
-route_3 [S04 << S21]:
+route_3 [T04 << C21]:
 	Path: ['ne04', 'ne02']
 	Switches: ['Sw02_N']
-route_4 [S04 << S22]:
+route_4 [T04 << B22]:
 	Path: ['ne04', 'ne03']
 	Switches: ['Sw02_R']
-route_5 [S06 >> S33]:
+route_5 [T06 >> C33]:
 	Path: ['ne05', 'ne06']
 	Switches: ['Sw03_N']
-route_6 [S06 >> S34]:
+route_6 [T06 >> B34]:
 	Path: ['ne05', 'ne07']
 	Switches: ['Sw03_R']
-route_7 [S08 << S29]:
+route_7 [T08 << C29]:
 	Path: ['ne08', 'ne06']
 	Switches: ['Sw04_N']
-route_8 [S08 << S30]:
+route_8 [T08 << B30]:
 	Path: ['ne08', 'ne07']
 	Switches: ['Sw04_R']
-route_9 [S21 << S01]:
+route_9 [C21 << T01]:
 	Path: ['ne02', 'ne01']
 	Switches: ['Sw01_N']
-route_10 [S22 << S01]:
+route_10 [B22 << T01]:
 	Path: ['ne03', 'ne01']
 	Switches: ['Sw01_R']
-route_11 [S25 >> S03]:
+route_11 [C25 >> T03]:
 	Path: ['ne02', 'ne04']
 	Switches: ['Sw02_N']
-route_12 [S26 >> S03]:
+route_12 [B26 >> T03]:
 	Path: ['ne03', 'ne04']
 	Switches: ['Sw02_R']
-route_13 [S29 << S05]:
+route_13 [C29 << T05]:
 	Path: ['ne06', 'ne05']
 	Switches: ['Sw03_N']
-route_14 [S30 << S05]:
+route_14 [B30 << T05]:
 	Path: ['ne07', 'ne05']
 	Switches: ['Sw03_R']
-route_15 [S33 >> S07]:
+route_15 [C33 >> T07]:
 	Path: ['ne06', 'ne08']
 	Switches: ['Sw04_N']
-route_16 [S34 >> S07]:
+route_16 [B34 >> T07]:
 	Path: ['ne07', 'ne08']
 	Switches: ['Sw04_R']

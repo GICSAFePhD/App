@@ -2,7 +2,7 @@
 <railML xmlns="https://www.railml.org/schemas/3.1" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:gml="http://www.opengis.net/gml/3.2/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.railml.org/schemas/3.1 https://www.railml.org/schemas/3.1/railml3.xsd" version="3.1">
     <metadata>
         <dc:title>Example_4.railml</dc:title>
-        <dc:date>2023-07-05T09:56:45Z</dc:date>
+        <dc:date>2024-05-06T11:24:52Z</dc:date>
         <dc:creator>Rail-AiD</dc:creator>
         <dc:source>RaIL-AiD</dc:source>
         <dc:identifier>1</dc:identifier>
@@ -19,13 +19,13 @@
             <geometricPositioningSystems>
                 <geometricPositioningSystem id="gps01">
                     <name name="Example_4.railml" language="en"/>
-                    <isValid from="2022-02-07" to="2023-02-07"/>
+                    <isValid from="2024-05-06" to="2025-05-06"/>
                 </geometricPositioningSystem>
             </geometricPositioningSystems>
             <linearPositioningSystems>
                 <linearPositioningSystem id="loc-1" units="Km" startMeasure="60" endMeasure="5000" linearReferencingMethod="absolute">
                     <name name="ERTMS Line" language="en"/>
-                    <isValid from="2022-02-07" to="2023-02-07"/>
+                    <isValid from="2024-05-06" to="2025-05-06"/>
                 </linearPositioningSystem>
             </linearPositioningSystems>
         </positioning>
@@ -751,7 +751,7 @@
                             <geometricCoordinate positioningSystemRef="gps01" x="720.546" y="-250.000"/>
                         </intrinsicCoordinate>
                         <intrinsicCoordinate id="ne997_aps01_ic02" intrinsicCoord="1">
-                            <geometricCoordinate positioningSystemRef="gps01" x="864.886" y="-0.000"/>
+                            <geometricCoordinate positioningSystemRef="gps01" x="864.886" y="0.000"/>
                         </intrinsicCoordinate>
                     </associatedPositioningSystem>
                 </netElement>
@@ -1601,44 +1601,12 @@
                     <designator register="_Example" entry="LEVEL CROSSING Lc01"/>
                     <protection barriers="none" lights="none" acoustic="none" hasActiveProtection="true"/>
                 </levelCrossingIS>
-                <levelCrossingIS id="lcr496" activation="none">
-                    <name name="Lc02" language="en"/>
-                    <spotLocation id="lcr496_loc-1" netElementRef="ne98" applicationDirection="both" intrinsicCoord="0.4218">
-                        <linearCoordinate positioningSystemRef="loc-1" measure="1251"/>
-                    </spotLocation>
-                    <designator register="_Example" entry="LEVEL CROSSING Lc02"/>
-                    <protection barriers="none" lights="none" acoustic="none" hasActiveProtection="true"/>
-                </levelCrossingIS>
-                <levelCrossingIS id="lcr497" activation="none">
-                    <name name="Lc03" language="en"/>
-                    <spotLocation id="lcr497_loc-1" netElementRef="ne100" applicationDirection="both" intrinsicCoord="0.4325">
-                        <linearCoordinate positioningSystemRef="loc-1" measure="2700"/>
-                    </spotLocation>
-                    <designator register="_Example" entry="LEVEL CROSSING Lc03"/>
-                    <protection barriers="none" lights="none" acoustic="none" hasActiveProtection="true"/>
-                </levelCrossingIS>
                 <levelCrossingIS id="lcr498" activation="none">
                     <name name="Lc04" language="en"/>
                     <spotLocation id="lcr498_loc-1" netElementRef="ne100" applicationDirection="both" intrinsicCoord="0.7643">
                         <linearCoordinate positioningSystemRef="loc-1" measure="2900"/>
                     </spotLocation>
                     <designator register="_Example" entry="LEVEL CROSSING Lc04"/>
-                    <protection barriers="none" lights="none" acoustic="none" hasActiveProtection="true"/>
-                </levelCrossingIS>
-                <levelCrossingIS id="lcr499" activation="none">
-                    <name name="Lc05" language="en"/>
-                    <spotLocation id="lcr499_loc-1" netElementRef="ne100" applicationDirection="both" intrinsicCoord="0.4331">
-                        <linearCoordinate positioningSystemRef="loc-1" measure="2701"/>
-                    </spotLocation>
-                    <designator register="_Example" entry="LEVEL CROSSING Lc05"/>
-                    <protection barriers="none" lights="none" acoustic="none" hasActiveProtection="true"/>
-                </levelCrossingIS>
-                <levelCrossingIS id="lcr500" activation="none">
-                    <name name="Lc06" language="en"/>
-                    <spotLocation id="lcr500_loc-1" netElementRef="ne100" applicationDirection="both" intrinsicCoord="0.7643">
-                        <linearCoordinate positioningSystemRef="loc-1" measure="2901"/>
-                    </spotLocation>
-                    <designator register="_Example" entry="LEVEL CROSSING Lc06"/>
                     <protection barriers="none" lights="none" acoustic="none" hasActiveProtection="true"/>
                 </levelCrossingIS>
             </levelCrossingsIS>
@@ -1951,7 +1919,7 @@
                 </signalIS>
                 <signalIS id="sig91" isSwitchable="false">
                     <name name="S91" language="en"/>
-                    <spotLocation id="sig91_sloc01" netElementRef="ne912" applicationDirection="normal" intrinsicCoord="0.2616"/>
+                    <spotLocation id="sig91_sloc01" netElementRef="ne912" applicationDirection="normal" intrinsicCoord="0.2615"/>
                     <designator register="_Example" entry="SIGNAL S91"/>
                     <signalConstruction type="light" positionAtTrack="left"/>
                 </signalIS>
@@ -2244,13 +2212,13 @@
                 </switchIS>
                 <switchIS id="swi573" continueCourse="right" branchCourse="left" type="ordinarySwitch">
                     <name name="Sw01" language="en"/>
-                    <spotLocation id="swi573_sloc01" netElementRef="ne992" applicationDirection="reverse" intrinsicCoord="0.0000"/>
+                    <spotLocation id="swi573_sloc01" netElementRef="ne992" applicationDirection="normal" intrinsicCoord="0.0000"/>
                     <designator register="_Example" entry="SWITCH Sw01"/>
                     <leftBranch netRelationRef="nr_ne65ne992_swi573" branchingSpeed="60" joiningSpeed="60" radius="0"/>
                     <rightBranch netRelationRef="nr_ne992ne994_swi573" branchingSpeed="60" joiningSpeed="60" radius="500"/>
                 </switchIS>
                 <switchIS id="swi574" continueCourse="right" branchCourse="left" type="ordinarySwitch">
-                    <name name="Sw02" language="en"/>
+                    <name name="Sw05" language="en"/>
                     <spotLocation id="swi574_sloc01" netElementRef="ne400" applicationDirection="normal" intrinsicCoord="1.0000"/>
                     <designator register="_Example" entry="SWITCH Sw02"/>
                     <leftBranch netRelationRef="nr_ne400ne993_swi574" branchingSpeed="60" joiningSpeed="60" radius="0"/>
@@ -2265,7 +2233,7 @@
                 </switchIS>
                 <switchIS id="swi578" continueCourse="right" branchCourse="left" type="ordinarySwitch">
                     <name name="Sw04" language="en"/>
-                    <spotLocation id="swi578_sloc01" netElementRef="ne996" applicationDirection="reverse" intrinsicCoord="0.0000"/>
+                    <spotLocation id="swi578_sloc01" netElementRef="ne996" applicationDirection="normal" intrinsicCoord="0.0000"/>
                     <designator register="_Example" entry="SWITCH Sw04"/>
                     <leftBranch netRelationRef="nr_ne292ne996_swi578" branchingSpeed="60" joiningSpeed="60" radius="0"/>
                     <rightBranch netRelationRef="nr_ne996ne997_swi578" branchingSpeed="60" joiningSpeed="60" radius="500"/>
@@ -2837,11 +2805,11 @@
                 </spotElementProjection>
                 <spotElementProjection refersToElement="E107" id="vis01_sep015">
                     <name name="B22" language="en"/>
-                    <coordinate x="8282.280" y="0.000"/>
+                    <coordinate x="8282.282" y="0.000"/>
                 </spotElementProjection>
                 <spotElementProjection refersToElement="E126" id="vis01_sep016">
                     <name name="B23" language="en"/>
-                    <coordinate x="12218.900" y="-250.000"/>
+                    <coordinate x="12218.902" y="-250.000"/>
                 </spotElementProjection>
                 <spotElementProjection refersToElement="E127" id="vis01_sep017">
                     <name name="B24" language="en"/>
@@ -2849,7 +2817,7 @@
                 </spotElementProjection>
                 <spotElementProjection refersToElement="E129" id="vis01_sep018">
                     <name name="B26" language="en"/>
-                    <coordinate x="13745.900" y="-250.000"/>
+                    <coordinate x="13745.902" y="-250.000"/>
                 </spotElementProjection>
                 <spotElementProjection refersToElement="E130" id="vis01_sep019">
                     <name name="B27" language="en"/>
@@ -2917,11 +2885,11 @@
                 </spotElementProjection>
                 <spotElementProjection refersToElement="E457" id="vis01_sep035">
                     <name name="B25" language="en"/>
-                    <coordinate x="13575.400" y="-500.000"/>
+                    <coordinate x="13575.402" y="-500.000"/>
                 </spotElementProjection>
                 <spotElementProjection refersToElement="E458" id="vis01_sep036">
                     <name name="B28" language="en"/>
-                    <coordinate x="12438.400" y="-500.000"/>
+                    <coordinate x="12438.402" y="-500.000"/>
                 </spotElementProjection>
                 <spotElementProjection refersToElement="E479" id="vis01_sep037">
                     <name name="B36" language="en"/>
@@ -2999,503 +2967,487 @@
                     <name name="Lc01" language="en"/>
                     <coordinate x="2464.930" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="lcr496" id="vis01_sep056">
-                    <name name="Lc02" language="en"/>
-                    <coordinate x="2464.930" y="0.000"/>
-                </spotElementProjection>
-                <spotElementProjection refersToElement="lcr497" id="vis01_sep057">
-                    <name name="Lc03" language="en"/>
-                    <coordinate x="9391.030" y="0.000"/>
-                </spotElementProjection>
-                <spotElementProjection refersToElement="lcr498" id="vis01_sep058">
+                <spotElementProjection refersToElement="lcr498" id="vis01_sep056">
                     <name name="Lc04" language="en"/>
                     <coordinate x="10172.300" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="lcr499" id="vis01_sep059">
-                    <name name="Lc05" language="en"/>
-                    <coordinate x="9392.460" y="0.000"/>
-                </spotElementProjection>
-                <spotElementProjection refersToElement="lcr500" id="vis01_sep060">
-                    <name name="Lc06" language="en"/>
-                    <coordinate x="10172.300" y="0.000"/>
-                </spotElementProjection>
-                <spotElementProjection refersToElement="sig01" id="vis01_sep061">
+                <spotElementProjection refersToElement="sig01" id="vis01_sep057">
                     <name name="S01" language="en"/>
                     <coordinate x="-2222.840" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig02" id="vis01_sep062">
+                <spotElementProjection refersToElement="sig02" id="vis01_sep058">
                     <name name="S02" language="en"/>
                     <coordinate x="867.186" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig03" id="vis01_sep063">
+                <spotElementProjection refersToElement="sig03" id="vis01_sep059">
                     <name name="S03" language="en"/>
                     <coordinate x="250.546" y="200.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig04" id="vis01_sep064">
+                <spotElementProjection refersToElement="sig04" id="vis01_sep060">
                     <name name="S04" language="en"/>
                     <coordinate x="7404.410" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig05" id="vis01_sep065">
+                <spotElementProjection refersToElement="sig05" id="vis01_sep061">
                     <name name="S05" language="en"/>
                     <coordinate x="6354.410" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig06" id="vis01_sep066">
+                <spotElementProjection refersToElement="sig06" id="vis01_sep062">
                     <name name="S06" language="en"/>
                     <coordinate x="14622.800" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig07" id="vis01_sep067">
+                <spotElementProjection refersToElement="sig07" id="vis01_sep063">
                     <name name="S07" language="en"/>
                     <coordinate x="13672.800" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig08" id="vis01_sep068">
+                <spotElementProjection refersToElement="sig08" id="vis01_sep064">
                     <name name="S08" language="en"/>
                     <coordinate x="18072.800" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig09" id="vis01_sep069">
+                <spotElementProjection refersToElement="sig09" id="vis01_sep065">
                     <name name="S09" language="en"/>
                     <coordinate x="-409.454" y="-630.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig10" id="vis01_sep070">
+                <spotElementProjection refersToElement="sig10" id="vis01_sep066">
                     <name name="S10" language="en"/>
                     <coordinate x="-649.454" y="200.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig11" id="vis01_sep071">
+                <spotElementProjection refersToElement="sig11" id="vis01_sep067">
                     <name name="S11" language="en"/>
                     <coordinate x="5404.410" y="-759.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig12" id="vis01_sep072">
+                <spotElementProjection refersToElement="sig12" id="vis01_sep068">
                     <name name="S12" language="en"/>
                     <coordinate x="5454.410" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig13" id="vis01_sep073">
+                <spotElementProjection refersToElement="sig13" id="vis01_sep069">
                     <name name="S13" language="en"/>
                     <coordinate x="12822.800" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig14" id="vis01_sep074">
+                <spotElementProjection refersToElement="sig14" id="vis01_sep070">
                     <name name="S14" language="en"/>
                     <coordinate x="12552.800" y="-810.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig15" id="vis01_sep075">
+                <spotElementProjection refersToElement="sig15" id="vis01_sep071">
                     <name name="S15" language="en"/>
                     <coordinate x="2264.550" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig16" id="vis01_sep076">
+                <spotElementProjection refersToElement="sig16" id="vis01_sep072">
                     <name name="S16" language="en"/>
                     <coordinate x="2564.550" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig19" id="vis01_sep077">
+                <spotElementProjection refersToElement="sig19" id="vis01_sep073">
                     <name name="S19" language="en"/>
-                    <coordinate x="9971.410" y="0.000"/>
+                    <coordinate x="9971.412" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig20" id="vis01_sep078">
+                <spotElementProjection refersToElement="sig20" id="vis01_sep074">
                     <name name="S20" language="en"/>
-                    <coordinate x="10271.400" y="0.000"/>
+                    <coordinate x="10271.402" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig23" id="vis01_sep079">
+                <spotElementProjection refersToElement="sig23" id="vis01_sep075">
                     <name name="S23" language="en"/>
                     <coordinate x="4876.430" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig24" id="vis01_sep080">
+                <spotElementProjection refersToElement="sig24" id="vis01_sep076">
                     <name name="S24" language="en"/>
                     <coordinate x="3932.550" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig27" id="vis01_sep081">
+                <spotElementProjection refersToElement="sig27" id="vis01_sep077">
                     <name name="S27" language="en"/>
                     <coordinate x="7354.410" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig28" id="vis01_sep082">
+                <spotElementProjection refersToElement="sig28" id="vis01_sep078">
                     <name name="S28" language="en"/>
                     <coordinate x="7002.560" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig31" id="vis01_sep083">
+                <spotElementProjection refersToElement="sig31" id="vis01_sep079">
                     <name name="S31" language="en"/>
-                    <coordinate x="11966.800" y="0.000"/>
+                    <coordinate x="11966.798" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig32" id="vis01_sep084">
+                <spotElementProjection refersToElement="sig32" id="vis01_sep080">
                     <name name="S32" language="en"/>
-                    <coordinate x="10814.400" y="0.000"/>
+                    <coordinate x="10814.402" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig35" id="vis01_sep085">
+                <spotElementProjection refersToElement="sig35" id="vis01_sep081">
                     <name name="S35" language="en"/>
                     <coordinate x="-533.454" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig39" id="vis01_sep086">
+                <spotElementProjection refersToElement="sig39" id="vis01_sep082">
                     <name name="S39" language="en"/>
                     <coordinate x="962.956" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig44" id="vis01_sep087">
+                <spotElementProjection refersToElement="sig44" id="vis01_sep083">
                     <name name="S44" language="en"/>
                     <coordinate x="-494.324" y="-450.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig45" id="vis01_sep088">
+                <spotElementProjection refersToElement="sig45" id="vis01_sep084">
                     <name name="S45" language="en"/>
                     <coordinate x="-515.454" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig46" id="vis01_sep089">
+                <spotElementProjection refersToElement="sig46" id="vis01_sep085">
                     <name name="S46" language="en"/>
                     <coordinate x="250.546" y="-450.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig47" id="vis01_sep090">
+                <spotElementProjection refersToElement="sig47" id="vis01_sep086">
                     <name name="S47" language="en"/>
                     <coordinate x="204.096" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig52" id="vis01_sep091">
+                <spotElementProjection refersToElement="sig52" id="vis01_sep087">
                     <name name="S52" language="en"/>
                     <coordinate x="6713.410" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig56" id="vis01_sep092">
+                <spotElementProjection refersToElement="sig56" id="vis01_sep088">
                     <name name="S56" language="en"/>
                     <coordinate x="7080.650" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig57" id="vis01_sep093">
+                <spotElementProjection refersToElement="sig57" id="vis01_sep089">
                     <name name="S57" language="en"/>
                     <coordinate x="5209.410" y="-500.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig58" id="vis01_sep094">
+                <spotElementProjection refersToElement="sig58" id="vis01_sep090">
                     <name name="S58" language="en"/>
                     <coordinate x="5039.790" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig59" id="vis01_sep095">
+                <spotElementProjection refersToElement="sig59" id="vis01_sep091">
                     <name name="S59" language="en"/>
                     <coordinate x="13987.200" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig60" id="vis01_sep096">
+                <spotElementProjection refersToElement="sig60" id="vis01_sep092">
                     <name name="S60" language="en"/>
                     <coordinate x="12516.800" y="-500.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig62" id="vis01_sep097">
+                <spotElementProjection refersToElement="sig62" id="vis01_sep093">
                     <name name="S62" language="en"/>
                     <coordinate x="-294.666" y="-630.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig63" id="vis01_sep098">
+                <spotElementProjection refersToElement="sig63" id="vis01_sep094">
                     <name name="S63" language="en"/>
                     <coordinate x="-515.454" y="-450.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig67" id="vis01_sep099">
+                <spotElementProjection refersToElement="sig67" id="vis01_sep095">
                     <name name="S67" language="en"/>
                     <coordinate x="637.546" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig68" id="vis01_sep100">
+                <spotElementProjection refersToElement="sig68" id="vis01_sep096">
                     <name name="S68" language="en"/>
                     <coordinate x="-733.454" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig74" id="vis01_sep101">
+                <spotElementProjection refersToElement="sig74" id="vis01_sep097">
                     <name name="S74" language="en"/>
                     <coordinate x="5607.040" y="-759.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig75" id="vis01_sep102">
+                <spotElementProjection refersToElement="sig75" id="vis01_sep098">
                     <name name="S75" language="en"/>
                     <coordinate x="5195.990" y="-500.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig76" id="vis01_sep103">
+                <spotElementProjection refersToElement="sig76" id="vis01_sep099">
                     <name name="S76" language="en"/>
                     <coordinate x="6391.600" y="-500.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig80" id="vis01_sep104">
+                <spotElementProjection refersToElement="sig80" id="vis01_sep100">
                     <name name="S80" language="en"/>
                     <coordinate x="4798.410" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig83" id="vis01_sep105">
+                <spotElementProjection refersToElement="sig83" id="vis01_sep101">
                     <name name="S83" language="en"/>
                     <coordinate x="5534.410" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig84" id="vis01_sep106">
+                <spotElementProjection refersToElement="sig84" id="vis01_sep102">
                     <name name="S84" language="en"/>
                     <coordinate x="6084.410" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig85" id="vis01_sep107">
+                <spotElementProjection refersToElement="sig85" id="vis01_sep103">
                     <name name="S85" language="en"/>
                     <coordinate x="6284.410" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig86" id="vis01_sep108">
+                <spotElementProjection refersToElement="sig86" id="vis01_sep104">
                     <name name="S86" language="en"/>
                     <coordinate x="14208.800" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig87" id="vis01_sep109">
+                <spotElementProjection refersToElement="sig87" id="vis01_sep105">
                     <name name="S87" language="en"/>
                     <coordinate x="15193.800" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig89" id="vis01_sep110">
+                <spotElementProjection refersToElement="sig89" id="vis01_sep106">
                     <name name="S89" language="en"/>
                     <coordinate x="13308.700" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig90" id="vis01_sep111">
+                <spotElementProjection refersToElement="sig90" id="vis01_sep107">
                     <name name="S90" language="en"/>
                     <coordinate x="14408.800" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig91" id="vis01_sep112">
+                <spotElementProjection refersToElement="sig91" id="vis01_sep108">
                     <name name="S91" language="en"/>
-                    <coordinate x="11740.100" y="0.000"/>
+                    <coordinate x="11740.098" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig93" id="vis01_sep113">
+                <spotElementProjection refersToElement="sig93" id="vis01_sep109">
                     <name name="S93" language="en"/>
                     <coordinate x="12919.400" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig94" id="vis01_sep114">
+                <spotElementProjection refersToElement="sig94" id="vis01_sep110">
                     <name name="S94" language="en"/>
                     <coordinate x="12892.800" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig95" id="vis01_sep115">
+                <spotElementProjection refersToElement="sig95" id="vis01_sep111">
                     <name name="S95" language="en"/>
                     <coordinate x="13417.800" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig96" id="vis01_sep116">
+                <spotElementProjection refersToElement="sig96" id="vis01_sep112">
                     <name name="S96" language="en"/>
                     <coordinate x="13617.800" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig97" id="vis01_sep117">
+                <spotElementProjection refersToElement="sig97" id="vis01_sep113">
                     <name name="S97" language="en"/>
                     <coordinate x="12746.800" y="-810.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig98" id="vis01_sep118">
+                <spotElementProjection refersToElement="sig98" id="vis01_sep114">
                     <name name="S98" language="en"/>
-                    <coordinate x="12172.400" y="-500.000"/>
+                    <coordinate x="12172.402" y="-500.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig99" id="vis01_sep119">
+                <spotElementProjection refersToElement="sig99" id="vis01_sep115">
                     <name name="S99" language="en"/>
                     <coordinate x="13786.800" y="-500.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig40" id="vis01_sep120">
+                <spotElementProjection refersToElement="sig40" id="vis01_sep116">
                     <name name="S40" language="en"/>
                     <coordinate x="525.178" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig43" id="vis01_sep121">
+                <spotElementProjection refersToElement="sig43" id="vis01_sep117">
                     <name name="S43" language="en"/>
                     <coordinate x="618.838" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig572" id="vis01_sep122">
+                <spotElementProjection refersToElement="sig572" id="vis01_sep118">
                     <name name="S01" language="en"/>
                     <coordinate x="12011.200" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig575" id="vis01_sep123">
+                <spotElementProjection refersToElement="sig575" id="vis01_sep119">
                     <name name="S02" language="en"/>
                     <coordinate x="7141.950" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig576" id="vis01_sep124">
+                <spotElementProjection refersToElement="sig576" id="vis01_sep120">
                     <name name="S03" language="en"/>
                     <coordinate x="6464.810" y="-500.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig579" id="vis01_sep125">
+                <spotElementProjection refersToElement="sig579" id="vis01_sep121">
                     <name name="S04" language="en"/>
                     <coordinate x="173.669" y="-450.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig581" id="vis01_sep126">
+                <spotElementProjection refersToElement="sig581" id="vis01_sep122">
                     <name name="S06" language="en"/>
                     <coordinate x="95.650" y="200.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig582" id="vis01_sep127">
+                <spotElementProjection refersToElement="sig582" id="vis01_sep123">
                     <name name="S07" language="en"/>
                     <coordinate x="-1514.420" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig583" id="vis01_sep128">
+                <spotElementProjection refersToElement="sig583" id="vis01_sep124">
                     <name name="S08" language="en"/>
                     <coordinate x="-383.768" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig584" id="vis01_sep129">
+                <spotElementProjection refersToElement="sig584" id="vis01_sep125">
                     <name name="S09" language="en"/>
                     <coordinate x="-37.442" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig585" id="vis01_sep130">
+                <spotElementProjection refersToElement="sig585" id="vis01_sep126">
                     <name name="S10" language="en"/>
                     <coordinate x="5581.710" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sig586" id="vis01_sep131">
+                <spotElementProjection refersToElement="sig586" id="vis01_sep127">
                     <name name="S11" language="en"/>
                     <coordinate x="5976.290" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sw62" id="vis01_sep132">
+                <spotElementProjection refersToElement="sw62" id="vis01_sep128">
                     <name name="D05" language="en"/>
                     <coordinate x="4350.550" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sw111" id="vis01_sep133">
+                <spotElementProjection refersToElement="sw111" id="vis01_sep129">
                     <name name="D09" language="en"/>
                     <coordinate x="11254.400" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sw289" id="vis01_sep134">
+                <spotElementProjection refersToElement="sw289" id="vis01_sep130">
                     <name name="D01" language="en"/>
                     <coordinate x="-1064.390" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sw294" id="vis01_sep135">
+                <spotElementProjection refersToElement="sw294" id="vis01_sep131">
                     <name name="D03" language="en"/>
                     <coordinate x="-741.001" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sw296" id="vis01_sep136">
+                <spotElementProjection refersToElement="sw296" id="vis01_sep132">
                     <name name="D04" language="en"/>
                     <coordinate x="457.563" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sw399" id="vis01_sep137">
+                <spotElementProjection refersToElement="sw399" id="vis01_sep133">
                     <name name="D07" language="en"/>
                     <coordinate x="6904.410" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sw403" id="vis01_sep138">
+                <spotElementProjection refersToElement="sw403" id="vis01_sep134">
                     <name name="D08" language="en"/>
                     <coordinate x="4804.410" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="sw443" id="vis01_sep139">
+                <spotElementProjection refersToElement="sw443" id="vis01_sep135">
                     <name name="D10" language="en"/>
                     <coordinate x="11822.800" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi548" id="vis01_sep140">
+                <spotElementProjection refersToElement="swi548" id="vis01_sep136">
                     <name name="Sw02" language="en"/>
                     <coordinate x="-104.592" y="-450.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi549" id="vis01_sep141">
+                <spotElementProjection refersToElement="swi549" id="vis01_sep137">
                     <name name="D14" language="en"/>
                     <coordinate x="-211.145" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi550" id="vis01_sep142">
+                <spotElementProjection refersToElement="swi550" id="vis01_sep138">
                     <name name="D15" language="en"/>
                     <coordinate x="-92.970" y="200.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi561" id="vis01_sep143">
+                <spotElementProjection refersToElement="swi561" id="vis01_sep139">
                     <name name="D16" language="en"/>
                     <coordinate x="5855.060" y="-500.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi562" id="vis01_sep144">
+                <spotElementProjection refersToElement="swi562" id="vis01_sep140">
                     <name name="D18" language="en"/>
                     <coordinate x="5763.110" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi563" id="vis01_sep145">
+                <spotElementProjection refersToElement="swi563" id="vis01_sep141">
                     <name name="D19" language="en"/>
                     <coordinate x="5915.160" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi566" id="vis01_sep146">
+                <spotElementProjection refersToElement="swi566" id="vis01_sep142">
                     <name name="D23" language="en"/>
                     <coordinate x="14482.800" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="dsw567" id="vis01_sep147">
+                <spotElementProjection refersToElement="dsw567" id="vis01_sep143">
                     <name name="D12" language="en"/>
                     <coordinate x="14232.800" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi568" id="vis01_sep148">
+                <spotElementProjection refersToElement="swi568" id="vis01_sep144">
                     <name name="D20" language="en"/>
                     <coordinate x="13111.400" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi569" id="vis01_sep149">
+                <spotElementProjection refersToElement="swi569" id="vis01_sep145">
                     <name name="D21" language="en"/>
                     <coordinate x="13263.600" y="259.808"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi571" id="vis01_sep150">
+                <spotElementProjection refersToElement="swi571" id="vis01_sep146">
                     <name name="D24" language="en"/>
                     <coordinate x="13022.300" y="-500.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi573" id="vis01_sep151">
+                <spotElementProjection refersToElement="swi573" id="vis01_sep147">
                     <name name="Sw01" language="en"/>
                     <coordinate x="7444.410" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi574" id="vis01_sep152">
-                    <name name="Sw02" language="en"/>
+                <spotElementProjection refersToElement="swi574" id="vis01_sep148">
+                    <name name="Sw05" language="en"/>
                     <coordinate x="7194.410" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi577" id="vis01_sep153">
+                <spotElementProjection refersToElement="swi577" id="vis01_sep149">
                     <name name="Sw03" language="en"/>
                     <coordinate x="720.546" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="swi578" id="vis01_sep154">
+                <spotElementProjection refersToElement="swi578" id="vis01_sep150">
                     <name name="Sw04" language="en"/>
                     <coordinate x="864.886" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="tde502" id="vis01_sep155">
+                <spotElementProjection refersToElement="tde502" id="vis01_sep151">
                     <name name="J07" language="en"/>
                     <coordinate x="-633.463" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="tde511" id="vis01_sep156">
+                <spotElementProjection refersToElement="tde511" id="vis01_sep152">
                     <name name="J05" language="en"/>
                     <coordinate x="538.074" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="tde514" id="vis01_sep157">
+                <spotElementProjection refersToElement="tde514" id="vis01_sep153">
                     <name name="J08" language="en"/>
                     <coordinate x="1094.660" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="tde525" id="vis01_sep158">
+                <spotElementProjection refersToElement="tde525" id="vis01_sep154">
                     <name name="J19" language="en"/>
                     <coordinate x="8046.640" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="tde526" id="vis01_sep159">
+                <spotElementProjection refersToElement="tde526" id="vis01_sep155">
                     <name name="J26" language="en"/>
                     <coordinate x="10914.700" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="tde527" id="vis01_sep160">
+                <spotElementProjection refersToElement="tde527" id="vis01_sep156">
                     <name name="J24" language="en"/>
                     <coordinate x="11867.700" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="tde533" id="vis01_sep161">
+                <spotElementProjection refersToElement="tde533" id="vis01_sep157">
                     <name name="J21" language="en"/>
                     <coordinate x="14309.100" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="tde534" id="vis01_sep162">
+                <spotElementProjection refersToElement="tde534" id="vis01_sep158">
                     <name name="J27" language="en"/>
                     <coordinate x="15294.500" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E206" id="vis01_sep163">
+                <spotElementProjection refersToElement="E206" id="vis01_sep159">
                     <name name="01" language="en"/>
                     <coordinate x="-1712.840" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E207" id="vis01_sep164">
+                <spotElementProjection refersToElement="E207" id="vis01_sep160">
                     <name name="02" language="en"/>
                     <coordinate x="-1140.350" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E209" id="vis01_sep165">
+                <spotElementProjection refersToElement="E209" id="vis01_sep161">
                     <name name="03" language="en"/>
                     <coordinate x="-276.727" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E215" id="vis01_sep166">
+                <spotElementProjection refersToElement="E215" id="vis01_sep162">
                     <name name="04" language="en"/>
                     <coordinate x="1748.730" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E216" id="vis01_sep167">
+                <spotElementProjection refersToElement="E216" id="vis01_sep163">
                     <name name="05" language="en"/>
                     <coordinate x="4221.460" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E217" id="vis01_sep168">
+                <spotElementProjection refersToElement="E217" id="vis01_sep164">
                     <name name="06" language="en"/>
                     <coordinate x="5246.230" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E218" id="vis01_sep169">
+                <spotElementProjection refersToElement="E218" id="vis01_sep165">
                     <name name="07" language="en"/>
                     <coordinate x="5440.590" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E226" id="vis01_sep170">
+                <spotElementProjection refersToElement="E226" id="vis01_sep166">
                     <name name="08" language="en"/>
                     <coordinate x="7400.770" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E227" id="vis01_sep171">
+                <spotElementProjection refersToElement="E227" id="vis01_sep167">
                     <name name="09" language="en"/>
                     <coordinate x="8540.770" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E228" id="vis01_sep172">
+                <spotElementProjection refersToElement="E228" id="vis01_sep168">
                     <name name="10" language="en"/>
                     <coordinate x="11120.800" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E229" id="vis01_sep173">
+                <spotElementProjection refersToElement="E229" id="vis01_sep169">
                     <name name="11" language="en"/>
                     <coordinate x="12892.800" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E230" id="vis01_sep174">
+                <spotElementProjection refersToElement="E230" id="vis01_sep170">
                     <name name="12" language="en"/>
-                    <coordinate x="12843.800" y="0.000"/>
+                    <coordinate x="12843.798" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E235" id="vis01_sep175">
+                <spotElementProjection refersToElement="E235" id="vis01_sep171">
                     <name name="13" language="en"/>
                     <coordinate x="14685.500" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E236" id="vis01_sep176">
+                <spotElementProjection refersToElement="E236" id="vis01_sep172">
                     <name name="14" language="en"/>
                     <coordinate x="15867.300" y="0.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E346" id="vis01_sep177">
+                <spotElementProjection refersToElement="E346" id="vis01_sep173">
                     <name name="15" language="en"/>
                     <coordinate x="-194.908" y="-450.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E351" id="vis01_sep178">
+                <spotElementProjection refersToElement="E351" id="vis01_sep174">
                     <name name="16" language="en"/>
                     <coordinate x="-280.272" y="-250.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="E438" id="vis01_sep179">
+                <spotElementProjection refersToElement="E438" id="vis01_sep175">
                     <name name="17" language="en"/>
                     <coordinate x="5678.370" y="-500.000"/>
                 </spotElementProjection>
-                <spotElementProjection refersToElement="tvd494" id="vis01_sep180">
+                <spotElementProjection refersToElement="tvd494" id="vis01_sep176">
                     <name name="18" language="en"/>
                     <coordinate x="13134.600" y="-500.000"/>
                 </spotElementProjection>
@@ -3744,7 +3696,7 @@
                 <linearElementProjection refersToElement="ne997" id="vis01_lep47">
                     <name name="netElement_ne997" language="en"/>
                     <coordinate x="720.546" y="-250.000"/>
-                    <coordinate x="864.886" y="-0.000"/>
+                    <coordinate x="864.886" y="0.000"/>
                 </linearElementProjection>
             </visualization>
         </infrastructureVisualizations>
@@ -3755,70 +3707,70 @@
                 <tvdSection id="E206" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="100"/>
                     <hasDemarcatingBufferstop ref="E313"/>
-                    <hasDemarcatingBufferstop ref="bus541"/>
                     <hasDemarcatingBufferstop ref="E16"/>
+                    <hasDemarcatingBufferstop ref="bus541"/>
+                    <hasDemarcatingTraindetector ref="tde511"/>
                     <hasDemarcatingTraindetector ref="tde514"/>
                     <hasDemarcatingTraindetector ref="tde502"/>
-                    <hasDemarcatingTraindetector ref="tde511"/>
                 </tvdSection>
                 <tvdSection id="E207" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="101"/>
                     <hasDemarcatingBufferstop ref="E313"/>
-                    <hasDemarcatingBufferstop ref="bus541"/>
                     <hasDemarcatingBufferstop ref="E16"/>
+                    <hasDemarcatingBufferstop ref="bus541"/>
+                    <hasDemarcatingTraindetector ref="tde511"/>
                     <hasDemarcatingTraindetector ref="tde514"/>
                     <hasDemarcatingTraindetector ref="tde502"/>
-                    <hasDemarcatingTraindetector ref="tde511"/>
                 </tvdSection>
                 <tvdSection id="E209" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="103"/>
                     <hasDemarcatingBufferstop ref="E305"/>
                     <hasDemarcatingBufferstop ref="E368"/>
-                    <hasDemarcatingTraindetector ref="tde502"/>
                     <hasDemarcatingTraindetector ref="tde511"/>
+                    <hasDemarcatingTraindetector ref="tde502"/>
                 </tvdSection>
                 <tvdSection id="E215" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="109"/>
-                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E408"/>
-                    <hasDemarcatingBufferstop ref="E418"/>
+                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E412"/>
+                    <hasDemarcatingBufferstop ref="E418"/>
                     <hasDemarcatingTraindetector ref="tde514"/>
                     <hasDemarcatingTraindetector ref="tde525"/>
                 </tvdSection>
                 <tvdSection id="E216" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="110"/>
-                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E408"/>
-                    <hasDemarcatingBufferstop ref="E418"/>
+                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E412"/>
+                    <hasDemarcatingBufferstop ref="E418"/>
                     <hasDemarcatingTraindetector ref="tde514"/>
                     <hasDemarcatingTraindetector ref="tde525"/>
                 </tvdSection>
                 <tvdSection id="E217" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="111"/>
-                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E408"/>
-                    <hasDemarcatingBufferstop ref="E418"/>
+                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E412"/>
+                    <hasDemarcatingBufferstop ref="E418"/>
                     <hasDemarcatingTraindetector ref="tde514"/>
                     <hasDemarcatingTraindetector ref="tde525"/>
                 </tvdSection>
                 <tvdSection id="E218" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="112"/>
-                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E408"/>
-                    <hasDemarcatingBufferstop ref="E418"/>
+                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E412"/>
+                    <hasDemarcatingBufferstop ref="E418"/>
                     <hasDemarcatingTraindetector ref="tde514"/>
                     <hasDemarcatingTraindetector ref="tde525"/>
                 </tvdSection>
                 <tvdSection id="E226" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="120"/>
-                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E408"/>
-                    <hasDemarcatingBufferstop ref="E418"/>
+                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E412"/>
+                    <hasDemarcatingBufferstop ref="E418"/>
                     <hasDemarcatingTraindetector ref="tde514"/>
                     <hasDemarcatingTraindetector ref="tde525"/>
                 </tvdSection>
@@ -3831,35 +3783,35 @@
                     <designator register="_Example" entry="122"/>
                     <hasDemarcatingBufferstop ref="bus570"/>
                     <hasDemarcatingBufferstop ref="E478"/>
-                    <hasDemarcatingTraindetector ref="tde533"/>
-                    <hasDemarcatingTraindetector ref="tde534"/>
-                    <hasDemarcatingTraindetector ref="tde526"/>
                     <hasDemarcatingTraindetector ref="tde527"/>
+                    <hasDemarcatingTraindetector ref="tde534"/>
+                    <hasDemarcatingTraindetector ref="tde533"/>
+                    <hasDemarcatingTraindetector ref="tde526"/>
                 </tvdSection>
                 <tvdSection id="E229" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="123"/>
                     <hasDemarcatingBufferstop ref="bus570"/>
                     <hasDemarcatingBufferstop ref="E478"/>
-                    <hasDemarcatingTraindetector ref="tde533"/>
-                    <hasDemarcatingTraindetector ref="tde534"/>
-                    <hasDemarcatingTraindetector ref="tde526"/>
                     <hasDemarcatingTraindetector ref="tde527"/>
+                    <hasDemarcatingTraindetector ref="tde534"/>
+                    <hasDemarcatingTraindetector ref="tde533"/>
+                    <hasDemarcatingTraindetector ref="tde526"/>
                 </tvdSection>
                 <tvdSection id="E230" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="124"/>
-                    <hasDemarcatingBufferstop ref="E466"/>
                     <hasDemarcatingBufferstop ref="E462"/>
-                    <hasDemarcatingTraindetector ref="tde533"/>
+                    <hasDemarcatingBufferstop ref="E466"/>
                     <hasDemarcatingTraindetector ref="tde527"/>
+                    <hasDemarcatingTraindetector ref="tde533"/>
                 </tvdSection>
                 <tvdSection id="E235" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="129"/>
                     <hasDemarcatingBufferstop ref="bus570"/>
                     <hasDemarcatingBufferstop ref="E478"/>
-                    <hasDemarcatingTraindetector ref="tde533"/>
-                    <hasDemarcatingTraindetector ref="tde534"/>
-                    <hasDemarcatingTraindetector ref="tde526"/>
                     <hasDemarcatingTraindetector ref="tde527"/>
+                    <hasDemarcatingTraindetector ref="tde534"/>
+                    <hasDemarcatingTraindetector ref="tde533"/>
+                    <hasDemarcatingTraindetector ref="tde526"/>
                 </tvdSection>
                 <tvdSection id="E236" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="130"/>
@@ -3869,27 +3821,27 @@
                 <tvdSection id="E346" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="105"/>
                     <hasDemarcatingBufferstop ref="E313"/>
-                    <hasDemarcatingBufferstop ref="bus541"/>
                     <hasDemarcatingBufferstop ref="E16"/>
+                    <hasDemarcatingBufferstop ref="bus541"/>
+                    <hasDemarcatingTraindetector ref="tde511"/>
                     <hasDemarcatingTraindetector ref="tde514"/>
                     <hasDemarcatingTraindetector ref="tde502"/>
-                    <hasDemarcatingTraindetector ref="tde511"/>
                 </tvdSection>
                 <tvdSection id="E351" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="132"/>
                     <hasDemarcatingBufferstop ref="E313"/>
-                    <hasDemarcatingBufferstop ref="bus541"/>
                     <hasDemarcatingBufferstop ref="E16"/>
+                    <hasDemarcatingBufferstop ref="bus541"/>
+                    <hasDemarcatingTraindetector ref="tde511"/>
                     <hasDemarcatingTraindetector ref="tde514"/>
                     <hasDemarcatingTraindetector ref="tde502"/>
-                    <hasDemarcatingTraindetector ref="tde511"/>
                 </tvdSection>
                 <tvdSection id="E438" partialRouteReleaseDelay="PT4S" residualRouteCancellationDelay="PT90S" technology="trackCircuit" isBerthingTrack="false">
                     <designator register="_Example" entry="102"/>
-                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E408"/>
-                    <hasDemarcatingBufferstop ref="E418"/>
+                    <hasDemarcatingBufferstop ref="E422"/>
                     <hasDemarcatingBufferstop ref="E412"/>
+                    <hasDemarcatingBufferstop ref="E418"/>
                     <hasDemarcatingTraindetector ref="tde514"/>
                     <hasDemarcatingTraindetector ref="tde525"/>
                 </tvdSection>
@@ -3897,10 +3849,10 @@
                     <designator register="_Example" entry="104"/>
                     <hasDemarcatingBufferstop ref="bus570"/>
                     <hasDemarcatingBufferstop ref="E478"/>
-                    <hasDemarcatingTraindetector ref="tde533"/>
-                    <hasDemarcatingTraindetector ref="tde534"/>
-                    <hasDemarcatingTraindetector ref="tde526"/>
                     <hasDemarcatingTraindetector ref="tde527"/>
+                    <hasDemarcatingTraindetector ref="tde534"/>
+                    <hasDemarcatingTraindetector ref="tde533"/>
+                    <hasDemarcatingTraindetector ref="tde526"/>
                 </tvdSection>
             </tvdSections>
             <switchesIL>
@@ -4246,6 +4198,12 @@
                 <route id="rt_sig15_sig24">
                     <designator register="_Example" entry="Route S15-S24"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig15_rt_sig15_sig24">
                         <refersTo ref="il_sig15"/>
                     </routeEntry>
@@ -4260,6 +4218,16 @@
                         <designator register="_Example" entry="Sw04 in left"/>
                         <refersToSwitch ref="il_swi578"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig16_rt_sig16_sig67_swi578N">
                         <refersTo ref="il_sig16"/>
                     </routeEntry>
@@ -4274,6 +4242,16 @@
                         <designator register="_Example" entry="Sw04 in right"/>
                         <refersToSwitch ref="il_swi578"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig16_rt_sig16_sig43_swi578R">
                         <refersTo ref="il_sig16"/>
                     </routeEntry>
@@ -4284,6 +4262,7 @@
                 <route id="rt_sig19_sig32">
                     <designator register="_Example" entry="Route S19-S32"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E227"/>
                     <routeEntry id="rts_sig19_rt_sig19_sig32">
                         <refersTo ref="il_sig19"/>
                     </routeEntry>
@@ -4298,6 +4277,13 @@
                         <designator register="_Example" entry="Sw01 in left"/>
                         <refersToSwitch ref="il_swi573"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E227"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig20_rt_sig20_sig586_swi573N">
                         <refersTo ref="il_sig20"/>
                     </routeEntry>
@@ -4312,6 +4298,13 @@
                         <designator register="_Example" entry="Sw01 in right"/>
                         <refersToSwitch ref="il_swi573"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E227"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig20_rt_sig20_sig56_swi573R">
                         <refersTo ref="il_sig20"/>
                     </routeEntry>
@@ -4322,6 +4315,12 @@
                 <route id="rt_sig23_sig16">
                     <designator register="_Example" entry="Route S23-S16"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig23_rt_sig23_sig16">
                         <refersTo ref="il_sig23"/>
                     </routeEntry>
@@ -4336,6 +4335,12 @@
                         <designator register="_Example" entry="D05 in right"/>
                         <refersToSwitch ref="il_sw62"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig24_rt_sig24_sig80_sw62N">
                         <refersTo ref="il_sig24"/>
                     </routeEntry>
@@ -4354,6 +4359,12 @@
                         <designator register="_Example" entry="D08 in right"/>
                         <refersToSwitch ref="il_sw403"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig24_rt_sig24_sig52_sw62R_sw403N">
                         <refersTo ref="il_sig24"/>
                     </routeEntry>
@@ -4372,6 +4383,12 @@
                         <designator register="_Example" entry="D08 in left"/>
                         <refersToSwitch ref="il_sw403"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig24_rt_sig24_sig57_sw62R_sw403R">
                         <refersTo ref="il_sig24"/>
                     </routeEntry>
@@ -4382,6 +4399,12 @@
                 <route id="rt_sig27_sig56">
                     <designator register="_Example" entry="Route S27-S56"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig27_rt_sig27_sig56">
                         <refersTo ref="il_sig27"/>
                     </routeEntry>
@@ -4390,12 +4413,18 @@
                     </routeExit>
                 </route>
                 <route id="rt_sig28_sig04_swi574N">
-                    <designator register="_Example" entry="Route S28-S04 (Sw02N)"/>
+                    <designator register="_Example" entry="Route S28-S04 (Sw05N)"/>
                     <handlesRouteType ref="rt_main"/>
                     <facingSwitchInPosition id="rp_pt_swi574_rt_sig28_sig04_swi574N" inPosition="left">
-                        <designator register="_Example" entry="Sw02 in left"/>
+                        <designator register="_Example" entry="Sw05 in left"/>
                         <refersToSwitch ref="il_swi574"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig28_rt_sig28_sig04_swi574N">
                         <refersTo ref="il_sig28"/>
                     </routeEntry>
@@ -4404,12 +4433,19 @@
                     </routeExit>
                 </route>
                 <route id="rt_sig28_sig19_swi574R">
-                    <designator register="_Example" entry="Route S28-S19 (Sw02R)"/>
+                    <designator register="_Example" entry="Route S28-S19 (Sw05R)"/>
                     <handlesRouteType ref="rt_main"/>
                     <facingSwitchInPosition id="rp_pt_swi574_rt_sig28_sig19_swi574R" inPosition="right">
-                        <designator register="_Example" entry="Sw02 in right"/>
+                        <designator register="_Example" entry="Sw05 in right"/>
                         <refersToSwitch ref="il_swi574"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
+                    <hasTvdSection ref="E227"/>
                     <routeEntry id="rts_sig28_rt_sig28_sig19_swi574R">
                         <refersTo ref="il_sig28"/>
                     </routeEntry>
@@ -4420,6 +4456,12 @@
                 <route id="rt_sig31_sig20">
                     <designator register="_Example" entry="Route S31-S20"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E230"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
+                    <hasTvdSection ref="E227"/>
                     <routeEntry id="rts_sig31_rt_sig31_sig20">
                         <refersTo ref="il_sig31"/>
                     </routeEntry>
@@ -4434,6 +4476,11 @@
                         <designator register="_Example" entry="D09 in right"/>
                         <refersToSwitch ref="il_sw111"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E227"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig32_rt_sig32_sig91_sw111N">
                         <refersTo ref="il_sig32"/>
                     </routeEntry>
@@ -4452,6 +4499,11 @@
                         <designator register="_Example" entry="D10 in right"/>
                         <refersToSwitch ref="il_sw443"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E227"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig32_rt_sig32_sig59_sw111R_sw443N">
                         <refersTo ref="il_sig32"/>
                     </routeEntry>
@@ -4470,6 +4522,11 @@
                         <designator register="_Example" entry="D10 in left"/>
                         <refersToSwitch ref="il_sw443"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E227"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig32_rt_sig32_sig60_sw111R_sw443R">
                         <refersTo ref="il_sig32"/>
                     </routeEntry>
@@ -4480,6 +4537,11 @@
                 <route id="rt_sig35_sig01">
                     <designator register="_Example" entry="Route S35-S01"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E209"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig35_rt_sig35_sig01">
                         <refersTo ref="il_sig35"/>
                     </routeEntry>
@@ -4490,6 +4552,10 @@
                 <route id="rt_sig39_sig43">
                     <designator register="_Example" entry="Route S39-S43"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig39_rt_sig39_sig43">
                         <refersTo ref="il_sig39"/>
                     </routeEntry>
@@ -4500,6 +4566,10 @@
                 <route id="rt_sig44_sig579">
                     <designator register="_Example" entry="Route S44-S04"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig44_rt_sig44_sig579">
                         <refersTo ref="il_sig44"/>
                     </routeEntry>
@@ -4510,6 +4580,10 @@
                 <route id="rt_sig45_sig01">
                     <designator register="_Example" entry="Route S45-S01"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig45_rt_sig45_sig01">
                         <refersTo ref="il_sig45"/>
                     </routeEntry>
@@ -4524,6 +4598,10 @@
                         <designator register="_Example" entry="Sw02 in left"/>
                         <refersToSwitch ref="il_swi548"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig46_rt_sig46_sig63_swi548N">
                         <refersTo ref="il_sig46"/>
                     </routeEntry>
@@ -4538,6 +4616,10 @@
                         <designator register="_Example" entry="Sw02 in right"/>
                         <refersToSwitch ref="il_swi548"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig46_rt_sig46_sig09_swi548R">
                         <refersTo ref="il_sig46"/>
                     </routeEntry>
@@ -4548,6 +4630,10 @@
                 <route id="rt_sig47_sig40">
                     <designator register="_Example" entry="Route S47-S40"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig47_rt_sig47_sig40">
                         <refersTo ref="il_sig47"/>
                     </routeEntry>
@@ -4558,6 +4644,12 @@
                 <route id="rt_sig52_sig28">
                     <designator register="_Example" entry="Route S52-S28"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig52_rt_sig52_sig28">
                         <refersTo ref="il_sig52"/>
                     </routeEntry>
@@ -4572,6 +4664,12 @@
                         <designator register="_Example" entry="D07 in left"/>
                         <refersToSwitch ref="il_sw399"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig56_rt_sig56_sig58_sw399N">
                         <refersTo ref="il_sig56"/>
                     </routeEntry>
@@ -4586,6 +4684,12 @@
                         <designator register="_Example" entry="D07 in right"/>
                         <refersToSwitch ref="il_sw399"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig56_rt_sig56_sig576_sw399R">
                         <refersTo ref="il_sig56"/>
                     </routeEntry>
@@ -4596,6 +4700,12 @@
                 <route id="rt_sig57_sig76">
                     <designator register="_Example" entry="Route S57-S76"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig57_rt_sig57_sig76">
                         <refersTo ref="il_sig57"/>
                     </routeEntry>
@@ -4606,6 +4716,12 @@
                 <route id="rt_sig58_sig16">
                     <designator register="_Example" entry="Route S58-S16"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig58_rt_sig58_sig16">
                         <refersTo ref="il_sig58"/>
                     </routeEntry>
@@ -4620,6 +4736,10 @@
                         <designator register="_Example" entry="dsw567_ne450_ne129 in right"/>
                         <refersToSwitch ref="il_dsw567_ne450_ne129"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig59_rt_sig59_sig87_dsw567T">
                         <refersTo ref="il_sig59"/>
                     </routeEntry>
@@ -4634,6 +4754,10 @@
                         <designator register="_Example" entry="dsw567_ne450_ne129 in left"/>
                         <refersToSwitch ref="il_dsw567_ne450_ne129"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig59_rt_sig59_sig06_dsw567S">
                         <refersTo ref="il_sig59"/>
                     </routeEntry>
@@ -4644,6 +4768,10 @@
                 <route id="rt_sig60_sig99">
                     <designator register="_Example" entry="Route S60-S99"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig60_rt_sig60_sig99">
                         <refersTo ref="il_sig60"/>
                     </routeEntry>
@@ -4654,6 +4782,10 @@
                 <route id="rt_sig62_sig579">
                     <designator register="_Example" entry="Route S62-S04"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig62_rt_sig62_sig579">
                         <refersTo ref="il_sig62"/>
                     </routeEntry>
@@ -4664,6 +4796,10 @@
                 <route id="rt_sig63_sig01">
                     <designator register="_Example" entry="Route S63-S01"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig63_rt_sig63_sig01">
                         <refersTo ref="il_sig63"/>
                     </routeEntry>
@@ -4674,6 +4810,11 @@
                 <route id="rt_sig67_sig584">
                     <designator register="_Example" entry="Route S67-S09"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
+                    <hasTvdSection ref="E209"/>
                     <routeEntry id="rts_sig67_rt_sig67_sig584">
                         <refersTo ref="il_sig67"/>
                     </routeEntry>
@@ -4684,6 +4825,11 @@
                 <route id="rt_sig68_sig583">
                     <designator register="_Example" entry="Route S68-S08"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
+                    <hasTvdSection ref="E209"/>
                     <routeEntry id="rts_sig68_rt_sig68_sig583">
                         <refersTo ref="il_sig68"/>
                     </routeEntry>
@@ -4694,6 +4840,12 @@
                 <route id="rt_sig74_sig76">
                     <designator register="_Example" entry="Route S74-S76"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig74_rt_sig74_sig76">
                         <refersTo ref="il_sig74"/>
                     </routeEntry>
@@ -4704,6 +4856,12 @@
                 <route id="rt_sig75_sig16">
                     <designator register="_Example" entry="Route S75-S16"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig75_rt_sig75_sig16">
                         <refersTo ref="il_sig75"/>
                     </routeEntry>
@@ -4714,6 +4872,12 @@
                 <route id="rt_sig76_sig28">
                     <designator register="_Example" entry="Route S76-S28"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig76_rt_sig76_sig28">
                         <refersTo ref="il_sig76"/>
                     </routeEntry>
@@ -4724,6 +4888,12 @@
                 <route id="rt_sig80_sig585">
                     <designator register="_Example" entry="Route S80-S10"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig80_rt_sig80_sig585">
                         <refersTo ref="il_sig80"/>
                     </routeEntry>
@@ -4734,6 +4904,12 @@
                 <route id="rt_sig83_sig12">
                     <designator register="_Example" entry="Route S83-S12"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig83_rt_sig83_sig12">
                         <refersTo ref="il_sig83"/>
                     </routeEntry>
@@ -4744,6 +4920,12 @@
                 <route id="rt_sig84_sig85">
                     <designator register="_Example" entry="Route S84-S85"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig84_rt_sig84_sig85">
                         <refersTo ref="il_sig84"/>
                     </routeEntry>
@@ -4754,6 +4936,12 @@
                 <route id="rt_sig85_sig05">
                     <designator register="_Example" entry="Route S85-S05"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig85_rt_sig85_sig05">
                         <refersTo ref="il_sig85"/>
                     </routeEntry>
@@ -4764,6 +4952,11 @@
                 <route id="rt_sig86_sig87">
                     <designator register="_Example" entry="Route S86-S87"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E230"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig86_rt_sig86_sig87">
                         <refersTo ref="il_sig86"/>
                     </routeEntry>
@@ -4774,6 +4967,11 @@
                 <route id="rt_sig87_sig08">
                     <designator register="_Example" entry="Route S87-S08"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E236"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig87_rt_sig87_sig08">
                         <refersTo ref="il_sig87"/>
                     </routeEntry>
@@ -4784,6 +4982,7 @@
                 <route id="rt_sig89_sig31">
                     <designator register="_Example" entry="Route S89-S31"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E230"/>
                     <routeEntry id="rts_sig89_rt_sig89_sig31">
                         <refersTo ref="il_sig89"/>
                     </routeEntry>
@@ -4794,6 +4993,11 @@
                 <route id="rt_sig90_sig89">
                     <designator register="_Example" entry="Route S90-S89"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E230"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig90_rt_sig90_sig89">
                         <refersTo ref="il_sig90"/>
                     </routeEntry>
@@ -4804,6 +5008,11 @@
                 <route id="rt_sig91_sig93">
                     <designator register="_Example" entry="Route S91-S93"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
+                    <hasTvdSection ref="E230"/>
                     <routeEntry id="rts_sig91_rt_sig91_sig93">
                         <refersTo ref="il_sig91"/>
                     </routeEntry>
@@ -4818,6 +5027,7 @@
                         <designator register="_Example" entry="D20 in left"/>
                         <refersToSwitch ref="il_swi568"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E230"/>
                     <routeEntry id="rts_sig93_rt_sig93_sig86_swi568N">
                         <refersTo ref="il_sig93"/>
                     </routeEntry>
@@ -4832,6 +5042,7 @@
                         <designator register="_Example" entry="D20 in right"/>
                         <refersToSwitch ref="il_swi568"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E230"/>
                     <routeEntry id="rts_sig93_rt_sig93_sig95_swi568R">
                         <refersTo ref="il_sig93"/>
                     </routeEntry>
@@ -4842,6 +5053,7 @@
                 <route id="rt_sig94_sig13">
                     <designator register="_Example" entry="Route S94-S13"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E230"/>
                     <routeEntry id="rts_sig94_rt_sig94_sig13">
                         <refersTo ref="il_sig94"/>
                     </routeEntry>
@@ -4852,6 +5064,7 @@
                 <route id="rt_sig95_sig96">
                     <designator register="_Example" entry="Route S95-S96"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E230"/>
                     <routeEntry id="rts_sig95_rt_sig95_sig96">
                         <refersTo ref="il_sig95"/>
                     </routeEntry>
@@ -4862,6 +5075,7 @@
                 <route id="rt_sig96_sig07">
                     <designator register="_Example" entry="Route S96-S07"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E230"/>
                     <routeEntry id="rts_sig96_rt_sig96_sig07">
                         <refersTo ref="il_sig96"/>
                     </routeEntry>
@@ -4872,6 +5086,10 @@
                 <route id="rt_sig97_sig99">
                     <designator register="_Example" entry="Route S97-S99"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig97_rt_sig97_sig99">
                         <refersTo ref="il_sig97"/>
                     </routeEntry>
@@ -4882,6 +5100,11 @@
                 <route id="rt_sig98_sig20">
                     <designator register="_Example" entry="Route S98-S20"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
+                    <hasTvdSection ref="E227"/>
                     <routeEntry id="rts_sig98_rt_sig98_sig20">
                         <refersTo ref="il_sig98"/>
                     </routeEntry>
@@ -4896,6 +5119,10 @@
                         <designator register="_Example" entry="dsw567_ne450_ne129 in right"/>
                         <refersToSwitch ref="il_dsw567_ne450_ne129"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig99_rt_sig99_sig87_dsw567S">
                         <refersTo ref="il_sig99"/>
                     </routeEntry>
@@ -4910,6 +5137,10 @@
                         <designator register="_Example" entry="dsw567_ne450_ne129 in left"/>
                         <refersToSwitch ref="il_dsw567_ne450_ne129"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
                     <routeEntry id="rts_sig99_rt_sig99_sig06_dsw567T">
                         <refersTo ref="il_sig99"/>
                     </routeEntry>
@@ -4924,6 +5155,10 @@
                         <designator register="_Example" entry="Sw03 in left"/>
                         <refersToSwitch ref="il_swi577"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig40_rt_sig40_sig02_swi577N">
                         <refersTo ref="il_sig40"/>
                     </routeEntry>
@@ -4938,6 +5173,16 @@
                         <designator register="_Example" entry="Sw03 in right"/>
                         <refersToSwitch ref="il_swi577"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig40_rt_sig40_sig15_swi577R">
                         <refersTo ref="il_sig40"/>
                     </routeEntry>
@@ -4952,6 +5197,10 @@
                         <designator register="_Example" entry="D04 in left"/>
                         <refersToSwitch ref="il_sw296"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig43_rt_sig43_sig45_sw296N">
                         <refersTo ref="il_sig43"/>
                     </routeEntry>
@@ -4966,6 +5215,10 @@
                         <designator register="_Example" entry="D04 in right"/>
                         <refersToSwitch ref="il_sw296"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig43_rt_sig43_sig46_sw296R">
                         <refersTo ref="il_sig43"/>
                     </routeEntry>
@@ -4976,6 +5229,11 @@
                 <route id="rt_sig572_sig20">
                     <designator register="_Example" entry="Route S01-S20"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E229"/>
+                    <hasTvdSection ref="E228"/>
+                    <hasTvdSection ref="tvd494"/>
+                    <hasTvdSection ref="E235"/>
+                    <hasTvdSection ref="E227"/>
                     <routeEntry id="rts_sig572_rt_sig572_sig20">
                         <refersTo ref="il_sig572"/>
                     </routeEntry>
@@ -4986,6 +5244,13 @@
                 <route id="rt_sig575_sig19">
                     <designator register="_Example" entry="Route S02-S19"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
+                    <hasTvdSection ref="E227"/>
                     <routeEntry id="rts_sig575_rt_sig575_sig19">
                         <refersTo ref="il_sig575"/>
                     </routeEntry>
@@ -5000,6 +5265,12 @@
                         <designator register="_Example" entry="D16 in left"/>
                         <refersToSwitch ref="il_swi561"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig576_rt_sig576_sig75_swi561N">
                         <refersTo ref="il_sig576"/>
                     </routeEntry>
@@ -5014,6 +5285,12 @@
                         <designator register="_Example" entry="D16 in right"/>
                         <refersToSwitch ref="il_swi561"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig576_rt_sig576_sig11_swi561R">
                         <refersTo ref="il_sig576"/>
                     </routeEntry>
@@ -5024,6 +5301,10 @@
                 <route id="rt_sig579_sig40">
                     <designator register="_Example" entry="Route S04-S40"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig579_rt_sig579_sig40">
                         <refersTo ref="il_sig579"/>
                     </routeEntry>
@@ -5038,6 +5319,7 @@
                         <designator register="_Example" entry="D15 in left"/>
                         <refersToSwitch ref="il_swi550"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E209"/>
                     <routeEntry id="rts_sig581_rt_sig581_sig10_swi550N">
                         <refersTo ref="il_sig581"/>
                     </routeEntry>
@@ -5052,6 +5334,7 @@
                         <designator register="_Example" entry="D15 in right"/>
                         <refersToSwitch ref="il_swi550"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E209"/>
                     <routeEntry id="rts_sig581_rt_sig581_sig35_swi550R">
                         <refersTo ref="il_sig581"/>
                     </routeEntry>
@@ -5066,6 +5349,10 @@
                         <designator register="_Example" entry="D01 in right"/>
                         <refersToSwitch ref="il_sw289"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig582_rt_sig582_sig68_sw289N">
                         <refersTo ref="il_sig582"/>
                     </routeEntry>
@@ -5084,6 +5371,10 @@
                         <designator register="_Example" entry="D03 in right"/>
                         <refersToSwitch ref="il_sw294"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig582_rt_sig582_sig47_sw289R_sw294N">
                         <refersTo ref="il_sig582"/>
                     </routeEntry>
@@ -5102,6 +5393,10 @@
                         <designator register="_Example" entry="D03 in left"/>
                         <refersToSwitch ref="il_sw294"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
                     <routeEntry id="rts_sig582_rt_sig582_sig44_sw289R_sw294R">
                         <refersTo ref="il_sig582"/>
                     </routeEntry>
@@ -5116,6 +5411,17 @@
                         <designator register="_Example" entry="D14 in left"/>
                         <refersToSwitch ref="il_swi549"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E209"/>
+                    <hasTvdSection ref="E207"/>
+                    <hasTvdSection ref="E351"/>
+                    <hasTvdSection ref="E346"/>
+                    <hasTvdSection ref="E206"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig583_rt_sig583_sig15_swi549N">
                         <refersTo ref="il_sig583"/>
                     </routeEntry>
@@ -5130,6 +5436,7 @@
                         <designator register="_Example" entry="D14 in right"/>
                         <refersToSwitch ref="il_swi549"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E209"/>
                     <routeEntry id="rts_sig583_rt_sig583_sig03_swi549R">
                         <refersTo ref="il_sig583"/>
                     </routeEntry>
@@ -5140,6 +5447,7 @@
                 <route id="rt_sig584_sig35">
                     <designator register="_Example" entry="Route S09-S35"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E209"/>
                     <routeEntry id="rts_sig584_rt_sig584_sig35">
                         <refersTo ref="il_sig584"/>
                     </routeEntry>
@@ -5154,6 +5462,12 @@
                         <designator register="_Example" entry="D18 in left"/>
                         <refersToSwitch ref="il_swi562"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig585_rt_sig585_sig575_swi562N">
                         <refersTo ref="il_sig585"/>
                     </routeEntry>
@@ -5168,6 +5482,12 @@
                         <designator register="_Example" entry="D18 in right"/>
                         <refersToSwitch ref="il_swi562"/>
                     </facingSwitchInPosition>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig585_rt_sig585_sig84_swi562R">
                         <refersTo ref="il_sig585"/>
                     </routeEntry>
@@ -5178,6 +5498,12 @@
                 <route id="rt_sig586_sig23">
                     <designator register="_Example" entry="Route S11-S23"/>
                     <handlesRouteType ref="rt_main"/>
+                    <hasTvdSection ref="E217"/>
+                    <hasTvdSection ref="E438"/>
+                    <hasTvdSection ref="E226"/>
+                    <hasTvdSection ref="E215"/>
+                    <hasTvdSection ref="E216"/>
+                    <hasTvdSection ref="E218"/>
                     <routeEntry id="rts_sig586_rt_sig586_sig23">
                         <refersTo ref="il_sig586"/>
                     </routeEntry>

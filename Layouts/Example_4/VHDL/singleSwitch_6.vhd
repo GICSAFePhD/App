@@ -7,62 +7,119 @@ use work.my_package.all;
 	entity singleSwitch_6 is
 		port(
 			clock : in std_logic;
+			reset : in std_logic;
 			R26_command : in routeCommands;
-			R39_command : in routeCommands;
-			R40_command : in routeCommands;
-			R59_command : in routeCommands;
-			R82_command : in routeCommands;
+			R37_command : in routeCommands;
+			R38_command : in routeCommands;
+			R55_command : in routeCommands;
+			R77_command : in routeCommands;
 			indication : in std_logic;
 			command : out std_logic;
-			correspondence_D09 : out singleSwitchStates
+			correspondence_D09 : out singleSwitchStates;
+			lock_D09 : out objectLock
 		);
-	end entity singleSwitch_6;
+	end entity singleSwitch_6;
 architecture Behavioral of singleSwitch_6 is
-signal command_aux : std_logic;
+	component flipFlop is
+		port(
+			clock : in std_logic;
+			reset : in std_logic;
+			Q : out std_logic
+		);
+	end component flipFlop;
+	signal restart : std_logic := '0';
+	signal Q : std_logic_vector(27 downto 0) := (others => '0');
+	signal commandState : routeCommands;
+	signal commandAux : std_logic;
 begin
-	process(clock)
-	begin
-		if (clock = '1' and clock'Event) then
-			if (R26_command = RELEASE and R39_command = RELEASE and R40_command = RELEASE and R59_command = RELEASE and R82_command = RELEASE) then
-				command_aux <= indication;
-			else
-				if ((R26_command = RESERVE or R39_command = RESERVE) and (R40_command = RELEASE and R59_command = RELEASE and R82_command = RELEASE)) then
-					command_aux <= '0';
+	gen : for i in 0 to 26 generate
+		inst: flipFlop port map(Q(i),restart,Q(i+1));
+	end generate;
+	Q(0) <= clock;
+
+	process(clock)
+	begin
+		if (clock = '1' and clock'Event) then
+			if (reset = '1') then
+				commandState <= RELEASE;
+			else
+				if (R26_command = RELEASE and R37_command = RELEASE and R38_command = RELEASE and R55_command = RELEASE and R77_command = RELEASE) then
+					commandState <= RELEASE;
+				else
+					if (R26_command = RESERVE or R37_command = RESERVE or R38_command = RESERVE or R55_command = RESERVE or R77_command = RESERVE) then
+						commandState <= RESERVE;
+					end if;
+					if (R26_command = LOCK or R37_command = LOCK or R38_command = LOCK or R55_command = LOCK or R77_command = LOCK) then
+						commandState <= LOCK;
+					end if;
+				end if;
+			end if;
+		end if;
+	end process;
+
+	process(commandState)
+	begin
+		case commandState is
+			when RELEASE => -- AUTOMATIC
+				lock_D09 <= RELEASED;
+			when RESERVE => -- DONT CHANGE
+				lock_D09 <= RESERVED;
+			when LOCK => -- DONT CHANGE
+				lock_D09 <= LOCKED;
+			when others =>
+				lock_D09 <= LOCKED;
+		end case;
+	end process;
+
+	process(commandState)
+	begin
+		case commandState is
+			when RELEASE => -- AUTOMATIC
+				commandAux <= indication;
+			when RESERVE =>
+				if ((R26_command = RESERVE or R37_command = RESERVE) and (R38_command = RELEASE and R55_command = RELEASE and R77_command = RELEASE)) then
+					commandAux <= '0';
 				end if;
-				if ((R26_command = RELEASE and R39_command = RELEASE) and (R40_command = RESERVE or R59_command = RESERVE or R82_command = RESERVE)) then
-					command_aux <= '1';
+				if ((R26_command = RELEASE and R37_command = RELEASE) and (R38_command = RESERVE or R55_command = RESERVE or R77_command = RESERVE)) then
+					commandAux <= '1';
 				end if;
-				if ((R26_command = LOCK or R39_command = LOCK) and (R40_command = RELEASE and R59_command = RELEASE and R82_command = RELEASE)) then
-					command_aux <= '0';
+			when LOCK =>
+				if ((R26_command = LOCK or R37_command = LOCK) and (R38_command = RELEASE and R55_command = RELEASE and R77_command = RELEASE)) then
+					commandAux <= '0';
 				end if;
-				if ((R26_command = RELEASE and R39_command = RELEASE) and (R40_command = LOCK or R59_command = LOCK or R82_command = LOCK)) then
-					command_aux <= '1';
+				if ((R26_command = RELEASE and R37_command = RELEASE) and (R38_command = LOCK or R55_command = LOCK or R77_command = LOCK)) then
+					commandAux <= '1';
 				end if;
-			end if;
-		end if;
-	end process;
-	process(clock)
-	begin
-		if (clock = '1' and clock'Event) then
-			if (R26_command = RELEASE and R39_command = RELEASE and R40_command = RELEASE and R59_command = RELEASE and R82_command = RELEASE) then
-				if (command_aux = '0' and indication = '0') then
-					correspondence_D09 <= NORMAL;
-				end if;
-				if (command_aux = '1' and indication = '1') then
-					correspondence_D09 <= REVERSE;
-				end if;
-				if ((command_aux = '0' and indication = '1') or (command_aux = '1' and indication = '0')) then
-					correspondence_D09 <= TRANSITION;
-				end if;
-			else
-				if (R26_command = RESERVE or R39_command = RESERVE or R40_command = RESERVE or R59_command = RESERVE or R82_command = RESERVE) then
-					correspondence_D09 <= RESERVED;
-				end if;
-				if (R26_command = LOCK or R39_command = LOCK or R40_command = LOCK or R59_command = LOCK or R82_command = LOCK) then
-					correspondence_D09 <= LOCKED;
-				end if;
-			end if;
-		end if;
-	end process;
-	command <= command_aux;
+			when others =>
+				commandAux <= indication;
+		end case;
+	end process;
+
+	process(clock)
+	begin
+		if (clock = '1' and clock'Event) then
+			if( reset = '1' or (Q(0) = '0' and Q(1) = '0' and Q(2) = '0' and Q(3) = '0' and Q(4) = '0' and Q(5) = '0' and Q(6) = '1' and Q(7) = '1' and Q(8) = '0' and Q(9) = '1' and Q(10) = '1' and Q(11) = '1' and Q(12) = '0' and Q(13) = '0' and Q(14) = '0' and Q(15) = '0' and Q(16) = '0' and Q(17) = '1' and Q(18) = '1' and Q(19) = '0' and Q(20) = '1' and Q(21) = '0' and Q(22) = '0' and Q(23) = '0' and Q(24) = '0' and Q(25) = '1' and Q(26) = '0')) then
+				restart <= '1';
+				if(indication = '0') then
+					correspondence_D09 <= NORMAL;
+				else
+					correspondence_D09 <= REVERSE;
+				end if;
+			else
+				if (commandAux = '0' and indication = '0') then
+					correspondence_D09 <= NORMAL;
+					restart <= '1';
+				end if;
+				if (commandAux = '1' and indication = '1') then
+					correspondence_D09 <= REVERSE;
+					restart <= '1';
+				end if;
+				if (commandAux /= indication) then
+					correspondence_D09 <= TRANSITION;
+					restart <= '0';
+				end if;
+			end if;
+		end if;
+	end process;
+	command <= commandAux;
 end Behavioral;

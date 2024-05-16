@@ -11,8 +11,7 @@ use IEEE.numeric_std.all;
 			rgb_1 : out std_logic_vector(3-1 downto 0);
 			rgb_2 : out std_logic_vector(3-1 downto 0);
 			selector1 : in std_logic;
-			selector2 : in std_logic;
-			Reset : in std_logic
+			selector2 : in std_logic
 		);
 	end entity global;
 architecture Behavioral of global is
@@ -41,8 +40,7 @@ architecture Behavioral of global is
 			leds : out std_logic_vector(4-1 downto 0);
 			led_rgb_1 : out std_logic_vector(3-1 downto 0);
 			led_rgb_2 : out std_logic_vector(3-1 downto 0);
-			w_data : out std_logic_vector(8-1 downto 0);
-			reset : in std_logic
+			w_data : out std_logic_vector(8-1 downto 0)
 		);
 	end component system;
 	signal w_data_signal, r_dataSignal: std_logic_vector(7 downto 0);
@@ -62,7 +60,6 @@ begin
 		)
 		port map(
 			clk 		=> clock,
-			reset 		=> reset,
 			rd_uart 	=> rd_uart_signal,
 			wr_uart 	=> wr_uart_signal,
 			rx 			=> uart_rxd_i,
@@ -84,7 +81,6 @@ begin
 	system_i : system
 		port map(
 			clock => clock,
-			reset => reset,
 			reset_uart => reset_s,
 			r_available => rd_uart_signal,
 			read => read_s,
@@ -101,5 +97,5 @@ begin
 	rgb_1 <= led_rgb_1;
 	rgb_2 <= led_rgb_2;
 	leds <= led_s;
-	reset_uart <= Reset or reset_s;
+	reset_uart <= reset_s;
 end Behavioral;

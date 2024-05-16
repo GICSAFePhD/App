@@ -12,31 +12,25 @@ use IEEE.numeric_std.all;
 			wr_uart_3 : out std_logic;
 			w_data_1 : in std_logic_vector(8-1 downto 0);
 			w_data_2 : in std_logic_vector(8-1 downto 0);
-			w_data_3 : out std_logic_vector(8-1 downto 0);
-			reset : in std_logic
+			w_data_3 : out std_logic_vector(8-1 downto 0)
 		);
 	end entity selector;
 architecture Behavioral of selector is
-	signal disp_aux : std_logic_vector(8-1 downto 0);
+	signal disp_aux : std_logic_vector(8-1 downto 0) := (others => '0');
 begin
 	selectors : process(clock)
 	begin
 		if (clock = '1' and clock'event) then
-			if reset = '1' then
-				w_data_3 <= "00000000";
-				wr_uart_3 <= '0';
+			if selector = '1' then
+				disp_aux <= w_data_2;
+				w_data_3 <= disp_aux;
+				wr_uart_3 <= wr_uart_2;
+				--leds <= '10';
 			else
-				if selector = '1' then
-					disp_aux <= w_data_2;
-					w_data_3 <= disp_aux;
-					wr_uart_3 <= wr_uart_2;
-					--leds <= '10';
-				else
-					disp_aux <= w_data_1;
-					w_data_3 <= disp_aux;
-					wr_uart_3 <= wr_uart_1;
-					--leds <= '01';
-				end if;
+				disp_aux <= w_data_1;
+				w_data_3 <= disp_aux;
+				wr_uart_3 <= wr_uart_1;
+				--leds <= '01';
 			end if;
 		end if;
 	end process;

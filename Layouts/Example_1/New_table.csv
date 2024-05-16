@@ -1,22 +1,22 @@
 Route , Signal_start , Signal_end , Direction , netElements , switch , platform , LevelCrossings
-R_01 , S02 , S20 , >> , ne13-ne13 ,  , Plat13 , Lc08
-R_02 , S04 , S16 , << , ne14-ne14 ,  , Plat11 , 
-R_03 , S06 , S29 , << , ne15-ne15 ,  ,  , 
-R_04 , S11 , S09 , >> , ne22-ne22 ,  ,  , 
-R_05 , S12 , S21 , << , ne22-ne8 , Sw12_N ,  , 
-R_06 , S13 , S25 , >> , ne23-ne12 , Sw13_N ,  , 
-R_07 , S15 , S03 , >> , ne14-ne14 ,  , Plat11 , Lc06
-R_08 , S16 , S07 , << , ne14-ne1 , Sw04_R-Sw07_R ,  , Lc06
-R_09 , S20 , S08 , >> , ne13-ne2 , Sw06_R ,  , 
-R_10 , S21 , S07 , << , ne8-ne1 , Sw04_N ,  , 
+R_01 , T02 , P20 , >> , ne13-ne13 ,  , Plat13 , Lc08
+R_02 , T04 , X16 , << , ne14-ne14 ,  , Plat11 , 
+R_03 , T06 , C29 , << , ne15-ne15 ,  ,  , 
+R_04 , J11 , L09 , >> , ne22-ne22 ,  ,  , 
+R_05 , J12 , C21 , << , ne22-ne8 , Sw12_N ,  , 
+R_06 , J13 , C25 , >> , ne23-ne12 , Sw13_N ,  , 
+R_07 , X15 , T03 , >> , ne14-ne14 ,  , Plat11 , Lc06
+R_08 , X16 , L07 , << , ne14-ne1 , Sw04_R-Sw07_R ,  , Lc06
+R_09 , P20 , L08 , >> , ne13-ne2 , Sw06_R ,  , 
+R_10 , C21 , L07 , << , ne8-ne1 , Sw04_N ,  , 
 R_11 , S22 , S32 , >> , ne1-ne8 , Sw04_N ,  , 
-R_12 , S22 , S15 , >> , ne1-ne14 , Sw04_R-Sw07_R ,  , 
-R_13 , S22 , S05 , >> , ne1-ne15 , Sw04_R-Sw07_N ,  , 
-R_14 , S25 , S08 , >> , ne12-ne2 , Sw06_N ,  , 
+R_12 , S22 , X15 , >> , ne1-ne14 , Sw04_R-Sw07_R ,  , 
+R_13 , S22 , T05 , >> , ne1-ne15 , Sw04_R-Sw07_N ,  , 
+R_14 , C25 , L08 , >> , ne12-ne2 , Sw06_N ,  , 
 R_15 , S27 , S35 , << , ne2-ne12 , Sw06_N ,  , 
-R_16 , S27 , S01 , << , ne2-ne13 , Sw06_R , Plat13 , Lc08
-R_17 , S29 , S07 , << , ne15-ne1 , Sw04_R-Sw07_N ,  , 
-R_18 , S32 , S11 , >> , ne8-ne22 , Sw12_N ,  , 
-R_19 , S32 , S25 , >> , ne8-ne12 , Sw12_R-Sw13_R ,  , 
-R_20 , S35 , S14 , << , ne12-ne23 , Sw13_N ,  , 
-R_21 , S35 , S21 , << , ne12-ne8 , Sw12_R-Sw13_R ,  , 
+R_16 , S27 , T01 , << , ne2-ne13 , Sw06_R , Plat13 , Lc08
+R_17 , C29 , L07 , << , ne15-ne1 , Sw04_R-Sw07_N ,  , 
+R_18 , S32 , J11 , >> , ne8-ne22 , Sw12_N ,  , 
+R_19 , S32 , C25 , >> , ne8-ne12 , Sw12_R-Sw13_R ,  , 
+R_20 , S35 , J14 , << , ne12-ne23 , Sw13_N ,  , 
+R_21 , S35 , C21 , << , ne12-ne8 , Sw12_R-Sw13_R ,  , 

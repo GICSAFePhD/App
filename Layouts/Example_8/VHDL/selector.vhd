@@ -17,7 +17,7 @@ use IEEE.numeric_std.all;
 		);
 	end entity selector;
 architecture Behavioral of selector is
-	signal disp_aux : std_logic_vector(8-1 downto 0);
+	signal disp_aux : std_logic_vector(8-1 downto 0) := (others => '0');
 begin
 	selectors : process(clock)
 	begin

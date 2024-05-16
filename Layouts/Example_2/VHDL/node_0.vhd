@@ -7,32 +7,60 @@ use work.my_package.all;
 	entity node_0 is
 		port(
 			clock : in std_logic;
+			reset : in std_logic;
 			ocupation : in std_logic;
 			R2_command : in routeCommands;
 			R4_command : in routeCommands;
-			state : out nodeStates
+			state : out nodeStates;
+			locking : out objectLock
 		);
-	end entity node_0;
-architecture Behavioral of node_0 is
-begin
-	process(clock)
-	begin
-		if (clock = '1' and clock'Event) then
-			if (R2_command = RELEASE and R4_command = RELEASE) then
-				if ocupation = '1' then
-					state <= FREE;
-				else
-					state <= OCCUPIED;
-				end if;
-			else
-				if (R2_command = RESERVE or R4_command = RESERVE) then
-					state <= RESERVED;
-				end if;
-				if (R2_command = LOCK or R4_command = LOCK) then
-					state <= LOCKED;
-				end if;
-			end if;
-		else
-		end if;
+	end entity node_0;
+architecture Behavioral of node_0 is
+	signal commandState : routeCommands := RELEASE;
+begin
+
+	process(clock)
+	begin
+		if (clock = '1' and clock'Event) then
+			if (reset = '1') then
+				commandState <= RELEASE;
+			else
+				if (R2_command = RELEASE and R4_command = RELEASE) then
+					commandState <= RELEASE;
+				else
+					if (R2_command = RESERVE or R4_command = RESERVE) then
+						commandState <= RESERVE;
+					end if;
+					if (R2_command = LOCK or R4_command = LOCK) then
+						commandState <= LOCK;
+					end if;
+				end if;
+			end if;
+		end if;
+	end process;
+
+	process(commandState)
+	begin
+		case commandState is
+			when RELEASE => -- AUTOMATIC
+				locking <= RELEASED;
+			when RESERVE => -- DONT CHANGE
+				locking <= RESERVED;
+			when LOCK => -- DONT CHANGE
+				locking <= LOCKED;
+			when others =>
+				locking <= LOCKED;
+		end case;
+	end process;
+
+	process(clock)
+	begin
+		if (clock = '1' and clock'Event) then
+			if (ocupation = '1') then
+				state <= FREE;
+			else
+				state <= OCCUPIED;
+			end if;
+		end if;
 	end process;
 end Behavioral;

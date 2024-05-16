@@ -6,8 +6,8 @@ use IEEE.numeric_std.all;
 use work.my_package.all;
 	entity interlocking is
 		generic(
-			N : natural := 45;
-			N_SIGNALS : natural := 12;
+			N : natural := 47;
+			N_SIGNALS : natural := 13;
 			N_SINGLESWITCHES : natural := 3;
 			N_TRACKCIRCUITS : natural := 7
 		);
@@ -15,16 +15,17 @@ use work.my_package.all;
 			clock : in std_logic;
 			processing : in std_logic;
 			processed : out std_logic;
-			packet_i : in std_logic_vector(45-1 downto 0);
-			packet_o : out std_logic_vector(38-1 downto 0);
+			packet_i : in std_logic_vector(47-1 downto 0);
+			packet_o : out std_logic_vector(40-1 downto 0);
 			reset : in std_logic
 		);
 	end entity interlocking;
 architecture Behavioral of interlocking is
 	component splitter is
 		generic(
-			N : natural := 45;
-			N_SIGNALS : natural := 12;
+			N : natural := 47;
+			N_SIGNALS : natural := 13;
+			N_ROUTES : natural := 11;
 			N_SINGLESWITCHES : natural := 3;
 			N_TRACKCIRCUITS : natural := 7
 		);
@@ -42,8 +43,8 @@ architecture Behavioral of interlocking is
 	end component splitter;
 	component network is
 		generic(
-			N : natural := 45;
-			N_SIGNALS : natural := 12;
+			N : natural := 47;
+			N_SIGNALS : natural := 13;
 			N_ROUTES : natural := 11;
 			N_SINGLESWITCHES : natural := 3;
 			N_TRACKCIRCUITS : natural := 7
@@ -64,8 +65,9 @@ architecture Behavioral of interlocking is
 	end component network;
 	component mediator is
 		generic(
-			N : natural := 45;
-			N_SIGNALS : natural := 12;
+			N : natural := 47;
+			N_SIGNALS : natural := 13;
+			N_ROUTES : natural := 11;
 			N_SINGLESWITCHES : natural := 3;
 			N_TRACKCIRCUITS : natural := 7
 		);
@@ -76,7 +78,7 @@ architecture Behavioral of interlocking is
 			signals : in signals_type;
 			routes : in std_logic_vector(N_ROUTES-1 downto 0);
 			singleSwitches : in std_logic_vector(N_SINGLESWITCHES-1 downto 0);
-			output : out std_logic_vector(38-1 downto 0);
+			output : out std_logic_vector(40-1 downto 0);
 			reset : in std_logic
 		);
 	end component mediator;

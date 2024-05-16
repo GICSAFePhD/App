@@ -25,7 +25,7 @@ use work.my_package.all;
 			routes : out std_logic_vector(N_ROUTES-1 downto 0);
 			levelCrossings : out std_logic;
 			singleSwitches : out std_logic_vector(N_SINGLESWITCHES-1 downto 0);
-			scissorSwitches : out std_logic;
+			scissorCrossings : out std_logic;
 			doubleSwitches : out dSwitches_type;
 			reset : in std_logic
 		);
@@ -49,7 +49,7 @@ begin
 				routes <= "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 				levelCrossings <= '0';
 				singleSwitches <= "000000000000000";
-				scissorSwitches <= '0';
+				scissorCrossings <= '0';
 				doubleSwitches.lsb <= "00";
 				doubleSwitches.msb <= "00";
 				processed <= '0';
@@ -384,7 +384,7 @@ begin
 					doubleSwitches.lsb(0) <= packet(3);
 					doubleSwitches.msb(1) <= packet(2);
 					doubleSwitches.lsb(1) <= packet(1);
-					scissorCrossings <= packet(-1);
+					scissorCrossings <= packet(0);
 				end if;
 			end if;
 		end if;
