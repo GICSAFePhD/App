@@ -2,30 +2,32 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 --Declare the package
 use work.my_package.all;
 	entity network is
 		generic(
-			N : natural := 58;
-			N_SIGNALS : natural := 16;
+			N_TRACKCIRCUITS : natural := 5;
 			N_ROUTES : natural := 13;
+			N_SIGNALS : natural := 16;
 			N_LEVELCROSSINGS : natural := 6;
 			N_SINGLESWITCHES : natural := 2;
-			N_TRACKCIRCUITS : natural := 5
+			N : natural := 42
 		);
 		port(
 			clock : in std_logic;
 			processing : in std_logic;
 			processed : out std_logic;
-			ocupation : in std_logic_vector(N_TRACKCIRCUITS-1 downto 0);
-			signals_i : in signals_type;
-			signals_o : out signals_type;
-			routes_i : in std_logic_vector(N_ROUTES-1 downto 0);
-			routes_o : out std_logic_vector(N_ROUTES-1 downto 0);
-			levelCrossings_i : in std_logic_vector(N_LEVELCROSSINGS-1 downto 0);
-			levelCrossings_o : out std_logic_vector(N_LEVELCROSSINGS-1 downto 0);
-			singleSwitches_i : in std_logic_vector(N_SINGLESWITCHES-1 downto 0);
-			singleSwitches_o : out std_logic_vector(N_SINGLESWITCHES-1 downto 0);
+			tracks_i: in hex_array(N_TRACKCIRCUITS-1 downto 0);
+			tracks_o: out hex_array(N_TRACKCIRCUITS-1 downto 0);
+			signals_i : in hex_array(N_SIGNALS-1 downto 0);
+			signals_o : out hex_array(N_SIGNALS-1 downto 0);
+			routes_i : in hex_array(N_ROUTES-1 downto 0);
+			routes_o : out hex_array(N_ROUTES-1 downto 0);
+			levelCrossings_i : in hex_array(N_LEVELCROSSINGS-1 downto 0);
+			levelCrossings_o : out hex_array(N_LEVELCROSSINGS-1 downto 0);
+			singleSwitches_i : in hex_array(N_SINGLESWITCHES-1 downto 0);
+			singleSwitches_o : out hex_array(N_SINGLESWITCHES-1 downto 0);
 			reset : in std_logic
 		);
 	end entity network;
@@ -34,129 +36,133 @@ architecture Behavioral of network is
 		port(
 			clock : in std_logic;
 			reset : in std_logic;
-			ocupation_ne3 : in std_logic;
-			ocupation_ne26 : in std_logic;
-			ocupation_ne27 : in std_logic;
+			track_ne3 : in hex_char;
+			track_ne26 : in hex_char;
+			track_ne27 : in hex_char;
 			R7_command : in routeCommands;
 			R12_command : in routeCommands;
 			R13_command : in routeCommands;
-			indication : in std_logic;
-			command : out std_logic;
-			correspondence_Lc06 : out levelCrossingStates;
-			lock_Lc06 : out objectLock
+			R10_command : in routeCommands;
+			R11_command : in routeCommands;
+			indication : in hex_char;
+			command : out hex_char;
+			correspondence : out hex_char
 		);
 	end component levelCrossing_0;
 	component levelCrossing_1 is
 		port(
 			clock : in std_logic;
 			reset : in std_logic;
-			ocupation_ne23 : in std_logic;
-			ocupation_ne25 : in std_logic;
-			ocupation_ne27 : in std_logic;
+			track_ne23 : in hex_char;
+			track_ne25 : in hex_char;
+			track_ne27 : in hex_char;
 			R3_command : in routeCommands;
 			R8_command : in routeCommands;
-			indication : in std_logic;
-			command : out std_logic;
-			correspondence_Lc07 : out levelCrossingStates;
-			lock_Lc07 : out objectLock
+			indication : in hex_char;
+			command : out hex_char;
+			correspondence : out hex_char
 		);
 	end component levelCrossing_1;
 	component levelCrossing_2 is
 		port(
 			clock : in std_logic;
 			reset : in std_logic;
-			ocupation_ne23 : in std_logic;
-			ocupation_ne25 : in std_logic;
-			ocupation_ne27 : in std_logic;
+			track_ne23 : in hex_char;
+			track_ne25 : in hex_char;
+			track_ne27 : in hex_char;
 			R4_command : in routeCommands;
 			R9_command : in routeCommands;
 			R10_command : in routeCommands;
-			indication : in std_logic;
-			command : out std_logic;
-			correspondence_Lc09 : out levelCrossingStates;
-			lock_Lc09 : out objectLock
+			R13_command : in routeCommands;
+			R3_command : in routeCommands;
+			R6_command : in routeCommands;
+			indication : in hex_char;
+			command : out hex_char;
+			correspondence : out hex_char
 		);
 	end component levelCrossing_2;
 	component levelCrossing_3 is
 		port(
 			clock : in std_logic;
 			reset : in std_logic;
-			ocupation_ne25 : in std_logic;
-			ocupation_ne23 : in std_logic;
+			track_ne25 : in hex_char;
+			track_ne23 : in hex_char;
 			R5_command : in routeCommands;
 			R6_command : in routeCommands;
-			indication : in std_logic;
-			command : out std_logic;
-			correspondence_Lc05 : out levelCrossingStates;
-			lock_Lc05 : out objectLock
+			R9_command : in routeCommands;
+			indication : in hex_char;
+			command : out hex_char;
+			correspondence : out hex_char
 		);
 	end component levelCrossing_3;
 	component levelCrossing_4 is
 		port(
 			clock : in std_logic;
 			reset : in std_logic;
-			ocupation_ne26 : in std_logic;
-			ocupation_ne3 : in std_logic;
+			track_ne26 : in hex_char;
+			track_ne3 : in hex_char;
 			R1_command : in routeCommands;
 			R2_command : in routeCommands;
-			indication : in std_logic;
-			command : out std_logic;
-			correspondence_Lc03 : out levelCrossingStates;
-			lock_Lc03 : out objectLock
+			R12_command : in routeCommands;
+			indication : in hex_char;
+			command : out hex_char;
+			correspondence : out hex_char
 		);
 	end component levelCrossing_4;
 	component levelCrossing_5 is
 		port(
 			clock : in std_logic;
 			reset : in std_logic;
-			ocupation_ne26 : in std_logic;
-			ocupation_ne3 : in std_logic;
+			track_ne26 : in hex_char;
+			track_ne3 : in hex_char;
 			R2_command : in routeCommands;
 			R11_command : in routeCommands;
-			indication : in std_logic;
-			command : out std_logic;
-			correspondence_Lc04 : out levelCrossingStates;
-			lock_Lc04 : out objectLock
+			R12_command : in routeCommands;
+			R1_command : in routeCommands;
+			indication : in hex_char;
+			command : out hex_char;
+			correspondence : out hex_char
 		);
 	end component levelCrossing_5;
 	component singleSwitch_0 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			R10_command : in routeCommands;
-			R11_command : in routeCommands;
-			R12_command : in routeCommands;
-			R13_command : in routeCommands;
-			indication : in std_logic;
-			command : out std_logic;
-			correspondence_Sw12 : out singleSwitchStates;
-			lock_Sw12 : out objectLock
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			R10_command : in routeCommands := RELEASE;
+			R11_command : in routeCommands := RELEASE;
+			R12_command : in routeCommands := RELEASE;
+			R13_command : in routeCommands := RELEASE;
+			R3_command : in routeCommands := RELEASE;
+			R1_command : in routeCommands := RELEASE;
+			indication : in hex_char;
+			command : out hex_char;
+			correspondence : out hex_char
 		);
 	end component singleSwitch_0;
 	component singleSwitch_1 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			R6_command : in routeCommands;
-			R9_command : in routeCommands;
-			R10_command : in routeCommands;
-			R13_command : in routeCommands;
-			indication : in std_logic;
-			command : out std_logic;
-			correspondence_Sw11 : out singleSwitchStates;
-			lock_Sw11 : out objectLock
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			R6_command : in routeCommands := RELEASE;
+			R9_command : in routeCommands := RELEASE;
+			R10_command : in routeCommands := RELEASE;
+			R13_command : in routeCommands := RELEASE;
+			R3_command : in routeCommands := RELEASE;
+			indication : in hex_char;
+			command : out hex_char;
+			correspondence : out hex_char
 		);
 	end component singleSwitch_1;
 	component railwaySignal_0 is
 		port(
 			clock : in std_logic;
 			reset : in std_logic;
+			R7_command : in routeCommands;
 			--Ocupation level 0
-			ocupation_ne3 : in std_logic;
-			correspondence_L01 : out signalStates;
-			lock_L01 : out objectLock;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne3 : in hex_char;
+			correspondence_L01 : out hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_0;
 	component railwaySignal_1 is
@@ -164,15 +170,16 @@ architecture Behavioral of network is
 			clock : in std_logic;
 			reset : in std_logic;
 			R7_command : in routeCommands;
-			Lc06_state : in levelCrossingStates;
+			R10_command : in routeCommands;
+			R11_command : in routeCommands;
+			Lc06_state : in hex_char;
 			--Ocupation level 0
-			ocupation_ne3 : in std_logic;
-			correspondence_X16 : out signalStates;
-			lock_X16 : out objectLock;
-			correspondence_L01 : in signalStates;
+			track_ne3 : in hex_char;
+			correspondence_X16 : out hex_char;
+			correspondence_L01 : in hex_char;
 			--Ocupation level 2
-			indication : in signal_type;
-			command : out signal_type
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_1;
 	component railwaySignal_2 is
@@ -181,38 +188,37 @@ architecture Behavioral of network is
 			reset : in std_logic;
 			R12_command : in routeCommands;
 			R13_command : in routeCommands;
-			Lc06_state : in levelCrossingStates;
-			Lc03_state : in levelCrossingStates;
-			Lc04_state : in levelCrossingStates;
-			Lc09_state : in levelCrossingStates;
+			Lc06_state : in hex_char;
+			Lc03_state : in hex_char;
+			Lc04_state : in hex_char;
+			Lc09_state : in hex_char;
 			--Ocupation level 0
-			ocupation_ne3 : in std_logic;
-			correspondence_S25 : out signalStates;
-			lock_S25 : out objectLock;
+			track_ne3 : in hex_char;
+			correspondence_S25 : out hex_char;
 			--Ocupation level 1
-			ocupation_ne26 : in std_logic;
-			ocupation_ne27 : in std_logic;
-			ocupation_ne23 : in std_logic;
-			correspondence_X07 : in signalStates;
-			correspondence_X12 : in signalStates;
-			Sw12_state : in singleSwitchStates;
-			Sw11_state : in singleSwitchStates;
-			correspondence_L04 : in signalStates;
-			correspondence_P19 : in signalStates;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne26 : in hex_char;
+			track_ne27 : in hex_char;
+			track_ne23 : in hex_char;
+			correspondence_X07 : in hex_char;
+			correspondence_X12 : in hex_char;
+			Sw12_state : in hex_char;
+			Sw11_state : in hex_char;
+			correspondence_L04 : in hex_char;
+			correspondence_P19 : in hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_2;
 	component railwaySignal_3 is
 		port(
 			clock : in std_logic;
 			reset : in std_logic;
+			R8_command : in routeCommands;
 			--Ocupation level 0
-			ocupation_ne23 : in std_logic;
-			correspondence_L02 : out signalStates;
-			lock_L02 : out objectLock;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne23 : in hex_char;
+			correspondence_L02 : out hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_3;
 	component railwaySignal_4 is
@@ -220,23 +226,22 @@ architecture Behavioral of network is
 			clock : in std_logic;
 			reset : in std_logic;
 			R3_command : in routeCommands;
-			Lc07_state : in levelCrossingStates;
-			Lc09_state : in levelCrossingStates;
+			Lc07_state : in hex_char;
+			Lc09_state : in hex_char;
 			--Ocupation level 0
-			ocupation_ne23 : in std_logic;
-			correspondence_X09 : out signalStates;
-			lock_X09 : out objectLock;
-			correspondence_S22 : in signalStates;
+			track_ne23 : in hex_char;
+			correspondence_X09 : out hex_char;
+			correspondence_S22 : in hex_char;
 			--Ocupation level 2
-			ocupation_ne27 : in std_logic;
-			ocupation_ne3 : in std_logic;
-			ocupation_ne25 : in std_logic;
-			correspondence_X13 : in signalStates;
-			correspondence_X16 : in signalStates;
-			Sw11_state : in singleSwitchStates;
-			Sw12_state : in singleSwitchStates;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne25 : in hex_char;
+			track_ne27 : in hex_char;
+			track_ne3 : in hex_char;
+			correspondence_X13 : in hex_char;
+			correspondence_X16 : in hex_char;
+			Sw11_state : in hex_char;
+			Sw12_state : in hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_4;
 	component railwaySignal_5 is
@@ -244,16 +249,17 @@ architecture Behavioral of network is
 			clock : in std_logic;
 			reset : in std_logic;
 			R4_command : in routeCommands;
-			Lc09_state : in levelCrossingStates;
+			R6_command : in routeCommands;
+			R13_command : in routeCommands;
+			Lc09_state : in hex_char;
 			--Ocupation level 0
-			ocupation_ne23 : in std_logic;
-			correspondence_X12 : out signalStates;
-			lock_X12 : out objectLock;
-			correspondence_P19 : in signalStates;
+			track_ne23 : in hex_char;
+			correspondence_X12 : out hex_char;
+			correspondence_P19 : in hex_char;
 			--Ocupation level 2
-			correspondence_L02 : in signalStates;
-			indication : in signal_type;
-			command : out signal_type
+			correspondence_L02 : in hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_5;
 	component railwaySignal_6 is
@@ -261,15 +267,15 @@ architecture Behavioral of network is
 			clock : in std_logic;
 			reset : in std_logic;
 			R8_command : in routeCommands;
-			Lc07_state : in levelCrossingStates;
+			R4_command : in routeCommands;
+			Lc07_state : in hex_char;
 			--Ocupation level 0
-			ocupation_ne23 : in std_logic;
-			correspondence_P19 : out signalStates;
-			lock_P19 : out objectLock;
-			correspondence_L02 : in signalStates;
+			track_ne23 : in hex_char;
+			correspondence_P19 : out hex_char;
+			correspondence_L02 : in hex_char;
 			--Ocupation level 2
-			indication : in signal_type;
-			command : out signal_type
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_6;
 	component railwaySignal_7 is
@@ -278,37 +284,37 @@ architecture Behavioral of network is
 			reset : in std_logic;
 			R9_command : in routeCommands;
 			R10_command : in routeCommands;
-			Lc09_state : in levelCrossingStates;
-			Lc05_state : in levelCrossingStates;
-			Lc06_state : in levelCrossingStates;
+			R3_command : in routeCommands;
+			Lc09_state : in hex_char;
+			Lc05_state : in hex_char;
+			Lc06_state : in hex_char;
 			--Ocupation level 0
-			ocupation_ne23 : in std_logic;
-			correspondence_S22 : out signalStates;
-			lock_S22 : out objectLock;
+			track_ne23 : in hex_char;
+			correspondence_S22 : out hex_char;
 			--Ocupation level 1
-			ocupation_ne25 : in std_logic;
-			ocupation_ne27 : in std_logic;
-			ocupation_ne3 : in std_logic;
-			correspondence_X13 : in signalStates;
-			correspondence_X16 : in signalStates;
-			Sw11_state : in singleSwitchStates;
-			Sw12_state : in singleSwitchStates;
-			correspondence_L03 : in signalStates;
-			correspondence_L01 : in signalStates;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne25 : in hex_char;
+			track_ne27 : in hex_char;
+			track_ne3 : in hex_char;
+			correspondence_X13 : in hex_char;
+			correspondence_X16 : in hex_char;
+			Sw11_state : in hex_char;
+			Sw12_state : in hex_char;
+			correspondence_L03 : in hex_char;
+			correspondence_L01 : in hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_7;
 	component railwaySignal_8 is
 		port(
 			clock : in std_logic;
 			reset : in std_logic;
+			R5_command : in routeCommands;
 			--Ocupation level 0
-			ocupation_ne25 : in std_logic;
-			correspondence_L03 : out signalStates;
-			lock_L03 : out objectLock;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne25 : in hex_char;
+			correspondence_L03 : out hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_8;
 	component railwaySignal_9 is
@@ -316,15 +322,15 @@ architecture Behavioral of network is
 			clock : in std_logic;
 			reset : in std_logic;
 			R5_command : in routeCommands;
-			Lc05_state : in levelCrossingStates;
+			R9_command : in routeCommands;
+			Lc05_state : in hex_char;
 			--Ocupation level 0
-			ocupation_ne25 : in std_logic;
-			correspondence_X13 : out signalStates;
-			lock_X13 : out objectLock;
-			correspondence_L03 : in signalStates;
+			track_ne25 : in hex_char;
+			correspondence_X13 : out hex_char;
+			correspondence_L03 : in hex_char;
 			--Ocupation level 2
-			indication : in signal_type;
-			command : out signal_type
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_9;
 	component railwaySignal_10 is
@@ -332,31 +338,30 @@ architecture Behavioral of network is
 			clock : in std_logic;
 			reset : in std_logic;
 			R6_command : in routeCommands;
-			Lc05_state : in levelCrossingStates;
-			Lc09_state : in levelCrossingStates;
+			Lc05_state : in hex_char;
+			Lc09_state : in hex_char;
 			--Ocupation level 0
-			ocupation_ne25 : in std_logic;
-			correspondence_X14 : out signalStates;
-			lock_X14 : out objectLock;
+			track_ne25 : in hex_char;
+			correspondence_X14 : out hex_char;
 			--Ocupation level 1
-			ocupation_ne23 : in std_logic;
-			correspondence_X12 : in signalStates;
-			Sw11_state : in singleSwitchStates;
-			correspondence_P19 : in signalStates;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne23 : in hex_char;
+			correspondence_X12 : in hex_char;
+			Sw11_state : in hex_char;
+			correspondence_P19 : in hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_10;
 	component railwaySignal_11 is
 		port(
 			clock : in std_logic;
 			reset : in std_logic;
+			R2_command : in routeCommands;
 			--Ocupation level 0
-			ocupation_ne26 : in std_logic;
-			correspondence_L04 : out signalStates;
-			lock_L04 : out objectLock;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne26 : in hex_char;
+			correspondence_L04 : out hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_11;
 	component railwaySignal_12 is
@@ -364,11 +369,10 @@ architecture Behavioral of network is
 			clock : in std_logic;
 			reset : in std_logic;
 			--Ocupation level 0
-			ocupation_ne26 : in std_logic;
-			correspondence_X05 : out signalStates;
-			lock_X05 : out objectLock;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne26 : in hex_char;
+			correspondence_X05 : out hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_12;
 	component railwaySignal_13 is
@@ -376,19 +380,18 @@ architecture Behavioral of network is
 			clock : in std_logic;
 			reset : in std_logic;
 			R1_command : in routeCommands;
-			Lc03_state : in levelCrossingStates;
-			Lc04_state : in levelCrossingStates;
+			Lc03_state : in hex_char;
+			Lc04_state : in hex_char;
 			--Ocupation level 0
-			ocupation_ne26 : in std_logic;
-			correspondence_X06 : out signalStates;
-			lock_X06 : out objectLock;
-			correspondence_C24 : in signalStates;
+			track_ne26 : in hex_char;
+			correspondence_X06 : out hex_char;
+			correspondence_C24 : in hex_char;
 			--Ocupation level 2
-			ocupation_ne3 : in std_logic;
-			correspondence_X16 : in signalStates;
-			Sw12_state : in singleSwitchStates;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne3 : in hex_char;
+			correspondence_X16 : in hex_char;
+			Sw12_state : in hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_13;
 	component railwaySignal_14 is
@@ -396,16 +399,16 @@ architecture Behavioral of network is
 			clock : in std_logic;
 			reset : in std_logic;
 			R2_command : in routeCommands;
-			Lc03_state : in levelCrossingStates;
-			Lc04_state : in levelCrossingStates;
+			R12_command : in routeCommands;
+			Lc03_state : in hex_char;
+			Lc04_state : in hex_char;
 			--Ocupation level 0
-			ocupation_ne26 : in std_logic;
-			correspondence_X07 : out signalStates;
-			lock_X07 : out objectLock;
-			correspondence_L04 : in signalStates;
+			track_ne26 : in hex_char;
+			correspondence_X07 : out hex_char;
+			correspondence_L04 : in hex_char;
 			--Ocupation level 2
-			indication : in signal_type;
-			command : out signal_type
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_14;
 	component railwaySignal_15 is
@@ -413,40 +416,37 @@ architecture Behavioral of network is
 			clock : in std_logic;
 			reset : in std_logic;
 			R11_command : in routeCommands;
-			Lc04_state : in levelCrossingStates;
-			Lc06_state : in levelCrossingStates;
+			R1_command : in routeCommands;
+			Lc04_state : in hex_char;
+			Lc06_state : in hex_char;
 			--Ocupation level 0
-			ocupation_ne26 : in std_logic;
-			correspondence_C24 : out signalStates;
-			lock_C24 : out objectLock;
+			track_ne26 : in hex_char;
+			correspondence_C24 : out hex_char;
 			--Ocupation level 1
-			ocupation_ne3 : in std_logic;
-			correspondence_X16 : in signalStates;
-			Sw12_state : in singleSwitchStates;
-			correspondence_L01 : in signalStates;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne3 : in hex_char;
+			correspondence_X16 : in hex_char;
+			Sw12_state : in hex_char;
+			correspondence_L01 : in hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end component railwaySignal_15;
 	component node_0 is
 		port(
-			clock : in std_logic;
 			reset : in std_logic;
-			ocupation : in std_logic;
+			track_i : in hex_char;
 			R7_command : in routeCommands;
 			R10_command : in routeCommands;
 			R11_command : in routeCommands;
 			R12_command : in routeCommands;
 			R13_command : in routeCommands;
-			state : out nodeStates;
-			locking : out objectLock
+			track_o : out hex_char
 		);
 	end component node_0;
 	component node_1 is
 		port(
-			clock : in std_logic;
 			reset : in std_logic;
-			ocupation : in std_logic;
+			track_i : in hex_char;
 			R3_command : in routeCommands;
 			R4_command : in routeCommands;
 			R6_command : in routeCommands;
@@ -454,385 +454,387 @@ architecture Behavioral of network is
 			R9_command : in routeCommands;
 			R10_command : in routeCommands;
 			R13_command : in routeCommands;
-			state : out nodeStates;
-			locking : out objectLock
+			track_o : out hex_char
 		);
 	end component node_1;
 	component node_2 is
 		port(
-			clock : in std_logic;
 			reset : in std_logic;
-			ocupation : in std_logic;
+			track_i : in hex_char;
 			R5_command : in routeCommands;
 			R6_command : in routeCommands;
 			R9_command : in routeCommands;
-			state : out nodeStates;
-			locking : out objectLock
+			track_o : out hex_char
 		);
 	end component node_2;
 	component node_3 is
 		port(
-			clock : in std_logic;
 			reset : in std_logic;
-			ocupation : in std_logic;
+			track_i : in hex_char;
 			R1_command : in routeCommands;
 			R2_command : in routeCommands;
 			R11_command : in routeCommands;
 			R12_command : in routeCommands;
-			state : out nodeStates;
-			locking : out objectLock
+			track_o : out hex_char
 		);
 	end component node_3;
 	component node_4 is
 		port(
-			clock : in std_logic;
 			reset : in std_logic;
-			ocupation : in std_logic;
+			track_i : in hex_char;
 			R10_command : in routeCommands;
 			R13_command : in routeCommands;
-			state : out nodeStates;
-			locking : out objectLock
+			track_o : out hex_char
 		);
 	end component node_4;
+--XXX  R1 ['Sw12'] 
+--YYY  R1 ['Lc03', 'Lc04'] 
 	component route_0 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne26_state : in nodeStates;
-			ne26_lock : in objectLock;
-			ne26_command : out routeCommands;
-			Lc03_state : in levelCrossingStates;
-			Lc03_lock : in objectLock;
-			Lc03_command : out routeCommands;
-			X06_state : in signalStates;
-			X06_lock : in objectLock;
-			X06_command : out routeCommands;
-			C24_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne26 : in hex_char;
+			ne26_command : out routeCommands := RELEASE;
+			Lc03_state : in hex_char;
+			Lc03_command : out routeCommands := RELEASE;
+			Lc04_state : in hex_char;
+			Lc04_command : out routeCommands := RELEASE;
+			Sw12_state : in hex_char;
+			Sw12_command : out routeCommands := RELEASE;
+			X06_state : in hex_char;
+			X06_command : out routeCommands := RELEASE;
+			C24_state : in hex_char;
+			C24_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_0;
+--XXX  R2 [] 
+--YYY  R2 ['Lc03', 'Lc04'] 
 	component route_1 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne26_state : in nodeStates;
-			ne26_lock : in objectLock;
-			ne26_command : out routeCommands;
-			Lc03_state : in levelCrossingStates;
-			Lc03_lock : in objectLock;
-			Lc03_command : out routeCommands;
-			Lc04_state : in levelCrossingStates;
-			Lc04_lock : in objectLock;
-			Lc04_command : out routeCommands;
-			X07_state : in signalStates;
-			X07_lock : in objectLock;
-			X07_command : out routeCommands;
-			L04_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne26 : in hex_char;
+			ne26_command : out routeCommands := RELEASE;
+			Lc03_state : in hex_char;
+			Lc03_command : out routeCommands := RELEASE;
+			Lc04_state : in hex_char;
+			Lc04_command : out routeCommands := RELEASE;
+			X07_state : in hex_char;
+			X07_command : out routeCommands := RELEASE;
+			L04_state : in hex_char;
+			L04_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_1;
+--XXX  R3 ['Sw12', 'Sw11'] 
+--YYY  R3 ['Lc07', 'Lc09'] 
 	component route_2 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne23_state : in nodeStates;
-			ne23_lock : in objectLock;
-			ne23_command : out routeCommands;
-			Lc07_state : in levelCrossingStates;
-			Lc07_lock : in objectLock;
-			Lc07_command : out routeCommands;
-			X09_state : in signalStates;
-			X09_lock : in objectLock;
-			X09_command : out routeCommands;
-			S22_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne23 : in hex_char;
+			ne23_command : out routeCommands := RELEASE;
+			Lc07_state : in hex_char;
+			Lc07_command : out routeCommands := RELEASE;
+			Lc09_state : in hex_char;
+			Lc09_command : out routeCommands := RELEASE;
+			Sw12_state : in hex_char;
+			Sw12_command : out routeCommands := RELEASE;
+			Sw11_state : in hex_char;
+			Sw11_command : out routeCommands := RELEASE;
+			X09_state : in hex_char;
+			X09_command : out routeCommands := RELEASE;
+			S22_state : in hex_char;
+			S22_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_2;
+--XXX  R4 [] 
+--YYY  R4 ['Lc09'] 
 	component route_3 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne23_state : in nodeStates;
-			ne23_lock : in objectLock;
-			ne23_command : out routeCommands;
-			Lc09_state : in levelCrossingStates;
-			Lc09_lock : in objectLock;
-			Lc09_command : out routeCommands;
-			X12_state : in signalStates;
-			X12_lock : in objectLock;
-			X12_command : out routeCommands;
-			P19_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne23 : in hex_char;
+			ne23_command : out routeCommands := RELEASE;
+			Lc09_state : in hex_char;
+			Lc09_command : out routeCommands := RELEASE;
+			X12_state : in hex_char;
+			X12_command : out routeCommands := RELEASE;
+			P19_state : in hex_char;
+			P19_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_3;
+--XXX  R5 [] 
+--YYY  R5 ['Lc05'] 
 	component route_4 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne25_state : in nodeStates;
-			ne25_lock : in objectLock;
-			ne25_command : out routeCommands;
-			Lc05_state : in levelCrossingStates;
-			Lc05_lock : in objectLock;
-			Lc05_command : out routeCommands;
-			X13_state : in signalStates;
-			X13_lock : in objectLock;
-			X13_command : out routeCommands;
-			L03_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne25 : in hex_char;
+			ne25_command : out routeCommands := RELEASE;
+			Lc05_state : in hex_char;
+			Lc05_command : out routeCommands := RELEASE;
+			X13_state : in hex_char;
+			X13_command : out routeCommands := RELEASE;
+			L03_state : in hex_char;
+			L03_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_4;
+--XXX  R6 ['Sw11'] 
+--YYY  R6 ['Lc09', 'Lc05'] 
 	component route_5 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne25_state : in nodeStates;
-			ne25_lock : in objectLock;
-			ne25_command : out routeCommands;
-			ne23_state : in nodeStates;
-			ne23_lock : in objectLock;
-			ne23_command : out routeCommands;
-			Lc05_state : in levelCrossingStates;
-			Lc05_lock : in objectLock;
-			Lc05_command : out routeCommands;
-			Sw11_state : in singleSwitchStates;
-			Sw11_lock : in objectLock;
-			Sw11_command : out routeCommands;
-			X14_state : in signalStates;
-			X14_lock : in objectLock;
-			X14_command : out routeCommands;
-			X12_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne25 : in hex_char;
+			ne25_command : out routeCommands := RELEASE;
+			track_ne23 : in hex_char;
+			ne23_command : out routeCommands := RELEASE;
+			Lc09_state : in hex_char;
+			Lc09_command : out routeCommands := RELEASE;
+			Lc05_state : in hex_char;
+			Lc05_command : out routeCommands := RELEASE;
+			Sw11_state : in hex_char;
+			Sw11_command : out routeCommands := RELEASE;
+			X14_state : in hex_char;
+			X14_command : out routeCommands := RELEASE;
+			X12_state : in hex_char;
+			X12_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_5;
+--XXX  R7 [] 
+--YYY  R7 ['Lc06'] 
 	component route_6 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne3_state : in nodeStates;
-			ne3_lock : in objectLock;
-			ne3_command : out routeCommands;
-			Lc06_state : in levelCrossingStates;
-			Lc06_lock : in objectLock;
-			Lc06_command : out routeCommands;
-			X16_state : in signalStates;
-			X16_lock : in objectLock;
-			X16_command : out routeCommands;
-			L01_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne3 : in hex_char;
+			ne3_command : out routeCommands := RELEASE;
+			Lc06_state : in hex_char;
+			Lc06_command : out routeCommands := RELEASE;
+			X16_state : in hex_char;
+			X16_command : out routeCommands := RELEASE;
+			L01_state : in hex_char;
+			L01_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_6;
+--XXX  R8 [] 
+--YYY  R8 ['Lc07'] 
 	component route_7 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne23_state : in nodeStates;
-			ne23_lock : in objectLock;
-			ne23_command : out routeCommands;
-			Lc07_state : in levelCrossingStates;
-			Lc07_lock : in objectLock;
-			Lc07_command : out routeCommands;
-			P19_state : in signalStates;
-			P19_lock : in objectLock;
-			P19_command : out routeCommands;
-			L02_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne23 : in hex_char;
+			ne23_command : out routeCommands := RELEASE;
+			Lc07_state : in hex_char;
+			Lc07_command : out routeCommands := RELEASE;
+			P19_state : in hex_char;
+			P19_command : out routeCommands := RELEASE;
+			L02_state : in hex_char;
+			L02_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_7;
+--XXX  R9 ['Sw11'] 
+--YYY  R9 ['Lc09', 'Lc05'] 
 	component route_8 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne23_state : in nodeStates;
-			ne23_lock : in objectLock;
-			ne23_command : out routeCommands;
-			ne25_state : in nodeStates;
-			ne25_lock : in objectLock;
-			ne25_command : out routeCommands;
-			Lc09_state : in levelCrossingStates;
-			Lc09_lock : in objectLock;
-			Lc09_command : out routeCommands;
-			Sw11_state : in singleSwitchStates;
-			Sw11_lock : in objectLock;
-			Sw11_command : out routeCommands;
-			S22_state : in signalStates;
-			S22_lock : in objectLock;
-			S22_command : out routeCommands;
-			X13_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne23 : in hex_char;
+			ne23_command : out routeCommands := RELEASE;
+			track_ne25 : in hex_char;
+			ne25_command : out routeCommands := RELEASE;
+			Lc09_state : in hex_char;
+			Lc09_command : out routeCommands := RELEASE;
+			Lc05_state : in hex_char;
+			Lc05_command : out routeCommands := RELEASE;
+			Sw11_state : in hex_char;
+			Sw11_command : out routeCommands := RELEASE;
+			S22_state : in hex_char;
+			S22_command : out routeCommands := RELEASE;
+			X13_state : in hex_char;
+			X13_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_8;
+--XXX  R10 ['Sw12', 'Sw11'] 
+--YYY  R10 ['Lc06', 'Lc09'] 
 	component route_9 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne23_state : in nodeStates;
-			ne23_lock : in objectLock;
-			ne23_command : out routeCommands;
-			ne27_state : in nodeStates;
-			ne27_lock : in objectLock;
-			ne27_command : out routeCommands;
-			ne3_state : in nodeStates;
-			ne3_lock : in objectLock;
-			ne3_command : out routeCommands;
-			Lc09_state : in levelCrossingStates;
-			Lc09_lock : in objectLock;
-			Lc09_command : out routeCommands;
-			Sw11_state : in singleSwitchStates;
-			Sw11_lock : in objectLock;
-			Sw11_command : out routeCommands;
-			Sw12_state : in singleSwitchStates;
-			Sw12_lock : in objectLock;
-			Sw12_command : out routeCommands;
-			S22_state : in signalStates;
-			S22_lock : in objectLock;
-			S22_command : out routeCommands;
-			X16_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne23 : in hex_char;
+			ne23_command : out routeCommands := RELEASE;
+			track_ne27 : in hex_char;
+			ne27_command : out routeCommands := RELEASE;
+			track_ne3 : in hex_char;
+			ne3_command : out routeCommands := RELEASE;
+			Lc06_state : in hex_char;
+			Lc06_command : out routeCommands := RELEASE;
+			Lc09_state : in hex_char;
+			Lc09_command : out routeCommands := RELEASE;
+			Sw12_state : in hex_char;
+			Sw12_command : out routeCommands := RELEASE;
+			Sw11_state : in hex_char;
+			Sw11_command : out routeCommands := RELEASE;
+			S22_state : in hex_char;
+			S22_command : out routeCommands := RELEASE;
+			X16_state : in hex_char;
+			X16_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_9;
+--XXX  R11 ['Sw12'] 
+--YYY  R11 ['Lc06', 'Lc04'] 
 	component route_10 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne26_state : in nodeStates;
-			ne26_lock : in objectLock;
-			ne26_command : out routeCommands;
-			ne3_state : in nodeStates;
-			ne3_lock : in objectLock;
-			ne3_command : out routeCommands;
-			Lc04_state : in levelCrossingStates;
-			Lc04_lock : in objectLock;
-			Lc04_command : out routeCommands;
-			Sw12_state : in singleSwitchStates;
-			Sw12_lock : in objectLock;
-			Sw12_command : out routeCommands;
-			C24_state : in signalStates;
-			C24_lock : in objectLock;
-			C24_command : out routeCommands;
-			X16_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne26 : in hex_char;
+			ne26_command : out routeCommands := RELEASE;
+			track_ne3 : in hex_char;
+			ne3_command : out routeCommands := RELEASE;
+			Lc06_state : in hex_char;
+			Lc06_command : out routeCommands := RELEASE;
+			Lc04_state : in hex_char;
+			Lc04_command : out routeCommands := RELEASE;
+			Sw12_state : in hex_char;
+			Sw12_command : out routeCommands := RELEASE;
+			C24_state : in hex_char;
+			C24_command : out routeCommands := RELEASE;
+			X16_state : in hex_char;
+			X16_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_10;
+--XXX  R12 ['Sw12'] 
+--YYY  R12 ['Lc06', 'Lc03', 'Lc04'] 
 	component route_11 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne3_state : in nodeStates;
-			ne3_lock : in objectLock;
-			ne3_command : out routeCommands;
-			ne26_state : in nodeStates;
-			ne26_lock : in objectLock;
-			ne26_command : out routeCommands;
-			Lc06_state : in levelCrossingStates;
-			Lc06_lock : in objectLock;
-			Lc06_command : out routeCommands;
-			Sw12_state : in singleSwitchStates;
-			Sw12_lock : in objectLock;
-			Sw12_command : out routeCommands;
-			S25_state : in signalStates;
-			S25_lock : in objectLock;
-			S25_command : out routeCommands;
-			X07_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne3 : in hex_char;
+			ne3_command : out routeCommands := RELEASE;
+			track_ne26 : in hex_char;
+			ne26_command : out routeCommands := RELEASE;
+			Lc06_state : in hex_char;
+			Lc06_command : out routeCommands := RELEASE;
+			Lc03_state : in hex_char;
+			Lc03_command : out routeCommands := RELEASE;
+			Lc04_state : in hex_char;
+			Lc04_command : out routeCommands := RELEASE;
+			Sw12_state : in hex_char;
+			Sw12_command : out routeCommands := RELEASE;
+			S25_state : in hex_char;
+			S25_command : out routeCommands := RELEASE;
+			X07_state : in hex_char;
+			X07_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_11;
+--XXX  R13 ['Sw12', 'Sw11'] 
+--YYY  R13 ['Lc06', 'Lc09'] 
 	component route_12 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			routeRequest : in std_logic;
-			ne3_state : in nodeStates;
-			ne3_lock : in objectLock;
-			ne3_command : out routeCommands;
-			ne27_state : in nodeStates;
-			ne27_lock : in objectLock;
-			ne27_command : out routeCommands;
-			ne23_state : in nodeStates;
-			ne23_lock : in objectLock;
-			ne23_command : out routeCommands;
-			Lc06_state : in levelCrossingStates;
-			Lc06_lock : in objectLock;
-			Lc06_command : out routeCommands;
-			Sw11_state : in singleSwitchStates;
-			Sw11_lock : in objectLock;
-			Sw11_command : out routeCommands;
-			Sw12_state : in singleSwitchStates;
-			Sw12_lock : in objectLock;
-			Sw12_command : out routeCommands;
-			S25_state : in signalStates;
-			S25_lock : in objectLock;
-			S25_command : out routeCommands;
-			X12_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne3 : in hex_char;
+			ne3_command : out routeCommands := RELEASE;
+			track_ne27 : in hex_char;
+			ne27_command : out routeCommands := RELEASE;
+			track_ne23 : in hex_char;
+			ne23_command : out routeCommands := RELEASE;
+			Lc06_state : in hex_char;
+			Lc06_command : out routeCommands := RELEASE;
+			Lc09_state : in hex_char;
+			Lc09_command : out routeCommands := RELEASE;
+			Sw12_state : in hex_char;
+			Sw12_command : out routeCommands := RELEASE;
+			Sw11_state : in hex_char;
+			Sw11_command : out routeCommands := RELEASE;
+			S25_state : in hex_char;
+			S25_command : out routeCommands := RELEASE;
+			X12_state : in hex_char;
+			X12_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end component route_12;
-	signal state_Lc06 , state_Lc07 , state_Lc09 , state_Lc05 , state_Lc03 , state_Lc04 : levelCrossingStates := DOWN;
-	signal Lc06_locking , Lc07_locking , Lc09_locking , Lc05_locking , Lc03_locking , Lc04_locking : objectLock := RELEASED;
-	signal state_Sw12 , state_Sw11 : singleSwitchStates := NORMAL;
-	signal Sw12_locking , Sw11_locking : objectLock := RELEASED;
-	signal state_L01 , state_X16 , state_S25 , state_L02 , state_X09 , state_X12 , state_P19 , state_S22 , state_L03 , state_X13 , state_X14 , state_L04 , state_X05 , state_X06 , state_X07 , state_C24 : signalStates := RED;
-	signal L01_locking , X16_locking , S25_locking , L02_locking , X09_locking , X12_locking , P19_locking , S22_locking , L03_locking , X13_locking , X14_locking , L04_locking , X05_locking , X06_locking , X07_locking , C24_locking : objectLock := RELEASED;
-	signal state_ne3 , state_ne23 , state_ne25 , state_ne26 , state_ne27 : nodeStates := FREE;
-	signal ne3_locking , ne23_locking , ne25_locking , ne26_locking , ne27_locking : objectLock := RELEASED;
+	signal state_Lc06 , state_Lc07 , state_Lc09 , state_Lc05 , state_Lc03 , state_Lc04 : hex_char;
+	signal state_Sw12 , state_Sw11 : hex_char;
+	signal state_L01 , state_X16 , state_S25 , state_L02 , state_X09 , state_X12 , state_P19 , state_S22 , state_L03 , state_X13 , state_X14 , state_L04 , state_X05 , state_X06 , state_X07 , state_C24 : hex_char;
 	signal cmd_R1_ne26 , cmd_R2_ne26 , cmd_R3_ne23 , cmd_R4_ne23 , cmd_R5_ne25 , cmd_R6_ne25 , cmd_R6_ne23 , cmd_R7_ne3 , cmd_R8_ne23 , cmd_R9_ne23 , cmd_R9_ne25 , cmd_R10_ne23 , cmd_R10_ne27 , cmd_R10_ne3 , cmd_R11_ne26 , cmd_R11_ne3 , cmd_R12_ne3 , cmd_R12_ne26 , cmd_R13_ne3 , cmd_R13_ne27 , cmd_R13_ne23 : routeCommands := RELEASE;
-	signal cmd_R1_Lc03 , cmd_R2_Lc03 , cmd_R2_Lc04 , cmd_R3_Lc07 , cmd_R4_Lc09 , cmd_R5_Lc05 , cmd_R6_Lc05 , cmd_R7_Lc06 , cmd_R8_Lc07 , cmd_R9_Lc09 , cmd_R10_Lc09 , cmd_R11_Lc04 , cmd_R12_Lc06 , cmd_R13_Lc06 : routeCommands := RELEASE;
-	signal cmd_R6_Sw11 , cmd_R9_Sw11 , cmd_R10_Sw11 , cmd_R10_Sw12 , cmd_R11_Sw12 , cmd_R12_Sw12 , cmd_R13_Sw11 , cmd_R13_Sw12 : routeCommands := RELEASE;
+	signal state_ne3 , state_ne23 , state_ne25 , state_ne26 , state_ne27 : hex_char;
+	signal cmd_R7_Lc06 , cmd_R12_Lc06 , cmd_R13_Lc06 , cmd_R10_Lc06 , cmd_R11_Lc06 , cmd_R3_Lc07 , cmd_R8_Lc07 , cmd_R4_Lc09 , cmd_R9_Lc09 , cmd_R10_Lc09 , cmd_R13_Lc09 , cmd_R3_Lc09 , cmd_R6_Lc09 , cmd_R5_Lc05 , cmd_R6_Lc05 , cmd_R9_Lc05 , cmd_R1_Lc03 , cmd_R2_Lc03 , cmd_R12_Lc03 , cmd_R2_Lc04 , cmd_R11_Lc04 , cmd_R12_Lc04 , cmd_R1_Lc04 : routeCommands := RELEASE;
+	signal cmd_R10_Sw12 , cmd_R11_Sw12 , cmd_R12_Sw12 , cmd_R13_Sw12 , cmd_R3_Sw12 , cmd_R1_Sw12 , cmd_R6_Sw11 , cmd_R9_Sw11 , cmd_R10_Sw11 , cmd_R13_Sw11 , cmd_R3_Sw11 : routeCommands := RELEASE;
 	signal cmd_R1_X06 , cmd_R2_X07 , cmd_R3_X09 , cmd_R4_X12 , cmd_R5_X13 , cmd_R6_X14 , cmd_R7_X16 , cmd_R8_P19 , cmd_R9_S22 , cmd_R10_S22 , cmd_R11_C24 , cmd_R12_S25 , cmd_R13_S25 : routeCommands := RELEASE;
+	signal cmd_R1_C24 , cmd_R2_L04 , cmd_R3_S22 , cmd_R4_P19 , cmd_R5_L03 , cmd_R6_X12 , cmd_R7_L01 , cmd_R8_L02 , cmd_R9_X13 , cmd_R10_X16 , cmd_R11_X16 , cmd_R12_X07 , cmd_R13_X12 : routeCommands := RELEASE;
 begin
-	levelCrossing_Lc06 : levelCrossing_0 port map(clock => clock, reset => reset, R7_command => cmd_R7_Lc06, R12_command => cmd_R12_Lc06, R13_command => cmd_R13_Lc06, ocupation_ne3 => ocupation(0), ocupation_ne26 => ocupation(3), ocupation_ne27 => ocupation(4), indication => levelCrossings_i(0), command  => levelCrossings_o(0), lock_Lc06 => Lc06_locking, correspondence_Lc06 => state_Lc06);
-	levelCrossing_Lc07 : levelCrossing_1 port map(clock => clock, reset => reset, R3_command => cmd_R3_Lc07, R8_command => cmd_R8_Lc07, ocupation_ne23 => ocupation(1), ocupation_ne25 => ocupation(2), ocupation_ne27 => ocupation(4), indication => levelCrossings_i(1), command  => levelCrossings_o(1), lock_Lc07 => Lc07_locking, correspondence_Lc07 => state_Lc07);
-	levelCrossing_Lc09 : levelCrossing_2 port map(clock => clock, reset => reset, R4_command => cmd_R4_Lc09, R9_command => cmd_R9_Lc09, R10_command => cmd_R10_Lc09, ocupation_ne23 => ocupation(1), ocupation_ne25 => ocupation(2), ocupation_ne27 => ocupation(4), indication => levelCrossings_i(2), command  => levelCrossings_o(2), lock_Lc09 => Lc09_locking, correspondence_Lc09 => state_Lc09);
-	levelCrossing_Lc05 : levelCrossing_3 port map(clock => clock, reset => reset, R5_command => cmd_R5_Lc05, R6_command => cmd_R6_Lc05, ocupation_ne25 => ocupation(2), ocupation_ne23 => ocupation(1), indication => levelCrossings_i(3), command  => levelCrossings_o(3), lock_Lc05 => Lc05_locking, correspondence_Lc05 => state_Lc05);
-	levelCrossing_Lc03 : levelCrossing_4 port map(clock => clock, reset => reset, R1_command => cmd_R1_Lc03, R2_command => cmd_R2_Lc03, ocupation_ne26 => ocupation(3), ocupation_ne3 => ocupation(0), indication => levelCrossings_i(4), command  => levelCrossings_o(4), lock_Lc03 => Lc03_locking, correspondence_Lc03 => state_Lc03);
-	levelCrossing_Lc04 : levelCrossing_5 port map(clock => clock, reset => reset, R2_command => cmd_R2_Lc04, R11_command => cmd_R11_Lc04, ocupation_ne26 => ocupation(3), ocupation_ne3 => ocupation(0), indication => levelCrossings_i(5), command  => levelCrossings_o(5), lock_Lc04 => Lc04_locking, correspondence_Lc04 => state_Lc04);
-	singleSwitch_Sw12 : singleSwitch_0 port map(clock => clock, reset => reset, R10_command => cmd_R10_Sw12, R11_command => cmd_R11_Sw12, R12_command => cmd_R12_Sw12, R13_command => cmd_R13_Sw12, indication => singleSwitches_i(0), command => singleSwitches_o(0), lock_Sw12 => Sw12_locking, correspondence_Sw12 => state_Sw12);
-	singleSwitch_Sw11 : singleSwitch_1 port map(clock => clock, reset => reset, R6_command => cmd_R6_Sw11, R9_command => cmd_R9_Sw11, R10_command => cmd_R10_Sw11, R13_command => cmd_R13_Sw11, indication => singleSwitches_i(1), command => singleSwitches_o(1), lock_Sw11 => Sw11_locking, correspondence_Sw11 => state_Sw11);
-	railwaySignal_L01 : railwaySignal_0 port map(clock => clock, reset => reset, ocupation_ne3 => ocupation(0), indication.msb => signals_i.msb(0), indication.lsb => signals_i.lsb(0), command.msb => signals_o.msb(0), command.lsb => signals_o.lsb(0), lock_L01 => L01_locking, correspondence_L01 => state_L01);
-	railwaySignal_X16 : railwaySignal_1 port map(clock => clock, reset => reset, R7_command => cmd_R7_X16, ocupation_ne3 => ocupation(0), correspondence_L01 => state_L01, Lc06_state => state_Lc06, indication.msb => signals_i.msb(1), indication.lsb => signals_i.lsb(1), command.msb => signals_o.msb(1), command.lsb => signals_o.lsb(1), lock_X16 => X16_locking, correspondence_X16 => state_X16);
-	railwaySignal_S25 : railwaySignal_2 port map(clock => clock, reset => reset, R12_command => cmd_R12_S25, R13_command => cmd_R13_S25, ocupation_ne3 => ocupation(0), ocupation_ne26 => ocupation(3), ocupation_ne27 => ocupation(4), ocupation_ne23 => ocupation(1), correspondence_X07 => state_X07, correspondence_X12 => state_X12, correspondence_L04 => state_L04, correspondence_P19 => state_P19, Sw12_state => state_Sw12, Sw11_state => state_Sw11, Lc06_state => state_Lc06, Lc03_state => state_Lc03, Lc04_state => state_Lc04, Lc09_state => state_Lc09, indication.msb => signals_i.msb(2), indication.lsb => signals_i.lsb(2), command.msb => signals_o.msb(2), command.lsb => signals_o.lsb(2), lock_S25 => S25_locking, correspondence_S25 => state_S25);
-	railwaySignal_L02 : railwaySignal_3 port map(clock => clock, reset => reset, ocupation_ne23 => ocupation(1), indication.msb => signals_i.msb(3), indication.lsb => signals_i.lsb(3), command.msb => signals_o.msb(3), command.lsb => signals_o.lsb(3), lock_L02 => L02_locking, correspondence_L02 => state_L02);
-	railwaySignal_X09 : railwaySignal_4 port map(clock => clock, reset => reset, R3_command => cmd_R3_X09, ocupation_ne23 => ocupation(1), ocupation_ne27 => ocupation(4), ocupation_ne3 => ocupation(0), ocupation_ne25 => ocupation(2), correspondence_S22 => state_S22, correspondence_X13 => state_X13, correspondence_X16 => state_X16, Sw11_state => state_Sw11, Sw12_state => state_Sw12, Lc07_state => state_Lc07, Lc09_state => state_Lc09, indication.msb => signals_i.msb(4), indication.lsb => signals_i.lsb(4), command.msb => signals_o.msb(4), command.lsb => signals_o.lsb(4), lock_X09 => X09_locking, correspondence_X09 => state_X09);
-	railwaySignal_X12 : railwaySignal_5 port map(clock => clock, reset => reset, R4_command => cmd_R4_X12, ocupation_ne23 => ocupation(1), correspondence_P19 => state_P19, correspondence_L02 => state_L02, Lc09_state => state_Lc09, indication.msb => signals_i.msb(5), indication.lsb => signals_i.lsb(5), command.msb => signals_o.msb(5), command.lsb => signals_o.lsb(5), lock_X12 => X12_locking, correspondence_X12 => state_X12);
-	railwaySignal_P19 : railwaySignal_6 port map(clock => clock, reset => reset, R8_command => cmd_R8_P19, ocupation_ne23 => ocupation(1), correspondence_L02 => state_L02, Lc07_state => state_Lc07, indication.msb => signals_i.msb(6), indication.lsb => signals_i.lsb(6), command.msb => signals_o.msb(6), command.lsb => signals_o.lsb(6), lock_P19 => P19_locking, correspondence_P19 => state_P19);
-	railwaySignal_S22 : railwaySignal_7 port map(clock => clock, reset => reset, R9_command => cmd_R9_S22, R10_command => cmd_R10_S22, ocupation_ne23 => ocupation(1), ocupation_ne25 => ocupation(2), ocupation_ne27 => ocupation(4), ocupation_ne3 => ocupation(0), correspondence_X13 => state_X13, correspondence_X16 => state_X16, correspondence_L03 => state_L03, correspondence_L01 => state_L01, Sw11_state => state_Sw11, Sw12_state => state_Sw12, Lc09_state => state_Lc09, Lc05_state => state_Lc05, Lc06_state => state_Lc06, indication.msb => signals_i.msb(7), indication.lsb => signals_i.lsb(7), command.msb => signals_o.msb(7), command.lsb => signals_o.lsb(7), lock_S22 => S22_locking, correspondence_S22 => state_S22);
-	railwaySignal_L03 : railwaySignal_8 port map(clock => clock, reset => reset, ocupation_ne25 => ocupation(2), indication.msb => signals_i.msb(8), indication.lsb => signals_i.lsb(8), command.msb => signals_o.msb(8), command.lsb => signals_o.lsb(8), lock_L03 => L03_locking, correspondence_L03 => state_L03);
-	railwaySignal_X13 : railwaySignal_9 port map(clock => clock, reset => reset, R5_command => cmd_R5_X13, ocupation_ne25 => ocupation(2), correspondence_L03 => state_L03, Lc05_state => state_Lc05, indication.msb => signals_i.msb(9), indication.lsb => signals_i.lsb(9), command.msb => signals_o.msb(9), command.lsb => signals_o.lsb(9), lock_X13 => X13_locking, correspondence_X13 => state_X13);
-	railwaySignal_X14 : railwaySignal_10 port map(clock => clock, reset => reset, R6_command => cmd_R6_X14, ocupation_ne25 => ocupation(2), ocupation_ne23 => ocupation(1), correspondence_X12 => state_X12, correspondence_P19 => state_P19, Sw11_state => state_Sw11, Lc05_state => state_Lc05, Lc09_state => state_Lc09, indication.msb => signals_i.msb(10), indication.lsb => signals_i.lsb(10), command.msb => signals_o.msb(10), command.lsb => signals_o.lsb(10), lock_X14 => X14_locking, correspondence_X14 => state_X14);
-	railwaySignal_L04 : railwaySignal_11 port map(clock => clock, reset => reset, ocupation_ne26 => ocupation(3), indication.msb => signals_i.msb(11), indication.lsb => signals_i.lsb(11), command.msb => signals_o.msb(11), command.lsb => signals_o.lsb(11), lock_L04 => L04_locking, correspondence_L04 => state_L04);
-	railwaySignal_X05 : railwaySignal_12 port map(clock => clock, reset => reset, ocupation_ne26 => ocupation(3), indication.msb => signals_i.msb(12), indication.lsb => signals_i.lsb(12), command.msb => signals_o.msb(12), command.lsb => signals_o.lsb(12), lock_X05 => X05_locking, correspondence_X05 => state_X05);
-	railwaySignal_X06 : railwaySignal_13 port map(clock => clock, reset => reset, R1_command => cmd_R1_X06, ocupation_ne26 => ocupation(3), ocupation_ne3 => ocupation(0), correspondence_C24 => state_C24, correspondence_X16 => state_X16, Sw12_state => state_Sw12, Lc03_state => state_Lc03, Lc04_state => state_Lc04, indication.msb => signals_i.msb(13), indication.lsb => signals_i.lsb(13), command.msb => signals_o.msb(13), command.lsb => signals_o.lsb(13), lock_X06 => X06_locking, correspondence_X06 => state_X06);
-	railwaySignal_X07 : railwaySignal_14 port map(clock => clock, reset => reset, R2_command => cmd_R2_X07, ocupation_ne26 => ocupation(3), correspondence_L04 => state_L04, Lc03_state => state_Lc03, Lc04_state => state_Lc04, indication.msb => signals_i.msb(14), indication.lsb => signals_i.lsb(14), command.msb => signals_o.msb(14), command.lsb => signals_o.lsb(14), lock_X07 => X07_locking, correspondence_X07 => state_X07);
-	railwaySignal_C24 : railwaySignal_15 port map(clock => clock, reset => reset, R11_command => cmd_R11_C24, ocupation_ne26 => ocupation(3), ocupation_ne3 => ocupation(0), correspondence_X16 => state_X16, correspondence_L01 => state_L01, Sw12_state => state_Sw12, Lc04_state => state_Lc04, Lc06_state => state_Lc06, indication.msb => signals_i.msb(15), indication.lsb => signals_i.lsb(15), command.msb => signals_o.msb(15), command.lsb => signals_o.lsb(15), lock_C24 => C24_locking, correspondence_C24 => state_C24);
-	node_ne3 : node_0 port map(clock => clock, ocupation => ocupation(0), reset => reset, R7_command => cmd_R7_ne3, R10_command => cmd_R10_ne3, R11_command => cmd_R11_ne3, R12_command => cmd_R12_ne3, R13_command => cmd_R13_ne3, state => state_ne3, locking => ne3_locking);
-	node_ne23 : node_1 port map(clock => clock, ocupation => ocupation(1), reset => reset, R3_command => cmd_R3_ne23, R4_command => cmd_R4_ne23, R6_command => cmd_R6_ne23, R8_command => cmd_R8_ne23, R9_command => cmd_R9_ne23, R10_command => cmd_R10_ne23, R13_command => cmd_R13_ne23, state => state_ne23, locking => ne23_locking);
-	node_ne25 : node_2 port map(clock => clock, ocupation => ocupation(2), reset => reset, R5_command => cmd_R5_ne25, R6_command => cmd_R6_ne25, R9_command => cmd_R9_ne25, state => state_ne25, locking => ne25_locking);
-	node_ne26 : node_3 port map(clock => clock, ocupation => ocupation(3), reset => reset, R1_command => cmd_R1_ne26, R2_command => cmd_R2_ne26, R11_command => cmd_R11_ne26, R12_command => cmd_R12_ne26, state => state_ne26, locking => ne26_locking);
-	node_ne27 : node_4 port map(clock => clock, ocupation => ocupation(4), reset => reset, R10_command => cmd_R10_ne27, R13_command => cmd_R13_ne27, state => state_ne27, locking => ne27_locking);
-	route_R1 : route_0 port map(clock => clock, routeRequest => routes_i(0), reset => reset, ne26_command => cmd_R1_ne26, ne26_state => state_ne26, ne26_lock => ne26_locking, Lc03_command => cmd_R1_Lc03, Lc03_state => state_Lc03, Lc03_lock => Lc03_locking, X06_state => state_X06, X06_lock => X06_locking, X06_command => cmd_R1_X06, C24_state => state_C24, routeState => routes_o(0));
-	route_R2 : route_1 port map(clock => clock, routeRequest => routes_i(1), reset => reset, ne26_command => cmd_R2_ne26, ne26_state => state_ne26, ne26_lock => ne26_locking, Lc03_command => cmd_R2_Lc03, Lc03_state => state_Lc03, Lc03_lock => Lc03_locking, Lc04_command => cmd_R2_Lc04, Lc04_state => state_Lc04, Lc04_lock => Lc04_locking, X07_state => state_X07, X07_lock => X07_locking, X07_command => cmd_R2_X07, L04_state => state_L04, routeState => routes_o(1));
-	route_R3 : route_2 port map(clock => clock, routeRequest => routes_i(2), reset => reset, ne23_command => cmd_R3_ne23, ne23_state => state_ne23, ne23_lock => ne23_locking, Lc07_command => cmd_R3_Lc07, Lc07_state => state_Lc07, Lc07_lock => Lc07_locking, X09_state => state_X09, X09_lock => X09_locking, X09_command => cmd_R3_X09, S22_state => state_S22, routeState => routes_o(2));
-	route_R4 : route_3 port map(clock => clock, routeRequest => routes_i(3), reset => reset, ne23_command => cmd_R4_ne23, ne23_state => state_ne23, ne23_lock => ne23_locking, Lc09_command => cmd_R4_Lc09, Lc09_state => state_Lc09, Lc09_lock => Lc09_locking, X12_state => state_X12, X12_lock => X12_locking, X12_command => cmd_R4_X12, P19_state => state_P19, routeState => routes_o(3));
-	route_R5 : route_4 port map(clock => clock, routeRequest => routes_i(4), reset => reset, ne25_command => cmd_R5_ne25, ne25_state => state_ne25, ne25_lock => ne25_locking, Lc05_command => cmd_R5_Lc05, Lc05_state => state_Lc05, Lc05_lock => Lc05_locking, X13_state => state_X13, X13_lock => X13_locking, X13_command => cmd_R5_X13, L03_state => state_L03, routeState => routes_o(4));
-	route_R6 : route_5 port map(clock => clock, routeRequest => routes_i(5), reset => reset, ne23_command => cmd_R6_ne23, ne23_state => state_ne23, ne23_lock => ne23_locking, ne25_command => cmd_R6_ne25, ne25_state => state_ne25, ne25_lock => ne25_locking, Lc05_command => cmd_R6_Lc05, Lc05_state => state_Lc05, Lc05_lock => Lc05_locking, Sw11_command => cmd_R6_Sw11, Sw11_state => state_Sw11, Sw11_lock => Sw11_locking, X14_state => state_X14, X14_lock => X14_locking, X14_command => cmd_R6_X14, X12_state => state_X12, routeState => routes_o(5));
-	route_R7 : route_6 port map(clock => clock, routeRequest => routes_i(6), reset => reset, ne3_command => cmd_R7_ne3, ne3_state => state_ne3, ne3_lock => ne3_locking, Lc06_command => cmd_R7_Lc06, Lc06_state => state_Lc06, Lc06_lock => Lc06_locking, X16_state => state_X16, X16_lock => X16_locking, X16_command => cmd_R7_X16, L01_state => state_L01, routeState => routes_o(6));
-	route_R8 : route_7 port map(clock => clock, routeRequest => routes_i(7), reset => reset, ne23_command => cmd_R8_ne23, ne23_state => state_ne23, ne23_lock => ne23_locking, Lc07_command => cmd_R8_Lc07, Lc07_state => state_Lc07, Lc07_lock => Lc07_locking, P19_state => state_P19, P19_lock => P19_locking, P19_command => cmd_R8_P19, L02_state => state_L02, routeState => routes_o(7));
-	route_R9 : route_8 port map(clock => clock, routeRequest => routes_i(8), reset => reset, ne23_command => cmd_R9_ne23, ne23_state => state_ne23, ne23_lock => ne23_locking, ne25_command => cmd_R9_ne25, ne25_state => state_ne25, ne25_lock => ne25_locking, Lc09_command => cmd_R9_Lc09, Lc09_state => state_Lc09, Lc09_lock => Lc09_locking, Sw11_command => cmd_R9_Sw11, Sw11_state => state_Sw11, Sw11_lock => Sw11_locking, S22_state => state_S22, S22_lock => S22_locking, S22_command => cmd_R9_S22, X13_state => state_X13, routeState => routes_o(8));
-	route_R10 : route_9 port map(clock => clock, routeRequest => routes_i(9), reset => reset, ne3_command => cmd_R10_ne3, ne3_state => state_ne3, ne3_lock => ne3_locking, ne23_command => cmd_R10_ne23, ne23_state => state_ne23, ne23_lock => ne23_locking, ne27_command => cmd_R10_ne27, ne27_state => state_ne27, ne27_lock => ne27_locking, Lc09_command => cmd_R10_Lc09, Lc09_state => state_Lc09, Lc09_lock => Lc09_locking, Sw11_command => cmd_R10_Sw11, Sw11_state => state_Sw11, Sw11_lock => Sw11_locking, Sw12_command => cmd_R10_Sw12, Sw12_state => state_Sw12, Sw12_lock => Sw12_locking, S22_state => state_S22, S22_lock => S22_locking, S22_command => cmd_R10_S22, X16_state => state_X16, routeState => routes_o(9));
-	route_R11 : route_10 port map(clock => clock, routeRequest => routes_i(10), reset => reset, ne3_command => cmd_R11_ne3, ne3_state => state_ne3, ne3_lock => ne3_locking, ne26_command => cmd_R11_ne26, ne26_state => state_ne26, ne26_lock => ne26_locking, Lc04_command => cmd_R11_Lc04, Lc04_state => state_Lc04, Lc04_lock => Lc04_locking, Sw12_command => cmd_R11_Sw12, Sw12_state => state_Sw12, Sw12_lock => Sw12_locking, C24_state => state_C24, C24_lock => C24_locking, C24_command => cmd_R11_C24, X16_state => state_X16, routeState => routes_o(10));
-	route_R12 : route_11 port map(clock => clock, routeRequest => routes_i(11), reset => reset, ne3_command => cmd_R12_ne3, ne3_state => state_ne3, ne3_lock => ne3_locking, ne26_command => cmd_R12_ne26, ne26_state => state_ne26, ne26_lock => ne26_locking, Lc06_command => cmd_R12_Lc06, Lc06_state => state_Lc06, Lc06_lock => Lc06_locking, Sw12_command => cmd_R12_Sw12, Sw12_state => state_Sw12, Sw12_lock => Sw12_locking, S25_state => state_S25, S25_lock => S25_locking, S25_command => cmd_R12_S25, X07_state => state_X07, routeState => routes_o(11));
-	route_R13 : route_12 port map(clock => clock, routeRequest => routes_i(12), reset => reset, ne3_command => cmd_R13_ne3, ne3_state => state_ne3, ne3_lock => ne3_locking, ne23_command => cmd_R13_ne23, ne23_state => state_ne23, ne23_lock => ne23_locking, ne27_command => cmd_R13_ne27, ne27_state => state_ne27, ne27_lock => ne27_locking, Lc06_command => cmd_R13_Lc06, Lc06_state => state_Lc06, Lc06_lock => Lc06_locking, Sw11_command => cmd_R13_Sw11, Sw11_state => state_Sw11, Sw11_lock => Sw11_locking, Sw12_command => cmd_R13_Sw12, Sw12_state => state_Sw12, Sw12_lock => Sw12_locking, S25_state => state_S25, S25_lock => S25_locking, S25_command => cmd_R13_S25, X12_state => state_X12, routeState => routes_o(12));
+	levelCrossing_Lc06 : levelCrossing_0 port map(track_ne3 => tracks_i(0), track_ne26 => tracks_i(3), track_ne27 => tracks_i(4), R7_command => cmd_R7_Lc06, R12_command => cmd_R12_Lc06, R13_command => cmd_R13_Lc06, R10_command => cmd_R10_Lc06, R11_command => cmd_R11_Lc06, indication => levelCrossings_i(0), command  => levelCrossings_o(0), correspondence => state_Lc06, clock => clock, reset => reset);
+	levelCrossing_Lc07 : levelCrossing_1 port map(track_ne23 => tracks_i(1), track_ne25 => tracks_i(2), track_ne27 => tracks_i(4), R3_command => cmd_R3_Lc07, R8_command => cmd_R8_Lc07, indication => levelCrossings_i(1), command  => levelCrossings_o(1), correspondence => state_Lc07, clock => clock, reset => reset);
+	levelCrossing_Lc09 : levelCrossing_2 port map(track_ne23 => tracks_i(1), track_ne25 => tracks_i(2), track_ne27 => tracks_i(4), R4_command => cmd_R4_Lc09, R9_command => cmd_R9_Lc09, R10_command => cmd_R10_Lc09, R13_command => cmd_R13_Lc09, R3_command => cmd_R3_Lc09, R6_command => cmd_R6_Lc09, indication => levelCrossings_i(2), command  => levelCrossings_o(2), correspondence => state_Lc09, clock => clock, reset => reset);
+	levelCrossing_Lc05 : levelCrossing_3 port map(track_ne25 => tracks_i(2), track_ne23 => tracks_i(1), R5_command => cmd_R5_Lc05, R6_command => cmd_R6_Lc05, R9_command => cmd_R9_Lc05, indication => levelCrossings_i(3), command  => levelCrossings_o(3), correspondence => state_Lc05, clock => clock, reset => reset);
+	levelCrossing_Lc03 : levelCrossing_4 port map(track_ne26 => tracks_i(3), track_ne3 => tracks_i(0), R1_command => cmd_R1_Lc03, R2_command => cmd_R2_Lc03, R12_command => cmd_R12_Lc03, indication => levelCrossings_i(4), command  => levelCrossings_o(4), correspondence => state_Lc03, clock => clock, reset => reset);
+	levelCrossing_Lc04 : levelCrossing_5 port map(track_ne26 => tracks_i(3), track_ne3 => tracks_i(0), R2_command => cmd_R2_Lc04, R11_command => cmd_R11_Lc04, R12_command => cmd_R12_Lc04, R1_command => cmd_R1_Lc04, indication => levelCrossings_i(5), command  => levelCrossings_o(5), correspondence => state_Lc04, clock => clock, reset => reset);
+	singleSwitch_Sw12 : singleSwitch_0 port map(R10_command => cmd_R10_Sw12, R11_command => cmd_R11_Sw12, R12_command => cmd_R12_Sw12, R13_command => cmd_R13_Sw12, R3_command => cmd_R3_Sw12, R1_command => cmd_R1_Sw12, indication => singleSwitches_i(0), command => singleSwitches_o(0), correspondence => state_Sw12, clock => clock, reset => reset);
+	singleSwitch_Sw11 : singleSwitch_1 port map(R6_command => cmd_R6_Sw11, R9_command => cmd_R9_Sw11, R10_command => cmd_R10_Sw11, R13_command => cmd_R13_Sw11, R3_command => cmd_R3_Sw11, indication => singleSwitches_i(1), command => singleSwitches_o(1), correspondence => state_Sw11, clock => clock, reset => reset);
+	railwaySignal_L01 : railwaySignal_0 port map(R7_command => cmd_R7_L01, track_ne3 => tracks_i(0), indication => signals_i(0), command => signals_o(0), correspondence_L01 => state_L01, clock => clock, reset => reset);
+	railwaySignal_X16 : railwaySignal_1 port map(R7_command => cmd_R7_X16, R10_command => cmd_R10_X16, R11_command => cmd_R11_X16, track_ne3 => tracks_i(0), correspondence_L01 => state_L01, Lc06_state => state_Lc06, indication => signals_i(1), command => signals_o(1), correspondence_X16 => state_X16, clock => clock, reset => reset);
+	railwaySignal_S25 : railwaySignal_2 port map(R12_command => cmd_R12_S25, R13_command => cmd_R13_S25, track_ne3 => tracks_i(0), track_ne26 => tracks_i(3), track_ne27 => tracks_i(4), track_ne23 => tracks_i(1), correspondence_X07 => state_X07, correspondence_X12 => state_X12, correspondence_L04 => state_L04, correspondence_P19 => state_P19, Sw12_state => state_Sw12, Sw11_state => state_Sw11, Lc06_state => state_Lc06, Lc03_state => state_Lc03, Lc04_state => state_Lc04, Lc09_state => state_Lc09, indication => signals_i(2), command => signals_o(2), correspondence_S25 => state_S25, clock => clock, reset => reset);
+	railwaySignal_L02 : railwaySignal_3 port map(R8_command => cmd_R8_L02, track_ne23 => tracks_i(1), indication => signals_i(3), command => signals_o(3), correspondence_L02 => state_L02, clock => clock, reset => reset);
+	railwaySignal_X09 : railwaySignal_4 port map(R3_command => cmd_R3_X09, track_ne23 => tracks_i(1), track_ne25 => tracks_i(2), track_ne27 => tracks_i(4), track_ne3 => tracks_i(0), correspondence_S22 => state_S22, correspondence_X13 => state_X13, correspondence_X16 => state_X16, Sw11_state => state_Sw11, Sw12_state => state_Sw12, Lc07_state => state_Lc07, Lc09_state => state_Lc09, indication => signals_i(4), command => signals_o(4), correspondence_X09 => state_X09, clock => clock, reset => reset);
+	railwaySignal_X12 : railwaySignal_5 port map(R4_command => cmd_R4_X12, R6_command => cmd_R6_X12, R13_command => cmd_R13_X12, track_ne23 => tracks_i(1), correspondence_P19 => state_P19, correspondence_L02 => state_L02, Lc09_state => state_Lc09, indication => signals_i(5), command => signals_o(5), correspondence_X12 => state_X12, clock => clock, reset => reset);
+	railwaySignal_P19 : railwaySignal_6 port map(R8_command => cmd_R8_P19, R4_command => cmd_R4_P19, track_ne23 => tracks_i(1), correspondence_L02 => state_L02, Lc07_state => state_Lc07, indication => signals_i(6), command => signals_o(6), correspondence_P19 => state_P19, clock => clock, reset => reset);
+	railwaySignal_S22 : railwaySignal_7 port map(R9_command => cmd_R9_S22, R10_command => cmd_R10_S22, R3_command => cmd_R3_S22, track_ne23 => tracks_i(1), track_ne25 => tracks_i(2), track_ne27 => tracks_i(4), track_ne3 => tracks_i(0), correspondence_X13 => state_X13, correspondence_X16 => state_X16, correspondence_L03 => state_L03, correspondence_L01 => state_L01, Sw11_state => state_Sw11, Sw12_state => state_Sw12, Lc09_state => state_Lc09, Lc05_state => state_Lc05, Lc06_state => state_Lc06, indication => signals_i(7), command => signals_o(7), correspondence_S22 => state_S22, clock => clock, reset => reset);
+	railwaySignal_L03 : railwaySignal_8 port map(R5_command => cmd_R5_L03, track_ne25 => tracks_i(2), indication => signals_i(8), command => signals_o(8), correspondence_L03 => state_L03, clock => clock, reset => reset);
+	railwaySignal_X13 : railwaySignal_9 port map(R5_command => cmd_R5_X13, R9_command => cmd_R9_X13, track_ne25 => tracks_i(2), correspondence_L03 => state_L03, Lc05_state => state_Lc05, indication => signals_i(9), command => signals_o(9), correspondence_X13 => state_X13, clock => clock, reset => reset);
+	railwaySignal_X14 : railwaySignal_10 port map(R6_command => cmd_R6_X14, track_ne25 => tracks_i(2), track_ne23 => tracks_i(1), correspondence_X12 => state_X12, correspondence_P19 => state_P19, Sw11_state => state_Sw11, Lc05_state => state_Lc05, Lc09_state => state_Lc09, indication => signals_i(10), command => signals_o(10), correspondence_X14 => state_X14, clock => clock, reset => reset);
+	railwaySignal_L04 : railwaySignal_11 port map(R2_command => cmd_R2_L04, track_ne26 => tracks_i(3), indication => signals_i(11), command => signals_o(11), correspondence_L04 => state_L04, clock => clock, reset => reset);
+	railwaySignal_X05 : railwaySignal_12 port map(track_ne26 => tracks_i(3), indication => signals_i(12), command => signals_o(12), correspondence_X05 => state_X05, clock => clock, reset => reset);
+	railwaySignal_X06 : railwaySignal_13 port map(R1_command => cmd_R1_X06, track_ne26 => tracks_i(3), track_ne3 => tracks_i(0), correspondence_C24 => state_C24, correspondence_X16 => state_X16, Sw12_state => state_Sw12, Lc03_state => state_Lc03, Lc04_state => state_Lc04, indication => signals_i(13), command => signals_o(13), correspondence_X06 => state_X06, clock => clock, reset => reset);
+	railwaySignal_X07 : railwaySignal_14 port map(R2_command => cmd_R2_X07, R12_command => cmd_R12_X07, track_ne26 => tracks_i(3), correspondence_L04 => state_L04, Lc03_state => state_Lc03, Lc04_state => state_Lc04, indication => signals_i(14), command => signals_o(14), correspondence_X07 => state_X07, clock => clock, reset => reset);
+	railwaySignal_C24 : railwaySignal_15 port map(R11_command => cmd_R11_C24, R1_command => cmd_R1_C24, track_ne26 => tracks_i(3), track_ne3 => tracks_i(0), correspondence_X16 => state_X16, correspondence_L01 => state_L01, Sw12_state => state_Sw12, Lc04_state => state_Lc04, Lc06_state => state_Lc06, indication => signals_i(15), command => signals_o(15), correspondence_C24 => state_C24, clock => clock, reset => reset);
+	node_ne3 : node_0 port map(track_i => tracks_i(0), track_o => state_ne3, R7_command => cmd_R7_ne3, R10_command => cmd_R10_ne3, R11_command => cmd_R11_ne3, R12_command => cmd_R12_ne3, R13_command => cmd_R13_ne3, reset => reset);
+	node_ne23 : node_1 port map(track_i => tracks_i(1), track_o => state_ne23, R3_command => cmd_R3_ne23, R4_command => cmd_R4_ne23, R6_command => cmd_R6_ne23, R8_command => cmd_R8_ne23, R9_command => cmd_R9_ne23, R10_command => cmd_R10_ne23, R13_command => cmd_R13_ne23, reset => reset);
+	node_ne25 : node_2 port map(track_i => tracks_i(2), track_o => state_ne25, R5_command => cmd_R5_ne25, R6_command => cmd_R6_ne25, R9_command => cmd_R9_ne25, reset => reset);
+	node_ne26 : node_3 port map(track_i => tracks_i(3), track_o => state_ne26, R1_command => cmd_R1_ne26, R2_command => cmd_R2_ne26, R11_command => cmd_R11_ne26, R12_command => cmd_R12_ne26, reset => reset);
+	node_ne27 : node_4 port map(track_i => tracks_i(4), track_o => state_ne27, R10_command => cmd_R10_ne27, R13_command => cmd_R13_ne27, reset => reset);
+	route_R1 : route_0 port map(routeRequest => routes_i(0), ne26_command => cmd_R1_ne26, track_ne26 => state_ne26, Lc03_command => cmd_R1_Lc03, Lc03_state => state_Lc03, Lc04_command => cmd_R1_Lc04, Lc04_state => state_Lc04, Sw12_command => cmd_R1_Sw12, Sw12_state => state_Sw12, X06_state => state_X06, X06_command => cmd_R1_X06, C24_state => state_C24, C24_command =>cmd_R1_C24, routeExecute => routes_o(0), clock => clock, reset => reset);
+	route_R2 : route_1 port map(routeRequest => routes_i(1), ne26_command => cmd_R2_ne26, track_ne26 => state_ne26, Lc03_command => cmd_R2_Lc03, Lc03_state => state_Lc03, Lc04_command => cmd_R2_Lc04, Lc04_state => state_Lc04, X07_state => state_X07, X07_command => cmd_R2_X07, L04_state => state_L04, L04_command =>cmd_R2_L04, routeExecute => routes_o(1), clock => clock, reset => reset);
+	route_R3 : route_2 port map(routeRequest => routes_i(2), ne23_command => cmd_R3_ne23, track_ne23 => state_ne23, Lc07_command => cmd_R3_Lc07, Lc07_state => state_Lc07, Lc09_command => cmd_R3_Lc09, Lc09_state => state_Lc09, Sw12_command => cmd_R3_Sw12, Sw12_state => state_Sw12, Sw11_command => cmd_R3_Sw11, Sw11_state => state_Sw11, X09_state => state_X09, X09_command => cmd_R3_X09, S22_state => state_S22, S22_command =>cmd_R3_S22, routeExecute => routes_o(2), clock => clock, reset => reset);
+	route_R4 : route_3 port map(routeRequest => routes_i(3), ne23_command => cmd_R4_ne23, track_ne23 => state_ne23, Lc09_command => cmd_R4_Lc09, Lc09_state => state_Lc09, X12_state => state_X12, X12_command => cmd_R4_X12, P19_state => state_P19, P19_command =>cmd_R4_P19, routeExecute => routes_o(3), clock => clock, reset => reset);
+	route_R5 : route_4 port map(routeRequest => routes_i(4), ne25_command => cmd_R5_ne25, track_ne25 => state_ne25, Lc05_command => cmd_R5_Lc05, Lc05_state => state_Lc05, X13_state => state_X13, X13_command => cmd_R5_X13, L03_state => state_L03, L03_command =>cmd_R5_L03, routeExecute => routes_o(4), clock => clock, reset => reset);
+	route_R6 : route_5 port map(routeRequest => routes_i(5), ne23_command => cmd_R6_ne23, track_ne23 => state_ne23, ne25_command => cmd_R6_ne25, track_ne25 => state_ne25, Lc09_command => cmd_R6_Lc09, Lc09_state => state_Lc09, Lc05_command => cmd_R6_Lc05, Lc05_state => state_Lc05, Sw11_command => cmd_R6_Sw11, Sw11_state => state_Sw11, X14_state => state_X14, X14_command => cmd_R6_X14, X12_state => state_X12, X12_command =>cmd_R6_X12, routeExecute => routes_o(5), clock => clock, reset => reset);
+	route_R7 : route_6 port map(routeRequest => routes_i(6), ne3_command => cmd_R7_ne3, track_ne3 => state_ne3, Lc06_command => cmd_R7_Lc06, Lc06_state => state_Lc06, X16_state => state_X16, X16_command => cmd_R7_X16, L01_state => state_L01, L01_command =>cmd_R7_L01, routeExecute => routes_o(6), clock => clock, reset => reset);
+	route_R8 : route_7 port map(routeRequest => routes_i(7), ne23_command => cmd_R8_ne23, track_ne23 => state_ne23, Lc07_command => cmd_R8_Lc07, Lc07_state => state_Lc07, P19_state => state_P19, P19_command => cmd_R8_P19, L02_state => state_L02, L02_command =>cmd_R8_L02, routeExecute => routes_o(7), clock => clock, reset => reset);
+	route_R9 : route_8 port map(routeRequest => routes_i(8), ne23_command => cmd_R9_ne23, track_ne23 => state_ne23, ne25_command => cmd_R9_ne25, track_ne25 => state_ne25, Lc09_command => cmd_R9_Lc09, Lc09_state => state_Lc09, Lc05_command => cmd_R9_Lc05, Lc05_state => state_Lc05, Sw11_command => cmd_R9_Sw11, Sw11_state => state_Sw11, S22_state => state_S22, S22_command => cmd_R9_S22, X13_state => state_X13, X13_command =>cmd_R9_X13, routeExecute => routes_o(8), clock => clock, reset => reset);
+	route_R10 : route_9 port map(routeRequest => routes_i(9), ne3_command => cmd_R10_ne3, track_ne3 => state_ne3, ne23_command => cmd_R10_ne23, track_ne23 => state_ne23, ne27_command => cmd_R10_ne27, track_ne27 => state_ne27, Lc06_command => cmd_R10_Lc06, Lc06_state => state_Lc06, Lc09_command => cmd_R10_Lc09, Lc09_state => state_Lc09, Sw12_command => cmd_R10_Sw12, Sw12_state => state_Sw12, Sw11_command => cmd_R10_Sw11, Sw11_state => state_Sw11, S22_state => state_S22, S22_command => cmd_R10_S22, X16_state => state_X16, X16_command =>cmd_R10_X16, routeExecute => routes_o(9), clock => clock, reset => reset);
+	route_R11 : route_10 port map(routeRequest => routes_i(10), ne3_command => cmd_R11_ne3, track_ne3 => state_ne3, ne26_command => cmd_R11_ne26, track_ne26 => state_ne26, Lc06_command => cmd_R11_Lc06, Lc06_state => state_Lc06, Lc04_command => cmd_R11_Lc04, Lc04_state => state_Lc04, Sw12_command => cmd_R11_Sw12, Sw12_state => state_Sw12, C24_state => state_C24, C24_command => cmd_R11_C24, X16_state => state_X16, X16_command =>cmd_R11_X16, routeExecute => routes_o(10), clock => clock, reset => reset);
+	route_R12 : route_11 port map(routeRequest => routes_i(11), ne3_command => cmd_R12_ne3, track_ne3 => state_ne3, ne26_command => cmd_R12_ne26, track_ne26 => state_ne26, Lc06_command => cmd_R12_Lc06, Lc06_state => state_Lc06, Lc03_command => cmd_R12_Lc03, Lc03_state => state_Lc03, Lc04_command => cmd_R12_Lc04, Lc04_state => state_Lc04, Sw12_command => cmd_R12_Sw12, Sw12_state => state_Sw12, S25_state => state_S25, S25_command => cmd_R12_S25, X07_state => state_X07, X07_command =>cmd_R12_X07, routeExecute => routes_o(11), clock => clock, reset => reset);
+	route_R13 : route_12 port map(routeRequest => routes_i(12), ne3_command => cmd_R13_ne3, track_ne3 => state_ne3, ne23_command => cmd_R13_ne23, track_ne23 => state_ne23, ne27_command => cmd_R13_ne27, track_ne27 => state_ne27, Lc06_command => cmd_R13_Lc06, Lc06_state => state_Lc06, Lc09_command => cmd_R13_Lc09, Lc09_state => state_Lc09, Sw12_command => cmd_R13_Sw12, Sw12_state => state_Sw12, Sw11_command => cmd_R13_Sw11, Sw11_state => state_Sw11, S25_state => state_S25, S25_command => cmd_R13_S25, X12_state => state_X12, X12_command =>cmd_R13_X12, routeExecute => routes_o(12), clock => clock, reset => reset);
 	processed <= processing;
+	tracks_o(0) <= state_ne3;
+	tracks_o(1) <= state_ne23;
+	tracks_o(2) <= state_ne25;
+	tracks_o(3) <= state_ne26;
+	tracks_o(4) <= state_ne27;
 end Behavioral;

@@ -2,13 +2,14 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 	entity uart_rx is
 		generic(
 			DBIT : integer := 8; -- # data bits;
 			SB_TICK : integer := 16 -- # ticks for stop bits;
 		);
 		port(
-			clk : in std_logic;
+			clk, reset : in std_logic;
 			rx : in std_logic;
 			s_tick : in std_logic;
 			rx_done_tick : out std_logic;
@@ -23,9 +24,14 @@ architecture Behavioral of uart_rx is
 	signal b_reg, b_next: std_logic_vector(8-1 downto 0);
 begin
 	-- FSMD state & data registers
-	process(clk)
+	process(clk, reset)
 	begin
-		if (clk'event and clk = '1') then
+		if reset = '1' then
+			state_reg <= idle;
+			s_reg <= (others => '0');
+			n_reg <= (others => '0');
+			b_reg <= (others => '0');
+		elsif (clk'event and clk = '1') then
 			state_reg <= state_next;
 			s_reg <= s_next;
 			n_reg <= n_next;

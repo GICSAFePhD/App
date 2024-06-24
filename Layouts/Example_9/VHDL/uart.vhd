@@ -2,6 +2,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 	entity uart is
 		generic(
 			-- 19200 baud, 8 data bits, 1 stop bit, 2^2 FIFO

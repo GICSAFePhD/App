@@ -2,127 +2,161 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 --Declare the package
 use work.my_package.all;
+--XXX  R18 ['Sw12'] 
+--YYY  R18 [] 
 	entity route_17 is
 		port(
-			clock : in std_logic;
-			routeRequest : in std_logic;
-			ne8_state : in nodeStates;
-			ne8_lock : in objectLock;
-			ne8_command : out routeCommands;
-			ne22_state : in nodeStates;
-			ne22_lock : in objectLock;
-			ne22_command : out routeCommands;
-			Sw12_state : in singleSwitchStates;
-			Sw12_lock : in objectLock;
-			Sw12_command : out routeCommands;
-			S32_state : in signalStates;
-			S32_lock : in objectLock;
-			S32_command : out routeCommands;
-			J11_state : in signalStates;
-			routeState : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			routeRequest : in hex_char;
+			track_ne8 : in hex_char;
+			ne8_command : out routeCommands := RELEASE;
+			track_ne22 : in hex_char;
+			ne22_command : out routeCommands := RELEASE;
+			Sw12_state : in hex_char;
+			Sw12_command : out routeCommands := RELEASE;
+			S32_state : in hex_char;
+			S32_command : out routeCommands := RELEASE;
+			J11_state : in hex_char;
+			J11_command : out routeCommands := RELEASE;
+			routeExecute : out hex_char
 		);
 	end entity route_17;
 architecture Behavioral of route_17 is
 	component flipFlop is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			Q : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			Q : out std_logic := '0'
 		);
 	end component flipFlop;
-	signal restart : std_logic := '0';
-	signal Q : std_logic_vector(27 downto 0) := (others => '0');
-	signal routingState : routeStates := WAITING_COMMAND;
+	signal restart : std_logic := '1';
+	signal Q : std_logic_vector(32 downto 0) := (others => '0');
+	signal clock_in : std_logic_vector(32 downto 0) := (others => '0');
+	signal timeout : std_logic := '0';
+	signal routeState : routeStates := WAITING_COMMAND;
+	signal routingIn : routeStates;
 	signal ne8_used , ne22_used : std_logic := '0';
-begin
-	gen : for i in 0 to 26 generate
-		inst: flipFlop port map(Q(i),restart,Q(i+1));
-	end generate;
-	Q(0) <= clock;
+	signal ne8_state : nodeStates := FREE;
+	signal ne8_lock : objectLock := RELEASED;
+	signal ne22_state : nodeStates := FREE;
+	signal ne22_lock : objectLock := RELEASED;
+	signal Sw12_position : singleSwitchStates := NORMAL;
+	signal Sw12_lock : objectLock := RELEASED;
+	signal S32_aspectIn : signalStates := RED;
+	signal S32_lock: objectLock := RELEASED;
+	signal J11_aspectIn : signalStates := RED;
+	signal J11_lock : objectLock := RELEASED;
+begin
+	clock_in(0) <= clock;
+	routingIn <= routeStates'val(to_integer(unsigned(hex_to_slv(routeRequest))));
+	routeExecute <= slv_to_hex(std_logic_vector(to_unsigned(routeStates'pos(routeState),4)));
+	ne8_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne8)(2 to 3))));
+	ne8_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne8)(0 to 1))));
+	ne22_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne22)(2 to 3))));
+	ne22_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne22)(0 to 1))));
+	Sw12_position <= singleSwitchStates'val(to_integer(unsigned(hex_to_slv(Sw12_state)(2 to 3))));
+	Sw12_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(Sw12_state)(0 to 1))));
+	S32_aspectIn <= signalStates'val(to_integer(unsigned(hex_to_slv(S32_state)(2 to 3))));
+	S32_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(S32_state)(0 to 1))));
+	J11_aspectIn <= signalStates'val(to_integer(unsigned(hex_to_slv(J11_state)(2 to 3))));
+	J11_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(J11_state)(0 to 1))));
+	gen : for i in 0 to 31 generate
+		 inst: flipFlop port map(clock_in(i), restart, Q(i));
+		clock_in(i+1) <= Q(i);
+	end generate;
+
+	process(clock,reset,Q,restart)
+	begin
+		if (reset = '1' or Q = "011011111100001000111010101111110") then
+			timeout <= '1';
+		end if;
+		if (restart = '1') then
+			timeout <= '0';
+		end if;
+	end process;
 
 	process(clock)
 	begin
-		if (clock = '1' and clock'Event) then
-		case routingState is
+	if (clock'Event and clock = '1') then
+		case routeState is
 			when WAITING_COMMAND =>
-				restart <= '0';
-				routeState <= '0';
-				if (routeRequest = '1') then
-					routingState <= RESERVING_TRACKS;
+				if (routingIn = ROUTE_REQUEST) then
+					routeState <= RESERVING_TRACKS;
 				end if;
 			when RESERVING_TRACKS =>
-				if (Q(0) = '0' and Q(1) = '0' and Q(2) = '0' and Q(3) = '0' and Q(4) = '0' and Q(5) = '0' and Q(6) = '1' and Q(7) = '1' and Q(8) = '0' and Q(9) = '1' and Q(10) = '1' and Q(11) = '1' and Q(12) = '0' and Q(13) = '0' and Q(14) = '0' and Q(15) = '0' and Q(16) = '0' and Q(17) = '1' and Q(18) = '1' and Q(19) = '0' and Q(20) = '1' and Q(21) = '0' and Q(22) = '0' and Q(23) = '0' and Q(24) = '0' and Q(25) = '1' and Q(26) = '0') then
-					restart <= '1';
-					routeState <= '0';
-					routingState <= WAITING_COMMAND;
+				restart <= '0';
+				if (routingIn = CANCEL_ROUTE or timeout ='1') then
+					routeState <= CANCEL_ROUTE;
 				end if;
-				if ((ne8_lock = RELEASED and ne22_lock = RELEASED) and (ne8_state = FREE and ne22_state = FREE)) then
+				if ((ne8_lock = RELEASED and ne22_lock = RELEASED) and (ne22_state = FREE)) then
 					ne8_command <= RESERVE;
 					ne22_command <= RESERVE;
-					restart <= '0';
 				end if;
 				if (ne8_lock = RESERVED and ne22_lock = RESERVED)then
-					routingState <= LOCKING_TRACKS;
+					restart <= '1';
+					routeState <= LOCKING_TRACKS;
 				end if;
 			when LOCKING_TRACKS =>
-				if (Q(0) = '0' and Q(1) = '0' and Q(2) = '0' and Q(3) = '0' and Q(4) = '0' and Q(5) = '0' and Q(6) = '1' and Q(7) = '1' and Q(8) = '0' and Q(9) = '1' and Q(10) = '1' and Q(11) = '1' and Q(12) = '0' and Q(13) = '0' and Q(14) = '0' and Q(15) = '0' and Q(16) = '0' and Q(17) = '1' and Q(18) = '1' and Q(19) = '0' and Q(20) = '1' and Q(21) = '0' and Q(22) = '0' and Q(23) = '0' and Q(24) = '0' and Q(25) = '1' and Q(26) = '0') then
-					restart <= '1';
-					routeState <= '0';
-					routingState <= WAITING_COMMAND;
+				restart <= '0';
+				if (routingIn = CANCEL_ROUTE or timeout ='1') then
+					routeState <= CANCEL_ROUTE;
 				end if;
-				if ((ne8_lock = RESERVED and ne22_lock = RESERVED) and (ne8_state = FREE and ne22_state = FREE)) then
+				if ((ne8_lock = RESERVED and ne22_lock = RESERVED) and (ne22_state = FREE)) then
 					ne8_command <= LOCK;
 					ne22_command <= LOCK;
-					restart <= '0';
 				end if;
 				if (ne8_lock = LOCKED and ne22_lock = LOCKED)then
 					restart <= '1';
-					routingState <= RESERVING_INFRASTRUCTURE;
+					routeState <= RESERVING_INFRASTRUCTURE;
 				end if;
 			when RESERVING_INFRASTRUCTURE =>
-				if (Q(0) = '0' and Q(1) = '0' and Q(2) = '0' and Q(3) = '0' and Q(4) = '0' and Q(5) = '0' and Q(6) = '1' and Q(7) = '1' and Q(8) = '0' and Q(9) = '1' and Q(10) = '1' and Q(11) = '1' and Q(12) = '0' and Q(13) = '0' and Q(14) = '0' and Q(15) = '0' and Q(16) = '0' and Q(17) = '1' and Q(18) = '1' and Q(19) = '0' and Q(20) = '1' and Q(21) = '0' and Q(22) = '0' and Q(23) = '0' and Q(24) = '0' and Q(25) = '1' and Q(26) = '0') then
-					restart <= '1';
-					routeState <= '0';
-					routingState <= RELEASING_TRACKS;
+				restart <= '0';
+				if (routingIn = CANCEL_ROUTE or timeout ='1') then
+					routeState <= CANCEL_ROUTE;
 				end if;
 				if (Sw12_lock = RELEASED) then
 					Sw12_command <= RESERVE;
-					restart <= '0';
 				end if;
 				if (Sw12_lock = RESERVED)then
-					routingState <= LOCKING_INFRASTRUCTURE;
+					restart <= '1';
+					routeState <= LOCKING_INFRASTRUCTURE;
 				end if;
 			when LOCKING_INFRASTRUCTURE =>
-				if (Q(0) = '0' and Q(1) = '0' and Q(2) = '0' and Q(3) = '0' and Q(4) = '0' and Q(5) = '0' and Q(6) = '1' and Q(7) = '1' and Q(8) = '0' and Q(9) = '1' and Q(10) = '1' and Q(11) = '1' and Q(12) = '0' and Q(13) = '0' and Q(14) = '0' and Q(15) = '0' and Q(16) = '0' and Q(17) = '1' and Q(18) = '1' and Q(19) = '0' and Q(20) = '1' and Q(21) = '0' and Q(22) = '0' and Q(23) = '0' and Q(24) = '0' and Q(25) = '1' and Q(26) = '0') then
-					restart <= '1';
-					routeState <= '0';
-					routingState <= RELEASING_INFRASTRUCTURE;
+				restart <= '0';
+				if (routingIn = CANCEL_ROUTE or timeout ='1') then
+					routeState <= CANCEL_ROUTE;
 				end if;
-				if (Sw12_lock = RELEASED and Sw12_state = NORMAL) then
+				if (Sw12_lock = RESERVED) then
 					Sw12_command <= LOCK;
-					restart <= '0';
 				end if;
 				if (Sw12_lock = LOCKED)then
-					routingState <= DRIVING_SIGNAL;
+					ne8_used <= '0';
+					ne22_used <= '0';
+					restart <= '1';
+					routeState <= DRIVING_SIGNAL;
 				end if;
 			when DRIVING_SIGNAL =>
-				if (Q(0) = '0' and Q(1) = '0' and Q(2) = '0' and Q(3) = '0' and Q(4) = '0' and Q(5) = '0' and Q(6) = '1' and Q(7) = '1' and Q(8) = '0' and Q(9) = '1' and Q(10) = '1' and Q(11) = '1' and Q(12) = '0' and Q(13) = '0' and Q(14) = '0' and Q(15) = '0' and Q(16) = '0' and Q(17) = '1' and Q(18) = '1' and Q(19) = '0' and Q(20) = '1' and Q(21) = '0' and Q(22) = '0' and Q(23) = '0' and Q(24) = '0' and Q(25) = '1' and Q(26) = '0') then
-					restart <= '1';
-					routeState <= '0';
-					routingState <= RELEASING_INFRASTRUCTURE;
+				restart <= '0';
+				if (routingIn = CANCEL_ROUTE or timeout ='1') then
+					routeState <= CANCEL_ROUTE;
 				end if;
-				if (S32_lock = RELEASED) then
+				if (S32_lock = RELEASED and J11_lock = RELEASED) then
 					S32_command <= RESERVE;
+					J11_command <= LOCK;
 				end if;
-				if (S32_lock = RESERVED and S32_state /= RED) then
-					restart <= '0';
-					routeState <= '1';
-					S32_command <= LOCK;
-					routingState <= SEQUENTIAL_RELEASE;
+				if (S32_lock = RESERVED and J11_lock = LOCKED) then
+					restart <= '1';
+					routeState <= SEQUENTIAL_RELEASE;
 				end if;
 			when SEQUENTIAL_RELEASE =>
+				restart <= '0';
+				if (routingIn = CANCEL_ROUTE or timeout ='1') then
+					routeState <= CANCEL_ROUTE;
+				end if;
 				--- Sequential release
 				if (ne8_used = '0' and ne8_state = OCCUPIED) then 
 					ne8_used <= '1';
@@ -131,24 +165,26 @@ begin
 					ne8_used <= '0';
 					ne8_command <= RELEASE;
 				end if;
-				if (ne22_used = '0' and ne22_state = OCCUPIED) then 
+					---
+				if (ne8_lock = RELEASED and ne22_used = '0' and ne22_state = OCCUPIED) then 
 					ne22_used <= '1';
 					--- Finish -> Release all
-					routingState <= RELEASING_INFRASTRUCTURE;
+					restart <= '1';
+					routeState <= RELEASING_INFRASTRUCTURE;
 				end if;
 			when RELEASING_INFRASTRUCTURE =>
 				Sw12_command <= RELEASE;
-				routeState <= '0';
-				routingState <= RELEASING_TRACKS;
-			when RELEASING_TRACKS =>
 				ne8_command <= RELEASE;
 				ne22_command <= RELEASE;
-				routeState <= '0';
-				routingState <= WAITING_COMMAND;
+				S32_command <= RELEASE;
+				J11_command <= RELEASE;
+				restart <= '1';
+				routeState <= WAITING_COMMAND;
+			when CANCEL_ROUTE =>
+				routeState <= RELEASING_INFRASTRUCTURE;
 			when others =>
-				routeState <= '0';
-				routingState <= WAITING_COMMAND;
+				routeState <= WAITING_COMMAND;
 		end case;
-		end if;
+	end if;
 	end process;
 end Behavioral;

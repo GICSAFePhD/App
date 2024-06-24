@@ -2,6 +2,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 --Declare the package
 use work.my_package.all;
 	entity railwaySignal_1 is
@@ -11,59 +12,100 @@ use work.my_package.all;
 			R1_command : in routeCommands;
 			R2_command : in routeCommands;
 			--Ocupation level 0
-			ocupation_ne01 : in std_logic;
-			correspondence_T02 : out signalStates;
-			lock_T02 : out objectLock;
+			track_ne01 : in hex_char;
+			correspondence_T02 : out hex_char;
 			--Ocupation level 1
-			ocupation_ne02 : in std_logic;
-			ocupation_ne03 : in std_logic;
-			correspondence_C25 : in signalStates;
-			correspondence_B26 : in signalStates;
-			Sw01_state : in singleSwitchStates;
+			track_ne02 : in hex_char;
+			track_ne03 : in hex_char;
+			correspondence_C25 : in hex_char;
+			correspondence_B26 : in hex_char;
+			Sw01_state : in hex_char;
 			--Ocupation level 2
-			ocupation_ne04 : in std_logic;
-			correspondence_T03 : in signalStates;
-			Sw02_state : in singleSwitchStates;
-			indication : in signal_type;
-			command : out signal_type
+			track_ne04 : in hex_char;
+			correspondence_T03 : in hex_char;
+			Sw02_state : in hex_char;
+			indication : in hex_char;
+			command : out hex_char
 		);
 	end entity railwaySignal_1;
 architecture Behavioral of railwaySignal_1 is
-	component flipFlop is
-		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			Q : out std_logic
-		);
-	end component flipFlop;
-	signal restart : std_logic := '0';
-	signal Q : std_logic_vector(27 downto 0) := (others => '0');
-	signal commandState : routeCommands;
-	signal aspectState : signalStates;
-	signal commandAux : signal_type;
+	component flipFlop is
+		port(
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			Q : out std_logic := '0'
+		);
+	end component flipFlop;
+	signal restart : std_logic := '1';
+	signal Q : std_logic_vector(30 downto 0) := (others => '0');
+	signal clock_in : std_logic_vector(30 downto 0) := (others => '0');
+	signal timeout : std_logic := '0';
+	signal commandState : routeCommands := RELEASE;
+	signal lockStateIn : objectLock := RELEASED;
+	signal lockStateOut : objectLock := RELEASED;
+	signal aspectStateIn : signalStates := RED;
+	signal aspectStateOut : signalStates := RED;
+	signal correspondenceState : signalStates := RED;
 	signal path : integer := 0;
+	--Ocupation level 1
+	signal ne02_state : nodeStates := FREE;
+	signal ne02_lock : objectLock := RELEASED;
+	signal ne03_state : nodeStates := FREE;
+	signal ne03_lock : objectLock := RELEASED;
+	signal C25_aspect : signalStates;
+	signal C25_lock : objectLock := RELEASED;
+	signal B26_aspect : signalStates;
+	signal B26_lock : objectLock := RELEASED;
+	signal Sw01_position : singleSwitchStates := NORMAL;
+	signal Sw01_lock : objectLock := RELEASED;
+	--Ocupation level 2
+	signal ne04_state : nodeStates := FREE;
+	signal ne04_lock : objectLock := RELEASED;
+	signal T03_aspect : signalStates;
+	signal T03_lock : objectLock := RELEASED;
+	signal Sw02_position : singleSwitchStates := NORMAL;
+	signal Sw02_lock : objectLock := RELEASED;
 begin
-	gen : for i in 0 to 26 generate
+	clock_in(0) <= clock;
+	lockStateIn <= objectLock'val(to_integer(unsigned(hex_to_slv(indication)(0 to 1))));
+	aspectStateIn <= signalStates'val(to_integer(unsigned(hex_to_slv(indication)(2 to 3))));
+	command <= slv_to_hex(std_logic_vector(to_unsigned(objectLock'pos(lockStateOut), 2) & to_unsigned(signalStates'pos(aspectStateOut), 2)));
+	correspondence_T02 <= slv_to_hex(std_logic_vector(to_unsigned(objectLock'pos(lockStateOut), 2) & to_unsigned(signalStates'pos(correspondenceState), 2)));
+	--Ocupation level 1
+	ne02_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne02)(2 to 3))));
+	ne02_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne02)(0 to 1))));
+	ne03_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne03)(2 to 3))));
+	ne03_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne03)(0 to 1))));
+	C25_aspect <= signalStates'val(to_integer(unsigned(hex_to_slv(correspondence_C25)(2 to 3))));
+	C25_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(correspondence_C25)(0 to 1))));
+	B26_aspect <= signalStates'val(to_integer(unsigned(hex_to_slv(correspondence_B26)(2 to 3))));
+	B26_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(correspondence_B26)(0 to 1))));
+	Sw01_position <= singleSwitchStates'val(to_integer(unsigned(hex_to_slv(Sw01_state)(2 to 3))));
+	Sw01_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(Sw01_state)(0 to 1))));
+	--Ocupation level 2
+	ne04_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne04)(2 to 3))));
+	ne04_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne04)(0 to 1))));
+	T03_aspect <= signalStates'val(to_integer(unsigned(hex_to_slv(correspondence_T03)(2 to 3))));
+	T03_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(correspondence_T03)(0 to 1))));
+	Sw02_position <= singleSwitchStates'val(to_integer(unsigned(hex_to_slv(Sw02_state)(2 to 3))));
+	Sw02_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(Sw02_state)(0 to 1))));
+	gen : for i in 0 to 29 generate
 		inst: flipFlop port map(Q(i),restart,Q(i+1));
 	end generate;
-	Q(0) <= clock;
 
-	process(clock)
+	process(timeout,R1_command,R2_command)
 	begin
-		if (clock = '1' and clock'Event) then
-			if (reset = '1') then
+		if (timeout = '1') then
+			commandState <= RELEASE;
+		else
+			if (R1_command = RELEASE and R2_command = RELEASE) then
 				commandState <= RELEASE;
-			else
-				if (R1_command = RELEASE and R2_command = RELEASE) then
-					commandState <= RELEASE;
-				else
-					if (R1_command = RESERVE or R2_command = RESERVE) then
-						commandState <= RESERVE;
-					end if;
-					if (R1_command = LOCK or R2_command = LOCK) then
-						commandState <= LOCK;
-					end if;
-				end if;
+			end if;
+			if (R1_command = RESERVE or R2_command = RESERVE) then
+				commandState <= RESERVE;
+			end if;
+			if (R1_command = LOCK or R2_command = LOCK) then
+				commandState <= LOCK;
 			end if;
 		end if;
 	end process;
@@ -72,142 +114,112 @@ begin
 	begin
 		case commandState is
 			when RELEASE => -- AUTOMATIC
-				lock_T02 <= RELEASED;
+				lockStateOut <= RELEASED;
 			when RESERVE => -- DONT CHANGE
-				lock_T02 <= RESERVED;
+				lockStateOut <= RESERVED;
 			when LOCK => -- DONT CHANGE
-				lock_T02 <= LOCKED;
+				lockStateOut <= LOCKED;
 			when others =>
-				lock_T02 <= LOCKED;
+				lockStateOut <= LOCKED;
 		end case;
 	end process;
 
 	process(commandState)
 	begin
 		case commandState is
-			when RELEASE | LOCK =>
-				if ((Sw01_state = NORMAL and Sw02_state = NORMAL) or (Sw01_state = REVERSE and Sw02_state = REVERSE)) then
-					if (Sw01_state = NORMAL and Sw02_state = NORMAL) then
+			when RELEASE =>
+				if ((Sw01_position = NORMAL and Sw02_position = NORMAL) or (Sw01_position = REVERSE and Sw02_position = REVERSE)) then
+					if (Sw01_position = NORMAL and Sw02_position = NORMAL) then
 						path <= 1;
 					end if;
-					if (Sw01_state = REVERSE and Sw02_state = REVERSE) then
+					if (Sw01_position = REVERSE and Sw02_position = REVERSE) then
 						path <= 2;
 					end if;
 				else
 					path <= 0;
 				end if;
 			when RESERVE =>
+				path <= 3;
+			when LOCK =>
 				path <= 0;
 			when others =>
 				path <= 0;
 		end case;
 	end process;
 
-	process(clock)
+	process(path,ne02_state,ne03_state,C25_aspect,B26_aspect)
 	begin
 		case path is
 			when 0 =>
-				aspectState <= RED;
+				aspectStateOut <= RED;
 			when 1 =>
-				if (ocupation_ne02 = '0') then
-					aspectState <= RED;
+				if (ne02_state = OCCUPIED or ne02_lock = LOCKED) then
+					aspectStateOut <= RED;
 				else
-					if (correspondence_C25 = RED) then
-						aspectState <= DOUBLE_YELLOW;
+					if (C25_aspect = RED) then
+						aspectStateOut <= DOUBLE_YELLOW;
 					end if;
-					if (correspondence_C25 = DOUBLE_YELLOW) then
-						aspectState <= YELLOW;
+					if (C25_aspect = DOUBLE_YELLOW) then
+						aspectStateOut <= YELLOW;
 					end if;
-					if (correspondence_C25 = YELLOW) then
-						aspectState <= GREEN;
+					if (C25_aspect = YELLOW) then
+						aspectStateOut <= GREEN;
 					end if;
-					if (correspondence_C25 = GREEN) then
-						aspectState <= GREEN;
+					if (C25_aspect = GREEN) then
+						aspectStateOut <= GREEN;
 					end if;
 				end if;
 			when 2 =>
-				if (ocupation_ne03 = '0') then
-					aspectState <= RED;
+				if (ne03_state = OCCUPIED or ne03_lock = LOCKED) then
+					aspectStateOut <= RED;
 				else
-					if (correspondence_B26 = RED) then
-						aspectState <= DOUBLE_YELLOW;
+					if (B26_aspect = RED) then
+						aspectStateOut <= DOUBLE_YELLOW;
 					end if;
-					if (correspondence_B26 = DOUBLE_YELLOW) then
-						aspectState <= YELLOW;
+					if (B26_aspect = DOUBLE_YELLOW) then
+						aspectStateOut <= YELLOW;
 					end if;
-					if (correspondence_B26 = YELLOW) then
-						aspectState <= GREEN;
+					if (B26_aspect = YELLOW) then
+						aspectStateOut <= GREEN;
 					end if;
-					if (correspondence_B26 = GREEN) then
-						aspectState <= GREEN;
+					if (B26_aspect = GREEN) then
+						aspectStateOut <= GREEN;
 					end if;
 				end if;
+			when 3 =>
+				aspectStateOut <= GREEN;
 			when others =>
-				aspectState <= RED;
+				aspectStateOut <= RED;
 		end case;
 	end process;
 
-	process(clock)
+	process(clock,reset,Q,restart)
 	begin
-		if (clock = '1' and clock'Event) then
-			if(reset = '1' or (Q(0) = '0' and Q(1) = '0' and Q(2) = '0' and Q(3) = '0' and Q(4) = '0' and Q(5) = '0' and Q(6) = '1' and Q(7) = '1' and Q(8) = '0' and Q(9) = '1' and Q(10) = '1' and Q(11) = '1' and Q(12) = '0' and Q(13) = '0' and Q(14) = '0' and Q(15) = '0' and Q(16) = '0' and Q(17) = '1' and Q(18) = '1' and Q(19) = '0' and Q(20) = '1' and Q(21) = '0' and Q(22) = '0' and Q(23) = '0' and Q(24) = '0' and Q(25) = '1' and Q(26) = '0')) then
-				restart <= '1';
-				if(indication.msb = '0' and indication.lsb = '0') then
-					correspondence_T02 <= RED;
-				end if;
-				if(indication.msb = '1' and indication.lsb = '1') then
-					correspondence_T02 <= GREEN;
-				end if;
-				if(indication.msb = '0' and indication.lsb = '1') then
-					correspondence_T02 <= DOUBLE_YELLOW;
-				end if;
-				if(indication.msb = '1' and indication.lsb = '0') then
-					correspondence_T02 <= YELLOW;
-				end if;
-			else
-				if (commandAux.msb = '0' and commandAux.lsb = '0' and indication.msb = '0' and indication.lsb = '0') then
-					correspondence_T02 <= RED;
-					restart <= '1';
-				end if;
-				if (commandAux.msb = '1' and commandAux.lsb = '1' and indication.msb = '1' and indication.lsb = '1') then
-					correspondence_T02 <= GREEN;
-					restart <= '1';
-				end if;
-				if (commandAux.msb = '0' and commandAux.lsb = '1' and indication.msb = '0' and indication.lsb = '1') then
-					correspondence_T02 <= DOUBLE_YELLOW;
-					restart <= '1';
-				end if;
-				if (commandAux.msb = '1' and commandAux.lsb = '0' and indication.msb = '1' and indication.lsb = '0') then
-					correspondence_T02 <= YELLOW;
-					restart <= '1';
-				end if;
-				if ((commandAux.msb /= indication.msb) or (commandAux.lsb /= indication.lsb)) then
-					correspondence_T02 <= RED;
-					restart <= '0';
-				end if;
-			end if;
+		if (reset = '1' or Q = "011010000100111011100001011111") then
+			timeout <= '1';
+		end if;
+		if (restart = '1') then
+			timeout <= '0';
+		end if;
+	end process;
+
+	process(timeout,aspectStateOut,aspectStateIn)
+	begin
+		if(aspectStateOut = RED and aspectStateIn = RED) then
+			correspondenceState <= RED;
+			restart <= '1';
+		end if;
+		if(aspectStateOut = GREEN and aspectStateIn = GREEN) then
+			correspondenceState <= GREEN;
+			restart <= '1';
+		end if;
+		if(aspectStateOut = DOUBLE_YELLOW and aspectStateIn = DOUBLE_YELLOW) then
+			correspondenceState <= DOUBLE_YELLOW;
+			restart <= '1';
+		end if;
+		if(aspectStateOut = YELLOW and aspectStateIn = YELLOW) then
+			correspondenceState <= YELLOW;
+			restart <= '1';
 		end if;
 	end process;
-
-	process(aspectState)
-	begin
-		case aspectState is
-			when RED =>
-				commandAux.msb <= '0';
-				commandAux.lsb <= '0';
-			when DOUBLE_YELLOW =>
-				commandAux.msb <= '0';
-				commandAux.lsb <= '1';
-			when YELLOW =>
-				commandAux.msb <= '1';
-				commandAux.lsb <= '0';
-			when GREEN =>
-				commandAux.msb <= '1';
-				commandAux.lsb <= '1';
-			when others =>
-				commandAux.msb <= '0';
-				commandAux.lsb <= '0';
-		end case;
-	end process;
-	command <= commandAux;
 end Behavioral;

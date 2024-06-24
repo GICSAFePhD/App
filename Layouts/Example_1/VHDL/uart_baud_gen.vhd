@@ -2,13 +2,14 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 	entity uart_baud_gen is
 		generic(
 			N : integer := 4; -- number of bits;
 			M : integer := 10 -- mod-M;
 		);
 		port(
-			clk : in std_logic;
+			clk, reset : in std_logic;
 			max_tick : out std_logic;
 			q : out std_logic_vector(N-1 downto 0)
 		);
@@ -18,9 +19,11 @@ architecture Behavioral of uart_baud_gen is
 	signal r_next : unsigned(N-1 downto 0);
 begin
 	-- printer
-	process(clk)
+	process(clk, reset)
 	begin
-		if rising_edge(clk) then
+		if (reset = '1') then
+			r_reg <= (others => '0');
+		elsif rising_edge(clk) then
 			r_reg <= r_next;
 		end if;
 	end process;

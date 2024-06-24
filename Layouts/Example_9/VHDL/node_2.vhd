@@ -2,13 +2,13 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 --Declare the package
 use work.my_package.all;
 	entity node_2 is
 		port(
-			clock : in std_logic;
 			reset : in std_logic;
-			ocupation : in std_logic;
+			track_i : in hex_char;
 			R6_command : in routeCommands;
 			R7_command : in routeCommands;
 			R12_command : in routeCommands;
@@ -16,29 +16,34 @@ use work.my_package.all;
 			R20_command : in routeCommands;
 			R23_command : in routeCommands;
 			R24_command : in routeCommands;
-			state : out nodeStates;
-			locking : out objectLock
+			track_o : out hex_char
 		);
 	end entity node_2;
 architecture Behavioral of node_2 is
-	signal commandState : routeCommands;
+	signal commandState : routeCommands := RELEASE;
+	signal lock_state : objectLock := RELEASED;
+	signal track_state : nodeStates := FREE;
 begin
+	-- Assign the last 2 bits of track_i to lock_state
+	--lock_state <= objectLock'val(to_integer(unsigned(hex_to_slv(track_i)(0 to 1))));
+	-- Assign the first 2 bits of track_i to track_state
+	track_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_i)(2 to 3))));
+	-- Update track_i based on the values of track_state and lock_state
+	track_o <= slv_to_hex(std_logic_vector(to_unsigned(objectLock'pos(lock_state), 2) & to_unsigned(nodeStates'pos(track_state), 2)));
 
-	process(clock)
+	process(reset,R6_command,R7_command,R12_command,R18_command,R20_command,R23_command,R24_command)
 	begin
-		if (clock = '1' and clock'Event) then
-			if (reset = '1') then
+		if (reset = '1') then
+			commandState <= RELEASE;
+		else
+			if (R6_command = RELEASE and R7_command = RELEASE and R12_command = RELEASE and R18_command = RELEASE and R20_command = RELEASE and R23_command = RELEASE and R24_command = RELEASE) then
 				commandState <= RELEASE;
 			else
-				if (R6_command = RELEASE and R7_command = RELEASE and R12_command = RELEASE and R18_command = RELEASE and R20_command = RELEASE and R23_command = RELEASE and R24_command = RELEASE) then
-					commandState <= RELEASE;
-				else
-					if (R6_command = RESERVE or R7_command = RESERVE or R12_command = RESERVE or R18_command = RESERVE or R20_command = RESERVE or R23_command = RESERVE or R24_command = RESERVE) then
-						commandState <= RESERVE;
-					end if;
-					if (R6_command = LOCK or R7_command = LOCK or R12_command = LOCK or R18_command = LOCK or R20_command = LOCK or R23_command = LOCK or R24_command = LOCK) then
-						commandState <= LOCK;
-					end if;
+				if (R6_command = RESERVE or R7_command = RESERVE or R12_command = RESERVE or R18_command = RESERVE or R20_command = RESERVE or R23_command = RESERVE or R24_command = RESERVE) then
+					commandState <= RESERVE;
+				end if;
+				if (R6_command = LOCK or R7_command = LOCK or R12_command = LOCK or R18_command = LOCK or R20_command = LOCK or R23_command = LOCK or R24_command = LOCK) then
+					commandState <= LOCK;
 				end if;
 			end if;
 		end if;
@@ -48,24 +53,13 @@ begin
 	begin
 		case commandState is
 			when RELEASE => -- AUTOMATIC
-				locking <= RELEASED;
+				lock_state <= RELEASED;
 			when RESERVE => -- DONT CHANGE
-				locking <= RESERVED;
+				lock_state <= RESERVED;
 			when LOCK => -- DONT CHANGE
-				locking <= LOCKED;
+				lock_state <= LOCKED;
 			when others =>
-				locking <= LOCKED;
+				lock_state <= LOCKED;
 		end case;
 	end process;
-
-	process(clock)
-	begin
-		if (clock = '1' and clock'Event) then
-			if (ocupation = '1') then
-				state <= FREE;
-			else
-				state <= OCCUPIED;
-			end if;
-		end if;
-	end process;
 end Behavioral;

@@ -39,22 +39,19 @@ begin
 	end generate;
 	Q(0) <= clock;
 
-	process(clock)
+	process(reset,R7_command)
 	begin
-		if (clock = '1' and clock'Event) then
-			if (reset = '1') then
+		if (reset = '1') then
+			commandState <= RELEASE;
+		else
+			if (R7_command = RELEASE) then
 				commandState <= RELEASE;
-			else
-				if (R7_command = RELEASE) then
-					commandState <= RELEASE;
-				else
-					if (R7_command = RESERVE) then
-						commandState <= RESERVE;
-					end if;
-					if (R7_command = LOCK) then
-						commandState <= LOCK;
-					end if;
-				end if;
+			end if;
+			if (R7_command = RESERVE) then
+				commandState <= RESERVE;
+			end if;
+			if (R7_command = LOCK) then
+				commandState <= LOCK;
 			end if;
 		end if;
 	end process;

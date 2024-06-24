@@ -2,6 +2,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 	entity uart is
 		generic(
 			-- 19200 baud, 8 data bits, 1 stop bit, 2^2 FIFO
@@ -13,7 +14,7 @@ use IEEE.numeric_std.all;
 			FIFO_W_RX: integer := 4 	-- # addr bits of FIFO_TX # words in FIFO=2^FIFO_W
 		);
 		port(
-			clk : in std_logic;
+			clk, reset : in std_logic;
 			rd_uart, wr_uart : in std_logic;
 			rx : in std_logic;
 			w_data : in std_logic_vector(8-1 downto 0);
@@ -32,26 +33,26 @@ architecture Behavioral of uart is
 begin
 	baud_gen_unit: entity work.uart_baud_gen(Behavioral)
 		generic map(M => DVSR, N => DVSR_BIT)
-		port map(clk => clk, 
+		port map(clk => clk, reset => reset,
 				q => open, max_tick => tick);
 	uart_rx_unit: entity work.uart_rx(Behavioral)
 		generic map(DBIT => DBIT, SB_TICK => SB_TICK)
-		port map(clk => clk,  rx => rx,
+		port map(clk => clk, reset => reset, rx => rx,
 				s_tick => tick, rx_done_tick => rx_done_tick,
 				d_out => rx_data_out);
 	fifo_rx_unit: entity work.fifo(Behavioral)
 		generic map(B => DBIT, W => FIFO_W_RX)
-		port map(clk => clk, rd => rd_uart,
+		port map(clk => clk, reset => reset, rd => rd_uart,
 				wr => rx_done_tick, w_data => rx_data_out,
 				empty => rx_empty, full => open, r_data => r_data);
 	fifo_tx_unit: entity work.fifo(Behavioral)
 		generic map(B => DBIT, W => FIFO_W_TX)
-		port map(clk => clk, rd => tx_done_tick,
+		port map(clk => clk, reset => reset, rd => tx_done_tick,
 				wr => wr_uart, w_data => w_data, empty => tx_empty,
 				full => tx_full, r_data => tx_fifo_out);
 	uart_tx_unit: entity work.uart_tx(Behavioral)
 		generic map(DBIT => DBIT, SB_TICK => SB_TICK)
-		port map(clk => clk,
+		port map(clk => clk, reset => reset,
 				tx_start => tx_fifo_not_empty,
 				s_tick => tick, d_in => tx_fifo_out,
 				tx_done_tick => tx_done_tick, tx => tx);

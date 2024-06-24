@@ -2,13 +2,14 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 	entity fifo is
 		generic(
 			B : natural := 8; -- number of bits;
 			W : natural := 4  -- number of address bits;
 		);
 		port(
-			clk : in std_logic;
+			clk, reset : in std_logic;
 			rd, wr : in std_logic;
 			w_data : in std_logic_vector(B-1 downto 0);
 			empty, full : out std_logic;
@@ -27,9 +28,11 @@ begin
 	----------------
 	-- register file
 	----------------
-	process(clk)
+	process(clk, reset)
 	begin
-		if (clk'event and clk = '1') then
+		if (reset = '1') then
+			array_reg <= (others => (others => '0'));
+		elsif (clk'event and clk = '1') then
 			if wr_en = '1' then
 				array_reg(to_integer(unsigned(w_ptr_reg))) <= w_data;
 			end if;
@@ -43,9 +46,14 @@ begin
 	-- fifo control logic
 	--
 	-- register for read and write pointers
-	process(clk)
+	process(clk, reset)
 	begin
-		if (clk'event and clk = '1') then	
+		if (reset = '1') then
+			w_ptr_reg <= ( others => '0');
+			r_ptr_reg <= ( others => '0');
+			full_reg <= '0';
+			empty_reg <= '1';
+		elsif (clk'event and clk = '1') then	
 			w_ptr_reg <= w_ptr_next;
 			r_ptr_reg <= r_ptr_next;
 			full_reg <= full_next;

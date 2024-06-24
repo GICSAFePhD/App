@@ -2,12 +2,14 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
+--Declare the package
+use work.my_package.all;
 	entity system is
 		port(
 			clock :  in std_logic;
 			r_data :  in std_logic_vector(8-1 downto 0);
 			r_available :  in std_logic;
-			read :  out std_logic;
 			write :  out std_logic;
 			selector1 :  in std_logic;
 			selector2 :  in std_logic;
@@ -28,7 +30,7 @@ architecture Behavioral of system is
 			r_available :  in std_logic;
 			led_rgb_1 :  out std_logic_vector(3-1 downto 0);
 			led_rgb_2 :  out std_logic_vector(3-1 downto 0);
-			packet :  out std_logic_vector(91-1 downto 0);
+			packet : out hex_array(66-1 downto 0);
 			processing :  in std_logic;
 			processed :  out std_logic;
 			N :  in integer;
@@ -42,8 +44,8 @@ architecture Behavioral of system is
 			clock :  in std_logic;
 			processing :  in std_logic;
 			processed :  out std_logic;
-			packet_i :  in std_logic_vector(91-1 downto 0);
-			packet_o :  out std_logic_vector(84-1 downto 0);
+			packet_i : in hex_array(66-1 downto 0);
+			packet_o : out hex_array(66-1 downto 0);
 			reset :  in std_logic
 		);
 	end component interlocking;
@@ -51,7 +53,7 @@ architecture Behavioral of system is
 		port(
 			clock :  in std_logic;
 			selector :  in std_logic;
-			leds :  out std_logic_vector(2-1 downto 0);
+			leds :  out std_logic_vector(4-1 downto 0);
 			wr_uart_1 :  in std_logic;
 			wr_uart_2 :  in std_logic;
 			wr_uart_3 :  out std_logic;
@@ -66,14 +68,14 @@ architecture Behavioral of system is
 			clock :  in std_logic;
 			processing :  in std_logic;
 			processed :  out std_logic;
-			packet_i :  in std_logic_vector(84-1 downto 0);
+			packet_i : in hex_array(66-1 downto 0);
 			w_data :  out std_logic_vector(8-1 downto 0);
 			wr_uart :  out std_logic;
 			reset :  in std_logic
 		);
 	end component printer;
-	Signal packet_i_s : std_logic_vector(91-1 downto 0);
-	Signal packet_o_s : std_logic_vector(84-1 downto 0);
+	Signal packet_i_s : hex_array(66-1 downto 0);
+	Signal packet_o_s : hex_array(66-1 downto 0);
 	Signal w_data_1,w_data_2,w_data_3 : std_logic_vector(8-1 downto 0);
 	Signal wr_uart_1_s,wr_uart_2_s : std_logic;
 	Signal pro_int_reg,pro_det_enc,pro_reg_det : std_logic;
@@ -116,6 +118,7 @@ architecture Behavioral of system is
 		port map(
 			clock => clock,
 			reset => reset,
+			leds => leds,
 			selector => selector1,
 			wr_uart_1 => wr_uart_1_s,
 			wr_uart_2 => wr_uart_2_s,
@@ -125,19 +128,6 @@ architecture Behavioral of system is
 			w_data_3 => w_data_3
 		);
 		w_data <= w_data_3;
-		process(clock)
-		begin
-			if (clock'event and clock = '1') then
-				if selector2 = '1' then
-					leds <= std_logic_vector(to_unsigned(N,4));
-				else
-					leds(3) <= packet_i_s(3);
-					leds(2) <= packet_i_s(2);
-					leds(1) <= packet_i_s(1);
-					leds(0) <= packet_i_s(0);
-				end if;
-			end if;
-		end process;
 		process(clock)
 		variable counter: integer := 0;
 		begin

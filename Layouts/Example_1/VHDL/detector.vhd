@@ -2,6 +2,9 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
+--Declare the package
+use work.my_package.all;
 	entity detector is
 		port(
 			Clock : in std_logic;
@@ -9,158 +12,97 @@ use IEEE.numeric_std.all;
 			r_available : in std_logic;
 			led_rgb_1 : out std_logic_vector(3-1 downto 0);
 			led_rgb_2 : out std_logic_vector(3-1 downto 0);
-			packet : out std_logic_vector(85-1 downto 0);
+			packet : out hex_array(62-1 downto 0);
 			processing : in std_logic;
 			processed : out std_logic;
 			N : in integer;
 			wr_uart : out std_logic;
-			w_data : out std_logic_vector(8-1 downto 0)
+			w_data : out std_logic_vector(8-1 downto 0);
+			reset : in std_logic
 		);
 	end entity detector;
 architecture Behavioral of detector is
-	type states_t is (start,reading,final,error);
-	signal state, next_state : states_t := start;
-	shared variable counter : integer range 0 to 128 := 0;
-	signal packet_aux : std_logic_vector(85-1 downto 0) := (others => '0');
-	signal new_data : std_logic := '0';
-	signal length_ok,tags_ok : std_logic := '0';
-	signal tags_start,tags_end : std_logic := '0';
+	type states_t is (idle,reading,final,error);
+	signal state : states_t := idle;
 	constant tag_start : std_logic_vector(8-1 downto 0) := "00111100"; -- r_data = '<'
 	constant tag_end : std_logic_vector(8-1 downto 0) := "00111110"; -- r_data = '>'
-	constant char_0 : std_logic_vector(8-1 downto 0) := "00110000"; -- r_data = '0'
-	constant char_1 : std_logic_vector(8-1 downto 0) := "00110001"; -- r_data = '1' 
+	-- Lookup table for ASCII to hex_char conversion
+	constant ascii_to_hex : ascii_array := (
+		48 => '0', 49 => '1', 50 => '2', 51 => '3', 52 => '4', 53 => '5', 54 => '6', 55 => '7',
+		56 => '8', 57 => '9', 65 => 'A', 66 => 'B', 67 => 'C', 68 => 'D', 69 => 'E', 70 => 'F',
+		others => '0' -- default value
+	);
 begin
-	states_transition : process(clock)
+	detection : process(clock,reset)
+		 variable counter : integer range 0 to 93 := 0;
 	begin
-		if (clock = '1' and clock'event) then
-			if processing = '1' then
-				state <= start;
-			else
-				state <= next_state;
-			end if;
-		end if;
-	end process;
-	increase_counter : process(clock)
-	begin
-		if (clock = '1' and clock'event) then
-			if r_available = '1' then
-				if state = reading then
-					if counter < 87 then
-						counter := counter + 1;
-					end if;
-				end if;
-			end if;
-			if counter > 85 and counter < 87 then
-				counter := counter + 1;
-			end if;
-			if state = final or state = error then
-				counter := 0;
-			end if;
-		end if;
-	end process;
-	packing : process(clock)
-	begin
-		if (clock = '1' and clock'event) then
-				if state = reading then
-				if r_available = '1' then
-					if counter < 86 then
-						if r_data = char_0 then
-							packet_aux(85-counter) <= '0';
-						end if;
-						if r_data = char_1 then
-							packet_aux(85-counter) <= '1';
-						end if;
-					end if;
-					new_data <= '1';
-				else
-					new_data <= '0';
-				end if;
-			end if;
-		end if;
-	end process;
-	states : process(clock,state)
-	begin
-		if (clock = '1' and clock'event) then
-			next_state <= state;
-			-- LED4 = RGB2 | LED5 => RGB1
-			-- BGR -> 001 = R | 010 = G | 100 = B
+		if (reset = '1') then
+			packet <= (others => '0');
+			processed <= '0';
+			led_rgb_1 <= "000";
+			led_rgb_2 <= "000";
+		elsif(rising_edge(clock)) then
 			case(state) is
-				when start =>
-					tags_start <= '0';
-					if r_data = tag_start then -- r_data = '<'
-						tags_start <= '1';
-						tags_end <= '0';
-						next_state <= reading;
+				when idle =>
+					packet <= (others => '0');
+					processed <= '0';
+					led_rgb_1 <= "000";
+					led_rgb_2 <= "000";
+					if (r_available = '1') then
+						if (r_data = tag_start) then
+							counter := 1;
+							state <= reading;
+						end if;
 					end if;
 				when reading =>
-					if counter = 87 then -- 85 (it fits 85)
-						if r_data = tag_end then --  r_data = '>'
-							tags_end <= '1';
-							next_state <= final;
-						else
-							tags_end <= '0';
-							next_state <= error;
+					led_rgb_1 <= "100";
+					led_rgb_2 <= "100";
+					processed <= '0';
+					if (r_available = '1') then
+						if (r_data = tag_end) then
+							if (counter = 63) then
+								state <= final;
+							else
+								state <= error;
+							end if;
 						end if;
-					else
-						tags_end <= '0';
+						if counter < 64 then
+							packet(counter-1) <= ascii_to_hex(to_integer(unsigned(r_data)));
+							counter := counter + 1;
+						else
+							counter := 0;
+							state <= error;
+						end if;
 					end if;
 				when final =>
-					if processing = '1' then
-						next_state <= start;
+					led_rgb_1 <= "010";
+					led_rgb_2 <= "010";
+					processed <= '1';
+					if (r_available = '1') then
+						if (r_data = tag_start) then
+							counter := 1;
+							state <= reading;
+						end if;
 					end if;
 				when error =>
-					tags_start <= '0';
-					tags_end <= '0';
-					next_state <= start;
-				when others => null;
+					led_rgb_1 <= "001";
+					led_rgb_2 <= "001";
+					if (r_available = '1') then
+						if (r_data = tag_start) then
+							counter := 1;
+							state <= reading;
+						end if;
+					end if;
+				when others =>
+					led_rgb_1 <= "001";
+					led_rgb_2 <= "001";
+					if (r_available = '1') then
+						if (r_data = tag_start) then
+							counter := 1;
+							state <= reading;
+						end if;
+					end if;
 			end case;
-		end if;
-	end process;
-	packet_ready : process(clock)
-	begin
-		if (clock = '1' and clock'event) then
-			if state = final then
-				processed <= length_ok and tags_ok;
-			else
-				processed <= '0';
-			end if;
-		end if;
-	end process;
-	tag_analyzer : process(clock)
-	begin
-		if (clock = '1' and clock'event) then
-			tags_ok <= tags_start and tags_end;
-			if tags_ok = '1' then
-				led_rgb_1 <= "010"; -- green
-			else
-				led_rgb_1 <= "001"; -- red
-			end if;
-			if state = reading then
-				led_rgb_1 <= "001"; -- red
-			end if;
-		end if;
-	end process;
-	length_analyzer : process(clock)
-	begin
-		if (clock = '1' and clock'event) then
-			if N = 87 then
-				length_ok <= '1';
-				led_rgb_2 <= "010"; -- green
-			else
-				length_ok <= '0';
-				led_rgb_2 <= "001"; -- red
-			end if;
-			if state = reading then
-				led_rgb_2 <= "001"; -- red
-			end if;   
-		end if;
-	end process;
-	packet_valid : process(clock)
-	begin
-		if (clock = '1' and Clock'event) then
-			if state = final and length_ok = '1' and tags_ok = '1' then
-				packet <= packet_aux;
-			end if;
 		end if;
 	end process;
 	w_data <= r_data;

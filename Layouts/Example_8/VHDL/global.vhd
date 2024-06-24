@@ -2,6 +2,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 	entity global is
 		port(
 			clock : in std_logic;
@@ -32,7 +33,6 @@ architecture Behavioral of global is
 			clock : in std_logic;
 			reset_uart : out std_logic;
 			r_available : in std_logic;
-			read : out std_logic;
 			write : out std_logic;
 			r_data : in std_logic_vector(8-1 downto 0);
 			selector1 : in std_logic;
@@ -57,8 +57,8 @@ begin
 		generic map(
 			DVSR      => 407,	-- baud rate divisor DVSR = 125M / (16 * baud rate) baud rate = 19200
 			DVSR_BIT  => 9,   --  bits of DVSR
-			FIFO_W_RX	=> 7, 	--  addr bits of FIFO words in FIFO=2^FIFO_W
-			FIFO_W_TX	=> 7 	--  addr bits of FIFO words in FIFO=2^FIFO_W
+			FIFO_W_RX	=> 6, 	--  addr bits of FIFO words in FIFO=2^FIFO_W
+			FIFO_W_TX	=> 6 	--  addr bits of FIFO words in FIFO=2^FIFO_W
 		)
 		port map(
 			clk 		=> clock,
@@ -87,7 +87,6 @@ begin
 			reset => reset,
 			reset_uart => reset_s,
 			r_available => rd_uart_signal,
-			read => read_s,
 			write => write_s,
 			r_data => r_dataSignal,
 			selector1 => selector1,

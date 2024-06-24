@@ -2,6 +2,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 	entity uart_baud_gen is
 		generic(
 			N : integer := 4; -- number of bits;

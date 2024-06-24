@@ -2,12 +2,15 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
+--Declare the package
+use work.my_package.all;
 	entity printer is
 		port(
 			clock : in std_logic;
 			processing : in std_logic;
 			processed : out std_logic;
-			packet_i : in std_logic_vector(52-1 downto 0);
+			packet_i : in hex_array(44-1 downto 0);
 			w_data : out std_logic_vector(8-1 downto 0);
 			wr_uart : out std_logic; -- 'char_disp'
 			reset : in std_logic
@@ -15,9 +18,22 @@ use IEEE.numeric_std.all;
 	end entity printer;
 architecture Behavioral of printer is
 	type states_t is (RESTART,CYCLE_1,CYCLE_2);
+	signal mux_out_s : hex_char;
 	signal state, next_state : states_t;
-	signal mux_out_s,ena_s,rst_s,reg_aux : std_logic;
+	signal ena_s,rst_s,reg_aux : std_logic;
 	signal mux_s : std_logic_vector(6-1 downto 0);
+	-- Lookup table for hex_char to ASCII conversion
+	constant hex_to_ascii : ascii_packet := (
+		'0' => "00110000", '1' => "00110001", '2' => "00110010", '3' => "00110011",
+		'4' => "00110100", '5' => "00110101", '6' => "00110110", '7' => "00110111",
+		'8' => "00111000", '9' => "00111001", 'A' => "01000001", 'B' => "01000010",
+		'C' => "01000011", 'D' => "01000100", 'E' => "01000101", 'F' => "01000110"
+	);
+	-- Function to convert mux_s to integer
+	function mux_to_int(mux : std_logic_vector) return integer is
+	begin
+		return to_integer(unsigned(mux));
+	end function mux_to_int;
 begin
 	contador : process(clock)
 	begin
@@ -26,7 +42,7 @@ begin
 				mux_s <= "000000";
 			else
 				if (ena_s = '1') then
-					if (mux_s /= "110100") then
+					if (mux_s /= "101100") then
 						if (state = CYCLE_1 or state = CYCLE_2) then
 							mux_s <= std_logic_vector(to_unsigned(to_integer(unsigned(mux_s)) + 1 , 6));
 						end if;
@@ -40,63 +56,9 @@ begin
 	end process;
 	multiplexor : process(packet_i,mux_s)
 	begin
-		case mux_s is
-			when "000000" => mux_out_s <= packet_i(0);
-			when "000001" => mux_out_s <= packet_i(1);
-			when "000010" => mux_out_s <= packet_i(2);
-			when "000011" => mux_out_s <= packet_i(3);
-			when "000100" => mux_out_s <= packet_i(4);
-			when "000101" => mux_out_s <= packet_i(5);
-			when "000110" => mux_out_s <= packet_i(6);
-			when "000111" => mux_out_s <= packet_i(7);
-			when "001000" => mux_out_s <= packet_i(8);
-			when "001001" => mux_out_s <= packet_i(9);
-			when "001010" => mux_out_s <= packet_i(10);
-			when "001011" => mux_out_s <= packet_i(11);
-			when "001100" => mux_out_s <= packet_i(12);
-			when "001101" => mux_out_s <= packet_i(13);
-			when "001110" => mux_out_s <= packet_i(14);
-			when "001111" => mux_out_s <= packet_i(15);
-			when "010000" => mux_out_s <= packet_i(16);
-			when "010001" => mux_out_s <= packet_i(17);
-			when "010010" => mux_out_s <= packet_i(18);
-			when "010011" => mux_out_s <= packet_i(19);
-			when "010100" => mux_out_s <= packet_i(20);
-			when "010101" => mux_out_s <= packet_i(21);
-			when "010110" => mux_out_s <= packet_i(22);
-			when "010111" => mux_out_s <= packet_i(23);
-			when "011000" => mux_out_s <= packet_i(24);
-			when "011001" => mux_out_s <= packet_i(25);
-			when "011010" => mux_out_s <= packet_i(26);
-			when "011011" => mux_out_s <= packet_i(27);
-			when "011100" => mux_out_s <= packet_i(28);
-			when "011101" => mux_out_s <= packet_i(29);
-			when "011110" => mux_out_s <= packet_i(30);
-			when "011111" => mux_out_s <= packet_i(31);
-			when "100000" => mux_out_s <= packet_i(32);
-			when "100001" => mux_out_s <= packet_i(33);
-			when "100010" => mux_out_s <= packet_i(34);
-			when "100011" => mux_out_s <= packet_i(35);
-			when "100100" => mux_out_s <= packet_i(36);
-			when "100101" => mux_out_s <= packet_i(37);
-			when "100110" => mux_out_s <= packet_i(38);
-			when "100111" => mux_out_s <= packet_i(39);
-			when "101000" => mux_out_s <= packet_i(40);
-			when "101001" => mux_out_s <= packet_i(41);
-			when "101010" => mux_out_s <= packet_i(42);
-			when "101011" => mux_out_s <= packet_i(43);
-			when "101100" => mux_out_s <= packet_i(44);
-			when "101101" => mux_out_s <= packet_i(45);
-			when "101110" => mux_out_s <= packet_i(46);
-			when "101111" => mux_out_s <= packet_i(47);
-			when "110000" => mux_out_s <= packet_i(48);
-			when "110001" => mux_out_s <= packet_i(49);
-			when "110010" => mux_out_s <= packet_i(50);
-			when "110011" => mux_out_s <= packet_i(51);
-			when others => mux_out_s <= '0';
-		end case;
+		mux_out_s <= packet_i(mux_to_int(mux_s));
 	end process;
-	w_data <= "00110001" when mux_out_s = '1' else "00110000";
+	w_data <= hex_to_ascii(mux_out_s);
 	FSM_reset : process(clock)
 	begin
 		if (clock = '1' and clock'event) then
@@ -121,7 +83,7 @@ begin
 				ena_s <= '0';
 				processed <= '0';
 				reg_aux <= '0';
-				if (processing = '1' and mux_s /= "110100" ) then
+				if (processing = '1' and mux_s /= "101100" ) then
 					next_state <= CYCLE_1;
 				end if;
 			when CYCLE_1 =>
@@ -136,7 +98,7 @@ begin
 				ena_s <= '1';
 				processed <= '0';
 				reg_aux <= '0';
-				if mux_s = "110011" then
+				if mux_s = "101011" then
 					processed <= '1';
 					reg_aux <= '1';
 					next_state <= RESTART;

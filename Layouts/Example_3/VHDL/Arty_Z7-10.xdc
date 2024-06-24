@@ -12,18 +12,19 @@
 #set_property -dict {PACKAGE_PIN P14 IOSTANDARD LVCMOS33} [get_ports full_o]
 
 ## LEDs
-set_property -dict { PACKAGE_PIN R14   IOSTANDARD LVCMOS33 } [get_ports { leds[0] }];
-set_property -dict { PACKAGE_PIN P14   IOSTANDARD LVCMOS33 } [get_ports { leds[1] }];
-set_property -dict {PACKAGE_PIN N16    IOSTANDARD LVCMOS33 } [get_ports { leds[2] }];
-set_property -dict {PACKAGE_PIN M14    IOSTANDARD LVCMOS33 } [get_ports { leds[3] }];
+set_property -dict {PACKAGE_PIN R14 IOSTANDARD LVCMOS33} [get_ports {leds[0]}]
+set_property -dict {PACKAGE_PIN P14 IOSTANDARD LVCMOS33} [get_ports {leds[1]}]
+set_property -dict {PACKAGE_PIN N16 IOSTANDARD LVCMOS33} [get_ports {leds[2]}]
+set_property -dict {PACKAGE_PIN M14 IOSTANDARD LVCMOS33} [get_ports {leds[3]}]
 
 #set_property -dict {PACKAGE_PIN N16 IOSTANDARD LVCMOS33} [get_ports {leds[0]}];
 #set_property -dict {PACKAGE_PIN M14 IOSTANDARD LVCMOS33} [get_ports {leds[1]}];
 
 ## Clock Signal
 #set_property -dict { PACKAGE_PIN H16    IOSTANDARD LVCMOS33 } [get_ports { clk }]; #IO_L13P_T2_MRCC_35 Sch=SYSCLK
-#create_clock -add -name sys_clk_pin -period 8.00 -waveform {0 4} [get_ports { clk }];#set
+create_clock -period 8.000 -name sys_clk_pin -waveform {0.000 4.000} -add [get_ports clock]
 set_property -dict {PACKAGE_PIN H16 IOSTANDARD LVCMOS33} [get_ports clock]
+
 
 ## Buttons
 #set_property -dict { PACKAGE_PIN D19    IOSTANDARD LVCMOS33 } [get_ports { btn[0] }]; #IO_L4P_T0_35 Sch=BTN0
@@ -32,7 +33,9 @@ set_property -dict {PACKAGE_PIN H16 IOSTANDARD LVCMOS33} [get_ports clock]
 #set_property -dict { PACKAGE_PIN L19    IOSTANDARD LVCMOS33 } [get_ports { btn[3] }]; #IO_L9P_T1_DQS_AD3P_35 Sch=BTN3
 
 # Rst Btn[3]
-#set_property -dict {PACKAGE_PIN L19 IOSTANDARD LVCMOS33} [get_ports reset]
+set_property -dict {PACKAGE_PIN L19 IOSTANDARD LVCMOS33} [get_ports reset]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets reset_IBUF]
+
 
 # Nible Swap Btn[0]
 #set_property -dict { PACKAGE_PIN D19   IOSTANDARD LVCMOS33 } [get_ports { btn_pin }]; # btn0

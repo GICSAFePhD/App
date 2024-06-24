@@ -15,8 +15,8 @@ use work.my_package.all;
 			lock_T06 : out objectLock;
 			correspondence_C29 : in signalStates;
 			--Ocupation level 2
-			ocupation_ne1 : in std_logic;
 			ocupation_ne9 : in std_logic;
+			ocupation_ne1 : in std_logic;
 			correspondence_L07 : in signalStates;
 			Sw04_state : in singleSwitchStates;
 			Sw07_state : in singleSwitchStates;
@@ -44,22 +44,19 @@ begin
 	end generate;
 	Q(0) <= clock;
 
-	process(clock)
+	process(reset,R3_command)
 	begin
-		if (clock = '1' and clock'Event) then
-			if (reset = '1') then
+		if (reset = '1') then
+			commandState <= RELEASE;
+		else
+			if (R3_command = RELEASE) then
 				commandState <= RELEASE;
-			else
-				if (R3_command = RELEASE) then
-					commandState <= RELEASE;
-				else
-					if (R3_command = RESERVE) then
-						commandState <= RESERVE;
-					end if;
-					if (R3_command = LOCK) then
-						commandState <= LOCK;
-					end if;
-				end if;
+			end if;
+			if (R3_command = RESERVE) then
+				commandState <= RESERVE;
+			end if;
+			if (R3_command = LOCK) then
+				commandState <= LOCK;
 			end if;
 		end if;
 	end process;
