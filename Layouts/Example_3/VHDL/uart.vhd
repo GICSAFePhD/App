@@ -2,12 +2,13 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 	entity uart is
 		generic(
 			-- 19200 baud, 8 data bits, 1 stop bit, 2^2 FIFO
 			DBIT: integer := 8; -- # data bits
 			SB_TICK: integer := 16;	-- # ticks for stop bits, 16/24/32 -- for 1/1.5/2 stop bits
-			DVSR: integer := 407; 	-- baud rate divisor -- DVSR = 125M / (16 * baud rate)
+			DVSR: integer := 325; 	-- baud rate divisor -- DVSR = 100M / (16 * baud rate)
 			DVSR_BIT: integer := 9; 	-- # bits of DVSR
 			FIFO_W_TX: integer := 4; 	-- # addr bits of FIFO_TX # words in FIFO=2^FIFO_W
 			FIFO_W_RX: integer := 4 	-- # addr bits of FIFO_TX # words in FIFO=2^FIFO_W

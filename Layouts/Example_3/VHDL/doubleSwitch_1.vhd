@@ -2,164 +2,147 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 --Declare the package
 use work.my_package.all;
 	entity doubleSwitch_1 is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			R36_command : in routeCommands;
-			R37_command : in routeCommands;
-			R65_command : in routeCommands;
-			R66_command : in routeCommands;
-			R82_command : in routeCommands;
-			R83_command : in routeCommands;
-			R89_command : in routeCommands;
-			R90_command : in routeCommands;
-			indication : in dSwitch_type;
-			command : out dSwitch_type;
-			correspondence_Sw07 : out doubleSwitchStates;
-			lock_Sw07 : out objectLock
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			R36_command : in routeCommands := RELEASE;
+			R37_command : in routeCommands := RELEASE;
+			R65_command : in routeCommands := RELEASE;
+			R66_command : in routeCommands := RELEASE;
+			R82_command : in routeCommands := RELEASE;
+			R83_command : in routeCommands := RELEASE;
+			R89_command : in routeCommands := RELEASE;
+			R90_command : in routeCommands := RELEASE;
+			indication : in hex_char;
+			command : out hex_char;
+			correspondence : out hex_char
 		);
 	end entity doubleSwitch_1;
 architecture Behavioral of doubleSwitch_1 is
 	component flipFlop is
 		port(
-			clock : in std_logic;
-			reset : in std_logic;
-			Q : out std_logic
+			clock : in std_logic := '0';
+			reset : in std_logic := '0';
+			Q : out std_logic := '0'
 		);
 	end component flipFlop;
-	signal restart : std_logic := '0';
-	signal Q : std_logic_vector(27 downto 0) := (others => '0');
-	signal commandState : routeCommands;
-	signal commandAux : dSwitch_type;
+	signal restart : std_logic := '1';
+	signal Q : std_logic_vector(30 downto 0) := (others => '0');
+	signal clock_in : std_logic_vector(30 downto 0) := (others => '0');
+	signal timeout : std_logic := '0';
+	signal commandState : routeCommands := RELEASE;
+	signal lockStateIn : objectLock := RELEASED;
+	signal lockStateOut : objectLock := RELEASED;
+	signal positionStateIn : doubleSwitchStates := DOUBLE_NORMAL;
+	signal positionStateOut : doubleSwitchStates := DOUBLE_NORMAL;
+	signal correspondenceState : doubleSwitchStates := DOUBLE_NORMAL;
 begin
-	gen : for i in 0 to 26 generate
-		inst: flipFlop port map(Q(i),restart,Q(i+1));
+	clock_in(0) <= clock;
+	-- Assign the last 2 bits of indication to lockState
+	lockStateIn <= objectLock'val(to_integer(unsigned(hex_to_slv(indication)(0 to 1))));
+	-- Assign the first 2 bits of indication to positionState
+	positionStateIn <= doubleSwitchStates'val(to_integer(unsigned(hex_to_slv(indication)(2 to 3))));
+	-- Update command based on the values of positionStateOut and lockStateOut
+	command <= slv_to_hex(std_logic_vector(to_unsigned(objectLock'pos(lockStateOut), 2) & to_unsigned(doubleSwitchStates'pos(positionStateOut), 2)));
+	-- Update correspondence based on the values of correspondenceState and lockStateOut
+	correspondence <= slv_to_hex(std_logic_vector(to_unsigned(objectLock'pos(lockStateOut), 2) & to_unsigned(doubleSwitchStates'pos(correspondenceState), 2)));
+	gen : for i in 0 to 29 generate
+		 inst: flipFlop port map(clock_in(i), restart, Q(i));
+		clock_in(i+1) <= Q(i);
 	end generate;
-	Q(0) <= clock;
 
-	process(clock)
+	process(timeout,R36_command,R37_command,R65_command,R66_command,R82_command,R83_command,R89_command,R90_command)
 	begin
-		if (clock = '1' and clock'Event) then
-			if (reset = '1') then
+		if (timeout = '1') then
+			commandState <= RELEASE;
+		else
+			if (R36_command = RELEASE and R37_command = RELEASE and R65_command = RELEASE and R66_command = RELEASE and R82_command = RELEASE and R83_command = RELEASE and R89_command = RELEASE and R90_command = RELEASE) then
 				commandState <= RELEASE;
-			else
-				if (R36_command = RELEASE and R37_command = RELEASE and R65_command = RELEASE and R66_command = RELEASE and R82_command = RELEASE and R83_command = RELEASE and R89_command = RELEASE and R90_command = RELEASE) then
-					commandState <= RELEASE;
-				else
-					if (R36_command = RESERVE or R37_command = RESERVE or R65_command = RESERVE or R66_command = RESERVE or R82_command = RESERVE or R83_command = RESERVE or R89_command = RESERVE or R90_command = RESERVE) then
-						commandState <= RESERVE;
-					end if;
-					if (R36_command = LOCK or R37_command = LOCK or R65_command = LOCK or R66_command = LOCK or R82_command = LOCK or R83_command = LOCK or R89_command = LOCK or R90_command = LOCK) then
-						commandState <= LOCK;
-					end if;
-				end if;
+			end if;
+			if (R36_command = RESERVE or R37_command = RESERVE or R65_command = RESERVE or R66_command = RESERVE or R82_command = RESERVE or R83_command = RESERVE or R89_command = RESERVE or R90_command = RESERVE) then
+				commandState <= RESERVE;
+			end if;
+			if (R36_command = LOCK or R37_command = LOCK or R65_command = LOCK or R66_command = LOCK or R82_command = LOCK or R83_command = LOCK or R89_command = LOCK or R90_command = LOCK) then
+				commandState <= LOCK;
 			end if;
 		end if;
 	end process;
 
-	process(commandState)
+	process(timeout,commandState,positionStateIn,R36_command,R37_command,R65_command,R66_command,R82_command,R83_command,R89_command,R90_command)
 	begin
 		case commandState is
 			when RELEASE => -- AUTOMATIC
-				lock_Sw07 <= RELEASED;
-			when RESERVE => -- DONT CHANGE
-				lock_Sw07 <= RESERVED;
-			when LOCK => -- DONT CHANGE
-				lock_Sw07 <= LOCKED;
-			when others =>
-				lock_Sw07 <= LOCKED;
-		end case;
-	end process;
-
-	process(commandState)
-	begin
-		case commandState is
-			when RELEASE => -- AUTOMATIC
-				commandAux.msb <= indication.msb;
-				commandAux.lsb <= indication.lsb;
+				positionStateOut <= positionStateIn;
+				lockStateOut <= RELEASED;
 			when RESERVE =>
-				if ((R37_command = RESERVE or R83_command = RESERVE) and (R65_command = RELEASE and R89_command = RELEASE) and (R36_command = RELEASE and R66_command = RELEASE) and (R82_command = RELEASE and R90_command = RELEASE)) then
-					commandAux.msb <= '0';
-					commandAux.lsb <= '0';
+				if ((R37_command = RESERVE or R83_command = RESERVE) and (R65_command = RELEASE and R89_command = RELEASE and R82_command = RELEASE and R90_command = RELEASE and R36_command = RELEASE and R66_command = RELEASE)) then
+					positionStateOut <= DOUBLE_NORMAL;
 				end if;
-				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = RESERVE or R89_command = RESERVE) and (R36_command = RELEASE and R66_command = RELEASE) and (R82_command = RELEASE and R90_command = RELEASE)) then
-					commandAux.msb <= '0';
-					commandAux.lsb <= '1';
+				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = RESERVE or R89_command = RESERVE) and (R82_command = RELEASE and R90_command = RELEASE) and (R36_command = RELEASE and R66_command = RELEASE)) then
+					positionStateOut <= DOUBLE_REVERSE;
 				end if;
-				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = RELEASE and R89_command = RELEASE) and (R36_command = RESERVE or R66_command = RESERVE) and (R82_command = RELEASE and R90_command = RELEASE)) then
-					commandAux.msb <= '1';
-					commandAux.lsb <= '0';
+				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = RELEASE and R89_command = RELEASE) and (R82_command = RESERVE or R90_command = RESERVE) and (R36_command = RELEASE and R66_command = RELEASE)) then
+					positionStateOut <= REVERSE_NORMAL;
 				end if;
-				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = RELEASE and R89_command = RELEASE) and (R36_command = RELEASE and R66_command = RELEASE) and (R82_command = RESERVE or R90_command = RESERVE)) then
-					commandAux.msb <= '1';
-					commandAux.lsb <= '1';
+				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = RELEASE and R89_command = RELEASE) and (R82_command = RELEASE and R90_command = RELEASE) and (R36_command = RESERVE or R66_command = RESERVE)) then
+					positionStateOut <= NORMAL_REVERSE;
 				end if;
+				lockStateOut <= RESERVED;
 			when LOCK =>
-				if ((R37_command = LOCK or R83_command = LOCK) and (R65_command = RELEASE and R89_command = RELEASE) and (R36_command = RELEASE and R66_command = RELEASE) and (R82_command = RELEASE and R90_command = RELEASE)) then
-					commandAux.msb <= '0';
-					commandAux.lsb <= '0';
+				if ((R37_command = LOCK or R83_command = LOCK) and (R65_command = RELEASE and R89_command = RELEASE and R82_command = RELEASE and R90_command = RELEASE and R36_command = RELEASE and R66_command = RELEASE)) then
+					positionStateOut <= DOUBLE_NORMAL;
 				end if;
-				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = LOCK or R89_command = LOCK) and (R36_command = RELEASE and R66_command = RELEASE) and (R82_command = RELEASE and R90_command = RELEASE)) then
-					commandAux.msb <= '0';
-					commandAux.lsb <= '1';
+				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = LOCK or R89_command = LOCK) and (R82_command = RELEASE and R90_command = RELEASE) and (R36_command = RELEASE and R66_command = RELEASE)) then
+					positionStateOut <= DOUBLE_REVERSE;
 				end if;
-				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = RELEASE and R89_command = RELEASE) and (R36_command = LOCK or R66_command = LOCK) and (R82_command = RELEASE and R90_command = RELEASE)) then
-					commandAux.msb <= '1';
-					commandAux.lsb <= '0';
+				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = RELEASE and R89_command = RELEASE) and (R82_command = LOCK or R90_command = LOCK) and (R36_command = RELEASE and R66_command = RELEASE)) then
+					positionStateOut <= REVERSE_NORMAL;
 				end if;
-				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = RELEASE and R89_command = RELEASE) and (R36_command = RELEASE and R66_command = RELEASE) and (R82_command = LOCK or R90_command = LOCK)) then
-					commandAux.msb <= '1';
-					commandAux.lsb <= '1';
+				if ((R37_command = RELEASE and R83_command = RELEASE) and (R65_command = RELEASE and R89_command = RELEASE) and (R82_command = RELEASE and R90_command = RELEASE) and (R36_command = LOCK or R66_command = LOCK)) then
+					positionStateOut <= NORMAL_REVERSE;
 				end if;
+				lockStateOut <= LOCKED;
 			when others =>
-				commandAux.msb <= indication.msb;
-				commandAux.lsb <= indication.lsb;
+				positionStateOut <= positionStateIn;
+				lockStateOut <= LOCKED;
 		end case;
 	end process;
 
-	process(clock)
+	process(clock,reset,Q,restart)
+	begin
+		if (reset = '1' or Q = "0010100110111001001001110000000") then
+			timeout <= '1';
+		end if;
+		if (restart = '1') then
+			timeout <= '0';
+		end if;
+	end process;
+
+	process(timeout,positionStateOut,positionStateIn)
 	begin
-		if (clock = '1' and clock'Event) then
-			if(reset = '1' or (Q(0) = '0' and Q(1) = '0' and Q(2) = '0' and Q(3) = '0' and Q(4) = '0' and Q(5) = '0' and Q(6) = '1' and Q(7) = '1' and Q(8) = '0' and Q(9) = '1' and Q(10) = '1' and Q(11) = '1' and Q(12) = '0' and Q(13) = '0' and Q(14) = '0' and Q(15) = '0' and Q(16) = '0' and Q(17) = '1' and Q(18) = '1' and Q(19) = '0' and Q(20) = '1' and Q(21) = '0' and Q(22) = '0' and Q(23) = '0' and Q(24) = '0' and Q(25) = '1' and Q(26) = '0')) then
-				restart <= '1';
-				if(indication.msb = '0' and indication.lsb = '0') then
-					correspondence_Sw07 <= DOUBLE_NORMAL;
-				end if;
-				if(indication.msb = '1' and indication.lsb = '1') then
-					correspondence_Sw07 <= DOUBLE_REVERSE;
-				end if;
-				if(indication.msb = '0' and indication.lsb = '1') then
-					correspondence_Sw07 <= NORMAL_REVERSE;
-				end if;
-				if(indication.msb = '1' and indication.lsb = '0') then
-					correspondence_Sw07 <= REVERSE_NORMAL;
-				end if;
-			else
-				if (commandAux.msb = '0' and commandAux.lsb = '0' and indication.msb = '0' and indication.lsb = '0') then
-					correspondence_Sw07 <= DOUBLE_NORMAL;
-					restart <= '1';
-				end if;
-				if (commandAux.msb = '1' and commandAux.lsb = '1' and indication.msb = '1' and indication.lsb = '1') then
-					correspondence_Sw07 <= DOUBLE_REVERSE;
-					restart <= '1';
-				end if;
-				if (commandAux.msb = '0' and commandAux.lsb = '1' and indication.msb = '0' and indication.lsb = '1') then
-					correspondence_Sw07 <= NORMAL_REVERSE;
-					restart <= '1';
-				end if;
-				if (commandAux.msb = '1' and commandAux.lsb = '0' and indication.msb = '1' and indication.lsb = '0') then
-					correspondence_Sw07 <= REVERSE_NORMAL;
-					restart <= '1';
-				end if;
-				if ((commandAux.msb /= indication.msb) or (commandAux.lsb /= indication.lsb)) then
-					correspondence_Sw07 <= TRANSITION;
-					restart <= '0';
-				end if;
-			end if;
+		if (positionStateOut = DOUBLE_NORMAL and positionStateIn = DOUBLE_NORMAL) then
+			correspondenceState <= DOUBLE_NORMAL;
+			restart <= '1';
+		end if;
+		if (positionStateOut = DOUBLE_REVERSE and positionStateIn = DOUBLE_REVERSE) then
+			correspondenceState <= DOUBLE_REVERSE;
+			restart <= '1';
+		end if;
+		if (positionStateOut = REVERSE_NORMAL and positionStateIn = REVERSE_NORMAL) then
+			correspondenceState <= REVERSE_NORMAL;
+			restart <= '1';
+		end if;
+		if (positionStateOut = NORMAL_REVERSE and positionStateIn = NORMAL_REVERSE) then
+			correspondenceState <= NORMAL_REVERSE;
+			restart <= '1';
+		end if;
+		if (positionStateOut /= positionStateIn) then
+			correspondenceState <= TRANSITION;
+			restart <= '0';
 		end if;
 	end process;
-	command <= commandAux;
 end Behavioral;

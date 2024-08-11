@@ -136,7 +136,7 @@ architecture Behavioral of system is
 					reset_uart <= '0';
 				else
 					counter := counter + 1;
-					if counter = 10*125E6 then
+					if counter = 10*100E6 then
 						counter := 0;
 						reset_uart <= '1';
 					else

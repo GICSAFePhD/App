@@ -22,8 +22,8 @@ use work.my_package.all;
 			correspondence_T01 : in hex_char;
 			Sw02_state : in hex_char;
 			--Ocupation level 2
-			track_ne10 : in hex_char;
 			track_ne11 : in hex_char;
+			track_ne10 : in hex_char;
 			correspondence_T05 : in hex_char;
 			correspondence_J13 : in hex_char;
 			Sw05_state : in hex_char;
@@ -62,10 +62,10 @@ architecture Behavioral of railwaySignal_3 is
 	signal Sw02_position : singleSwitchStates := NORMAL;
 	signal Sw02_lock : objectLock := RELEASED;
 	--Ocupation level 2
-	signal ne10_state : nodeStates := FREE;
-	signal ne10_lock : objectLock := RELEASED;
 	signal ne11_state : nodeStates := FREE;
 	signal ne11_lock : objectLock := RELEASED;
+	signal ne10_state : nodeStates := FREE;
+	signal ne10_lock : objectLock := RELEASED;
 	signal T05_aspect : signalStates;
 	signal T05_lock : objectLock := RELEASED;
 	signal J13_aspect : signalStates;
@@ -90,10 +90,10 @@ begin
 	Sw02_position <= singleSwitchStates'val(to_integer(unsigned(hex_to_slv(Sw02_state)(2 to 3))));
 	Sw02_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(Sw02_state)(0 to 1))));
 	--Ocupation level 2
-	ne10_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne10)(2 to 3))));
-	ne10_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne10)(0 to 1))));
 	ne11_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne11)(2 to 3))));
 	ne11_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne11)(0 to 1))));
+	ne10_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne10)(2 to 3))));
+	ne10_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne10)(0 to 1))));
 	T05_aspect <= signalStates'val(to_integer(unsigned(hex_to_slv(correspondence_T05)(2 to 3))));
 	T05_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(correspondence_T05)(0 to 1))));
 	J13_aspect <= signalStates'val(to_integer(unsigned(hex_to_slv(correspondence_J13)(2 to 3))));
@@ -135,7 +135,7 @@ begin
 		end case;
 	end process;
 
-	process(commandState)
+	process(commandState,Sw02_position)
 	begin
 		case commandState is
 			when RELEASE =>

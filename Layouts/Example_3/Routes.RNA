@@ -15,7 +15,7 @@ route_5 [T14 >> C100]:
 	Switches: ['Sw04_R', 'Sw05_RR']
 route_6 [T14 >> S105]:
 	Path: ['ne84', 'ne85', 'ne100', 'ne101', 'ne44']
-	Switches: ['Sw05_NR', 'Sw41_R']
+	Switches: ['Sw05_RN', 'Sw41_R']
 route_7 [T20 >> S97]:
 	Path: ['ne89', 'ne30']
 	Switches: ['Sw12_N']
@@ -85,7 +85,7 @@ route_35 [P72 << S144]:
 	Path: ['ne21']
 route_36 [P73 >> L33]:
 	Path: ['ne21', 'ne79', 'ne78']
-	Switches: ['Sw06_R', 'Sw07_RN']
+	Switches: ['Sw06_R', 'Sw07_NR']
 route_37 [P73 >> P69]:
 	Path: ['ne21', 'ne94', 'ne97', 'ne99']
 	Switches: ['Sw07_NN']
@@ -183,7 +183,7 @@ route_65 [S110 << B133]:
 	Platforms: ['Plat08', 'Plat13']
 route_66 [S110 << P72]:
 	Path: ['ne78', 'ne79', 'ne21']
-	Switches: ['Sw06_R', 'Sw07_RN']
+	Switches: ['Sw06_R', 'Sw07_NR']
 	Platforms: ['Plat12']
 route_67 [C114 >> C100]:
 	Path: ['ne83', 'ne32']
@@ -194,7 +194,7 @@ route_68 [S115 << C95]:
 	Platforms: ['Plat03']
 route_69 [S115 << P58]:
 	Path: ['ne32', 'ne82', 'ne41']
-	Switches: ['Sw04_R', 'Sw05_RN']
+	Switches: ['Sw04_R', 'Sw05_NR']
 	Platforms: ['Plat04']
 route_70 [S115 << T13]:
 	Path: ['ne32', 'ne82', 'ne84']
@@ -219,7 +219,7 @@ route_76 [S122 << T21]:
 	Switches: ['Sw12_R', 'Sw13_R']
 route_77 [B130 >> C100]:
 	Path: ['ne41', 'ne82', 'ne32']
-	Switches: ['Sw04_R', 'Sw05_RN']
+	Switches: ['Sw04_R', 'Sw05_NR']
 	Platforms: ['Plat04']
 route_78 [B130 >> S105]:
 	Path: ['ne41', 'ne85', 'ne100', 'ne101', 'ne44']
@@ -231,12 +231,12 @@ route_79 [S131 << P58]:
 	Platforms: ['Plat04']
 route_80 [S131 << T13]:
 	Path: ['ne85', 'ne84']
-	Switches: ['Sw05_NR']
+	Switches: ['Sw05_RN']
 route_81 [B133 << S86]:
 	Path: ['ne77', 'ne52']
 route_82 [S135 << B133]:
 	Path: ['ne94', 'ne77']
-	Switches: ['Sw07_NR']
+	Switches: ['Sw07_RN']
 	Platforms: ['Plat08', 'Plat13']
 route_83 [S135 << P72]:
 	Path: ['ne94', 'ne21']
@@ -260,7 +260,7 @@ route_89 [B145 >> L33]:
 	Switches: ['Sw06_R', 'Sw07_RR']
 route_90 [B145 >> P69]:
 	Path: ['ne77', 'ne94', 'ne97', 'ne99']
-	Switches: ['Sw07_NR']
+	Switches: ['Sw07_RN']
 	Platforms: ['Plat10']
 route_91 [S146 >> B145]:
 	Path: ['ne52', 'ne77']

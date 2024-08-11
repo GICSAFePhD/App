@@ -17,8 +17,8 @@ use work.my_package.all;
 			clock : in std_logic;
 			processing : in std_logic;
 			processed : out std_logic;
-			tracks_i: in hex_array(N_TRACKCIRCUITS-1 downto 0);
-			tracks_o: out hex_array(N_TRACKCIRCUITS-1 downto 0);
+			tracks_i : in hex_array(N_TRACKCIRCUITS-1 downto 0);
+			tracks_o : out hex_array(N_TRACKCIRCUITS-1 downto 0);
 			signals_i : in hex_array(N_SIGNALS-1 downto 0);
 			signals_o : out hex_array(N_SIGNALS-1 downto 0);
 			routes_i : in hex_array(N_ROUTES-1 downto 0);
@@ -457,8 +457,10 @@ architecture Behavioral of network is
 			track_o : out hex_char
 		);
 	end component node_7;
---XXX  R1 ['Sw01', 'Sw02'] 
---YYY  R1 [] 
+--sw  R1 ['Sw01', 'Sw02'] 
+--dw  R1 [] 
+--sc  R1 [] 
+--lc  R1 [] 
 	component route_0 is
 		port(
 			clock : in std_logic := '0';
@@ -479,8 +481,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_0;
---XXX  R2 ['Sw01', 'Sw02'] 
---YYY  R2 [] 
+--sw  R2 ['Sw01', 'Sw02'] 
+--dw  R2 [] 
+--sc  R2 [] 
+--lc  R2 [] 
 	component route_1 is
 		port(
 			clock : in std_logic := '0';
@@ -501,8 +505,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_1;
---XXX  R3 ['Sw01', 'Sw02'] 
---YYY  R3 [] 
+--sw  R3 ['Sw01', 'Sw02'] 
+--dw  R3 [] 
+--sc  R3 [] 
+--lc  R3 [] 
 	component route_2 is
 		port(
 			clock : in std_logic := '0';
@@ -523,8 +529,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_2;
---XXX  R4 ['Sw01', 'Sw02'] 
---YYY  R4 [] 
+--sw  R4 ['Sw01', 'Sw02'] 
+--dw  R4 [] 
+--sc  R4 [] 
+--lc  R4 [] 
 	component route_3 is
 		port(
 			clock : in std_logic := '0';
@@ -545,8 +553,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_3;
---XXX  R5 ['Sw03', 'Sw04'] 
---YYY  R5 [] 
+--sw  R5 ['Sw03', 'Sw04'] 
+--dw  R5 [] 
+--sc  R5 [] 
+--lc  R5 [] 
 	component route_4 is
 		port(
 			clock : in std_logic := '0';
@@ -567,8 +577,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_4;
---XXX  R6 ['Sw03', 'Sw04'] 
---YYY  R6 [] 
+--sw  R6 ['Sw03', 'Sw04'] 
+--dw  R6 [] 
+--sc  R6 [] 
+--lc  R6 [] 
 	component route_5 is
 		port(
 			clock : in std_logic := '0';
@@ -589,8 +601,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_5;
---XXX  R7 ['Sw03', 'Sw04'] 
---YYY  R7 [] 
+--sw  R7 ['Sw03', 'Sw04'] 
+--dw  R7 [] 
+--sc  R7 [] 
+--lc  R7 [] 
 	component route_6 is
 		port(
 			clock : in std_logic := '0';
@@ -611,8 +625,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_6;
---XXX  R8 ['Sw03', 'Sw04'] 
---YYY  R8 [] 
+--sw  R8 ['Sw03', 'Sw04'] 
+--dw  R8 [] 
+--sc  R8 [] 
+--lc  R8 [] 
 	component route_7 is
 		port(
 			clock : in std_logic := '0';
@@ -633,8 +649,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_7;
---XXX  R9 ['Sw01'] 
---YYY  R9 [] 
+--sw  R9 ['Sw01'] 
+--dw  R9 [] 
+--sc  R9 [] 
+--lc  R9 [] 
 	component route_8 is
 		port(
 			clock : in std_logic := '0';
@@ -653,8 +671,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_8;
---XXX  R10 ['Sw01'] 
---YYY  R10 [] 
+--sw  R10 ['Sw01'] 
+--dw  R10 [] 
+--sc  R10 [] 
+--lc  R10 [] 
 	component route_9 is
 		port(
 			clock : in std_logic := '0';
@@ -673,8 +693,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_9;
---XXX  R11 ['Sw02'] 
---YYY  R11 [] 
+--sw  R11 ['Sw02'] 
+--dw  R11 [] 
+--sc  R11 [] 
+--lc  R11 [] 
 	component route_10 is
 		port(
 			clock : in std_logic := '0';
@@ -693,8 +715,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_10;
---XXX  R12 ['Sw02'] 
---YYY  R12 [] 
+--sw  R12 ['Sw02'] 
+--dw  R12 [] 
+--sc  R12 [] 
+--lc  R12 [] 
 	component route_11 is
 		port(
 			clock : in std_logic := '0';
@@ -713,8 +737,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_11;
---XXX  R13 ['Sw03'] 
---YYY  R13 [] 
+--sw  R13 ['Sw03'] 
+--dw  R13 [] 
+--sc  R13 [] 
+--lc  R13 [] 
 	component route_12 is
 		port(
 			clock : in std_logic := '0';
@@ -733,8 +759,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_12;
---XXX  R14 ['Sw03'] 
---YYY  R14 [] 
+--sw  R14 ['Sw03'] 
+--dw  R14 [] 
+--sc  R14 [] 
+--lc  R14 [] 
 	component route_13 is
 		port(
 			clock : in std_logic := '0';
@@ -753,8 +781,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_13;
---XXX  R15 ['Sw04'] 
---YYY  R15 [] 
+--sw  R15 ['Sw04'] 
+--dw  R15 [] 
+--sc  R15 [] 
+--lc  R15 [] 
 	component route_14 is
 		port(
 			clock : in std_logic := '0';
@@ -773,8 +803,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_14;
---XXX  R16 ['Sw04'] 
---YYY  R16 [] 
+--sw  R16 ['Sw04'] 
+--dw  R16 [] 
+--sc  R16 [] 
+--lc  R16 [] 
 	component route_15 is
 		port(
 			clock : in std_logic := '0';

@@ -22,7 +22,7 @@ set_property -dict {PACKAGE_PIN M14 IOSTANDARD LVCMOS33} [get_ports {leds[3]}]
 
 ## Clock Signal
 #set_property -dict { PACKAGE_PIN H16    IOSTANDARD LVCMOS33 } [get_ports { clk }]; #IO_L13P_T2_MRCC_35 Sch=SYSCLK
-create_clock -period 8.000 -name sys_clk_pin -waveform {0.000 4.000} -add [get_ports clock]
+#create_clock -period 8.000 -name sys_clk_pin -waveform {0.000 4.000} -add [get_ports clock]
 set_property -dict {PACKAGE_PIN H16 IOSTANDARD LVCMOS33} [get_ports clock]
 
 
@@ -67,3 +67,13 @@ set_property -dict {PACKAGE_PIN L15 IOSTANDARD LVCMOS33} [get_ports {rgb_2[2]}]
 
 #output delay
 #set_output_delay -clock virtual_clock 0.000 [get_ports {led_pins[*]}]
+
+
+set_property BITSTREAM.GENERAL.COMPRESS FALSE [current_design]
+set_property BITSTREAM.STARTUP.DONEPIPE NO [current_design]
+
+
+set_property BITSTREAM.STARTUP.DONE_CYCLE 1 [current_design]
+set_property BITSTREAM.STARTUP.GTS_CYCLE 1 [current_design]
+set_property BITSTREAM.STARTUP.GWE_CYCLE DONE [current_design]
+set_property BITSTREAM.STARTUP.MATCH_CYCLE NOWAIT [current_design]

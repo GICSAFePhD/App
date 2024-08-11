@@ -16,10 +16,10 @@ use work.my_package.all;
 			correspondence_J25 : out hex_char;
 			correspondence_S36 : in hex_char;
 			--Ocupation level 2
-			track_ne50 : in hex_char;
 			track_ne48 : in hex_char;
-			track_ne49 : in hex_char;
 			track_ne46 : in hex_char;
+			track_ne50 : in hex_char;
+			track_ne49 : in hex_char;
 			correspondence_J09 : in hex_char;
 			correspondence_J05 : in hex_char;
 			correspondence_J07 : in hex_char;
@@ -51,14 +51,14 @@ architecture Behavioral of railwaySignal_8 is
 	signal S36_aspect : signalStates;
 	signal S36_lock : objectLock := RELEASED;
 	--Ocupation level 2
-	signal ne50_state : nodeStates := FREE;
-	signal ne50_lock : objectLock := RELEASED;
 	signal ne48_state : nodeStates := FREE;
 	signal ne48_lock : objectLock := RELEASED;
-	signal ne49_state : nodeStates := FREE;
-	signal ne49_lock : objectLock := RELEASED;
 	signal ne46_state : nodeStates := FREE;
 	signal ne46_lock : objectLock := RELEASED;
+	signal ne50_state : nodeStates := FREE;
+	signal ne50_lock : objectLock := RELEASED;
+	signal ne49_state : nodeStates := FREE;
+	signal ne49_lock : objectLock := RELEASED;
 	signal J09_aspect : signalStates;
 	signal J09_lock : objectLock := RELEASED;
 	signal J05_aspect : signalStates;
@@ -78,14 +78,14 @@ begin
 	S36_aspect <= signalStates'val(to_integer(unsigned(hex_to_slv(correspondence_S36)(2 to 3))));
 	S36_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(correspondence_S36)(0 to 1))));
 	--Ocupation level 2
-	ne50_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne50)(2 to 3))));
-	ne50_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne50)(0 to 1))));
 	ne48_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne48)(2 to 3))));
 	ne48_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne48)(0 to 1))));
-	ne49_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne49)(2 to 3))));
-	ne49_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne49)(0 to 1))));
 	ne46_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne46)(2 to 3))));
 	ne46_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne46)(0 to 1))));
+	ne50_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne50)(2 to 3))));
+	ne50_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne50)(0 to 1))));
+	ne49_state <= nodeStates'val(to_integer(unsigned(hex_to_slv(track_ne49)(2 to 3))));
+	ne49_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(track_ne49)(0 to 1))));
 	J09_aspect <= signalStates'val(to_integer(unsigned(hex_to_slv(correspondence_J09)(2 to 3))));
 	J09_lock <= objectLock'val(to_integer(unsigned(hex_to_slv(correspondence_J09)(0 to 1))));
 	J05_aspect <= signalStates'val(to_integer(unsigned(hex_to_slv(correspondence_J05)(2 to 3))));
@@ -131,7 +131,7 @@ begin
 		end case;
 	end process;
 
-	process(commandState)
+	process(commandState,Sw27_position,Sw27_position,Sw29_position,Sw27_position,Sw29_position)
 	begin
 		case commandState is
 			when RELEASE =>

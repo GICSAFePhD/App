@@ -5,8 +5,10 @@ use IEEE.numeric_std.all;
 library work;
 --Declare the package
 use work.my_package.all;
---XXX  R9 ['Sw01', 'Sw03'] 
---YYY  R9 [] 
+--sw  R9 ['Sw01', 'Sw03'] 
+--dw  R9 [] 
+--sc  R9 [] 
+--lc  R9 [] 
 	entity route_8 is
 		port(
 			clock : in std_logic := '0';

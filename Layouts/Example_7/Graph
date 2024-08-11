@@ -1,5 +1,5 @@
 graph finite_state_machine {
-	graph [center=1 labelloc=t overlap=false rankdir=LR splines=true]
+	graph [center=1 labelloc=t newrank=true overlap=scale ratio=compress size="300,300!" splines=true]
 	node [fillcolor=white fontname="Courier New" pendwidth=5 shape=Mrecord style="filled,bold"]
 	ne1 -- ne1 [label=R_01]
 	ne31 -- ne40 [label=R_02]

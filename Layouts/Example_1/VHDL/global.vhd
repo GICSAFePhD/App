@@ -55,7 +55,7 @@ architecture Behavioral of global is
 begin
 	uart_inst : entity work.uart
 		generic map(
-			DVSR      => 407,	-- baud rate divisor DVSR = 125M / (16 * baud rate) baud rate = 19200
+			DVSR      => 325,	-- baud rate divisor DVSR = 100M / (16 * baud rate) baud rate = 19200
 			DVSR_BIT  => 9,   --  bits of DVSR
 			FIFO_W_RX	=> 7, 	--  addr bits of FIFO words in FIFO=2^FIFO_W
 			FIFO_W_TX	=> 7 	--  addr bits of FIFO words in FIFO=2^FIFO_W

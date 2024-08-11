@@ -135,7 +135,7 @@ begin
 		end case;
 	end process;
 
-	process(commandState)
+	process(commandState,Sw12_position,Sw13_position,Sw04_position)
 	begin
 		case commandState is
 			when RELEASE =>
@@ -206,7 +206,7 @@ begin
 
 	process(clock,reset,Q,restart)
 	begin
-		if (reset = '1' or Q = "011010000100111011100001011111") then
+		if (reset = '1' or Q = "010100110111001001001110000000") then
 			timeout <= '1';
 		end if;
 		if (restart = '1') then

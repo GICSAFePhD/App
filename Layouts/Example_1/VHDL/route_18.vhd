@@ -5,8 +5,10 @@ use IEEE.numeric_std.all;
 library work;
 --Declare the package
 use work.my_package.all;
---XXX  R19 ['Sw06', 'Sw12', 'Sw13'] 
---YYY  R19 [] 
+--sw  R19 ['Sw06', 'Sw12', 'Sw13'] 
+--dw  R19 [] 
+--sc  R19 [] 
+--lc  R19 [] 
 	entity route_18 is
 		port(
 			clock : in std_logic := '0';
@@ -89,7 +91,7 @@ begin
 
 	process(clock,reset,Q,restart)
 	begin
-		if (reset = '1' or Q = "011011111100001000111010101111110") then
+		if (reset = '1' or Q = "010110010110100000101111000000000") then
 			timeout <= '1';
 		end if;
 		if (restart = '1') then

@@ -18,8 +18,8 @@ use work.my_package.all;
 			clock : in std_logic;
 			processing : in std_logic;
 			processed : out std_logic;
-			tracks_i: in hex_array(N_TRACKCIRCUITS-1 downto 0);
-			tracks_o: out hex_array(N_TRACKCIRCUITS-1 downto 0);
+			tracks_i : in hex_array(N_TRACKCIRCUITS-1 downto 0);
+			tracks_o : out hex_array(N_TRACKCIRCUITS-1 downto 0);
 			signals_i : in hex_array(N_SIGNALS-1 downto 0);
 			signals_o : out hex_array(N_SIGNALS-1 downto 0);
 			routes_i : in hex_array(N_ROUTES-1 downto 0);
@@ -118,8 +118,8 @@ architecture Behavioral of network is
 			correspondence_S18 : in hex_char;
 			Sw01_state : in hex_char;
 			--Ocupation level 2
-			track_ne17 : in hex_char;
 			track_ne20 : in hex_char;
+			track_ne17 : in hex_char;
 			track_ne18 : in hex_char;
 			correspondence_P12 : in hex_char;
 			correspondence_L06 : in hex_char;
@@ -154,8 +154,8 @@ architecture Behavioral of network is
 			correspondence_S18 : in hex_char;
 			Sw01_state : in hex_char;
 			--Ocupation level 2
-			track_ne17 : in hex_char;
 			track_ne20 : in hex_char;
+			track_ne17 : in hex_char;
 			track_ne18 : in hex_char;
 			correspondence_P12 : in hex_char;
 			correspondence_L06 : in hex_char;
@@ -384,8 +384,10 @@ architecture Behavioral of network is
 			track_o : out hex_char
 		);
 	end component node_6;
---XXX  R1 ['Sw03'] 
---YYY  R1 [] 
+--sw  R1 ['Sw03'] 
+--dw  R1 [] 
+--sc  R1 [] 
+--lc  R1 [] 
 	component route_0 is
 		port(
 			clock : in std_logic := '0';
@@ -404,8 +406,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_0;
---XXX  R2 ['Sw01', 'Sw02'] 
---YYY  R2 [] 
+--sw  R2 ['Sw01', 'Sw02'] 
+--dw  R2 [] 
+--sc  R2 [] 
+--lc  R2 [] 
 	component route_1 is
 		port(
 			clock : in std_logic := '0';
@@ -426,8 +430,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_1;
---XXX  R3 ['Sw01', 'Sw02'] 
---YYY  R3 [] 
+--sw  R3 ['Sw01', 'Sw02'] 
+--dw  R3 [] 
+--sc  R3 [] 
+--lc  R3 [] 
 	component route_2 is
 		port(
 			clock : in std_logic := '0';
@@ -448,8 +454,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_2;
---XXX  R4 ['Sw01'] 
---YYY  R4 ['Lc01'] 
+--sw  R4 ['Sw01'] 
+--dw  R4 [] 
+--sc  R4 [] 
+--lc  R4 ['Lc01'] 
 	component route_3 is
 		port(
 			clock : in std_logic := '0';
@@ -470,8 +478,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_3;
---XXX  R5 ['Sw01'] 
---YYY  R5 ['Lc01'] 
+--sw  R5 ['Sw01'] 
+--dw  R5 [] 
+--sc  R5 [] 
+--lc  R5 ['Lc01'] 
 	component route_4 is
 		port(
 			clock : in std_logic := '0';
@@ -492,8 +502,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_4;
---XXX  R6 ['Sw01', 'Sw02'] 
---YYY  R6 [] 
+--sw  R6 ['Sw01', 'Sw02'] 
+--dw  R6 [] 
+--sc  R6 [] 
+--lc  R6 [] 
 	component route_5 is
 		port(
 			clock : in std_logic := '0';
@@ -514,8 +526,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_5;
---XXX  R7 ['Sw02'] 
---YYY  R7 ['Lc01'] 
+--sw  R7 ['Sw02'] 
+--dw  R7 [] 
+--sc  R7 [] 
+--lc  R7 ['Lc01'] 
 	component route_6 is
 		port(
 			clock : in std_logic := '0';
@@ -536,8 +550,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_6;
---XXX  R8 ['Sw02', 'Sw03'] 
---YYY  R8 ['Lc01'] 
+--sw  R8 ['Sw02', 'Sw03'] 
+--dw  R8 [] 
+--sc  R8 [] 
+--lc  R8 ['Lc01'] 
 	component route_7 is
 		port(
 			clock : in std_logic := '0';
@@ -562,8 +578,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_7;
---XXX  R9 ['Sw01', 'Sw02', 'Sw03'] 
---YYY  R9 [] 
+--sw  R9 ['Sw01', 'Sw02', 'Sw03'] 
+--dw  R9 [] 
+--sc  R9 [] 
+--lc  R9 [] 
 	component route_8 is
 		port(
 			clock : in std_logic := '0';
@@ -588,8 +606,10 @@ architecture Behavioral of network is
 			routeExecute : out hex_char
 		);
 	end component route_8;
---XXX  R10 ['Sw03'] 
---YYY  R10 [] 
+--sw  R10 ['Sw03'] 
+--dw  R10 [] 
+--sc  R10 [] 
+--lc  R10 [] 
 	component route_9 is
 		port(
 			clock : in std_logic := '0';
@@ -623,9 +643,9 @@ begin
 	singleSwitch_Sw02 : singleSwitch_1 port map(R6_command => cmd_R6_Sw02, R7_command => cmd_R7_Sw02, R8_command => cmd_R8_Sw02, R9_command => cmd_R9_Sw02, R2_command => cmd_R2_Sw02, R3_command => cmd_R3_Sw02, indication => singleSwitches_i(1), command => singleSwitches_o(1), correspondence => state_Sw02, clock => clock, reset => reset);
 	singleSwitch_Sw03 : singleSwitch_2 port map(R1_command => cmd_R1_Sw03, R8_command => cmd_R8_Sw03, R9_command => cmd_R9_Sw03, R10_command => cmd_R10_Sw03, indication => singleSwitches_i(2), command => singleSwitches_o(2), correspondence => state_Sw03, clock => clock, reset => reset);
 	railwaySignal_P09 : railwaySignal_0 port map(R4_command => cmd_R4_P09, track_ne14 => tracks_i(0), indication => signals_i(0), command => signals_o(0), correspondence_P09 => state_P09, clock => clock, reset => reset);
-	railwaySignal_C13 : railwaySignal_1 port map(R2_command => cmd_R2_C13, track_ne14 => tracks_i(0), track_ne16 => tracks_i(2), track_ne17 => tracks_i(3), track_ne20 => tracks_i(6), track_ne18 => tracks_i(4), correspondence_S18 => state_S18, correspondence_P12 => state_P12, correspondence_L06 => state_L06, Sw01_state => state_Sw01, Sw02_state => state_Sw02, Sw03_state => state_Sw03, indication => signals_i(1), command => signals_o(1), correspondence_C13 => state_C13, clock => clock, reset => reset);
+	railwaySignal_C13 : railwaySignal_1 port map(R2_command => cmd_R2_C13, track_ne14 => tracks_i(0), track_ne16 => tracks_i(2), track_ne20 => tracks_i(6), track_ne17 => tracks_i(3), track_ne18 => tracks_i(4), correspondence_S18 => state_S18, correspondence_P12 => state_P12, correspondence_L06 => state_L06, Sw01_state => state_Sw01, Sw02_state => state_Sw02, Sw03_state => state_Sw03, indication => signals_i(1), command => signals_o(1), correspondence_C13 => state_C13, clock => clock, reset => reset);
 	railwaySignal_L04 : railwaySignal_2 port map(R5_command => cmd_R5_L04, track_ne15 => tracks_i(1), indication => signals_i(2), command => signals_o(2), correspondence_L04 => state_L04, clock => clock, reset => reset);
-	railwaySignal_B14 : railwaySignal_3 port map(R3_command => cmd_R3_B14, track_ne15 => tracks_i(1), track_ne16 => tracks_i(2), track_ne17 => tracks_i(3), track_ne20 => tracks_i(6), track_ne18 => tracks_i(4), correspondence_S18 => state_S18, correspondence_P12 => state_P12, correspondence_L06 => state_L06, Sw01_state => state_Sw01, Sw02_state => state_Sw02, Sw03_state => state_Sw03, indication => signals_i(3), command => signals_o(3), correspondence_B14 => state_B14, clock => clock, reset => reset);
+	railwaySignal_B14 : railwaySignal_3 port map(R3_command => cmd_R3_B14, track_ne15 => tracks_i(1), track_ne16 => tracks_i(2), track_ne20 => tracks_i(6), track_ne17 => tracks_i(3), track_ne18 => tracks_i(4), correspondence_S18 => state_S18, correspondence_P12 => state_P12, correspondence_L06 => state_L06, Sw01_state => state_Sw01, Sw02_state => state_Sw02, Sw03_state => state_Sw03, indication => signals_i(3), command => signals_o(3), correspondence_B14 => state_B14, clock => clock, reset => reset);
 	railwaySignal_S15 : railwaySignal_4 port map(R4_command => cmd_R4_S15, R5_command => cmd_R5_S15, R6_command => cmd_R6_S15, R9_command => cmd_R9_S15, track_ne16 => tracks_i(2), track_ne14 => tracks_i(0), track_ne15 => tracks_i(1), correspondence_P09 => state_P09, correspondence_L04 => state_L04, Sw01_state => state_Sw01, Lc01_state => state_Lc01, indication => signals_i(4), command => signals_o(4), correspondence_S15 => state_S15, clock => clock, reset => reset);
 	railwaySignal_S18 : railwaySignal_5 port map(R7_command => cmd_R7_S18, R8_command => cmd_R8_S18, R2_command => cmd_R2_S18, R3_command => cmd_R3_S18, track_ne16 => tracks_i(2), track_ne18 => tracks_i(4), track_ne17 => tracks_i(3), track_ne20 => tracks_i(6), correspondence_P12 => state_P12, correspondence_L06 => state_L06, Sw02_state => state_Sw02, Sw03_state => state_Sw03, Lc01_state => state_Lc01, indication => signals_i(5), command => signals_o(5), correspondence_S18 => state_S18, clock => clock, reset => reset);
 	railwaySignal_P12 : railwaySignal_6 port map(R7_command => cmd_R7_P12, track_ne18 => tracks_i(4), indication => signals_i(6), command => signals_o(6), correspondence_P12 => state_P12, clock => clock, reset => reset);

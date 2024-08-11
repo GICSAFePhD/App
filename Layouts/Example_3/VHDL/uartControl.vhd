@@ -2,6 +2,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
 	entity uartControl is
 		port(
 			clock : in std_logic;
@@ -25,7 +26,7 @@ begin
 				rd_uart <= '0';
 			elsif empty_in = '0' then   -- Data available
 				count_i := count_i + 1;
-				if count_i = 125E3 then    -- Count 100 msecs
+				if count_i = 100E3 then    -- Count 100 msecs
 					count_i := 0;
 					rd_uart <= '1';     -- Request new data"+"
 					L := L + 1;

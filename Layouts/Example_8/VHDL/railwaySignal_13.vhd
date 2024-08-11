@@ -110,7 +110,7 @@ begin
 		end case;
 	end process;
 
-	process(commandState)
+	process(commandState,Sw12_position)
 	begin
 		case commandState is
 			when RELEASE =>
